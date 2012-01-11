@@ -1,0 +1,38 @@
+""" -*- python -*-
+
+This script shows possible problem with histograming integers
+
+author Warren Focke
+
+$Id: integers.py.in,v 1.1 2005/05/22 14:34:58 pfkeb Exp $
+
+"""
+
+# import code
+
+import setPath
+
+import numarray
+
+import hippo
+#import setPath
+
+loVal = 900
+hiVal = 1050
+
+data = numarray.arange(loVal, hiVal)
+
+app = hippo.HDApp.instance()
+canvas = app.canvas()
+ntc = hippo.NTupleController.instance()
+
+ntuple = hippo.NTuple()
+ntc.registerNTuple(ntuple)
+ntuple.addColumn('Data', data)
+
+display = hippo.Display('Histogram', ntuple, ['Data'])
+canvas.addDisplay(display)
+display.setRange('X', loVal, hiVal)
+display.setBinWidth('X', 1)
+
+print "'Plot should be flat and = 1"

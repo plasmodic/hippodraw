@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <exportmacro>MDL_QTHIPPOPLOT_API</exportmacro>
+ <class>PickTableBase</class>
+ <widget class="QDialog" name="PickTableBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>523</width>
+    <height>378</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Pick table</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <widget class="QLabel" name="m_title">
+     <property name="text">
+      <string>Plot Title</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="1">
+    <spacer name="horizontalSpacer">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>102</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="0" column="2" colspan="2">
+    <widget class="QLabel" name="m_type">
+     <property name="text">
+      <string>Plot Type</string>
+     </property>
+     <property name="wordWrap">
+      <bool>false</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="0" column="4">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>128</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="0" colspan="5">
+    <widget class="QTableWidget" name="m_pick_table">
+     <property name="selectionMode">
+      <enum>QAbstractItemView::SingleSelection</enum>
+     </property>
+     <property name="selectionBehavior">
+      <enum>QAbstractItemView::SelectRows</enum>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="0">
+    <widget class="QPushButton" name="m_add_entry">
+     <property name="text">
+      <string>Add entry</string>
+     </property>
+    </widget>
+   </item>
+   <item row="2" column="1" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="xLineEdit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="yLineEdit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="zLineEdit"/>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="wLineEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item row="3" column="0" colspan="2">
+    <widget class="QCheckBox" name="m_pickedCheckBox">
+     <property name="text">
+      <string>Show picked points</string>
+     </property>
+     <property name="checked">
+      <bool>true</bool>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="2">
+    <spacer name="horizontalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>104</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="3" column="3">
+    <widget class="QPushButton" name="m_clear">
+     <property name="text">
+      <string>Clear</string>
+     </property>
+    </widget>
+   </item>
+   <item row="3" column="4">
+    <widget class="QPushButton" name="m_delete">
+     <property name="text">
+      <string>Delete selected</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <tabstops>
+  <tabstop>xLineEdit</tabstop>
+  <tabstop>yLineEdit</tabstop>
+  <tabstop>zLineEdit</tabstop>
+  <tabstop>wLineEdit</tabstop>
+  <tabstop>m_add_entry</tabstop>
+  <tabstop>m_clear</tabstop>
+  <tabstop>m_delete</tabstop>
+ </tabstops>
+ <includes>
+  <include location="local">libqthippo.h</include>
+ </includes>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_clear</sender>
+   <signal>clicked()</signal>
+   <receiver>PickTableBase</receiver>
+   <slot>clear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>320</x>
+     <y>349</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_delete</sender>
+   <signal>clicked()</signal>
+   <receiver>PickTableBase</receiver>
+   <slot>deleteSelectedItem()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>388</x>
+     <y>349</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_add_entry</sender>
+   <signal>clicked()</signal>
+   <receiver>PickTableBase</receiver>
+   <slot>addEntry()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>318</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_pickedCheckBox</sender>
+   <signal>clicked()</signal>
+   <receiver>PickTableBase</receiver>
+   <slot>pickedCheckBoxClicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>350</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_pick_table</sender>
+   <signal>itemSelectionChanged()</signal>
+   <receiver>PickTableBase</receiver>
+   <slot>m_pick_table_selectionChanged()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>418</x>
+     <y>133</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>509</x>
+     <y>13</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>clear()</slot>
+  <slot>deleteSelectedItem()</slot>
+  <slot>addEntry()</slot>
+  <slot>pickedCheckBoxClicked()</slot>
+  <slot>m_pick_table_selectionChanged()</slot>
+ </slots>
+</ui>

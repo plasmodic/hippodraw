@@ -1,0 +1,29 @@
+add_srcgroup(datareps
+  ColorPlot.cxx
+  CompositeFunctionRep.cxx
+  ContourPlot.cxx
+  DataRepException.cxx
+  DataRepFactory.cxx
+  DataRep.cxx
+  DyHistogram.cxx
+  DyHistogramEqualEntries.cxx
+  FunctionParameter.cxx
+  FunctionRep.cxx
+  FunctionRep1.cxx
+  FunctionRep2.cxx
+  Image.cxx
+  LineDataRep.cxx
+  Profile2D.cxx
+  ProfileContour.cxx
+  ProfileHist.cxx
+  ScatterPlot.cxx
+  St1DHistogram.cxx
+  St2DHistogram.cxx
+  StripChart.cxx
+  TextDataRep.cxx
+  VariableMesh.cxx
+  XYPlot.cxx
+  XYZPlot.cxx
+  YPlot.cxx)
+
+install_files(/include/HippoDraw/datareps .h)

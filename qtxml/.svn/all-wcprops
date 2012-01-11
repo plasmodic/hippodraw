@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qtxml
+END
+QtXMLController.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXMLController.h
+END
+QtXmlElement.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qtxml/QtXmlElement.cxx
+END
+QtXmlNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlNode.h
+END
+QtXmlTextNode.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlTextNode.cxx
+END
+qtxml.dir
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/qtxml.dir
+END
+QtXmlDocument.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qtxml/QtXmlDocument.cxx
+END
+QtXmlElement.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlElement.h
+END
+QtXmlTextNode.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlTextNode.h
+END
+QtXMLController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXMLController.cxx
+END
+QtXmlDocument.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlDocument.h
+END
+QtXmlNode.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtxml/QtXmlNode.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/48411/tools/hippodraw/trunk/qtxml/CMakeLists.txt
+END

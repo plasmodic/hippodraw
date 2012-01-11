@@ -1,0 +1,66 @@
+""" -*- mode:python -*-
+
+Test of reading ROOT array variables with static histograms
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import RootController, Display
+rc = RootController.instance()
+
+filename = "/nfs/farm/g/glast/u33/InstrumentAnalysis/MC/EngineeringModel-v6r070329p28/Surface_muons/surface_muons_4M_svac.root"
+
+print "Opening file ", filename
+ntuple_names = rc.getNTupleNames ( filename  )
+print "In this file, tree names are ", ntuple_names
+
+name = ntuple_names[0]
+
+ntuple = rc.createNTuple ( filename, name )
+print "Number of columns = ", ntuple.columns
+
+import hippoplotter as plot
+thinHits = plot.StaticHist ( title = "thin hits", xrange = (0., 400. ),
+                             xlabel = 'hits',  xBinWidth = 8 )
+thinHits.setLog ( 'y', True )
+
+thickHits = plot.StaticHist ( title = "thick hits",
+                              xlabel = 'hits', xrange = (0, 140),
+                              xBinWidth = 2 )
+thickHits.setLog ( 'y', True )
+
+blankHits = plot.StaticHist ( title = "blank hits",
+                              xlabel = 'hits', xrange = (0, 120),
+                              xBinWidth = 2 )
+blankHits.setLog ( 'y', True )
+
+events = ntuple.rows
+for event in range ( events ):
+    nbrThinHits = 0
+    nbrThickHits = 0
+    nbrBlankHits = 0
+
+    numstrips = ntuple.valueAt ( event, 'TkrNumStrips' )
+
+    for tower in [ 8, 9 ] :
+        for layer in range ( 18 ) :
+            for view in range ( 2 ) :
+                if layer < 12 :
+                    nbrThinHits += numstrips[tower, layer, view]
+                elif  layer < 16 :
+                    nbrThickHits += numstrips[tower, layer, view]
+                else :
+                    nbrBlankHits += numstrips[tower, layer, view]
+
+    thinHits.addValues ( (nbrThinHits, ) )
+    thickHits.addValues ( (nbrThickHits, ) )
+    blankHits.addValues ( (nbrBlankHits, ) )
+        
+
+print "done"

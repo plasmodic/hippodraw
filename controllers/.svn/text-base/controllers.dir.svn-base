@@ -1,0 +1,15 @@
+/** @dir controllers
+
+This directory contains source and header files for classes related to
+controlling the displays on the CanvasView.
+
+This directory contains source and header files for classes related to
+controlling the displays on the CanvasView.  These classes implement
+the application logic independent of the Graphical User Interface or
+the scripting language.  That is, the goal is that application logic
+should be in one of the controller classes and not in a classes that
+supports the user interface.
+
+@note The above goal has not been 100% acheived.
+
+*/

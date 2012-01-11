@@ -1,0 +1,37 @@
+""" -*- python -*-
+
+   Tests trying to add Function to empty data rep.
+
+   author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+"""
+
+# Gets the HippoDraw application.
+
+import setPath
+from load_hippo import app, canvas
+from hippo import Display, NTupleController, Cut
+
+x = [ 1, 2, 3, 4, 5 ]
+y = [ 1, 2, 3, 4, 5 ]
+
+ntc = NTupleController.instance()
+nt  = ntc.createNTuple ()
+
+nt.addColumn ( 'x', x )
+nt.addColumn ( 'y', y )
+
+xy = Display ( 'XY Plot', nt, [ 'x', 'y', 'nil', 'nil' ] )
+canvas.addDisplay ( xy )
+
+cut = Cut ( nt, 'x' )
+canvas.addDisplay ( cut )
+cut.addTarget ( xy )
+cut.setCutRange ( 0., 0.5, 'x' )
+
+from hippo import Function
+
+datarep = xy.getDataRep ()
+lin = Function ( 'Linear', datarep )
+lin.addTo ( xy )
+
+print "Adding a function to empty data representation used to crash program"

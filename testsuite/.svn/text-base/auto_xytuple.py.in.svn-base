@@ -1,0 +1,41 @@
+""" -*- python -*-
+
+   Tests binding to fewer columns than labels
+
+   author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+"""
+# Gets the HippoDraw application.
+import setPath
+from load_hippo import app, canvas
+from hippo import Display
+
+energy = [90.74, 91.06, 91.43, 91.5, 92.16, 92.22, 92.96, 89.24, 89.98, 90.35]
+sigma  = [ 29.0, 30.0,  28.40, 28.8, 21.95, 22.9,  13.5,   4.5,  10.8,  24.2 ]
+errors = [  5.9,  3.15,  3.0,   5.8,  7.9,   3.1,   4.6,   3.5,   4.6,   3.6 ]
+
+# make a plot to test it.
+xy = Display ( "XY Plot", [ energy, sigma, errors ],
+               ['Energy', 'Sigma', 'nil', 'error' ] )
+
+canvas.addDisplay ( xy )
+
+values = [ 89., 89.5, 90, 90.5, 91, 91.5, 92, 92.5, 93.]
+labels = [ '89', '89.5', '90', '90.5', '91', '91.5', '92', '92.5', '93']
+xy.setAutoTicks ( 'x', False )
+xy.setTicks ( 'x', values, labels )
+
+# try too few labels
+try :
+    junk = Display ( "XY Plot", [ energy, sigma, errors ],
+                     [ "Energy", "Sigma" ] )
+except RuntimeError, detail :
+    print detail
+
+# try too few non nil labels
+try :
+    junk = Display ( "XY Plot", [ energy, sigma, errors ],
+                     [ "Energy", "Sigma", "nil", "nil" ] )
+except RuntimeError, detail :
+    print detail
+
+print "\nBound to Y error, but not to X error while only 3 list objects given"

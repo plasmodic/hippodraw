@@ -1,0 +1,47 @@
+"""-*- mode: python -*-
+
+Demonstraton running HippoDraw in batch mode.
+
+  @author Paul F. Kunz <Paul_Kunz@slacs.stanford.edu>
+
+"""
+#
+# $Id: batchmode.py.in,v 1.6 2004/07/05 17:16:53 pfkeb Exp $
+#
+
+import random
+import setPath
+
+from hippo import HDApp, Canvas, Display
+
+import sys
+app = HDApp( 1 ) # runs in python thread
+
+sthist = Display ( "Static Histogram" )
+sthist.setTitle ( "Gaussian Distribution" )
+sthist.setRange ( 'x', 0, 100)
+sthist.setBinWidth ( 'x', 1. )
+
+mean = 45
+sigma = 10
+gauss = random.gauss
+
+for i in range(10000):
+    x = gauss( mean, sigma )
+    sthist.addValues ( (x, ) )
+
+datarep = sthist.getDataRep()
+print "Histogram :"
+print "  Title : " + sthist.getTitle()
+print "  Entries : %i" % sthist.numberOfEntries()
+print "  Mean = %f" % datarep.getMean ( 'x' )
+print "  Rms  = %f" % datarep.getRMS ( 'x' )
+
+# didn't need canvas for above, but need it to draw
+canvas = Canvas ()
+canvas.addDisplay ( sthist )
+
+canvas.saveAs ( 'batch.hpo' ) # save as document
+canvas.printTo ( 'batch.ps' ) # save as PS
+canvas.saveAsImage ( sthist, 'batch.jpg' ) # save using Qt canvas
+canvas.saveAsImage ( sthist, 'batch.eps' ) # save EPS view object

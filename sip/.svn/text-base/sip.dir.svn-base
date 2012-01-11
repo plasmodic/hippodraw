@@ -1,0 +1,12 @@
+/** @dir sip
+
+This directory contains source files to build a Python extension
+module using the SIP processor.
+
+@sa @ref python_appli
+
+@request configure script should set the %Qt version number in the
+sip/Makefile.
+
+*/
+

@@ -1,0 +1,111 @@
+""" -*- mode: python -*-
+Use the binning capabilities of HippoDraw to create a 2D counts map.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+#$Id: useBinner.py.in,v 1.8 2005/12/01 02:25:32 jchiang Exp $
+#
+
+def uniq(xx):
+    "Remove duplicates from a list and sort."
+    dict = {}
+    for x in xx:
+        dict[x] = 1
+    keys = dict.keys()
+    keys.sort()
+    return keys
+
+import setPath
+
+#
+# Read in the event data from the FITS binary table
+#
+from FitsNTuple import *
+ntf = FitsNTuple("@top_srcdir@/examples/SimEvents.fits")
+nt = ntf.makeNTuple()
+
+#
+# Create a 2D histogram display
+#
+import hippo
+xyhist = hippo.Display("Color Plot", nt, ("GLON", "GLAT"))
+
+xyhist.setBinWidth("x", 4)
+xyhist.setBinWidth("y", 4)
+xyhist.setRange("x", -180, 180)
+xyhist.setRange("y", -90, 90)
+
+#
+# Create an NTuple from the binned data
+#
+nt2 = xyhist.createNTuple()
+
+#
+# x- and y-axis coordinate values
+#
+x = uniq( nt2.getColumn("GLON") )
+y = uniq( nt2.getColumn("GLAT") )
+
+#
+# Create an image display
+#
+image = hippo.Display ( "Image", nt2, (nt2.getLabel(2),))
+
+#
+# set the number of bins in each dimension
+#
+image.setNumberOfBins("x", len(x))
+image.setNumberOfBins("y", len(y))
+
+#
+# Set the pixels sizes and range.
+#
+# The setBinWidth commands cause the problems for the Z values
+# returned by a right mouse click.
+#
+dx = x[1] - x[0]
+dy = y[1] - y[0]
+image.setBinWidth("x", dx)
+image.setBinWidth("y", dy)
+
+image.setRange("x", 0, len(x)*dx)
+image.setRange("y", 0, len(y)*dy)
+
+#
+# Apply a cut so that the zero value pixels are plotted as black.
+#
+zeroCut = hippo.Cut( nt2, ("Entries / bin", ) )
+zeroCut.addTarget( image )
+zeroCut.setCutRange(1, 1e4, 'x' )
+
+canvas = hippo.HDApp.instance().canvas()
+canvas.addDisplay(xyhist)
+canvas.addDisplay(image)
+
+#
+#from FitsAxis import FitsAxis
+#xaxis = FitsAxis("GLON", 1, min(x), (max(x) - min(x))/len(x))
+#yaxis = FitsAxis("GLAT", 1, min(y), (max(y) - min(y))/len(y))
+#
+#import numarray
+#
+#cmap = numarray.array(nt2.getColumn("Entries / bin"))
+#cmap.resize(len(x), len(y))
+#cmap.transpose()
+#
+#import fitsarray
+#
+#fitsImage = fitsarray.FitsImageArray(cmap)
+#fitsImage.setAxis(xaxis, 1)
+#fitsImage.setAxis(yaxis, 2)
+#
+#import os
+#os.system("rm -f junk.fits")
+#fitsImage.writeto("junk.fits")
+#
+#import hippoplotter as plot
+#plot.fitsImage("junk.fits")
+##
+###x = plot.FitsImage("junk.fits")
+###plot.fitsImage(x)

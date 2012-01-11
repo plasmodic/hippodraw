@@ -1,0 +1,103 @@
+/** @dir qtui
+
+This directory contains %Qt Designer interface
+files related to the %Qt built graphical user interface.  The %Qt
+Designer user interface files end with the suffix @em ui.  Those with
+a @em UI ending their class name are for %Qt 4, the rest are for %Qt 3.
+The %Qt 4 ones were converted from %Qt 3 files by using the @em uic3 @em
+-convert command.
+
+This directory contains source and header files built with %Qt tools
+moc and uic.
+
+*/
+
+/** @class CanvasSettingsBase
+    @brief The base class for the CanvasSettings class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @class CanvasWindowBase
+    @brief The base class for the CanvasWindow class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @class InspectorBase
+    @brief The base class for the Inspector class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @class ListDialogBase
+    @brief The base class for the ListDialog class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @class PickTableBase
+    @brief The base class for the PickTable class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @class PlotTableBase
+    @brief The base class for the PlotTable class.
+
+    The pure virtual base class built with the %Qt Designer.
+
+*/
+
+/** @file CanvasSettingsBase.cpp
+    The file created from CanvasSettingsBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file CanvasSettingsBase.h
+    The file created from CanvasSettingsBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file CanvasWindowBase.cpp
+    The file created from CanvasWindowBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file CanvasWindowBase.h
+    The file created from CanvasWindowBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file InspectorBase.cpp
+    The file created from InspectorBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file InspectorBase.h
+    The file created from InspectorBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file ListDialogBase.cpp
+    The file created from ListDialogBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file ListDialogBase.h
+    The file created from ListDialogBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file PickTableBase.cpp
+    The file created from PickTableBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file PickTableBase.h
+    The file created from PickTableBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file PlotTableBase.cpp
+    The file created from PlotTableBase.ui with the %Qt @em uic tool.
+*/
+
+/** @file PlotTableBase.h
+    The file created from PlotTableBase.ui with the %Qt @em uic tool.
+*/

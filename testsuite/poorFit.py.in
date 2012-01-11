@@ -1,0 +1,49 @@
+""" -*- mode: python -*-
+
+This script tests fitting with Minuit.
+
+Copyright (C) 2003, 2004   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: poorFit.py.in,v 1.6 2004/07/07 21:48:48 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ( "Histogram", nt1, ('Service',) )
+canvas.addDisplay ( hist )
+
+hist.setBinWidth ( 'x', 1.0 )
+
+from hippo import Function
+
+datarep = hist.getDataRep()
+gauss = Function ( "Gaussian", datarep )
+gauss.addTo ( hist )
+
+try :
+    gauss.setFitter ( "Minuit" )
+except RuntimeError, detail :
+    print detail
+    print "Tried to get fitter that doesn't exist"
+try :
+    gauss.setFitter ( "ChiSq: Minuit(Migrad)" )
+except RuntimeError, detail :
+    print detail
+    print "HippoDraw was not built with Minuit"
+
+gauss.fit ()
+
+print "Demonstrates setting fitter from Python"
+print ""
+

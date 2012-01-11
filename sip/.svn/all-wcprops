@@ -1,0 +1,359 @@
+K 25
+svn:wc:ra_dav:version-url
+V 45
+/svn/!svn/ver/60780/tools/hippodraw/trunk/sip
+END
+FunctionHelper.sip
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/FunctionHelper.sip
+END
+QtViewImp.sip
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/QtViewImp.sip
+END
+testwidget.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/testwidget.py.in
+END
+FactoryException.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/FactoryException.sip
+END
+Observer.sip
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Observer.sip
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Makefile.in
+END
+static.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/static.py.in
+END
+CanvasWindowBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/CanvasWindowBase.sip
+END
+CutController.sip
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/CutController.sip
+END
+axisgen.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/axisgen.py.in
+END
+customaxis.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/customaxis.py.in
+END
+testxyplot.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/testxyplot.py.in
+END
+autoscale2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/autoscale2.py.in
+END
+negative.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/negative.py.in
+END
+axis.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/axis.py.in
+END
+string.sip
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/string.sip
+END
+Inspector.sip
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Inspector.sip
+END
+NTuple.sip
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/NTuple.sip
+END
+updates.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/updates.py.in
+END
+DisplayController.sip
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/DisplayController.sip
+END
+testwindow.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/testwindow.py.in
+END
+XyPlotter.sip
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/XyPlotter.sip
+END
+sihippo.sip
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/sihippo.sip
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/INSTALL
+END
+Color.sip
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Color.sip
+END
+AxisModelBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/AxisModelBase.sip
+END
+DataRep.sip
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/DataRep.sip
+END
+FunctionBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/FunctionBase.sip
+END
+QtViewWidget.sip
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/QtViewWidget.sip
+END
+TextRepFactory.sip
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/TextRepFactory.sip
+END
+image.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/image.py.in
+END
+SaveAsImageEvent.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/SaveAsImageEvent.sip
+END
+LineDataRep.sip
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/LineDataRep.sip
+END
+FunctionController.sip
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/FunctionController.sip
+END
+Cut1DPlotter.sip
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Cut1DPlotter.sip
+END
+DataSource.sip
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/DataSource.sip
+END
+PlotterEvent.sip
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/PlotterEvent.sip
+END
+Fitter.sip
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Fitter.sip
+END
+CircularBuffer.sip
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/CircularBuffer.sip
+END
+Doxyfile.in
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Doxyfile.in
+END
+DataRepException.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/DataRepException.sip
+END
+InspectorBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/InspectorBase.sip
+END
+vector.sip
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/vector.sip
+END
+CanvasWindow.sip
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/60780/tools/hippodraw/trunk/sip/CanvasWindow.sip
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/README
+END
+stest.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/stest.py.in
+END
+CutPlotter.sip
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/CutPlotter.sip
+END
+ViewBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/ViewBase.sip
+END
+fitting.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/fitting.py.in
+END
+NTupleController.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/NTupleController.sip
+END
+WindowController.sip
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/WindowController.sip
+END
+FunctionFactory.sip
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/FunctionFactory.sip
+END
+sip.dir
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/sip.dir
+END
+QtView.sip
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/QtView.sip
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Makefile.am
+END
+RepBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/RepBase.sip
+END
+autoscale.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/autoscale.py.in
+END
+PlotterBase.sip
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/PlotterBase.sip
+END
+Observable.sip
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/sip/Observable.sip
+END

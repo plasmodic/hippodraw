@@ -1,0 +1,21 @@
+A few other packages may be required for the working of a few test suites.
+(and hence in general a few programs utilizing those features). For example
+
+1. m51.py requires pyfits. 	 
+
+2. erget.py requires numarray 0.4 together with pyfits. The numarray
+version required is 0.4 which is an older version with which the pyfits is
+compatible.  
+
+These packages can be found at the following locations together with the
+install instructions at the pyfits home page:
+
+http://www.stsci.edu/resources/software_hardware/pyfits/Download
+
+Please note IN SPITE of the claims made in above page that pyfits works with
+numarray 0.4 and ABOVE we have observed that use of any higher version
+leads to incompatibilities and hence urge users to use version 0.4 ONLY.
+
+ 
+ 
+   	 

@@ -1,0 +1,13 @@
+/** @dir numarray
+
+This directory contains source and header files for classes using
+numarray or numpy as a DataSource.
+
+@note Compiling these sources is optional.
+
+@sa <a href="../../user/html/ntuple_root.html#ntuple_numarray">
+NumArrayTuple class</a> and
+<a href="../../user/html/install_notes.html#install_numarray">numarray install
+</a>.
+
+*/

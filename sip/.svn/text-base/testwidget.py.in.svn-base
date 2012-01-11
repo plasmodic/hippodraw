@@ -1,0 +1,32 @@
+""" -*- mode: python -*-
+
+Script to test running HippoDraw view vidget with PyQt
+
+$Id: testwidget.py.in,v 1.3 2004/07/07 21:48:47 pfkeb Exp $
+
+author: Paul_Kunz@slac.stanford.edu
+
+"""
+
+import sys
+from qt import *
+
+app = QApplication ( sys.argv )
+
+from sihippo import *
+
+ntc = NTupleController.instance()
+nt = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+dc = DisplayController.instance();
+plotter = dc.createDisplay ( "Histogram", nt, [ 'Cost' ] )
+
+view = QtViewWidget()
+view.setPlotter ( plotter )
+
+view.resize ( 400, 400 )
+app.setMainWidget ( view )
+view.setCaption ( "Qt Hippodraw - View widget" )
+view.show()
+
+app.exec_loop()

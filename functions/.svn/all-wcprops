@@ -1,0 +1,251 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/73146/tools/hippodraw/trunk/functions
+END
+FunctionBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/FunctionBase.cxx
+END
+ConstantF.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/ConstantF.h
+END
+Quadratic2.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Quadratic2.h
+END
+functions.dir
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/functions.dir
+END
+PowerLaw.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/PowerLaw.h
+END
+Weibull.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/48614/tools/hippodraw/trunk/functions/Weibull.h
+END
+Landau.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Landau.h
+END
+LogNormal.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LogNormal.cxx
+END
+Novosibirsk.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Novosibirsk.h
+END
+Chi2Dist.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Chi2Dist.h
+END
+Linear.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Linear.h
+END
+Gaussian.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Gaussian.h
+END
+BrokenPowerLaw.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/BrokenPowerLaw.cxx
+END
+Quadratic.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Quadratic.h
+END
+LinearSumFunction.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LinearSumFunction.cxx
+END
+FunctionBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/FunctionBase.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/48614/tools/hippodraw/trunk/functions/CMakeLists.txt
+END
+FunctionFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/48614/tools/hippodraw/trunk/functions/FunctionFactory.cxx
+END
+LogNormal.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LogNormal.h
+END
+Erfc.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Erfc.cxx
+END
+Gamma.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/73146/tools/hippodraw/trunk/functions/Gamma.cxx
+END
+LogParabola.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LogParabola.cxx
+END
+BrokenPowerLaw.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/BrokenPowerLaw.h
+END
+Exponential.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Exponential.cxx
+END
+LinearSumFunction.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LinearSumFunction.h
+END
+ConstantF.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/ConstantF.cxx
+END
+Quadratic2.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Quadratic2.cxx
+END
+PowerLaw.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/PowerLaw.cxx
+END
+FunctionFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/FunctionFactory.h
+END
+Weibull.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/48614/tools/hippodraw/trunk/functions/Weibull.cxx
+END
+Landau.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Landau.cxx
+END
+Erfc.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Erfc.h
+END
+Gamma.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/48614/tools/hippodraw/trunk/functions/Gamma.h
+END
+Novosibirsk.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Novosibirsk.cxx
+END
+LogParabola.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/LogParabola.h
+END
+Chi2Dist.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Chi2Dist.cxx
+END
+Linear.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Linear.cxx
+END
+Gaussian.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Gaussian.cxx
+END
+FunctionHelper.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/FunctionHelper.h
+END
+Exponential.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Exponential.h
+END
+Quadratic.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/functions/Quadratic.cxx
+END

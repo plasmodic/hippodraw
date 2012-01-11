@@ -1,0 +1,82 @@
+""" -*- mode:python -*-
+
+Test of NumArrayTuple class
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+num = None
+d_type = None
+try:
+    import numarray as num
+    d_type = num.double 
+except:
+    import numpy as num
+    d_type = 'd'
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+from hippo import NTuple
+
+from hippo import NumArrayTuple
+
+from random import gauss
+mean = 1.0
+sigma = 0.5
+
+npts = 1000
+xarr = num.zeros( (npts,), d_type )
+for i in range(npts):
+    xarr[i] = gauss( mean,sigma )
+
+
+na = NumArrayTuple (  )
+label = 'gauss'
+na.addColumn ( label, xarr )
+
+na.setTitle ( "Histogram from Python numeric::numarray" )
+
+ntc.registerNTuple ( na )
+
+## Change the name after registering it to test ntc's observer impl.
+na.setName ( "NumArrayTable" )
+
+from hippo import Display
+
+hist = Display ( 'Histogram', na, (label, ))
+canvas.addDisplay( hist )
+
+nt = NTuple()
+nt.setTitle ( 'Histogram from NTuple' )
+nt.setName ( 'NTuple' )
+ntc.registerNTuple ( nt )
+
+nt.addColumn ( label, xarr )
+
+hist2 = Display ( 'Histogram', nt, (label, ))
+canvas.addDisplay( hist2 )
+
+from time import sleep
+
+print "Should see histogram with its data coming directly from"
+print "a numarray in Python on the left updating each second."
+print "\nThe histogram on the right is the initial numarray copied"
+print "into C++ NTuple"
+
+for i in range (11) :
+    sleep ( 0.25 )
+    xarr += 0.5
+    na.notifyObservers()
+
+
+print "Test getting number of rows from rank 2 column"
+a2 = num.zeros ( (npts, 3) )
+na.addColumn ( 'test', a2 )
+
+print na.rows

@@ -1,0 +1,77 @@
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/60891/tools/hippodraw/trunk/controllers
+END
+DisplayController.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/DisplayController.h
+END
+FunctionController.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/FunctionController.h
+END
+CutController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/50230/tools/hippodraw/trunk/controllers/CutController.cxx
+END
+controllers.dir
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/controllers.dir
+END
+Gammaq.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/Gammaq.cxx
+END
+CutController.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/49201/tools/hippodraw/trunk/controllers/CutController.h
+END
+DataRepController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/DataRepController.cxx
+END
+Gammaq.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/Gammaq.h
+END
+DataRepController.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/controllers/DataRepController.h
+END
+DisplayController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/60891/tools/hippodraw/trunk/controllers/DisplayController.cxx
+END
+FunctionController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/50285/tools/hippodraw/trunk/controllers/FunctionController.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/48411/tools/hippodraw/trunk/controllers/CMakeLists.txt
+END

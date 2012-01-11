@@ -1,0 +1,132 @@
+/**
+@page ntuple_root data source
+
+   A data source for the @b HippoDraw analysis package is typically a
+table of numbers with a limited number of columns and probably large
+number of rows.  It is commonly called in some circles a %NTuple.  A
+computer scientist, however, would call each row a n-tuple.  In
+addition to the data, the %NTuple has a title, and labels for each
+column.  To uniquely identify an %NTuple object in an application, it
+also has a unique name.  The name will be a filename with the full
+path, if associated with a file, or some unique string if the %NTuple
+is only in memory.
+
+@section ntuple_datasources The Data Source Classes
+
+A data source can be represented internally in @b HippoDraw
+in a number of different ways.  Each is implemented in a C++ class
+derived from abstract base class DataSource.  They are described in the
+following sections.   The available types of data sourcers are...
+
+@li @ref ntuple_ntuple
+@li @ref ntuple_circular
+@li @ref ntuple_list
+@li @ref ntuple_numarray
+@li @ref ntuple_roottuple
+@li @ref ntuple_fits
+
+
+
+@subsection ntuple_datasource The DataSource class
+
+   The DataSource abstract class provides the interface to the data as
+well as the title, labels, and name.  Several derived classes of
+%DataSource manage the access to the data.  They differ on how they
+store the column data.  All derived classes of ProjectorBase use the
+%DataSource interface to create a projection of the data for plotting.
+
+@subsection ntuple_ntuple NTuple class
+
+The NTuple class is a derived class of DataSource that manages the
+data by containing a vector of @c double floating point numbers for
+each column.  This class provides the most efficient access to the
+data.  However, all the data is always contained in memory so if one's
+data set has a very large number of columns and rows it could consume
+lots of memory and cause the computer to do a lot of swapping.
+
+If the contents of a column is changed, the changes will be reflected
+in any displays using that column automatically.  In same cases,
+re-displaying with every change might be too often, such in a data
+acquisition system.  One can use the interval counter feature of the
+NTuple class to set the updating to every n-th change.
+
+@subsection ntuple_circular CircularBuffer class
+
+The CircularBuffer class is a derived class of NTuple that works like
+a circular buffer.  That is, one sets a size for the maximum number of
+rows, then fills the buffer by adding rows.  When the maximum size is
+reached, the first row is replaced, then the second, etc, until the
+last row is reach.  Then the process repeats itself.
+
+
+@subsection ntuple_list ListTuple class
+
+The ListTuple is a derived class of DataSource that manages the data
+by containing references to a Python @c list objects.  No copy of
+the data is made.  An empty %ListTuple can be created from Python and
+columns of data can be added.
+
+If the data contained by the Python @c list changes, they will be
+reflected in any displays using that column once @b HippoDraw has been
+notified changes have been made.  This is not automatic since Python
+@c list objects to not emit any notification message.
+
+@subsection ntuple_numarray NumArrayTuple class
+
+The NumArrayTuple is a derived class of DataSource that manages the
+data by containing references to Python
+<a href="http://www.stsci.edu/resources/software_hardware/numarray">
+numarray </a> @c array objects.  No copy of the data is made.  With this
+release, only rank 1 array objects is supported.  As with the @ref
+ntuple_list, @b HippoDraw needs to be notified if the data changes
+before it will reflected in and displays using it.
+
+@subsection ntuple_roottuple RootNTuple class
+
+The RootNTuple class is a derived class of DataSource that manages its
+data by using <a href="http://root.cern.ch"> ROOT </a> to read data
+from a file.  This class is only available if @b HippoDraw was
+configured to @ref install_config_root
+
+Only ROOT files whose TTree objects contain TBranch
+objects with only one TLeaf is supported.  This is a fairly common
+practice.  If more than one TTree is in the file, then a dialog will
+appear on which one can select the desired TTree.
+
+When the ROOT file is opened, the names of the TBranch
+objects is used as column labels, but no data is read.  As a column is
+used, a copy of the data for that column is made.
+
+If the TLeaf is a multiple dimension array, a new NTuple is created,
+which each column representing an element of the array.   
+
+@b HippoDraw also provided a Python interface to the ROOT files.  See
+@ref python_interact_root for an example.
+
+@subsection ntuple_fits FitsNTuple class
+
+The FitsNTuple a class derived from DataSource that manages its data
+by reading a
+<a href="http://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html"> FITS </a>
+file with ASCII or binary tables as well as images.  One can read also
+FITS file by using the FitsController from the Canvas Window or from
+Python.  One can also use
+<a href="http://www.stsci.edu/resources/software_hardware/pyfits"> PyFITS
+</a> Python extension module in conjunction with numarray.
+
+@section ntuple_dataarray The DataArray Python class
+
+Not a derived class of DataSource but the DataArray class appears as
+one to Python.  It is implemented as the DataSource C++ class. The
+DataArray class wraps any of the concrete DataSource derived class and
+provided a direct interface for use of numeric Python arrays for both
+input and output.  In Python, a DataArray behaves like a Python @c
+list when used with an integer index, and a Python dictionary when
+used with column labels.
+
+*/
+
+
+
+
+

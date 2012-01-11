@@ -1,0 +1,38 @@
+/** @dir root
+
+This directory contains source and header files of classes related to ROOT.
+
+@note Compiling these sources is optional.
+
+@sa <a href="../../user/html/ntuple_root.html#ntuple_roottuple">
+RootNTuple class</a>  and
+<a href="../../user/html/install_notes.html#install_root">Install ROOT</a>
+
+*/
+
+/**
+@class TBranch
+@brief The ROOT TBranch class.
+
+The ROOT TBranch class is used to access the data in a branch.  The @b
+HippoDraw class RootBranch is a wrapper for the TBranch.
+
+*/
+
+/**
+@class TLeaf
+@brief The ROOT TLeaf class.
+
+The ROOT TLeaf class described the contents of a TBranch.  It is not
+the leaf itself, but rather a description of the leaf objects.
+
+*/
+
+/**
+@class TTree
+@brief The ROOT TTree class.
+
+The ROOT class that contains TBranch objects which hold the data in a
+ROOT file.
+
+*/

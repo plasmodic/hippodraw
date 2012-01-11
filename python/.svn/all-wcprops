@@ -1,0 +1,407 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/60837/tools/hippodraw/trunk/python
+END
+hippoplotter.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/hippoplotter.py
+END
+export_Color.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_Color.cxx
+END
+FunctionWrap.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FunctionWrap.cxx
+END
+PyNTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyNTuple.cxx
+END
+ObserverWrap.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/ObserverWrap.cxx
+END
+__init__.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49496/tools/hippodraw/trunk/python/__init__.py
+END
+export_FitterFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_FitterFactory.cxx
+END
+PyApp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/60780/tools/hippodraw/trunk/python/PyApp.cxx
+END
+utilities.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/utilities.py
+END
+spectral.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/spectral.py
+END
+hippofft.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/hippofft.py
+END
+PyNTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyNTuple.h
+END
+pyconversions.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/pyconversions.h
+END
+export_SymbolType.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_SymbolType.cxx
+END
+export_NTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_NTuple.cxx
+END
+FunctionBaseDecorator.py
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FunctionBaseDecorator.py
+END
+export_RootNTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_RootNTuple.cxx
+END
+export_FunctionFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_FunctionFactory.cxx
+END
+PyCanvas.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60837/tools/hippodraw/trunk/python/PyCanvas.cxx
+END
+ListTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/ListTuple.cxx
+END
+export_ListTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_ListTuple.cxx
+END
+exportToPython.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/exportToPython.cxx
+END
+PyDataSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyDataSource.h
+END
+PyFunctionRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyFunctionRep.h
+END
+export_FitsNTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_FitsNTuple.cxx
+END
+export_NTupleFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_NTupleFCN.cxx
+END
+export_CircularBuffer.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_CircularBuffer.cxx
+END
+export_CutController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_CutController.cxx
+END
+PyCanvas.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60837/tools/hippodraw/trunk/python/PyCanvas.h
+END
+exportToPython.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/exportToPython.h
+END
+export_Canvas.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/60761/tools/hippodraw/trunk/python/export_Canvas.cxx
+END
+PyDataRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyDataRep.h
+END
+PyFitsController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyFitsController.cxx
+END
+export_RootController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_RootController.cxx
+END
+export_PointRepFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_PointRepFactory.cxx
+END
+python.dir
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/python.dir
+END
+QtCut.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/QtCut.cxx
+END
+export_QtCut.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_QtCut.cxx
+END
+export_FCNBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_FCNBase.cxx
+END
+PyDataSource.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/49149/tools/hippodraw/trunk/python/PyDataSource.cxx
+END
+FunctionWrap.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FunctionWrap.h
+END
+PyFunctionRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyFunctionRep.cxx
+END
+ObserverWrap.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/ObserverWrap.h
+END
+PyFitsController.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyFitsController.h
+END
+export_LineStyle.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_LineStyle.cxx
+END
+export_FitsController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_FitsController.cxx
+END
+QtDisplay.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/QtDisplay.cxx
+END
+export_StatedFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_StatedFCN.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/53225/tools/hippodraw/trunk/python/CMakeLists.txt
+END
+PyApp.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyApp.h
+END
+FitsAxis.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FitsAxis.py
+END
+export_RepBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_RepBase.cxx
+END
+FitsNTuple.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FitsNTuple.py
+END
+PyNTupleController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyNTupleController.cxx
+END
+hippomodule.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/hippomodule.cxx
+END
+QtCut.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/QtCut.h
+END
+FitsImageNTuple.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/FitsImageNTuple.py
+END
+PyDataRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyDataRep.cxx
+END
+fitsarray.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/fitsarray.py
+END
+export_DataSource.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_DataSource.cxx
+END
+export_Fitter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_Fitter.cxx
+END
+QtDisplay.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/QtDisplay.h
+END
+fileList.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/fileList.py
+END
+export_CanvasWindow.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_CanvasWindow.cxx
+END
+PyNTupleController.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/PyNTupleController.h
+END
+ListTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/ListTuple.h
+END
+export_NTupleController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/python/export_NTupleController.cxx
+END

@@ -1,0 +1,221 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/47803/tools/hippodraw/trunk/examples
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/Makefile.in
+END
+Z0Strip.data
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/Z0Strip.data
+END
+testErfc.tnt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/testErfc.tnt
+END
+Z0Strip.baddata
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/Z0Strip.baddata
+END
+static_vs_dynamic.py
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/static_vs_dynamic.py
+END
+fitting.py
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47803/tools/hippodraw/trunk/examples/fitting.py
+END
+cuts_one_display.py
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/cuts_one_display.py
+END
+function_ntuple.py
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/function_ntuple.py
+END
+cut_multi_displays.py
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/cut_multi_displays.py
+END
+fft.py
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/fft.py
+END
+merit.py
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/merit.py
+END
+earth.fits
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/earth.fits
+END
+loglog.py
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/loglog.py
+END
+fluxes.tnt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/fluxes.tnt
+END
+Z0Strip.baddata2
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/Z0Strip.baddata2
+END
+fitting2.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/fitting2.py
+END
+EGRET_AllSky_car.fits
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/EGRET_AllSky_car.fits
+END
+aptuple.tnt
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/aptuple.tnt
+END
+displays.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/displays.py
+END
+SimEvents.fits
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/SimEvents.fits
+END
+svac_array.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/svac_array.py
+END
+append_ntuple.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/append_ntuple.py
+END
+run_examples.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/run_examples.py
+END
+EGRET_AllSky.fits
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/EGRET_AllSky.fits
+END
+datareps.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/datareps.py
+END
+cuts_complex.py
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/cuts_complex.py
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/README
+END
+simple_xyplot.py
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/simple_xyplot.py
+END
+fitsWriting.py
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/fitsWriting.py
+END
+load_hippo.py
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/load_hippo.py
+END
+set_hippo.csh
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/set_hippo.csh
+END
+m51.fits
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/m51.fits
+END
+mainpage.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/mainpage.py
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/Makefile.am
+END
+output.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/output.txt
+END
+transducer.tnt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/examples/transducer.tnt
+END

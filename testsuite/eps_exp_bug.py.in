@@ -1,0 +1,45 @@
+import setPath
+
+import numarray as num
+import hippoplotter as plot
+
+class FunctionWrapper(object):
+    def __init__(self, func):
+        self.func = func
+    def __call__(self, xx, **kwds):
+        try:
+            y = []
+            for x in xx:
+                y.append(self.func(x, **kwds))
+            if isinstance(xx, num.NumArray):
+                y = num.array(y)
+            return y
+        except TypeError:
+            return self.func(xx, **kwds)
+    def __getattr__(self, attrname):
+        return getattr(self.func, attrname)
+
+class ElectronIndex(object):
+    _sigmaT = 6.65e-25
+    _me = 9.11e-28
+    _clight = 3e10
+    def __init__(self, p0=2.5, gamma=1e3, bfield=0.4):
+        self.p0 = p0
+        self.gamma = gamma
+        ub = bfield**2/8./num.pi
+        self.beta = 4.*self._sigmaT/3./self._me/self._clight*ub
+    def __call__(self, t):
+        p0, gamma, beta = self.p0, self.gamma, self.beta
+        return p0 + (p0 - 2)*gamma*beta*t/(1. - gamma*beta*t)
+    def Gamma(self, t):
+        return (self(t) + 1)/2
+
+if __name__ == '__main__':
+    Gamma = FunctionWrapper(ElectronIndex(gamma=2.1e4).Gamma)
+
+    tmin = 0
+    tmax = 2e5
+    tt = num.arange(tmin, tmax, (tmax - tmin)/100.)
+    disp = plot.scatter(tt, Gamma(tt), pointRep='Line')
+    plot.canvas.saveAsImage(disp, 'eps_bug.eps')
+

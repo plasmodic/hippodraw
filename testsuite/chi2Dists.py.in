@@ -1,0 +1,47 @@
+""" -*- mode: python -*-
+Create data for a chi-squared minimization linear regression fit.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: chi2Dists.py.in,v 1.2 2003/12/18 19:33:23 pfkeb Exp $
+#
+
+from setPath import *
+
+import random, numarray, hippoplotter as plot
+
+#
+# These values can be reset if desired.
+#
+slope = 2.
+intercept = 1.
+sigma = 1.
+
+gauss = random.gauss
+
+npts = 13
+x = numarray.arange(npts)
+xerr = numarray.zeros(npts)
+y = numarray.zeros(npts)
+yerr = numarray.zeros(npts)
+nt = plot.newNTuple( (x, y, xerr, yerr), ('x', 'y', 'xerr', 'yerr') )
+
+nsamp = 500
+chi_nt = plot.newNTuple( ([], ), ('chi2', ) )
+hist = plot.Histogram(chi_nt, 'chi2')
+
+for i in range(nsamp):
+    y = [gauss(slope*xx + intercept, sigma) for xx in x]
+    yerr = sigma*numarray.ones(npts)
+    nt.replaceColumn(1, y)
+    nt.replaceColumn(3, yerr)
+    disp = plot.hippo.Display('XY Plot', nt, ('x', 'y', 'nil', 'yerr'))
+    (fitParams, fitErrors, func) = plot.fitData( disp, 'Linear' )
+    chi_nt.addRow( (func.chiSquared(), ) )
+
+(fitParams, fitErrors, func) = plot.fitData( hist, 'Chi-square dist.')
+
+for name in fitParams.keys():
+    print "%s: %.2e +/- %.2e" % (name, fitParams[name], fitErrors[name])
+

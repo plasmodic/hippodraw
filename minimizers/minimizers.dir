@@ -1,0 +1,14 @@
+/** @dir minimizers
+
+This directory contains source and header files for classes related to
+minimization.
+
+This directory contains source and header files for classes related to
+minimization of functions to data.  It contains serveral
+implementations of minimization algorithms, and objective value
+algrorithms.   It also contains an interface to the Minuit minimizer.
+
+@sa <a href="../../user/html/inspector_root.html#inspector_functions">
+Function fitting</a>.
+
+*/

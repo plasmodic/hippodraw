@@ -1,0 +1,18 @@
+import setPath
+
+import numarray as num
+import hippoplotter as plot
+
+from FunctionBaseDecorator import FunctionBaseDecorator
+
+@FunctionBaseDecorator
+def tangent(x, a=1):
+    return a*num.tan(x)
+
+ymax = 10
+disp = plot.scatter([0, num.pi], [-ymax, ymax])
+disp.addFunction(tangent)
+
+disp2 = plot.scatter([0, num.pi], [-5*ymax, 5*ymax])
+disp2.addFunction(tangent)
+

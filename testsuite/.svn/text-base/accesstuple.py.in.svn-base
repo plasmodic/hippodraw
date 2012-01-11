@@ -1,0 +1,206 @@
+""" -*- python -*-
+
+This script tests and demonstrates access to ntuple
+
+Copyright (C) 2002, 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: accesstuple.py.in,v 1.30 2006/10/17 18:22:49 pfkeb Exp $
+
+"""
+import setPath
+
+# Create application and get initial canvas
+from load_hippo import hippo, app, canvas
+
+from hippo import *
+from math import sqrt
+
+# Open an ntuple file.  Use NTupleController so that Inspector will
+# see it.
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+print "Try read file that doesn't exist"
+try :
+    nt = ntc.createNTuple ( 'foo' )
+except RuntimeError, detail :
+    print detail
+    print ""
+
+print "Try reading a file which is not a DataSource"
+try :
+    nt = ntc.createNTuple ( 'Makefile' )
+except RuntimeError, detail :
+    print detail
+    print ""
+
+nt = ntc.createNTuple ( '../../hippodraw/examples/Z0Strip.data' )
+
+# Show the number of rows
+r = nt.rows
+print "Data by row for", r, "rows"
+
+# Get all the labels
+labels = nt.getLabels()
+print "Labels = ", labels
+
+# Get labels one at a time
+columns = nt.columns
+for i in range ( columns ) :
+    print "column ", i, " is ", nt.getLabel ( i )
+
+print "Try to get column label out of range..."
+try :
+    c = nt.getLabel ( columns + 1 )
+except RuntimeError, detail:
+    print detail
+    print ""
+    
+# print the contents by row
+for i in range ( r ) :
+    print i,  nt.getRow ( i )
+print ' '
+
+print "Try to get row out of range..."
+try :
+    print nt.getRow ( r )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Try to create XY Plot with bad label binding"
+try :
+    hist = Display ( "XY Plot", nt, ('Energy', 'Sigma', 'nil', 'e rror' ))
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+# Create XY plot and add to canvas
+hist = Display ( "XY Plot", nt, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( hist )
+
+print "Retreive column by index and label..."
+print 'Energy = ', nt.getColumn ( 0 )
+print 'Energy = ', nt.getColumn ( 'Energy' )
+
+print "Try to get column out of range..."
+try :
+    print nt.getColumn ( 99 )
+except RuntimeError, detail :
+    print detail
+    
+print "Try to get column with bad label..."
+try :
+    r = nt.getColumn ( "S igma" )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+# Create new column based on data from exiting one.
+sigma = nt.getColumn ( 'Sigma' )
+err = []
+for s in sigma :
+    e = sqrt ( s )
+    err.append ( e )
+
+# Make new ntuple that is copy
+nt_copy = NTuple ( nt )
+
+# Rename it since there can't be two registered NTuples with the same
+# name.  (It would be nice to be able to access the current name
+# somehow.)
+nt_copy.setName('a copy of nt')
+
+# Register it to make visible to application
+name = ntc.registerNTuple ( nt_copy )
+print "Name of copy " + name
+
+nt_copy.setTitle ( "A copy" )
+
+# Add new column and use it.
+nt_copy.addColumn ( 'Error', err )
+hist2 = Display ( "XY Plot", nt_copy, ('Energy', 'Sigma', 'nil', 'Error' ))
+canvas.addDisplay ( hist2 )
+
+print "Try to add column with existing label"
+try :
+    nt_copy.addColumn ( 'Error', err )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Try to add column of wrong size..."
+bad_col = [ 0, 1, 2]
+try :
+    nt_copy.addColumn ( 'Bad', bad_col )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Try to add row of wrong size..."
+try :
+    nt_copy.addRow ( bad_col )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Try to replace a column with one the wrong size..."
+try :
+    nt_copy.replaceColumn ( 1,  bad_col )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Try to replace a columen with wrong index..."
+try :
+    nt_copy.replaceColumn ( 99,  bad_col )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+nt1 = NTuple()
+ntc.registerNTuple ( "Empty", nt1 )
+print "Make sure this name appears in the data source list"
+
+print "Try to get data source that doesn't exist"
+try :
+    ntfoo = ntc.findNTuple ( 'foo' )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+nt2 = ntc.findNTuple ( name )
+print "nt2's title is " + nt2.getTitle()
+
+nt3 = ntc.createNTuple ()
+labels = ( 'x', 'y' )
+nt3.setLabels ( labels )
+nt3.addRow ( (1., 1. ) )
+
+print "Try to set labels to wrong size"
+try :
+    nt3.setLabels ( ( 'x', 'y', 'z' ) )
+    canvas.addDisplay ( xz )
+except RuntimeError, detail :
+    print detail
+    print ""
+    
+print "Clear the ntuple and try to replace columns of different size"
+nt3.clear()
+col1 = [0, 1, 2]
+nt3.addColumn ( 'z', col1 )
+nt3.replaceColumn ( 'y', col1 )
+nt3.replaceColumn ( 'y', col1 )
+col0 = [2, 1, 0, -1 ]
+try :
+    nt3.replaceColumn ( 'x', col0 )
+except RuntimeError, detail :
+    print detail
+    print ""
+
+print " "
+print "Tested accessing a NTuple from Python and throwing exceptions"
+print "if the access had an error"

@@ -1,0 +1,16 @@
+""" -*- mode: python -*-
+Script to set path to BUILD version of HippoDraw python modules.
+"""
+import sys
+sys.path.insert(0, '@top_srcdir@/python')
+#
+# This doesn't appear useful as @top_builddir@ isn't getting resolved properly.
+#
+sys.path.insert(0, '@top_builddir@/python')
+#
+# The following ensures that the most recently built version of the
+# hippomodule is used when scripts are run from the testsuite
+# directory.
+#
+sys.path.insert(0, "../python/.libs")
+

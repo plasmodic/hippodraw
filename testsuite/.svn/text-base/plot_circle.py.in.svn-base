@@ -1,0 +1,49 @@
+#!/usr/bin/env python
+"""
+Comparing the performance of NumArrayTuple versus NTuple.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Header: /afs/slac/g/ek/reason_cvs/hippodraw/testsuite/plot_circle.py.in,v 1.1 2004/05/07 16:12:40 jchiang Exp $
+#
+
+from setPath import *
+import hippoplotter as plot
+import numarray
+
+print "Drawing using NumArrayTuple."
+print "Right-click anywhere on the plot to move the circle."
+print "Click on an empty part of the canvas to exit."
+
+npts = 1e5
+phi = numarray.arange(npts)/(npts-1)*2.*numarray.pi
+
+x0 = numarray.cos(phi)
+y0 = numarray.sin(phi)
+
+na = plot.newNumArrayTuple((x0, y0), ('x','y'))
+disp = plot.Scatter(na, 'x', 'y', xrange=(-2, 2), yrange=(-2,2),
+                    pointRep='Line')
+
+pt = plot.canvas.mouseData()
+
+while len(pt) != 0:
+    na.replaceColumn(0, x0 + pt[0])
+    na.replaceColumn(1, y0 + pt[1])
+#    na.notifyObservers()
+    pt = plot.canvas.mouseData()
+
+print "Now, compare to NTuple:"
+
+plot.canvas.selectDisplay(disp)
+nt = plot.newNTuple((x0, y0), ('x','y'))
+plot.Scatter(nt, 'x', 'y', xrange=(-2, 2), yrange=(-2,2), pointRep='Line',
+             oplot=1, color='red')
+
+pt = plot.canvas.mouseData()
+
+while len(pt) != 0:
+    nt.replaceColumn(0, x0 + pt[0])
+    nt.replaceColumn(1, y0 + pt[1])
+    pt = plot.canvas.mouseData()

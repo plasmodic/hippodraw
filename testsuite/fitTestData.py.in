@@ -1,0 +1,52 @@
+"""
+Investigate the effects of rebinning on fits to a Gaussian distribution.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: fitTestData.py.in,v 1.1 2003/10/08 20:17:02 jchiang Exp $
+#
+
+import numarray, string, hippoplotter as plot
+from rebin import rebin, makeHist
+from setPath import *
+
+if len(sys.argv) == 1:
+    nmin = 0.
+else:
+    if sys.argv[1].find('.') < 0:
+        nmin = string.atoi(sys.argv[1])
+    else:
+        nmin = string.atof(sys.argv[1])
+
+xx = numarray.array([ 0.125, 0.175, 0.225, 0.275, 0.325, 0.375, 0.425, 0.475,
+                      0.525, 0.575, 0.625, 0.675, 0.725, 0.775, 0.825, 0.875,
+                      0.925, 0.975, 1.025, 1.075, 1.125, 1.175, 1.225, 1.275,
+                      1.325, 1.375, 1.425, 1.475, 1.525, 1.575, 1.625, 1.675])
+
+yy = numarray.array([  1., 1., 1.,  4.,   0.,   1.,   2.,   7.,   6.,   8.,
+                       7., 13., 11., 14.,  12.,  19.,  27.,  13.,  22.,  13.,
+                       18., 20., 20., 14.,  14.,   6.,  10.,   2.,   5.,   1.,
+                       6., 2.])
+
+xstep = xx[1]-xx[0]
+xmn = xx - xstep/2.
+xmx = xx + xstep/2.
+
+(xmin, xmax, y) = rebin(xmn, xmx, yy, nmin)
+xmin = numarray.array(xmin)
+xmax = numarray.array(xmax)
+x = (xmin + xmax)/2.
+yerr = numarray.sqrt(y)/(xmax - xmin)
+y = y/(xmax - xmin)
+
+nt = plot.newNTuple( (x, y, yerr), ('x', 'y', 'yerr') )
+
+disp = plot.XYPlot( nt, 'x', 'y', yerr='yerr', title="nmin = %i" % nmin )
+
+(fitParams, fitErrors, func) = plot.fitData(disp, 'Gaussian')
+
+for name in fitParams.keys():
+    print "%s: %.4f +/- %.4f" % (name, fitParams[name], fitErrors[name])
+
+print "chi^2/dof = %.4f / %.4f" % (func.chiSquared(), func.degreesOfFreedom())

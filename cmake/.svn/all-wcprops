@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 47
+/svn/!svn/ver/56772/tools/hippodraw/trunk/cmake
+END
+FindCFITSIO.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48180/tools/hippodraw/trunk/cmake/FindCFITSIO.cmake
+END
+FindROOT.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/56772/tools/hippodraw/trunk/cmake/FindROOT.cmake
+END
+FindMinuit2.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48180/tools/hippodraw/trunk/cmake/FindMinuit2.cmake
+END
+FindNumpy.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47937/tools/hippodraw/trunk/cmake/FindNumpy.cmake
+END
+SourceGroup.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/cmake/SourceGroup.cmake
+END
+FindFlex.cmake
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/49159/tools/hippodraw/trunk/cmake/FindFlex.cmake
+END

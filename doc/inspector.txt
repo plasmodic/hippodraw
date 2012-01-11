@@ -1,0 +1,408 @@
+/**
+@page inspector_root Inspector Users Guide
+
+The inspector is the dialog window with which the user can make
+changes to the plots.  It consists of seven tabbed panels that group
+together various types of controls.  For the most part, the controls
+are obvious and need no explanation.  There are some less obvious and
+will be explained in these pages.
+
+The tabbed panels are
+
+@li @ref inspector_data
+@li @ref inspector_plot
+@li @ref inspector_axis
+@li @ref inspector_cuts
+@li @ref inspector_functions
+@li @ref inspector_status
+@li @ref inspector_transform
+
+All inspector controls are applied to the currently selected plot.
+One selects a plot by clicking on it with the mouse.  Some plots will
+have multiple data representations while the controls can only be
+applied to one of them.  In this case, one can @em control-click on
+the plot to select one of the data representations to enable the
+controls.  The selected data representation will have its normal
+color, while deselected representations will be grayed out.
+
+@note Many of the controls on the Inspector user interface support use
+of a mouse wheel.  For a combo box, the mouse wheel scrolls throught
+the possible selections.  On a slider, the scroll wheel has the same
+effect as dragging the slider's knob.
+
+@section inspector_data Data inspector
+
+The data inspector is used to create new plots and modify their
+bindings.  The data inspector window is shown below
+
+
+
+@image html insp_data.png "The data inspector tabbed panel"
+@image latex insp_data.eps "The data inspector tabbed panel"
+
+The upper box groups the controls to create a new plot.  One can chose
+a data source by name with the top most combo box.  A data source is
+some form of %NTuple. See @ref ntuple_root for types supported.
+
+The name of the %NTuple will be one of the following...
+
+@li The file name, if the %NTuple was read from a file or saved to a file.
+@li The string @b "<in-memory0>" if the %NTuple was created from Python script.
+@li Some other string if %NTuple was renamed from Python script or the GUI
+
+To rename the %NTuple from the GUI, use the combo box as it is editable.
+
+The plot type is chosen with the next combo box.  See @ref
+datareps_root for an overview of the types available.  Only dynamic
+versions of the various data representations are available.  For s
+static versions can only be created from Python.  
+
+Once a plot type is chosen, one to four combo boxes appear to allow
+one chose the @em binding.  The binding is the association of each
+axis with a column in the %NTuple.  Some plot types, such as the @ref
+datareps_scatterplot support optional bindings.  They will be marked
+with @b (optional) in their name as shown above.  If the binding is to
+@em nil, the the option is not taken.
+
+The <b>New plot</b> button creates a new plot with the selected data
+representation and binding. and places it at the next available space
+on the canvas.  The canvas will be scroll to make it visible if
+needed.  The <b>Add to selected plot</b> button will add the selected
+data representation to the currently selected plot.  The <b>Remove
+DataRep</b> will remove the selected data representation from the
+plot.
+
+In most cases, data representations of different types can be added to
+one plot.  However, a data representation that requires a Z axis
+display can not be added to a plot that doesn't have one.  But the
+other way around works.
+
+The lower box displays information on the selected plot.  The data
+source and plot type is shown in the first two boxes.  If mulitple
+data sources are available, one can change the data source used by the
+plot with the combo box.  This only makes sense if the two data
+sources are compatible, i.e., have columns with the same label.
+
+The remaining combo boxes allow one to change the binding of the
+plots.  The mouse wheel is useful here if one want to look at, for
+example, a histogram of each of the data columns.  
+
+The binding controls are only available if only one data
+representation is selected.  If multiple data representations are in
+one plot, then @em control-click on it with the mouse to select one of
+them.  One can change the binding of the data representation with the
+combo box.  If multiple plots are selected, one can use @em
+shift-click to select or deselect plots.
+
+The <b> Create ntuple </b> button allows one to created an NTuple from
+the selected data representation.  The %NTuple can be saved to a file,
+accessed from Python, and used to create a new plot.  The %NTuple will
+contain either 4 or 6 columns depending on whether the plot is 2D or
+3D.  See hippodraw::DataPoint2DTuple or hippodraw::DataPoint3DTuple
+for the details.
+
+
+@section inspector_plot Plot inspector
+
+The plot inspector is used to modify some graphic aspects of the
+selected plot.  The plot inspector window is shown below.
+
+@image html insp_plot.png "The plot inspector tabbed panel"
+@image latex insp_plot.eps "The plot inspector tabbed panel"
+
+
+The left hand box controls how the data points are represented.  If
+not appropriate for selected data representation, some controls will
+be disabled.  If the data representation are lines, then the selection
+of available line styles is displayed, as shown above.  If the
+representation is formed from symbolss, the selection of available
+symbols is displayed.
+
+Some data representations can display the data points in more than one
+way.  When this is the case, the type of point representation can be
+changed with the @b Type combo box.  For example, if one had created a
+@b %ColorPlot and then chose @em Contour as the point representation
+then one can effectively converted it to a @b %ContourPlot.  @ref
+datareps_colorplot are essentially the same except for the point
+representation.  See @ref datareps_root for different representations
+of the same plot type.
+
+If color is involved, one can also chose the algorithm used to
+translate a data point value to a color with the <b> Value to color
+</b> combo box.  Some of the algorithms have parameters that can be
+varied.  If this is the case, then three slider and 4 buttons on the
+right hand side are enabled. It is a bit difficult to explain what
+each slider does.  The best way to find out is to play with them.
+
+Once can save the current parameter setting of one of the variable
+algorithms as a custom algorithm.  The <b> Save as </b> button creates
+a new one which will be available for future sessions.  The @b Save
+button changes the parameter values of an exsiting one.  One can
+remove one with the @b Delete button and reset an existing one to its
+default values with the @b Reset button.
+
+On the right hand side there are controls for setting a new title,
+showing error bars, and changing the color. If you set the <b> Color map </b> 
+combo box as All black, Gamma Correction or Grey scale, the <b> Change color </b> button is enabled 
+and you can choose your favorite color; otherwise, this button is disabled since 
+the colormap is either predetermined or specified by sliders.  
+
+The <b>Display interval</b> box needs some explaining.  When an NTuple
+has changed, any plots bound to it are immediately updated.  In the
+situation where the %NTuple is changing very rapidly, updating the
+plots with each change of the %NTuple can be costly. For example, with
+a data acquisition taking 100's of events per second, updating the
+plots with each event will probably slow down the event taking rate.
+When the display interval is enabled, then the plots are only updated
+for each @em n events as specified in the @b Interval box.  If the
+%NTuple is changing at 100 times a second, one can set the interval to
+100 to see the plots update once a second with only 1% slow down in
+the data rate.
+
+If multiple data representations are in the selected plot, one needs
+to @em control-click with the mouse to select one of them in order to
+enable the controls.
+
+@section inspector_axis Axis inspector
+
+The axis inspector is used to control the displayed part of the plot.
+The axis inspector window is shown below.
+
+@image html insp_axis.png "The axis inspector tabbed panel"
+@image latex insp_axis.eps "The axis inspector tabbed panel"
+
+The radio buttons at the top control which plot axes will be modified
+by the controls.  The @b low and @b high controls are always active.
+When the @b Zoom/Pan check box is checked, the controls change to @b
+width and @b position.  This allows one to set the @b width to a
+fraction of the overall plot and use the @b pan slider to pan across
+the plot.
+
+If the data representation is one that involves binning, then the @b
+width and @b offset controls are also enabled.  The @b width control
+sets the width of the bins.  The @b offset control moves the edges of
+the bins by a fraction of their width.  If multiple data
+representations are on one plot, one will need to @em control-click
+with the mouse to enable these controls.  If the plot is not binned,
+then the controls are disabled.  If the binned plot is static, then
+the controls not disabled, but are not editable.
+
+There are five ways to these axis values.  
+
+@li One can click and drag on the slider handle.  
+
+@li One can click on the buttons at each end of the slider for small change.
+
+@li One can click between the end buttons and the slider handle for
+larger change.
+
+@li One can use the wheel of the mouse.
+
+@li One can type a number in the text box.
+
+The <b>Log scale</b> check box sets or onset's the selected axis on logarithmic
+scale.  If that axis is binned, the the binning will also be done with
+logarithmically increasing bin size.
+
+The @b Auto scale check box shows the state of auto scaling.  Plots are
+initially scaled to show all the data and binned to 50 bins.  Using
+any of the controls above it will turn off auto scaling as they have
+now been manually scaled.  Click on this check box to auto scale again.
+Auto scaling is disabled for statically binned plots.
+
+The <b>Contour Levels</b> box becomes enabled when the data is
+represented with contour lines, at different levels of value.   If the
+upper radio button is chosen, the default, the the contour levels are
+equally spaced and the user can change the number either with the text
+box or the slider.   The default number of contours is 6, which seems
+to be sufficient for most plots.   The slider allows one to go to 100
+levels, which produces something that looks like a solid color.   This
+is useful if there are large areas of nearly the same data value.   If
+the lower radio button is selected, then the user can manually select
+the contour values.   They should be in ascending order, however.
+
+
+
+@section inspector_cuts Cuts inspector
+
+The cuts inspector is used for creation and manipulation of cuts.  Two
+forms of cuts are supported.  
+
+First a data cut, sometimes called a
+filter, limits input to a plot.  Once a cut has been applied to a
+plot, then only those rows of the NTuple that pass the cut criteria
+will be accumulated into the plot.  The cut criteria is the value of
+the variable in some column of that row, is within the cut range.
+
+The second form of cut is a cut on th range of data used for fitting a
+function to the data.  The cuts inspector window is shown below.
+
+@image html insp_cuts.png "The cuts inspector tabbed panel"
+@image latex insp_cuts.eps "The cuts inspector tabbed panel"
+
+The upper box allow for selection of either 1D or 2D data cuts and
+their cut variables.  1D cuts are displayed as a histogram while 2D
+cuts are displayed as 2D histogram.  If the @b Region radio button is
+selected, then a 1D region is highlighted along the X axis.  It can be
+used to restrict the range of function fitting, or creation of a
+NTuple with Python  under the region.
+
+Clicking on the @b New button than adds
+that cut to the selected plot.  A histogram of the cut variable is
+also added to the canvas.  The shaded region marks the data range that
+is accepted.
+
+The lower box allows one to vary the cut range and to add and remove
+cuts.  The radio button at the top of this box selected whether to
+display in the combo box only the cuts on the selected plot (left
+button) or all the cuts for with the same NTuple as the selected plot.
+When showing only cuts on the selected plot, the @b Remove button can
+be used to remove the cut.  When showing all the cuts, either the @b
+Add button can be use to add a cut to the selected plot, or the <b>
+Add all cuts </b> button can be used to add all existing cuts to the
+selected plot.
+
+One can then selected a cut with the combo box and the controls change
+the parameters of that cut. 
+
+By default, the controls set the upper and low range of the cut.  If
+the @b Zoom/Pan check box is clicked, then the controls set the width
+of the cut and its position.  This allows one to zoom in on a selected
+range of the cut variable and pan across the cut variable.  As with
+the slider controls in the @ref inspector_axis, there are five ways to
+control the range.
+
+The @b Invert button allows one the change the cut from being
+inclusive (the default) to exclusive and back again.  Finally, there's
+a button that allows one to change the cut range shading.  The @b
+Disable button can be used to disable the cut without removing it.
+
+One can add multiple cuts to a selected plot.  One can also have a
+single cut applied to multiple plots.  One can also apply a cut to a
+plot displaying a cut.  The later might be useful when multiple cuts
+are on a plot that are not orthogonal and one wishes to see the
+interaction of one cut on another.
+
+@section inspector_functions Function inspector 
+
+The functions inspector is used to create functions that overlay on a
+plot and control their parameters. It also allows fitting a function,
+or sum of functions to the plot's data.  The function inspector
+window is shown below.
+
+@image html insp_functions.png "The function inspector tabbed panel"
+@image latex insp_functions.eps "The function inspector tabbed panel"
+
+Functions are treated as data representations.  But rather than be
+bound to a data source, the data they represent are values of the
+function for given set of parameter values.
+
+The upper box controls the adding of a function to the selected plot,
+or the selected data representation if multiple data representations
+are in the selected plot.  To add the first function to a data
+representation, select the function with the combo box and ckick the
+@b Add button.  To add another second function and form a linear sum
+of functions, select the first function in the function parameters
+view and click the @b Add button.  To add another function as an
+independent function (not part of linear sum), deselect the selected
+function in the parameter view by clicking on some white space and
+click the @b Add button.  You may need to collapse the view of the
+Linear Sum function by clicking on the box to the left of "Linear Sum"
+to make some white space.
+
+When a function is applied, a reasonable guess is made for the
+function parameters so that they overlay the selected data
+representation.  Then a minimization of the chi-squared or likelyhood
+(fitting) is tried. If it succeeds, the function parameters remained
+at this fitted value, otherwise they are restored to the initial
+guess.  One can always restore to the parameters before fitting by
+clicking on the @b Reset button and do a fit by clicking the <b>Fit to
+data</b> button.
+
+The middle box shows the functions applied to the selected data
+representation.  The heirarchy of functions is displayed in the upper
+portion. It displays the function name and for each function, the
+paramters names, value, errors after fit and whether the parameter was
+held fix during the last fit.  As illustrated above, two Gaussian
+functions are being used and the fit is done to the linear sum.  On
+the plot, the sum of functions is displayed in blue, while he
+individual functions in red
+
+ The @b Remove button allows on to remove the function selected
+in heirarchy view.  .
+A choice of fitting techniques is given in the <b> Fitter to use </b>
+combo box.  Fitting can be done by minimizing chi square (ChiSq) or
+likelihood (MLEH).  For chi square, either the Levenberg Marquart
+minimization algorithm or a version of the <a
+href="http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/index.html">Minuit</a>
+minimization algorithm can be used. Note that the C++ version of
+Minuit is used, not the Fortran version or one derived from the
+Fortran version. For likelihood, either the BFGSFitter or Minuit can
+be used.  Minuit fitting is only available if @b HippoDraw was built
+with Minuit, otherwise it doesn't appear as a choice.  With the
+BFGSFitter, the Pearson statics is also available.
+
+The slider and text box below the function view allows one to vary the
+value of the selected function parameter.  The check box to the
+left of control allows one to fix a parameter thus removing it from a
+fit.
+
+Finally, the left bottom button allows one to create an XYPlot on the
+canvas displaying the residuals of the function and the data
+representation.  The right bottom button is used to create a error
+contour plot between two parameters.  To select the parameters, click
+on the check box in the function parameters display.
+
+@section inspector_status Summary inspector
+
+The summary inspector allows for creation of textual representation
+of some data representation.  The summary inspector window is shown
+below.
+
+@image html insp_stats.png  "The stats inspector tabbed panel"
+@image latex insp_stats.eps  "The stats inspector tabbed panel"
+
+To create a textual representation, selected one then click on the
+<b>Add display</b> button.  Not all summaries can be applied to all data
+representations.  The basic distinction is between data
+representations that are functions and those that are not.  The
+inappropriate summaries will be grayed out.
+
+All textual representations are @em live.  That is, if there is a
+change in the data representation that they are attached to, then the
+text displayed will change as well.  For example, if the @b
+Chi-squared is applied to a function, then any variations on the data,
+such as changing the bin width, or change in a function parameter will
+recalculate the chi-squared and update the summary display.
+
+@section inspector_transform Transform inspector
+
+The transform inspector allows one to change the transform of the
+selected plot.  The transform inspector window is shown below.
+
+@image html insp_transform.png  "The transform inspector tabbed panel"
+@image latex insp_transform.eps  "The transform inspector tabbed panel"
+
+The default transform is linear on both the X and Y axes.  The first 4 
+radio buttons are for settting the transform as linear or logritmic on 
+either X or Y axes or both.
+
+The remaining radio buttons are only applicable to transforming
+coordinates on s sphere to a plane as shown below.
+
+@image html hammer.png A Hammer-Aitoff transform.
+@image latex hammer.eps A Hammer-Aitoff transform
+
+These transforms are the standard ones defined in the
+<a href="http://www.atnf.csiro.au/people/mcalabre/WCS/"> 
+FITS World Coordinate System.</a>.  For all these transforms, there is a
+correlation between the X and Y axes.  The transforms from the "ARC"
+downward require the Y axis to be positive or within a range.
+
+The rotation sliders allow one to rotate the plot along the X or Y axis.
+They are only applicable to periodical transform.
+
+
+
+*/
+

@@ -1,0 +1,92 @@
+""" -*- python -*-
+
+   A test and demonstration of creating NTuple with Python.
+
+   This script reads an ASCII ntuple file.  It then creates an empty
+   NTuple.  It then reads the data row by row and fills a Python list
+   for each column.  Finally it adds the list to the NTuple column by
+   column and creates a histogram to test the results.  The script
+   then reads another file and fills it row-wise.
+
+   The result for ntuple should be the same as using the
+   "File"->"Import Texttuple" menu item on the same file.
+
+"""
+# 
+# * Copyright (C) 2000, 2002, 2003  The Board of Trustees of  
+# * The Leland Stanford Junior University.  All Rights Reserved.
+#
+# $Id: ntuple.py.in,v 1.23 2004/07/07 21:48:48 pfkeb Exp $
+#
+# Author: Paul_Kunz@slac.stanford.edu
+#
+
+# Gets the HippoDraw application.
+
+import setPath
+from load_hippo import app, canvas
+from hippo import *
+
+import string
+
+# Open file and read it.
+infile = open( '@top_srcdir@/examples/aptuple.tnt', 'r' )
+lines = infile.readlines()
+
+# Get column labels from second line.
+labels = string.split( lines[1] )
+
+# This ntuple will be built column-wise, that's the hardest.
+nt = NTuple()
+
+# Register the ntuple so it is visible to the application
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+# Create empty list of lists
+columns = [[]]
+
+# Read row-wise but create columns
+for line in lines[2:]:
+    words = string.split( line )
+    row = map( float, words )
+    for i in range( len( labels ) ):
+        try:
+            columns[i].append( row[i] )
+        except IndexError:
+	    columns.append( [row[i]] )
+
+# Add the column to the ntuple
+for col in range( len(labels) ):
+    nt.addColumn( labels[col], columns[col] )
+
+nt.setTitle( string.strip (lines[0] ) )
+
+hist = Display ( 'Histogram', nt, ('Age',) )
+canvas.addDisplay ( hist )
+
+# Open and read the file
+infile = open ( "@top_srcdir@/examples/Z0Strip.data" )
+lines = infile.readlines()
+
+# Get the labels from the second line
+labels = string.split( lines[1] )
+
+# Create and setup NTuple
+nt2 = NTuple ( len(labels) )
+nt2.setTitle( string.strip (lines[0] ) )
+nt2.setLabels ( labels )
+
+# Fill it by row-wise
+for line in lines[2:]:
+    words = string.split( line )
+    row = map( float, words )
+    nt2.addRow ( row )
+
+# make a plot to test it.
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+ntc.registerNTuple ( nt2 )
+
+

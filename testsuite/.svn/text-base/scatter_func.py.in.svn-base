@@ -1,0 +1,29 @@
+""" -*- mode: python -*-
+
+Demonstrates that changing range with mouse works with scatter plot on
+the Y axis even when function is added.
+
+author: Jim Chiang.
+
+$Id: scatter_func.py.in,v 1.2 2005/07/18 14:48:07 pfkeb Exp $
+
+"""
+
+import numarray as num
+import setPath
+import hippoplotter as plot
+from FunctionBaseDecorator import FunctionBaseDecorator
+
+@FunctionBaseDecorator
+def linear(x, a=1, b=0):
+    return a*x + b
+
+x = 10.**num.arange(2)
+y = x**2
+
+disp = plot.scatter(x, y, xlog=1, ylog=1)
+
+disp.addFunction(linear)
+
+print "Should be able to change the Y axis with mouse even tho"
+print "function is on scatter plot"

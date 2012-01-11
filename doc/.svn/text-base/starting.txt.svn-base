@@ -1,0 +1,86 @@
+/** @page starting_root Getting Started with HippoDraw without Python
+
+After starting the @b HippoDraw application, either as a stand a lone
+application or as Python extension module two windows should appear.
+The left hand window is the canvas window upon which plots will be
+drawn.  The right hand, smaller window is called the <b>%Inspector</b>.  One
+uses the <b>%Inspector</b> create and modify plots in the canvas
+window.
+
+An @ref ntuple_root file can be imported using the file menu.  See @ref files_root for description of the file formats available.
+
+To read a ROOT file, for example, click on the @b File menu at the
+upper left of the canvas window and select <b> Import ROOT ntuple</b>.
+as shown below
+
+@image html menu_file.png The file menu
+@image latex menu_file.eps The file menu
+
+A file browser should appear.  A short cut to using the mouse to find
+the file is to type at least part of the path to the file and hitting
+@b enter as show below.
+
+@image html file_browser.png The file browser.
+@image latex file_browser.eps The file browser.
+
+Then double click on the folder icons the remainder of the path until
+one finds the file as shown below.
+
+@image html file_browser1.png The file browser with the file.
+@image latex file_browser1.eps The file browser with the file.
+
+Then one can double click on the file name or click the @b Open button.
+
+The following might appear in your shell window where you stared the
+application.
+
+@verbatim
+>>> Warning: environment variable ROOTSYS is not set. Standard include files ignored
+Error: cannot open file "bool.h"  FILE: LINE:0
+@endverbatim
+
+Well its true, you don't have to set shell environment @em ROOTSYS
+when reading ROOT files with @b HippoDraw.  If seeing this message
+annoys you, set your @em ROOTSYS environment variable to anything and it
+will go away.
+
+At this point, the %Inspector will be showing you in its @b %NTuple @b
+name box the name of the file and the name of the ROOT TTree that is
+ready to use.
+
+To create a histogram, choose the variable you want to histogram from
+the @b X: combo box, then click on the @b New @b plot button.
+
+
+At this point, the lower box of the %Inspector shows status of
+currently selected plot as shown below
+
+@image html insp_data.png The %Inspector showing selected plot.
+@image latex insp_data.eps The %Inspector showing selected plot.
+
+
+You can modify it from there.  For example,
+try putting the mouse cursor over the @b X: combo box and without
+clicking use the scroll wheel on the mouse.  The histogram should
+change to the next variable in the ROOT file.  Of course you can click
+on the combo box as well.
+
+After changing the Y axis to a log scale in this example, the canvas
+window should appear like shown below.
+
+@image html hist_root.png The canvas window with a plot.
+@image latex hist_root.eps The canvas window with a plot.
+
+@section starting_links Further reading
+
+For details on the %Inspector, see @ref inspector_root.
+
+For details on using the canvas window, see @ref canvas_root.
+
+For use of @b HippoDraw from Python, see @ref python_interact.
+
+
+
+
+
+  */

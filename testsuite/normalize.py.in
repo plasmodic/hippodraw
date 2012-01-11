@@ -1,0 +1,80 @@
+"""-*- mode: python -*-
+
+Demonstraton following example of CERN LCG PI example 4
+
+  @author Paul F. Kunz <Paul_Kunz@slacs.stanford.edu>
+
+"""
+#
+# $Id: normalize.py.in,v 1.4 2004/07/03 19:43:07 pfkeb Exp $
+#
+
+import random
+from time import sleep
+
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import Display
+from hippo import NTuple
+from hippo import NTupleController
+from hippo import Function
+
+ntuple = NTuple ( )
+ntuple.setLabels ( ('X value', 'Y value') )
+
+NTupleController.instance().registerNTuple ( ntuple )
+
+sthist = Display ( "Static Histogram" )
+sthist.setTitle ( "Gaussian Distribution" )
+sthist.setRange ( 'x', 0, 100)
+sthist.setBinWidth ( 'x', 1. )
+canvas.addDisplay ( sthist )
+
+st2hist = Display ( "Static 2D Histogram" )
+st2hist.setTitle ( "Gaussian Distribution" )
+st2hist.setRange ( 'x', 0, 100)
+st2hist.setRange ( 'y', 0, 100)
+st2hist.setBinWidth ( 'x', 1. )
+st2hist.setBinWidth ( 'y', 1. )
+canvas.addDisplay ( st2hist )
+
+dyhist = Display ( "Histogram", ntuple, ('X value',  ) )
+dyhist.setRange ( 'x', 0., 100. )
+dyhist.setBinWidth ( 'x', 1. )
+canvas.addDisplay ( dyhist )
+
+dy2hist = Display ( "Color Plot", ntuple, ('X value', 'Y value'  ) )
+dy2hist.setRange ( 'x', 0., 100. )
+dy2hist.setRange ( 'y', 0., 100. )
+dy2hist.setBinWidth ( 'x', 1. )
+dy2hist.setBinWidth ( 'y', 1. )
+canvas.addDisplay ( dy2hist )
+
+mean = 45
+sigma = 10
+
+gauss = random.gauss
+
+for i in range(1000):
+    x = gauss( mean, sigma )
+    y = gauss( mean, sigma )
+    sthist.addValues ( (x, ) )
+    st2hist.addValues ( (x,y ) )
+
+strep = sthist.getDataRep ()
+dyrep = dyhist.getDataRep ()
+strep.normalizeTo ( dyrep )
+
+st2rep = st2hist.getDataRep ()
+dy2rep = dy2hist.getDataRep ()
+st2rep.normalizeTo ( dy2rep )
+
+print "The static histograms above are normalizing itselves to the"
+print "static ones below.  It is scaling it's number of entries"
+
+for i in range(5000):
+    x = gauss( mean, sigma )
+    y = gauss( mean, sigma )
+    ntuple.addRow ( (x, y ) )
+

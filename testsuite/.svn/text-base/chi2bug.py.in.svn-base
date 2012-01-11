@@ -1,0 +1,66 @@
+"""
+Reveal bug in chi-squared reporting for histogrammed data.
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: chi2bug.py.in,v 1.1 2003/10/05 16:30:40 jchiang Exp $
+#
+from setPath import *
+import hippoplotter as plot, random, numarray
+
+#
+# Create a new NTuple with one column to hold the data.
+#
+nt = plot.newNTuple( ([], ), ("x", ) )
+
+nsamp = 500
+#
+# Sample a Gaussian function.
+#
+params = ("Mean", "Sigma")
+mean = 1.
+sigma = 0.3
+
+for i in range(nsamp):
+    x = random.gauss(mean, sigma)
+    nt.addRow( (x, ) )
+
+disp = plot.Histogram( nt, "x", xrange=(0, 2) )
+disp.setBinWidth("x", 2./40.)
+
+histNt = disp.createNTuple()
+labels = histNt.getLabels()
+
+x = histNt.getColumn(labels[0])
+y = histNt.getColumn(labels[1])
+yerr = histNt.getColumn(labels[3])
+
+#
+# Fit these data.
+#
+def fitData( display, funcName ):
+    func = plot.hippo.Function( funcName, display.getDataRep() )
+    func.addTo(display)
+    func.fit()
+    paramDict = {}
+    errorDict = {}
+    names = func.parmNames()
+    params = func.parameters()
+    errors = func.principleErrors()
+    for name, param, error in zip(names, params, errors):
+        paramDict[name] = param
+        errorDict[name] = error
+    return (paramDict, errorDict, func)
+
+(fitParams, fitErrors, func) = fitData(disp, 'Gaussian')
+
+#
+# Compute chi^2 directly
+#
+chi2 = 0
+for i in range(len(x)):
+    if yerr[i] != 0:
+        chi2 += ((y[i] - func.valueAt(x[i]))/yerr[i])**2
+print "chi^2 computed by hand: %.2f" % chi2
+print "chi^2 reported by chiSquared() method: %.2f" % func.chiSquared()
+print "degrees-of-freedom: %i " % func.degreesOfFreedom()

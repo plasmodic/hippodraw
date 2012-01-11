@@ -1,0 +1,46 @@
+/** @page quick_root Quick links
+
+@section quick_tutor Tutorials:
+
+@li @ref starting_root
+@li @ref python_interact
+@li @ref examples_page
+@li @ref slac_root
+
+@section quick_guides Users Guides:
+
+@li @ref canvas_root
+@li @ref inspector_root
+@li <a class="el" href="hippo.html">hippo Python extension module manual</a>
+@li @ref hippoplotter
+
+
+@section quick_types Available types:
+
+@li @ref ntuple_root
+@li @ref files_root
+@li @ref datareps_root
+
+
+@section quick_down Downlaod and installation
+
+@li @ref download_root
+@li @ref install_notes
+@li @ref install_mac_root
+
+@section quick_misc Miscellanous
+@li @ref comments_root
+@li 
+<a class="el" href="http://www-glast.stanford.edu/mailman/listinfo/hippodraw">
+HippoDraw mailing list.</a>
+@li @ref release_notes
+@li <a class="el" href="lib/requests.html"> User requested features</a>
+@li <a class="el" href="lib/bug.html"> Known bugs </a>
+
+@section quick_build Building custom applications:
+@li <a class="el" href="lib/index.html"> Overview of the library</a>
+@li <a class="el" href="http://glast.stanford.edu/cgi-bin/viewvc/?root=HIPPO"> Browsable view of CVS </a>
+@li @ref customapps_cplusplus
+@li @ref python_appli
+
+*/

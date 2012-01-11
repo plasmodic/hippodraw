@@ -1,0 +1,175 @@
+""" -*- python -*-
+
+   This is a script to test adding functions and fitting.  It only
+works with the C Python interface.  Jython interface needs Function
+class in Java.
+
+Copyright (C) 2002, 2003 The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: function.py.in,v 1.27 2005/05/02 18:45:56 pfkeb Exp $nt
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create NTuple with its controller so Inspector can see it.
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ( "Histogram", nt1, ("Cost", ) )
+canvas.addDisplay( hist )
+datarep1 = hist.getDataRep()
+
+from hippo import Function
+
+gauss = Function ( "Gaussian", datarep1 )
+# hist.addDataRep ( gauss )
+gauss.addTo ( hist )
+
+print "Before fitting"
+parmnames = gauss.parmNames ( )
+print parmnames
+
+parms = gauss.parameters ( )
+print parms
+
+# Now do the fitting.
+gauss.fit ( )
+
+print "After fitting parameters are"
+parms = gauss.parameters ( )
+print parms
+
+print "while the errors are"
+errors = gauss.principleErrors( )
+print errors
+
+gauss1 = Function ( "Gaussian", datarep1 )
+gauss1.addTo ( hist )
+
+# Do another fit, should fit to linear sum
+gauss1.fit ()
+
+# Do another kind of disiplay
+profile = Display ( "Profile", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( profile )
+datarep2 = profile.getDataRep ( )
+
+quad = Function ( 'Quadratic', datarep2 )
+
+quad.addTo ( profile )
+quad.fit()
+
+nt2 = ntc.createNTuple( '@top_srcdir@/examples/Z0Strip.data' )
+
+# Do an XY plot with error bars
+xye = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xye )
+datarep3 = xye.getDataRep ( )
+
+gauss2 = Function ( 'Gaussian', datarep3 )
+
+gauss2.addTo ( xye )
+gauss2.fit()
+
+# XY Plot without error bars
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'nil' ))
+canvas.addDisplay ( xy )
+datarep4 = xy.getDataRep ( )
+
+gauss3 = Function ( "Gaussian", datarep4 )
+
+gauss3.addTo ( xy )
+gauss3.fit()
+
+nt3 = ntc.createNTuple ( )
+nt3.setLabels ( ('x', 'y', 'error' ) )
+
+nt3.addRow ( ( 1., 1., 0.0 ) )
+nt3.addRow ( ( 2., 2., 0.5 ) )
+nt3.addRow ( ( 3., 2., 0.5 ) )
+nt3.addRow ( ( 4., 2., 0.5 ) )
+nt3.addRow ( ( 5., 2., 0.5 ) )
+nt3.addRow ( ( 6., 2., 0.5 ) )
+nt3.addRow ( ( 7., 3., 0.0 ) )
+
+print "The fifth plot demonstrates that points with 0 error are ignored"
+xye2 = Display ( "XY Plot", nt3, ( 'x', 'y', 'nil', 'error' ) )
+canvas.addDisplay ( xye2 )
+
+datarep5 = xye2.getDataRep()
+linear = Function ( "Linear", datarep5 )
+linear.addTo ( xye2 )
+linear.fit()
+
+print "The sixth plot demontrates that if all points of 0 error, then all are used"
+xye3 = Display ( "XY Plot", nt3, ( 'x', 'y', 'nil', 'nil' ) )
+canvas.addDisplay ( xye3 )
+
+datarep6 = xye3.getDataRep()
+linear2 = Function ( "Linear", datarep6 )
+linear2.addTo ( xye3 )
+linear2.fit()
+
+## The following doesn't work yet.
+## matrix = linear2.covarianceMatrix ()
+## print "The covariance matrix"
+## print matrix
+
+## Do an XY plot with error bars
+xye4 = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xye4 )
+datarep7 = xye4.getDataRep ( )
+
+# The following doesn't converge, but should not crash
+try:
+    broken = Function ( 'BrokenPowerLaw', datarep7 )
+    broken.setFitter ( 'ChiSq: Minuit(Migrad)' )
+    broken.addTo ( xye4 )
+    broken.fit()
+
+    print "Select last plot and the function tabbed panel in Inspector to make"
+    print "sure it doesn't crash"
+except RuntimeError, msg:
+    print msg
+    if str(msg).find("No such type") != -1:
+        print "Sorry, Minuit is not available."
+
+#
+# Test of creating residual display
+#
+res_plot = gauss1.createResidualsDisplay()
+canvas.addDisplay ( res_plot )
+
+#
+# Test of using fitting range.
+#
+histcost = Display ( "Histogram", nt1, ("Cost", ) )
+canvas.addDisplay( histcost )
+costdatarep = histcost.getDataRep()
+
+gaussc = Function ( "Gaussian", costdatarep )
+gaussc.addTo ( histcost )
+
+print "Before fitting"
+parms = gaussc.parameters ( )
+print parms
+
+i_parms = [ 300., 15500., 450. ]
+gaussc.setParameters ( i_parms )
+
+gaussc.setFitRange ( 15000., 16500. )
+# Now do the fitting.
+gaussc.fit ( )
+
+parms = gaussc.parameters ()
+
+print "After fitting should not have move far because of fitting range"
+print parms

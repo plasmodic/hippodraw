@@ -1,0 +1,29 @@
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/tests
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/tests/Makefile.in
+END
+hippoTestOpenGL.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/tests/hippoTestOpenGL.cxx
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/tests/Makefile.am
+END
+test.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/tests/test.py.in
+END

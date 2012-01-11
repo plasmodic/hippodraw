@@ -1,0 +1,23 @@
+""" -*- mode:python -*-
+
+Demo of reading ROOT file with function, cuts, and calculation
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+
+import setPath
+from load_hippo import  app, canvas
+
+from hippo import RootController, Display
+rc = RootController.instance()
+
+filename = "/nfs/farm/g/glast/u27/Integration/rootData/135005524/v5r070305p4/calib-v1r0/grRoot/recon-v3r4p6_135005524_merit_merit.root"
+
+ntuple_names = rc.getNTupleNames ( filename  )
+
+ntuple = rc.createDataArray ( filename, ntuple_names[0] )
+
+hist = Display ( "Histogram", ntuple, ('CalX0', ) )
+canvas.addDisplay ( hist )
+

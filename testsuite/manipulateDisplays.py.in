@@ -1,0 +1,60 @@
+""" -*- mode: python -*-
+
+   Testing the QtDisplay methods for selecting and saving displays.
+
+   author: James Chiang <jchiang@slac.stanford.edu>
+   
+"""
+#
+# $Id: manipulateDisplays.py.in,v 1.5 2005/08/08 17:41:04 pfkeb Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from setPath import *
+
+def myPrompt(prompt = None):
+    if (prompt):
+        sys.stderr.write(prompt)
+    else:
+        sys.stderr.write("Hit return to continue: ")
+    x = sys.stdin.readline()
+
+from pl_exp_test import *
+
+myPrompt("Select all of the displays...<return>")
+plot.canvas.selectAllDisplays(1)
+
+myPrompt("Selecting just one...")
+plot.canvas.selectDisplay(exp_display)
+
+myPrompt("Selecting another...")
+plot.canvas.selectDisplay(pl_display)
+
+myPrompt("and yet another...")
+plot.canvas.selectDisplay(combo_display)
+
+x = plot.canvas.getX ( combo_display )
+y = plot.canvas.getY ( combo_display )
+print "The coordinates are %f, %f " % ( x, y )
+
+
+myPrompt("set the width...")
+w = plot.canvas.getWidth ( combo_display )
+new_x = 0.4 * w
+plot.canvas.setX ( combo_display, new_x )
+plot.canvas.setWidth ( combo_display, 1.8*w )
+
+myPrompt("Saving as combo.eps...")
+plot.canvas.saveAsImage(combo_display, "combo.eps")
+
+myPrompt("Saving as combo.jpg...")
+plot.canvas.saveAsImage(combo_display, "combo.jpg")
+
+myPrompt("Here they are...")
+import os
+os.system("ls -l combo.*")

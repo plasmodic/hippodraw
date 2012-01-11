@@ -1,0 +1,103 @@
+""" -*- mode:python -*-
+
+Demonstrates implement function in Python derived from the C++
+abstract base class.  Also demonstrates setting limits of the function
+parameters if used with Minuit.
+
+@author Paul F. Kunz <paul_kunz@slac.stanford.edu>
+
+"""
+#
+#$Id: fittingLimits.py.in,v 1.2 2005/06/12 22:44:56 pfkeb Exp $
+#
+
+from setPath import *
+import hippoplotter as plot, random, numarray
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+
+
+from hippo import FunctionBase
+class Linear ( FunctionBase ) :
+    def __init__ ( self, other = None ) :
+        if other :
+            FunctionBase.__init__( self, other )
+        else:
+            FunctionBase.__init__( self )
+            self.initialize ()
+
+    def initialize ( self ) :
+        self.setName ( 'linear' )
+        self.setParmNames ( [ 'Intercept', 'Slope' ] )
+        self.setParameters ( [ intercept, slope ] )
+    
+    def valueAt ( self, x ) :
+        parms = self.getParameters ()
+        
+        return x * parms[1] + parms[0]
+
+    def derivByParm ( self, i, x ) :
+        if i == 0 :
+            return 1.0
+        if i == 1 :
+            return x
+
+gauss = random.gauss
+
+npts = 20
+x = numarray.arange(npts)
+y = [gauss(slope*xx + intercept, sigma) for xx in x]
+xerr = numarray.ones ( npts )
+yerr = sigma*numarray.ones(npts)
+
+nt = plot.newNTuple( (x, y, xerr, yerr), ('x', 'y', 'xerr', 'yerr') )
+
+disp = plot.XYPlot(nt, 'x', 'y', yerr='yerr')
+
+from hippo import FitterFactory
+factory = FitterFactory.instance()
+fitters = factory.names()
+print fitters
+
+migrad = factory.create ( fitters[1] )
+print migrad.name()
+
+
+
+f = Linear ()
+print f.name()
+print f.parmNames()
+
+fcn = migrad.getFCN ()
+fcn.setFunction ( f )
+fcn.setDataSource ( nt )
+fcn.setUseErrors ( True )
+
+# Try set limits with bad parameter name
+try :
+    migrad.setLimits ( 'foo', -2., -1. )
+except RuntimeError, detail :
+    print detail
+
+
+migrad.setLimits ( 0, -2., -1. )
+migrad.minimize()
+
+print f.getParameters()
+
+from hippo import FunctionFactory
+ff = FunctionFactory.instance()
+ff.add ( f )
+
+# now try ntuple where we need indices
+
+ds = plot.newNTuple ( ( y, x, yerr, xerr ), ( 'y', 'x', 'yerr', 'xerr' ) )
+
+fcn.setDataSource ( ds, 1, [ 1, 0, -1, 2 ] )
+
+f.setParameters ( [ intercept, slope ] )
+migrad.minimize ()
+print f.getParameters ()
+

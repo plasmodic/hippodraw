@@ -1,0 +1,35 @@
+""" -*- mode:python -*-
+
+Test setting the bin width before the range.
+
+@author Paul F. Kunz <paul_kunz@slac.stanford.edu>
+"""
+#
+# $Id: width_before_range.py.in,v 1.1 2004/05/14 15:58:55 pfkeb Exp $
+#
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+import random
+import hippoplotter as plot
+
+nt = plot.newNTuple( ([],), ("x",) )
+
+npts = 10000
+for i in range(npts):
+    x = random.uniform(0, 1)
+    nt.addRow((x,))
+
+hist = plot.Histogram(nt, "x")
+
+width = 0.02
+print "Setting width to ", width
+hist.setBinWidth ( 'x', width )
+print "Check it ", hist.getBinWidth ( 'x' )
+hist.setRange ( 'x', 0., 1. )
+new_width = hist.getBinWidth ( 'x' )
+print "Width is now ", new_width
+

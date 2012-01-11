@@ -1,0 +1,33 @@
+""" -*- python -*-
+This script tests ignoring bad data in the NTuple file
+
+Copyright (C) 2001, 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: baddata1.py.in,v 1.1 2004/04/09 16:26:20 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+from hippo import NTupleController
+
+ntc = NTupleController.instance()
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.baddata' )
+
+from hippo import Display
+
+
+nt2 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.baddata' )
+
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+bad = Display ( 'Y Plot', nt2, ('Bad', ) )
+canvas.addDisplay ( bad )
+
+print "The right hand plot shows the NTuple column with alphanumer characters"
+print "instead of numberic characters.   The column doesn't cause a crash"
+
+

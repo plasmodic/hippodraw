@@ -1,0 +1,85 @@
+"""-*- mode: python -*-
+  Circular buffer demo using hippoplotter.py.
+
+  @author J. Chiang <jchiang@slac.stanford.edu>
+
+"""
+#
+# $Id: circbuff.py.in,v 1.7 2005/06/25 19:08:18 pfkeb Exp $
+#
+
+from setPath import *
+
+from time import sleep
+from math import sin, cos
+
+import hippoplotter as plot
+
+buffer = plot.ntc.createCircularBuffer(3)
+buffer.setTitle("Demo of circular buffer")
+buffer.setLabels( ("phi", "sin( phi )", "cos( phi )") )
+buffer.reserve(100)
+
+sthist = plot.StaticHist( title="Demo of static histogram",
+                          xlabel = "sin(phi)", xrange = (-1, 1),
+                          xBinWidth=0.04 )
+
+
+dynHist = plot.Histogram( buffer, "sin( phi )",
+                          xrange=(-1, 1), yrange=(0, 10),
+                          title="Demo of dynamic histogram" )
+#
+# Setting the x bin width affects the yrange, so need to reset it again.
+#
+dynHist.setBinWidth( "x", 0.04 )
+dynHist.setRange( "y", 0, 10 )
+
+st2hist = plot.Static2DHist( title="Demo of static 2D histogram",
+                             xlabel="sin(phi)", ylabel="cos(phi)",
+                             xrange=(-1, 1), yrange=(-1, 1),
+                             xBinWidth=0.04, yBinWidth=0.04 )
+
+dyn2hist = plot.XYHist( buffer, "sin( phi )", "cos( phi )",
+                        xrange=(-1,1), yrange=(-1,1),
+                        title = "Demo of dynamic 2D histogram")
+dyn2hist.setBinWidth("x", 0.04 )
+dyn2hist.setBinWidth("y", 0.04 )
+
+stripChart = plot.StripChart( buffer, "phi", "sin( phi )", yrange=(-1,1) )
+
+addFirst = 100
+addSecond = 500
+for i in range(10000):
+    phi = float(i) / 40.
+    amplitude = sin ( float(i)/3. )
+    x = amplitude*sin ( phi )
+    y = amplitude*cos ( phi )
+    buffer.addRow( (phi, x, y) )
+    
+    sthist.addValues ( (x, ) )
+    st2hist.addValues ( ( x, y ) )
+
+    if i == addFirst:
+        #
+        # Add a Gaussian function to fit to these data.
+        #
+        gauss = plot.hippo.Function( "Gaussian", sthist.getDataRep() )
+        gauss.addTo( sthist() )
+        gauss.fit()
+    if i == addSecond:
+        #
+        # Add a second Gaussian function
+        #
+        linearSum = plot.hippo.Function( "Gaussian", sthist.getDataRep() )
+        linearSum.addTo( sthist() )
+        
+    #
+    # Fit the sthist data rep every 10 steps
+    #
+    if i % 10 == 0:
+        if addFirst < i < addSecond:
+            gauss.fit()
+        elif i > addSecond:
+            linearSum.fit()
+    
+    sleep(.05)

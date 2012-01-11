@@ -1,0 +1,55 @@
+""" -*- mode:python -*-
+
+Test of NumArrayTuple class
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+import hippo
+from load_hippo import app, canvas
+
+from hippo import RootController, Display, Cut
+rc = RootController.instance()
+
+filename = "/nfs/farm/g/glast/u11/InstrumentAnalysis/MC/EngineeringModel-v5r0608p7/2Tower_surface_muons/surface_muons_4M_merit.root"
+
+ntuple_names = rc.getNTupleNames ( filename  )
+
+name = ntuple_names[0]
+
+ntuple = rc.createNTuple ( filename, name )
+
+
+plot1 = Display ( "Color Plot", ntuple, ('Tkr1X0','Tkr1Y0', ) )
+canvas.addDisplay ( plot1 )
+plot2 = Display  ( "Histogram", ntuple, ('TkrThinHits', ) )
+canvas.addDisplay ( plot2 )
+plot3 = Display ( "Color Plot", ntuple, ('Tkr1X0','Tkr1Y0', ) )
+canvas.addDisplay ( plot3 )
+plot4 = Display  ( "Histogram", ntuple, ('TkrThinHits', ) )
+canvas.addDisplay ( plot4 )
+print ntuple.rows
+
+c1 = Cut ( ntuple, ('McZDir', ) )
+canvas.addDisplay ( c1 )
+c1.addTarget ( plot1 )
+c1.addTarget ( plot2 )
+c1.addTarget ( plot3 )
+c1.addTarget ( plot4 )
+c1.setCutRange ( -1.0, -0.86, 'x' )
+
+c2 = Cut ( ntuple, ('GltNumTowers', ) )
+canvas.addDisplay ( c2 )
+c2.addTarget ( plot1 )
+c2.addTarget ( plot2 )
+c2.setCutRange ( 0.9, 1.2, 'x' )
+
+c3 = Cut ( ntuple, ('GltTower', ) )
+canvas.addDisplay ( c3 )
+c3.addTarget ( plot1 )
+c3.addTarget ( plot2 )
+c3.addTarget ( c2 )
+c3.addTarget ( plot3 )
+c3.addTarget ( plot4 )
+c3.setCutRange ( 7.5, 8.5, 'x' )

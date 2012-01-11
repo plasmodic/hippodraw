@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/48411/tools/hippodraw/trunk/numarray
+END
+num_util.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47803/tools/hippodraw/trunk/numarray/num_util.h
+END
+num_util.README
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/numarray/num_util.README
+END
+NumArrayTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/numarray/NumArrayTuple.cxx
+END
+export_NumArrayTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/numarray/export_NumArrayTuple.cxx
+END
+numarray.dir
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/numarray/numarray.dir
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/numarray/CMakeLists.txt
+END
+num_util.cpp
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47803/tools/hippodraw/trunk/numarray/num_util.cpp
+END
+NumArrayTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/numarray/NumArrayTuple.h
+END

@@ -1,0 +1,10 @@
+/** @dir xml
+
+This directory contains source and header files of classes related to
+reading and writing a CanvasView to XML.
+
+@note No classes in this directory depend on concrete implementation
+of a XML parser/generator.
+
+*/
+

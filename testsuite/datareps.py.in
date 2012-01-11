@@ -1,0 +1,76 @@
+""" -*- python -*-
+
+This script tests the creation of a display with multiple data reps
+
+Copyright (C) 2001, 2003  The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: datareps.py.in,v 1.26 2006/06/27 19:28:46 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create NTuple with its's controller so that Inspector can see it.
+nt = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt, ('Age', ) )
+canvas.addDisplay( hist )
+
+# Two data reps of same type
+hist.addDataRep( 'Histogram', nt, ['Service'] )
+hist.setTitle ( 'Two hists in plot' )
+
+reps = hist.getDataReps ()
+try :
+    reps[0].setLineStyle ( 'bad' )
+except RuntimeError, detail :
+    print detail
+
+try :
+    reps[0].set ( hippo.Symbol.opensquare )
+except RuntimeError, detail :
+    print detail
+
+print hippo.Line.values
+
+reps[0].setBinWidth ( 'x', 1 )
+reps[0].set ( hippo.Line.dash )
+
+hist1 = Display ("Histogram", nt, ('Age', ) )
+hist1.setBinWidth ( 'x', 1. )
+canvas.addDisplay( hist1 )
+
+# Two data reps of same type
+hist1.addDataRepStacked ( 'Histogram', nt, ['Service'] )
+hist1.setTitle ( 'Stacked histos' )
+print "Ctrl click to see Y axis on stacked hists"
+
+nt2 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.data' )
+
+strip = Display ( "Strip Chart", nt2, ('Energy', 'Sigma' ))
+canvas.addDisplay ( strip )
+
+# Demonstrates display of different types on same display
+strip.addDataRep ( "XY Plot", nt2, ['Energy', 'Sigma', 'nil', 'error'] )
+strip.setTitle ( 'Overlayed plots' )
+
+reps = strip.getDataReps()
+try :
+    reps[1].set ( hippo.Line.solid )
+except RuntimeError, detail :
+    print detail
+
+color = Display ( "Contour Plot", nt, ('Age', 'Cost' ))
+color.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( color )
+
+color.addDataRep ( 'Profile', nt, [ 'Age', 'Cost' ] )
+color.setTitle ( 'Overlayed plots of different type' )

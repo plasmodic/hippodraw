@@ -1,0 +1,23 @@
+""" -*- python -*-
+
+The following script brings up a set of documents.
+
+Copyright (C) 2001 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: documents.py.in,v 1.6 2004/01/31 05:00:59 jchiang Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+cdisplays = app.openDocument ( 'displays.xml' )
+
+ccuts = app.openDocument ( "datareps.xml" )
+ccuts = app.openDocument ( "cuts.xml" )
+cfunctions = app.openDocument ( 'function.xml' )
+clog = app.openDocument ( 'log.xml' )
+
+# cntuple = app.openDocument ( 'ntuple.xml' )

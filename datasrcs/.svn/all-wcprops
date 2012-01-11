@@ -1,0 +1,137 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/48411/tools/hippodraw/trunk/datasrcs
+END
+DataSource.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataSource.h
+END
+datasrcs.dir
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/datasrcs.dir
+END
+DataPointTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataPointTuple.h
+END
+DataSourceController.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataSourceController.h
+END
+CircularBuffer.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/CircularBuffer.h
+END
+DataColumn.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataColumn.cxx
+END
+DataSource.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataSource.cxx
+END
+TupleCut.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/TupleCut.h
+END
+NTupleSorter.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTupleSorter.h
+END
+NTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTuple.h
+END
+DataPointTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataPointTuple.cxx
+END
+DataSourceController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataSourceController.cxx
+END
+CircularBuffer.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/CircularBuffer.cxx
+END
+NTupleController.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTupleController.h
+END
+RTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/RTuple.h
+END
+TupleCut.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/TupleCut.cxx
+END
+NTupleSorter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTupleSorter.cxx
+END
+NTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTuple.cxx
+END
+NTupleController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/NTupleController.cxx
+END
+RTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/RTuple.cxx
+END
+DataColumn.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datasrcs/DataColumn.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/datasrcs/CMakeLists.txt
+END

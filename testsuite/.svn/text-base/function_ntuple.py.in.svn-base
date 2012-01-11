@@ -1,0 +1,69 @@
+""" -*- python -*-
+
+   This is a script to test adding functions and fitting.  It only
+works with the C Python interface.  Jython interface needs Function
+class in Java.
+
+Copyright (C) 2002, 2003 The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: function_ntuple.py.in,v 1.4 2004/07/07 21:48:48 pfkeb Exp $nt
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create NTuple with its controller so Inspector can see it.
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ( "Histogram", nt1, ("Cost", ) )
+canvas.addDisplay( hist )
+datarep1 = hist.getDataRep()
+
+from hippo import Function
+
+gauss = Function ( "Gaussian", datarep1 )
+# hist.addDataRep ( gauss )
+gauss.addTo ( hist )
+
+print "Before fitting"
+parmnames = gauss.parmNames ( )
+print parmnames
+
+parms = gauss.parameters ( )
+print parms
+
+# Now do the fitting.
+gauss.fit ( )
+
+print "After fitting"
+parms = gauss.parameters ( )
+print parms
+
+gauss1 = Function ( "Gaussian", datarep1 )
+gauss1.addTo ( hist )
+
+# Do another fit, should fit to linear sum
+gauss1.fit ()
+
+result = hist.createNTuple ()
+ntc.registerNTuple ( result )
+
+coords = result.getColumn ( 'Cost' )
+values = result.getColumn ( 'Density' )
+res = []
+for i in range ( result.rows ) :
+    x = coords[i]
+    diff = values[i] - gauss1.valueAt ( x )
+    res.append ( diff )
+
+result.addColumn ( 'residuals', res )
+resplot=Display ( "XY Plot", result, ( 'Cost', 'residuals', 'nil', 'Error' ) )
+canvas.addDisplay ( resplot )

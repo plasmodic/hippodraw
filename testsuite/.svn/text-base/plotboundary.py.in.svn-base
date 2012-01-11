@@ -1,0 +1,29 @@
+""" -*- mode:python -*-
+
+Demonstrated bug in plotting to boundary rectangle
+
+author Jim Chiang
+
+"""
+
+from setPath import *
+import hippoplotter as plot
+import numarray as num
+
+npts = 20
+x = 1e2*num.exp(num.log(1e5/1e2)/(npts - 1)*num.arange(npts, type=num.Float))
+y = 200*(x/1e3)**(-1.7)
+
+plot.scatter(x, y, pointRep='Line', xlog=1, ylog=1,
+             xrange=(1e3, 1e5), yrange=(0.3, 200))
+
+phi = num.arange(npts, type=num.Float)/(npts-1.)*2.*num.pi
+
+xx = num.cos(phi)
+yy = num.sin(phi)
+
+disp = plot.scatter(xx, yy)
+plot.scatter(xx, yy, pointRep='Line', oplot=1, lineStyle='Dot')
+disp.setRange('x', -0.65761346668772225, 0.93719889304031734)
+disp.setRange('y', -0.90883643691772187, 0.89766792030238074)
+

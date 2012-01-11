@@ -1,0 +1,82 @@
+/* config.h.in.  Generated from configure.in by autoheader.  */
+
+/* define if older version of Boost */
+#undef BOOST_DEFECT
+
+/* define if std::distance does not work */
+#undef DISTANCE_DEFECT
+
+/* Define to 1 if cfitsio is available */
+#cmakedefine HAVE_CFITSIO 1
+
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#undef HAVE_DLFCN_H
+
+/* Define to 1 if HELP is available */
+#undef HAVE_HELP
+
+/* Define to 1 if C++ version of Minuit is available */
+#cmakedefine HAVE_MINUIT 1
+
+/* Define to 1 if Minuit2 is available */
+#cmakedefine HAVE_MINUIT2 1
+
+/* Define to 1 if numarray is available */
+#cmakedefine HAVE_NUMARRAY 1
+
+/* Define to 1 if Numaeric is available */
+#cmakedefine HAVE_NUMERIC 1
+
+/* Define to 1 if Numpy is available */
+#cmakedefine HAVE_NUMPY 1
+
+/* Define to 1 if Python older than 2.3 */
+// #undef HAVE_OLD_PYTHON
+
+/* Define to 1 if QT4 is available */
+#cmakedefine HAVE_QT4 1
+
+/* Define to 1 if building Qt application */
+#define HAVE_QT_APP 1
+
+/* Define to 1 if ROOT is available */
+#cmakedefine HAVE_ROOT 1
+
+/* Define to 1 if building with SIP */
+#undef HAVE_SIP
+
+/* define if have util or converting latex to png */
+#cmakedefine HAVE_TEX_UTILS 1
+
+/* Define to 1 if WCSLIB is available */
+#cmakedefine HAVE_WCSLIB 1
+
+/* define if obsolete mem_fun1 must be used. */
+#undef MEMFUN1_DEFECT
+
+/* Name of package */
+#undef PACKAGE
+
+/* Define to the address where bug reports for this package should be sent. */
+#undef PACKAGE_BUGREPORT
+
+/* Define to the full name of this package. */
+#undef PACKAGE_NAME
+
+/* Define to the full name and version of this package. */
+#undef PACKAGE_STRING
+
+/* Define to the one symbol short name of this package. */
+#undef PACKAGE_TARNAME
+
+/* Define to the version of this package. */
+#define VERSION "@PACKAGE_VERSION@"
+
+/* Define to 1 if you have the <strstream> header file instead of <sstream> */
+#undef SSTREAM_DEFECT
+
+/* define if std::string::clear does not work */
+#undef STRING_CLEAR_DEFECT
+
+/* Define to 1 if the X Window System is missing or not being used. */
+#undef X_DISPLAY_MISSING

@@ -1,0 +1,119 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/62704/tools/hippodraw/trunk/plotters
+END
+Cut1DPlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/Cut1DPlotter.h
+END
+Cut2DPlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/Cut2DPlotter.h
+END
+PlotterFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/PlotterFactory.cxx
+END
+TextPlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/TextPlotter.h
+END
+PlotterBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/62704/tools/hippodraw/trunk/plotters/PlotterBase.cxx
+END
+CutPlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/CutPlotter.h
+END
+Cut1DPlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/Cut1DPlotter.cxx
+END
+Cut2DPlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/Cut2DPlotter.cxx
+END
+PlotterException.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/PlotterException.h
+END
+TextPlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/TextPlotter.cxx
+END
+XyPlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/49207/tools/hippodraw/trunk/plotters/XyPlotter.h
+END
+CompositePlotter.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/CompositePlotter.h
+END
+CutPlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/CutPlotter.cxx
+END
+PlotterFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/PlotterFactory.h
+END
+PlotterException.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/PlotterException.cxx
+END
+PlotterBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/plotters/PlotterBase.h
+END
+XyPlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/49207/tools/hippodraw/trunk/plotters/XyPlotter.cxx
+END
+CompositePlotter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/49288/tools/hippodraw/trunk/plotters/CompositePlotter.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/plotters/CMakeLists.txt
+END

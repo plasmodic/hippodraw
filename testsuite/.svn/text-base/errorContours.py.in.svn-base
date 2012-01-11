@@ -1,0 +1,127 @@
+""" -*- mode:python -*-
+
+Plotting error contours for a linear regression fit.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+#$Id: errorContours.py.in,v 1.2 2004/07/24 17:16:34 pfkeb Exp $
+#
+
+from setPath import *
+import hippoplotter as plot, random, numarray
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+
+gauss = random.gauss
+
+npts = 20
+x = numarray.arange(npts)
+y = [gauss(slope*xx + intercept, sigma) for xx in x]
+yerr = sigma*numarray.ones(npts)
+
+nt = plot.newNTuple( (x, y, yerr), ('x', 'y', 'yerr') )
+
+disp = plot.XYPlot(nt, 'x', 'y', yerr='yerr')
+funcName = 'Linear'
+
+params = ('Slope', 'Intercept')
+
+#
+# Fit these data.
+#
+def fitData( display, funcName ):
+    func = plot.hippo.Function( funcName, display.getDataRep() )
+    func.addTo(display)
+    func.fit()
+    paramDict = {}
+    errorDict = {}
+    names = func.parmNames()
+    params = func.parameters()
+    errors = func.principleErrors()
+    for name, param, error in zip(names, params, errors):
+        paramDict[name] = param
+        errorDict[name] = error
+    return (paramDict, errorDict, func)
+
+(fitParams, fitErrors, func) = fitData( disp, funcName )
+
+chi2min = func.chiSquared()
+
+for name in fitParams.keys():
+    print "%s: %.4e +/- %.4e" % (name, fitParams[name], fitErrors[name])
+
+#
+# Create a numarray over +/- nsig sigma ranges of the two parameters.
+#
+npts = 20
+nsig = 1.5
+
+xvals = ( numarray.arange(-npts,npts)/float(npts)*2.*nsig*fitErrors[params[0]]
+          + fitParams[params[0]] )
+
+yvals = ( numarray.arange(-npts,npts)/float(npts)*2.*nsig*fitErrors[params[1]]
+          + fitParams[params[1]] )
+
+def setFixed(targets, func):
+    names = func.parmNames()
+    flags = []
+    for name in names:
+        if (name in targets):
+            flags.append(1)
+        else:
+            flags.append(0)
+    func.setFixedFlags(flags)
+
+def setParam(target, value, func):
+    names = func.parmNames()
+    vals = list(func.parameters())
+    for i, name in zip(xrange(len(names)), names):
+        if (name == target):
+            vals[i] = value
+    func.setParameters(vals)
+
+setFixed( params, func )
+#
+# Fill an array of chi^2 values for the parameters of interest.
+#
+chi2 = numarray.zeros((len(xvals), len(yvals)), type=numarray.Float32)
+
+for i, xval in zip(xrange(len(xvals)), xvals):
+    setParam(params[0], xval, func)
+    for j, yval in zip(xrange(len(yvals)), yvals):
+        setParam(params[1], yval, func)
+        if len(func.parameters()) > 2: func.fit()
+        chi2[i][j] = func.chiSquared()
+        
+#
+# Restore the best-fit.
+#
+func.setFixedFlags( numarray.zeros(len(func.parameters())) )
+func.fit()
+
+#
+# Create a contour plot with the contour levels appropriate for
+# projections onto the x- and y- axes at the 68.3%, 90%, and 99% C.L.s
+#
+disp2 = plot.image(chi2, x=xvals, y=yvals, zname = "chi^2",
+                   xname=params[0], yname=params[1])
+
+disp2.setPointRep(plot.prf.create('Contour'))
+disp2.setContourLevels( chi2min + numarray.array( (0.05, 1, 2.71, 6.63) ) )
+disp2.setRange('z', chi2min, chi2min + 10.)
+
+#
+# Show the best-fit values and the one-sigma bounds
+#
+plot.canvas.selectDisplay ( disp2 )
+
+plot.vline(fitParams[params[0]])
+plot.vline(fitParams[params[0]] + fitErrors[params[0]])
+plot.vline(fitParams[params[0]] - fitErrors[params[0]])
+
+plot.hline(fitParams[params[1]])
+plot.hline(fitParams[params[1]] + fitErrors[params[1]])
+plot.hline(fitParams[params[1]] - fitErrors[params[1]])

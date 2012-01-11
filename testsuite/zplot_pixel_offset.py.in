@@ -1,0 +1,17 @@
+"""
+This example shows that a Z Plot does not report a constant value
+within a given colored box (except for the lower left pixel) when
+right-mouse-down is used.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+import setPath
+import hippoplotter as plot
+hippo = plot.hippo
+
+z = range(1,10)
+
+nt = plot.newNTuple( (z, ), ('z', ) )
+
+disp = hippo.Display("Z Plot", nt, ('z', ))
+plot.canvas.addDisplay(disp)

@@ -1,0 +1,97 @@
+""" -*- mode: python -*-
+Create data for a chi-squared minimization linear regression fit.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: regressionFit.py.in,v 1.5 2004/01/31 05:00:59 jchiang Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from setPath import *
+
+import random, numarray
+
+#
+# These values can be reset if desired.
+#
+slope = 2.
+intercept = 1.
+sigma = 1.
+
+gauss = random.gauss
+
+npts = 10
+x = numarray.arange(npts)
+y = [gauss(slope*xx + intercept, sigma) for xx in x]
+yerr = sigma*numarray.ones(npts)
+
+#
+# Do a straight-line fit. These formulae are available from
+# http://pdg.lbl.gov/1995/statrpp.ps .
+#
+sum = numarray.sum
+
+(s11, s12, s22) = ( sum(1./yerr**2), sum(x/yerr**2), sum((x/yerr)**2) )
+(g1, g2) = ( sum(y/yerr**2), sum(x*y/yerr**2) )
+
+denom = s11*s22 - s12**2
+
+interceptFit = (g1*s22 - g2*s12)/denom
+slopeFit = (g2*s11 - g1*s12)/denom
+
+#
+# Use sqrt of diagonal elements of the covariance matrix as fit
+# parameter errors.
+#
+ierr = numarray.sqrt(s22/denom)
+serr = numarray.sqrt(s11/denom)
+
+print "Analytically calculated "
+print "             intercept: %e +/- %e" % (interceptFit, ierr)
+print "                 slope: %e +/- %e" % (slopeFit, serr)
+
+#
+# Using hippodraw to fit the data and get the errors on the parameters
+#
+from load_hippo import app, canvas
+
+# Create empty ntuple
+from hippo import NTuple
+nt = NTuple ( )
+
+# Register ntuple to make visible to application
+from hippo import NTupleController
+ntc = NTupleController.instance ( )
+ntc.registerNTuple ( nt )
+    
+nt.addColumn ( "X", x )
+nt.addColumn ( "Y", y )
+nt.addColumn ( "Yerr", yerr )
+
+from hippo import Display
+
+d1 = Display ("XY Plot", nt, ('X', 'Y', 'nil', 'Yerr' ))
+canvas.addDisplay ( d1 )
+
+datarep = d1.getDataRep ( )
+
+from hippo import Function
+
+linear = Function ( "Linear", datarep )
+linear.addTo ( d1 )
+
+# Now do the fitting.
+linear.fit ( )
+
+params = linear.parameters ( )
+errors = linear.principleErrors( )
+
+print "After curve fitting "
+print "             intercept: %e +/- %e" % (params[0], errors[0])
+print "                 slope: %e +/- %e" % (params[1], errors[1])

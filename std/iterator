@@ -1,0 +1,32 @@
+/* -*- mode:c++ -*- */
+
+/** @file iterator Iterator component of C++ standard library.
+
+List of functions used by @b HippoDraw from the
+iterator component of the C++ standard library.
+
+@note This list may be incomplete.
+*/
+
+namespace std {
+
+/** @brief C++ standard distance function
+
+Inserts to end of the @a container sequence.
+*/
+template < typename Container >
+back_insert_iterator < Container >
+back_inserter ( Constainer & container );
+
+class back_insert
+
+/** @brief The C++ standard distance function.
+
+    Calculates the distance between two iterators.
+*/
+inline
+template < typename InputIterator >
+iterator_traits<InputIterator>::difference_type
+distance ( InputIterator first, InputIterator last );
+
+};

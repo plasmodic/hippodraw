@@ -1,0 +1,269 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/49880/tools/hippodraw/trunk/transforms
+END
+UnaryTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/UnaryTransform.h
+END
+BinaryTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/BinaryTransform.cxx
+END
+TAN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/TAN.cxx
+END
+STG.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/STG.h
+END
+HammerAito.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/HammerAito.cxx
+END
+XYZTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYZTransform.cxx
+END
+TransformFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/TransformFactory.h
+END
+SIN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/SIN.cxx
+END
+GlobalSinusoidal.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/GlobalSinusoidal.cxx
+END
+XYTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYTransform.cxx
+END
+Cartesian.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Cartesian.h
+END
+PeriodicBinaryTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/49288/tools/hippodraw/trunk/transforms/PeriodicBinaryTransform.cxx
+END
+AIR.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/AIR.h
+END
+LogTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/LogTransform.h
+END
+ARC.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/ARC.cxx
+END
+BinaryTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/BinaryTransform.h
+END
+TransformBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/TransformBase.cxx
+END
+LinearTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/LinearTransform.cxx
+END
+TAN.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/TAN.h
+END
+transforms.dir
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/transforms.dir
+END
+HammerAito.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/HammerAito.h
+END
+XYZTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYZTransform.h
+END
+Mercator.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Mercator.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/CMakeLists.txt
+END
+SIN.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/SIN.h
+END
+GlobalSinusoidal.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/GlobalSinusoidal.h
+END
+XYTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYTransform.h
+END
+XYZTransformBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYZTransformBase.cxx
+END
+PeriodicBinaryTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/49288/tools/hippodraw/trunk/transforms/PeriodicBinaryTransform.h
+END
+Lambert.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Lambert.cxx
+END
+WCSTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/49880/tools/hippodraw/trunk/transforms/WCSTransform.cxx
+END
+ARC.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/ARC.h
+END
+UnaryTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/UnaryTransform.cxx
+END
+TransformBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/TransformBase.h
+END
+LinearTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/LinearTransform.h
+END
+STG.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/STG.cxx
+END
+Mercator.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Mercator.h
+END
+TransformFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/TransformFactory.cxx
+END
+XYZTransformBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/XYZTransformBase.h
+END
+Cartesian.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Cartesian.cxx
+END
+AIR.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/AIR.cxx
+END
+Lambert.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/49207/tools/hippodraw/trunk/transforms/Lambert.h
+END
+LogTransform.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/transforms/LogTransform.cxx
+END
+WCSTransform.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/49208/tools/hippodraw/trunk/transforms/WCSTransform.h
+END

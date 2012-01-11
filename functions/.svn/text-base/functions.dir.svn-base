@@ -1,0 +1,11 @@
+/** @dir functions
+
+This directory contains source and header files for classes related to
+functions.
+
+This directory contains the source and header files for the abstract
+base class, FunctionBase, of functions and concrete derived classes.
+
+@sa @ref overview_function
+
+*/

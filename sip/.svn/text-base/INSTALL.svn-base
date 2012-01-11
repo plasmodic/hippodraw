@@ -1,0 +1,64 @@
+   Instructions for installing the HippoDraw Python extension module with SIP
+
+   You only need to build this extension module if you want to use
+HippoDraw with PyQt.  PyQt is a Python extension module for Qt. Its
+home page is here:
+
+   http://www.riverbankcomputing.co.uk/pyqt/index.php
+
+PyQt's extension module is built with SIP.   The SIP home page is here:
+
+   http://www.riverbankcomputing.co.uk/sip/index.php
+
+HippoDraw has been built with various versions of SIP and PyQt.
+However, to support throwing exceptions in C++ that are converted to
+Python exceptions, one needs SIP 3.8 or later.   
+
+This release was tested with SIP 4.2.1.  Staring with SIP 4.0,
+incompatible changes were made compared to prior versions and then
+again with SIP 4.2.  These changes make it rather difficult for a
+configure script to generate a correct Makefile for older versions of
+SIP.  Also SIP version 4.2 fixes some significant memory leaks.  Thus,
+only SIP 4.2 is later is supported by HippoDraw.
+
+You'll need both SIP and PyQt installed to build HippoDraw's SIP based
+extension module.  You must install them in the site-packages
+directory of the Python you are using.  That is, if Python is in
+/usr/local, then the SIP executable is in /usr/local/bin and the SIP
+and PyQt header files are in /usr/local/include/python2.4 and the PyQt
+extension module are in /usr/local/lib/python2.4/site-packages.
+
+   To enable building the SIP HippoDraw module, add
+`--enable-sipbuild' to the top level conifigure command.  Next exam
+the sip/Makefile.  This file may not have been configured correctly.
+Correct the line
+
+    SIP = /usr/local/bin/sip
+
+to the path to the SIP executable.   Also the line
+
+    PYQT_SRCS = -I /usr/local/share/sip -I /usr/local/share/sip/qtcanvas
+
+needs to the path to your installed PyQt .sip sources.  Lastly, find
+the lines
+
+sipsihippocmodule.h : $(SIP_SRCS) 
+	@echo creating built sources
+	$(SIP) -e -g -c . $(PYQT_SRCS) -I $(top_srcdir)/sip  \
+	-t Qt_3_2_0 -t WS_X11 $(top_srcdir)/sip/sihippo.sip
+
+Correct the `Qt_3_2_0' to the version of Qt you are using or the
+latest available in the /usr/local/share/sip/qt/versions.sip file.
+  
+   You can now build HippoDraw in the normal fashion from the top
+level build directory.  If your build fails because of missing header
+files in the form `sipqtQXxxxxx.h', then you are using an older
+version of Qt then the HippoDraw distribution was built on.  Part of
+the distribution build addes all dependencies to the Makefile.in file.
+You can safely edit your Makefile to remove all such dependencies.
+Less than a half dozend files are envolved.
+
+  The SIP Python extension module will be sihippo.  A "make install"
+will install it the Python site-packages subdirectory.
+
+   

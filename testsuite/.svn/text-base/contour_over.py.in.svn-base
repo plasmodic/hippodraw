@@ -1,0 +1,31 @@
+""" -*- python -*-
+
+This script tests overlaying a contour plot on color plot
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: contour_over.py.in,v 1.1 2005/07/18 18:46:25 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create NTuple with its's controller so that Inspector can see it.
+nt = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+
+color = Display ( "Color Plot", nt, ('Age', 'Cost' ))
+color.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( color )
+
+color.addDataRep ( 'Contour Plot', nt, [ 'Age', 'Cost' ] )
+reps = color.getDataReps ()
+reps[1].setColor ( 'black' )
+
+color.setTitle ( 'Overlayed contour on color plot' )
+

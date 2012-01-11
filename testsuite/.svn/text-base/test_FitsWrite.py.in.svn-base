@@ -1,0 +1,105 @@
+""" -*- mode:python -*-
+
+Test of FitsController and FitsNTuple classes
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import FitsController, Display
+fc = FitsController.instance()
+
+filename = "@top_srcdir@/examples/SimEvents.fits"
+print "Opening file ", filename
+ntuple_names = fc.getNTupleNames ( filename  )
+name = ntuple_names[1] # pass the empty image
+
+ntuple = fc.createNTuple ( filename, name )
+
+print "Number of columns = ", ntuple.columns
+print "Column labels are ..."
+print ntuple.getLabels()
+
+print "Number of rows = ", ntuple.rows
+
+plot = Display ( "Color Plot", ntuple, ('GLON', 'GLAT', 'nil', 'nil' ) )
+canvas.addDisplay ( plot )
+
+#
+# Test using DataArray
+#
+print "Catch exception because of HDU bad name"
+try :
+    d = fc.createDataArray ( filename, 'foo' )
+except RuntimeError, detail :
+    print detail
+
+darray = fc.createDataArray ( filename, name )
+darray.setName ( 'Lat events modified' )
+
+
+#
+# Calc Log(energy)
+#
+
+import numarray
+darray[ 'LogE' ] = numarray.log ( darray [ 'energy' ] )
+
+lplot = Display ( 'Histogram', darray, ( 'LogE', ) )
+lplot.setLog ( 'y', True )
+canvas.addDisplay ( lplot )
+
+cut = hippo.Cut ( darray, ( 'time', ) )
+canvas.addDisplay ( cut )
+cut.setCutRange ( 5600., 14000., 'x' )
+cut.addTargets ( (plot, lplot) )
+
+# Add array object to column
+glon = darray['GLON']
+glat = darray['GLAT']
+a2d = numarray.array ( [ glon, glat ] )
+a2d.transpose()
+print "Now have"
+print "rank ", a2d.shape
+print a2d
+
+darray [ 'glon-glat' ] = a2d
+
+
+source = darray.dataSource()
+
+# Write the FitsTuple object to file
+fc.writeToFile ( source, 'sim2.fits' )
+
+# Write the DataSource object to file
+labels = darray.getLabels()
+fc.writeToFile ( darray, 'sim3.fits', (cut,), labels )
+
+names2 = fc.getNTupleNames ( 'sim3.fits' )
+print names2
+
+darray2 = fc.createDataArray ( 'sim3.fits', names2[1] )
+
+plot2 = Display ( "Color Plot", darray2, ('GLON', 'GLAT', 'nil', 'nil' ) )
+canvas.addDisplay ( plot2 )
+
+lplot2 = Display ( 'Histogram', darray2, ( 'LogE', ) )
+lplot2.setLog ( 'y', True )
+canvas.addDisplay ( lplot2 )
+
+
+glonglat = darray2 [ 'glon-glat' ]
+print glonglat.shape
+print glonglat
+
+names3 = fc.getNTupleNames ( 'sim2.fits' )
+darray3 = fc.createDataArray ( 'sim2.fits', names3[1] )
+
+gg = darray3 [ 'glon-glat' ]
+print gg.shape
+print gg

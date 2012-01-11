@@ -1,0 +1,65 @@
+""" -*- mode: python -*-
+
+Script to test running HippoDraw with PyQt
+
+$Id: customaxis.py.in,v 1.7 2005/03/28 19:44:33 pfkeb Exp $
+
+author: Paul_Kunz@slac.stanford.edu
+
+"""
+
+import sys
+from qt import *
+from qtcanvas import *
+
+app = QApplication ( sys.argv )
+
+import sihippo
+
+from sihippo import *
+
+# column labels
+labels = [ "Trigger name", "Efficiency (%)", "Width", "Eff. error" ]
+eff_tuple = sihippo.NTuple ( labels ) # empty ntuple with 4 columns
+ntc = NTupleController.instance()
+ntc.registerNTuple ( eff_tuple ) # so it can be seen from the GUI
+
+tick_labels = [ "ROI", "TKR", "CAL lo", "Cal hi", "CNO", "EXT" ]
+tick_values = []
+
+eff_dict = {}
+row_x = 0.5
+for i in range ( len (tick_labels) ):
+    tick_values.append ( row_x )
+    eff_tuple.addRow ( [ row_x, 0., 0.5, 0. ] ) # set to zero
+    eff_dict [ tick_labels[i] ] = i
+    row_x += 1.
+    
+display_controller = DisplayController.instance()
+labels[2] = 'nil' # x error not bound
+eff_plot = display_controller.createDisplay ( "XY Plot", eff_tuple, labels )
+eff_plot.setRange ( 'y', 0., 110. )
+
+wc = WindowController.instance()
+wc.quitOnLastWindowClose ( True )
+wc.createInspector ()
+window = CanvasWindow()
+window.show()
+
+canvas = wc.currentCanvas ()
+canvas.addDisplay ( eff_plot )
+eff_plot.setTicks ( 'x', tick_values, tick_labels )
+eff_plot.setAutoTicks ( 'x', False )
+
+# Loop over each of the columns and change value
+for s in tick_labels :
+    irow = eff_dict [ s ]
+    row = eff_tuple.getRow ( irow )
+    row [ 1 ] = 90.0 + irow
+    row [ 3 ] = 3. + irow
+    eff_tuple.replaceRow ( irow, row )
+    
+canvas.saveAllAs ( 'custom.hpo' ) # Save canvas to file
+
+app.exec_loop()
+

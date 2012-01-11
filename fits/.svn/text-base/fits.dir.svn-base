@@ -1,0 +1,19 @@
+/** @dir fits
+
+This directory contains source and header files of classes related to
+support for reading and writing FITS files.
+
+@note Compiling these classes is optional.
+
+@sa <a href="../../user/html/install_notes.html#install_fits">
+Building with FITS support</a> and
+<a href="../../user/html/ntuple_root.html#ntuple_fits"> FitsNTuple class</a>.
+
+*/
+
+/** @brief The C struct used by cfitsio to maintain status of FITS file.
+*/
+struct fitsfile
+{
+/* See fitsio.h */
+};

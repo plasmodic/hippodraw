@@ -1,0 +1,74 @@
+""" -*- mode:python -*-
+
+Test of NumArrayTuple class
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import RootController, Display
+rc = RootController.instance()
+
+# filename = "/nfs/farm/g/glast/u11/InstrumentAnalysis/MC/EngineeringModel-v5r0608p7/2Tower_surface_muons/surface_muons_4M_svac.root"
+
+filename = "/nfs/farm/g/glast/u33/InstrumentAnalysis/MC/EngineeringModel-v6r070329p28/Surface_muons/surface_muons_4M_svac.root"
+
+print "Opening file ", filename
+ntuple_names = rc.getNTupleNames ( filename  )
+print "In this file, tree names are ", ntuple_names
+
+name = ntuple_names[0]
+
+ntuple = rc.createNTuple ( filename, name )
+print "Number of columns = ", ntuple.columns
+
+print "Check array shapes"
+print ntuple.rowDataDimSize ( 'TkrNumStrips' )
+
+ThinHits = []
+ThickHits = []
+BlankHits = []
+
+events = ntuple.rows
+for event in range ( events ):
+    nbrThinHits = 0
+    nbrThickHits = 0
+    nbrBlankHits = 0
+
+    numstrips = ntuple.valueAt ( event, 'TkrNumStrips' )
+
+    for tower in [ 0, 4 ] :
+        for layer in range ( 18 ) :
+            for view in range ( 2 ) :
+                if layer < 12 :
+                    nbrThinHits += numstrips[tower, layer, view]
+                elif  layer < 16 :
+                    nbrThickHits += numstrips[tower, layer, view]
+                else :
+                    nbrBlankHits += numstrips[tower, layer, view]
+
+    ThinHits.append ( nbrThinHits )
+    ThickHits.append ( nbrThickHits )
+    BlankHits.append ( nbrBlankHits )
+
+ntuple.addColumn ( 'ThinHits', ThinHits )
+ntuple.addColumn ( 'ThickHits', ThickHits )
+ntuple.addColumn ( 'BlankHits', BlankHits )
+
+thinHist =  hippo.Display ( 'Histogram', ntuple, ('ThinHits', ) )
+thickHist = hippo.Display ( 'Histogram', ntuple, ('ThickHits', ) )
+blankHist = hippo.Display ( 'Histogram', ntuple, ('BlankHits', ) )
+
+thinHist.setLog  ( 'y', True )
+thickHist.setLog ( 'y', True )
+blankHist.setLog ( 'y', True )
+
+canvas.addDisplay ( thinHist )
+canvas.addDisplay ( thickHist )
+canvas.addDisplay ( blankHist )
+print "done"

@@ -1,0 +1,18 @@
+""" -*- python -*-
+Script bring up empty canvas
+
+Copyright (C) 2001 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: canvas.py.in,v 1.7 2005/02/17 20:39:22 burguet Exp $
+
+"""
+import setPath
+from hippo import HDApp
+
+app = HDApp()
+canvas = app.canvas()
+
+print "Brought up an empty canvas"

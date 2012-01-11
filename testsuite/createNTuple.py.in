@@ -1,0 +1,25 @@
+""" -*- mode:python -*-
+
+author Jim Chiang
+
+"""
+
+import setPath
+
+import hippoplotter as plot
+import random
+
+x = []
+ntrials = 1000
+for i in range(ntrials):
+    x.append(random.gauss(0, 1))
+
+disp = plot.histogram(x, 'x')
+
+rep = disp.getDataRep()
+
+nt = rep.createNTuple()
+
+print nt.getLabels()
+
+print "tested creating of NTuple from DataRep"

@@ -1,0 +1,162 @@
+""" -*- mode:python -*-
+
+Plotting error contours for a linear regression fit to a sampled
+Gaussian distribution.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+#$Id: errorContours_2.py.in,v 1.4 2004/07/24 17:16:34 pfkeb Exp $
+#
+
+from setPath import *
+import hippoplotter as plot, random, numarray
+
+#
+# Create a new NTuple with one column to hold the data.
+#
+nt = plot.newNTuple( ([], ), ("x", ) )
+
+nsamp = 500
+#
+# Sample a Gaussian function.
+#
+params = ("Mean", "Sigma")
+mean = 1.
+sigma = 0.3
+
+for i in range(nsamp):
+    x = random.gauss(mean, sigma)
+    nt.addRow( (x, ) )
+
+disp = plot.Histogram( nt, "x", xrange=(0, 2) )
+disp.setBinWidth("x", 2./40.)
+
+histNt = disp.createNTuple()
+labels = histNt.getLabels()
+##
+## Create a new ntuple without the yerr = 0 values
+##
+##hist_disp = plot.hippo.Display( 'Histogram', histNt, (labels[0], ) )
+#hist_disp = plot.Scatter(histNt, labels[0], labels[1] )
+#cut = plot.hippo.Cut(histNt, labels[3])
+#cut.setCutRange(1e-5, 1e30)
+#cut.addTarget(hist_disp)
+#hist_nt = hist_disp.createNTuple()
+
+x = histNt.getColumn(labels[0])
+y = histNt.getColumn(labels[1])
+yerr = histNt.getColumn(labels[3])
+xx = []; yy=[]; yyerr=[]
+for i in range(len(yerr)):
+    if yerr[i] > 0:
+        xx.append(x[i])
+        yy.append(y[i])
+        yyerr.append(yerr[i])
+xxerr = range(len(yyerr))
+xx = numarray.array(xx)
+yy = numarray.array(yy)
+yyerr = numarray.array(yyerr)
+        
+funcName = 'Gaussian'
+params = ('Mean', 'Sigma')
+
+#
+# Fit these data.
+#
+def fitData( display, funcName ):
+    func = plot.hippo.Function( funcName, display.getDataRep() )
+    func.addTo(display)
+    func.fit()
+    paramDict = {}
+    errorDict = {}
+    names = func.parmNames()
+    params = func.parameters()
+    errors = func.principleErrors()
+    for name, param, error in zip(names, params, errors):
+        paramDict[name] = param
+        errorDict[name] = error
+    return (paramDict, errorDict, func)
+
+(fitParams, fitErrors, func) = fitData( disp, funcName )
+
+chi2min = func.chiSquared()
+
+for name in fitParams.keys():
+    print "%s: %.4e +/- %.4e" % (name, fitParams[name], fitErrors[name])
+print "minimum chi^2: %.4e" % (chi2min, )
+
+#
+# Create a numarray over +/- nsig sigma ranges of the parameters of
+# interest.
+#
+npts = 20
+nsig = 2.
+
+xvals = ( numarray.arange(-npts,npts)/float(npts)*nsig*fitErrors[params[0]]
+          + fitParams[params[0]] )
+yvals = ( numarray.arange(-npts,npts)/float(npts)*nsig*fitErrors[params[1]]
+          + fitParams[params[1]] )
+
+def setFixed(targets, func):
+    names = func.parmNames()
+    flags = []
+    for name in names:
+        if (name in targets):
+            flags.append(1)
+        else:
+            flags.append(0)
+    func.setFixedFlags(flags)
+
+def setParam(target, value, func):
+    names = func.parmNames()
+    vals = list(func.parameters())
+    for i, name in zip(xrange(len(names)), names):
+        if (name == target):
+            vals[i] = value
+    func.setParameters(vals)
+
+setFixed( params, func )
+
+def myGaussFitter( params, vals, x, y, yerr ):
+    from utilities import gaussian
+    for i, param in zip(xrange(len(params)), params):
+        if param == "Mean": mean = vals[i]
+        if param == "Sigma": sigma = vals[i]
+    gauss = gaussian(mean, sigma)
+    labels = nt.getLabels()
+    ymodel = gauss(x)
+    sum = numarray.sum
+    norm = sum(y*ymodel/yerr**2)/sum((ymodel/yerr)**2)
+    chi2 = sum( ((y - norm*ymodel)/yerr)**2 )
+    return chi2
+
+chi2 = numarray.zeros( (len(xvals), len(yvals)), type=numarray.Float32 )
+for i, xval in zip(xrange(len(xvals)), xvals):
+    setParam(params[0], xval, func)
+    for j, yval in zip(xrange(len(yvals)), yvals):
+        setParam(params[1], yval, func)
+        func.fit()
+        chi2[i][j] = func.chiSquared()
+        #chi2[i][j] = myGaussFitter(params, (xval, yval), xx, yy, yyerr)
+
+image = plot.image(chi2, xvals, yvals,
+                   xname=params[0], yname=params[1], zname="chi^2")
+image.setPointRep(plot.prf.create("Contour"))
+chi2min = min(chi2.flat)
+levels = min(chi2.flat) + numarray.array((0.02, 1, 2.71, 6.63))
+image.setContourLevels( levels )
+image.setRange('z', chi2min, chi2min+10.)                    
+
+#
+# Show the best-fit values and the one-sigma bounds
+#
+plot.canvas.selectDisplay ( image )
+
+plot.vline(fitParams[params[0]])
+plot.vline(fitParams[params[0]] + fitErrors[params[0]])
+plot.vline(fitParams[params[0]] - fitErrors[params[0]])
+
+plot.hline(fitParams[params[1]])
+plot.hline(fitParams[params[1]] + fitErrors[params[1]])
+plot.hline(fitParams[params[1]] - fitErrors[params[1]])

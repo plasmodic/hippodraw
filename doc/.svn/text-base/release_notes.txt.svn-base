@@ -1,0 +1,2511 @@
+/** @page release_notes Release Notes
+
+
+@section release_1_21_3 HippoDraw Release 1.21.3
+
+@subsection release_changes_1_21_3 Changes since 1.21.2
+
+Improved the approximation of the Landau function.
+
+
+@section release_1_21_2 HippoDraw Release 1.21.2
+
+@subsection release_changes_1_21_2 Changes since 1.21.0
+
+Scale the residuals plot if original plot was scaled.
+
+XYPlot and Strip Chart now allow zooming on Y asis with mouse.
+
+@subsection release_bug_fixes_1_21_2 Bug fixes since 1.21.1
+
+Fix build of libraries when libwcs is not in standard install
+directory.
+
+Fix bug when removing DataRep from display.
+
+Fix bug when removing statcked DataReps from a display.
+
+Fix LinearTransform so adjust axis range is symmetic, thanks to
+Stefano Mazza.
+
+fix creating canvas with GUI.
+
+Fix creating graphic files without GUI
+
+Fix regression bug, changing axis labels.
+
+Allow one to delete one function of a composite.
+
+
+@section release_1_21_1 HippoDraw Release 1.21.1
+
+@subsection release_bug_fixes_1_21_1 Bug fixes since 1.21.0
+
+Fixes to the RPM build to satisfy Fedora standards.
+
+@section release_1_21_0 HippoDraw Release 1.21.0
+
+@subsection release_bug_fixes_1_21_0 Bug fixes since 1.20.9
+
+Fix bug when changing point rep, now keeps same color as previous one.
+
+@section release_1_20_9 HippoDraw Release 1.20.9
+
+@subsection release_bug_fixes_1_20_9 Bug fixes since 1.20.8
+
+Fixes to satisfy Fedora RPM building standards.
+
+@section release_1_20_8 HippoDraw Release 1.20.8
+
+
+@subsection release_bug_fixes_1_20_8 Bug fixes since 1.20.7
+
+Remove version number in desktop file installation.
+
+
+@section release_1_20_7 HippoDraw Release 1.20.7
+
+@subsection release_bug_fixes_1_20_7 Bug fixes since 1.20.6
+
+Fix y tick labels size bug caused by bad compilation under gcc 4.2.
+
+
+@section release_1_20_6 HippoDraw Release 1.20.6
+
+@subsection release_bug_fixes_1_20_6 Bug fixes since 1.20.5
+
+Fix drawwing of scatter plot when only one point in DataSource with
+negative value on at least one axis.
+
+Fix creation of NTuple from Histogram on canvas when done from
+Inspector.
+
+Improved RuntimeError message when trying to set cut range on invalid
+range.
+
+Fix handling of boolean arrays with numpy.
+
+@section release_1_20_5 HippoDraw Release 1.20.5
+
+@subsection release_features_1_20_5 New features since 1.20.4
+
+Added tooltip to selected plots' DataSource name's combo box.
+
+
+Fixes to cuts on target highlighting.
+
+Deselect all cuts if selected plot does not have a cut.
+
+Fix problem generating either numpy or numarray array from DataSource
+file such as SVAC ROOT file.
+
+
+@section release_1_20_4 HippoDraw Release 1.20.4
+
+@subsection release_features_1_20_4 New features since 1.20.3
+
+Be able to add text at absolute coordinate.
+
+Ability to create event lists for use in cutting.
+
+@subsection release_bug_fixes_1_20_4 Bug fixes since 1.20.3
+
+Fixed regression in setting title of plot with out TeX formating.
+
+
+@section release_1_20_3 HippoDraw Release 1.20.3
+
+@subsection release_bug_fixes_1_20_3 Bug fixes since 1.20.2
+
+fix editing of title, label, and plain text when latex support is not
+available.
+
+@section release_1_20_2 HippoDraw Release 1.20.2
+
+@subsection release_bug_fixes_1_20_2 Bug fixes since 1.19.8
+
+Fix removing composite function from plot, was crashing under Windows.
+
+
+
+@section release_1_19_8 HippoDraw Release 1.19.8
+
+
+@subsection release_bug_fixes_1_19_8 Bug fixes since 1.19.7
+
+Fixed white space in HammerAito transform in ColorBoxRep.
+
+Fixed regression if reference data source in document file not found.
+
+
+@section release_1_19_7 HippoDraw Release 1.19.7
+
+@subsection release_features_1_19_7 New features since 1.19.2
+
+Support for WCSlib under Windows.
+
+
+@section release_1_19_5 HippoDraw Release 1.19.5
+
+@subsection release_bug_fixes_1_19_5 Bug fixes since 1.19.4
+
+Allow x range to be [0, 360] for periodic binary transforms.
+	    
+Fix retile of TextPlotters.
+
+TextPlotters move with their parent XyPlotter.
+
+Desktop file now works in GNOME and other fixes for Fedora Extras reviewer.
+
+
+@section release_1_19_4 HippoDraw Release 1.19.4
+
+@subsection release_bug_fixes_1_19_4 Bug fixes since 1.19.1
+
+
+Opening a document that references a .fits.gz file now works.
+
+
+@section release_1_19_2 HippoDraw Release 1.19.2
+
+@subsection release_features_1_19_2 New features since 1.19.1
+
+X axis can be inverted.
+
+Enable LaTeX format title and labels.
+
+Many more color maps have been added.
+
+@subsection release_changes_1_19_2 Changes since 1.19.1
+
+
+Use C++ to generate the PNG image instead of using tex2png.pl.
+
+Added shpport for ROOT data types Short_t, UShort_t, and Long64_t
+
+@subsection release_bug_fixes_1_19_2 Bug fixes since 1.19.1
+
+
+Fix the bug that loading a .hpo document may add "tnt" to the datasource names.
+
+Fix ownership of Function written in Python and added to function
+factory.
+
+
+
+@section release_1_19_1 HippoDraw Release 1.19.1
+
+@subsection release_changes_1_19_1 Changes since 1.19.0
+
+
+Display LaTex format equation as a PNG image in box text rep. 
+
+Add a new mode to show the ticks. If the range is small relative to the
+value (1e-6 of the value), it will trigger this mode. Only the value of 
+the reference point will be drawn. The ticks shows the difference from 
+the reference value in scientific notation. Good for variable mesh plot.  
+
+Export, Create NTuple and Save Image can now save compressed FITS file 
+using GZIP algorithm. Extension name is *.fits.gz
+
+If ROOT file contains unsupported data type, then dialog will appear
+when trying to use that column.  Previous behavior was to not make the
+whole readable.
+
+If a ASCII NTuple file doesn't exist or is not readable, then dialog
+sindow is shown that says this, instead of saying "bad format".
+
+@subsection release_bug_fixes_1_19_1 Bug fixes since 1.19.0
+
+Fix bug that Root DataSource did not get expanded when loading from 
+.hpo file or when changing DataSource for a plot.
+
+Fix drawing ticks outside axis range bug when not using auto ticks.
+
+Fix the bug that getZValue() for VariableMesh gives the value of the
+nearest non-zero value.
+
+Fix axis range not responding to adjustment bug when range length is 
+smaller than DBL_EPSILON ( 2.22e-16 ). May need a better fix.
+
+Fix weighed profile plot.
+
+Keep text plotters always on top of XyPlotters. 
+
+Disable group and ungroup menu item when appropriate.
+
+Update the stat tabbed panel immediately if data changed.
+
+Fix bug that mouse right button pressed on Profile2D plot can get nan.
+
+Fix bug that color scale parameter for variable rainbow didn't get 
+save as user preference. Also fix the bug that "saved" user preference
+didn't take effect until next run. 
+
+Fix bug that z label doesn't show up on variable mesh plot.
+
+Fix bug when selecting transformation, the aspect ratio didn't change
+until the view is resized.
+
+Fix bug in setting default font. Now the plots are updated as soon as
+the default font is changed.
+
+Fix bug in writing ROOT file to FITS file when columns were added via
+Python.
+
+Fix bug when right clicking on empty canvas.
+
+Fix bug in handling duplicate column labels in FITS table.
+
+
+
+@section release_1_19_0 HippoDraw Release 1.19.0
+
+@subsection release_bug_fixes_1_19_0 Bug fixes since 1.18.8
+
+Fix text plotter moving in one dimension bug.
+
+Fix font size bug. Now draw rectangle changes when title and/or label
+font size changes. Large labels won't go out of the margin rectangle.
+
+Fix exclusive radio buttons bug in Cuts tab.
+
+Fix getZValue() bug in VariableMesh plot.
+
+Fix rpath problem in build when Qt is found in default library paths.
+
+For Mac OS X, fix the about menu to show HippoDraw.
+
+Fixed auto-scaling of Z axis for Image plot.
+
+Display error mesage if data source could not be read when using
+CanvasWindow to open file.
+
+Fixed regression in list of available file types when saving selected
+plot as image.
+
+For opening a file, allow file to not have a suffix.
+
+When saving plot as image, add the selection filter suffix, if not
+given instead using jpg.
+
+Show information dialog when attempting to save contents of a plot as
+FITS image when it is not possible.
+
+Give user information dialog if trying to show pick table when no plot
+or more than one is selected.
+
+Fix the bug where the first picked point could mess up the Y axis range.
+
+
+@section release_1_18_8 HippoDraw Release 1.18.8
+
+@subsection release_features_1_18_8 New features since 1.18.6
+
+Shift-drag for 2D cut selection.
+
+Give a option to show box edges for the ColorBoxPointRep class.
+
+Shift-drag gives a square area in zoom mode.
+
+Allow adding rows to DataArray and replacing columns with sequence
+other than numarray.
+
+Allow appending one DataArray or DataSource to DataArray.
+
+@subsection release_bug_fixes_1_18_5 Bug fixes since 1.18.4
+
+VariableMesh plot was not getting the correct Z range.
+
+Fix performance bug on Contour plot. ( Line style is not allowed for 
+plot with more than 20 contour levels )
+
+Fixed broken setHeight method in CanvasWindow from Python.
+
+
+
+@section release_1_18_6 HippoDraw Release 1.18.6
+
+@subsection release_features_1_18_4 New features since 1.18.3
+
+Added "line style" color map, for drawing contour levels with different
+line styles but same color. Useful in publication. 
+
+Added gamma correction to the value to color scale choises
+
+
+@subsection release_features_1_18_5 Changes since 1.18.4
+
+Header files are now installed in %prefix/HippoDraw without version
+number attached.
+
+Documenation is now installed in share/doc directory.
+
+Allow gray scale value to color to take a color other than black.
+
+Improved the exception messages when error occured in handling NTuple
+from Python.
+
+
+@subsection release_bug_fixes_1_18_5 Bug fixes since 1.18.4
+
+Fix periodical transforms bug on contour plot. (Introduced by shape[])
+
+Fix gray scale bug on contour plot.
+
+Fix line style bug on contour plot. (Now the plot respond to line style 
+change).
+
+The size of the error bar lines is now proportional to the size of the
+main symbol.
+
+Fixed plotting Y axis on log scale when range was extreamely small ( <
+5e-26 ).
+
+Fixed averge Y value on 1D Histogram.
+
+Fix thread conflict when registering NTuple from Python, appeared only
+on multiple processor machines.
+
+Fix threading problems in handling NTuple from Python on multiple
+processor machines.
+
+
+
+@section release_1_18_4 HippoDraw Release 1.18.4
+
+@subsection release_features_1_18_4 New features since 1.18.3
+
+Added VariableMesh plot type.
+
+@subsection release_bug_fixes_1_18_4 Bug fixes since 1.18.3
+
+
+Fixed memory leak when creating RootNTuple and then deleting them.
+
+Can now do build with -j2 option if compiling with gmake
+
+
+
+@section release_1_18_3 HippoDraw Release 1.18.3
+
+@subsection release_features_1_18_3 New features since 1.18.1
+
+Ability to read and write FITS file when a column contains an array.
+
+
+@subsection release_bug_fixes_1_18_3 Bug fixes since 1.18.2
+
+Fix ability to save created DataSource to FITS file.
+
+Throw exception when trying to add multiple dimensional array via the
+DataArray to DataSource that can not support it.
+
+@section release_1_18_2 HippoDraw Release 1.18.2
+
+@subsection release_bug_fixes_1_18_2 Bug fixes since 1.18.1
+
+Fix regression, Inspector not looking for array variables in ROOT
+file.
+
+Throws exception if column not found when creating new NTuple instead
+of crashing.
+
+Fix bug in creating new NTuple from ROOT NTuple that had added
+columns.
+
+
+
+Fix regression, Asking RootController in Python for bad filename would
+hang Qt.
+
+
+@section release_1_18_1 HippoDraw Release 1.18.1
+
+@subsection release_features_1_18_1 New features since 1.18.0
+
+Allow writing a DataSource or DataArray to a FITS file from Python
+script.
+
+
+@subsection release_bug_fixes_1_18_1 Bug fixes since 1.18.0
+
+Fix crash when attempting to use RootNTuple::valueAt on column that
+does not contain an array variable.
+
+If ROOT file is not found when attempting to open it, an exception is
+throw instead of returning a null pointer.
+
+If FITS file is not found when attempting to open it, an exception is
+thrown instead of returning a null pointer.
+
+
+@section release_1_18_0 HippoDraw Release 1.18.0
+
+@subsection release_bug_fixes_1_18_0 Bug fixes since 1.17.9
+
+Fix regression, boxes on ColorPlot were being drawn factor of two too
+large.
+
+
+@section release_1_17_9 HippoDraw Release 1.17.9
+
+@subsection release_features_1_17_9 New features since 1.17.7
+
+Allow fitting with 3D coordinate as well as 2D
+
+
+
+
+@subsection release_bug_fixes_1_17_9 Bug fixes since 1.17.8
+
+Avoid crash when clearing a canvas from Python when application has
+already terminated.
+
+
+@section release_1_17_8 HippoDraw Release 1.17.8
+
+@subsection release_features_1_17_7 New features since 1.17.6
+
+Support for Mac OS X with Qt 4.
+
+Support for Windows with Qt 4.
+
+For 3D image in FITS file, break the third axis into separate columns.
+
+@subsection release_bug_fixes_1_17_8 Bug fixes since 1.17.6
+
+Fix regression when quiting applications with modified open Windows.
+
+Fix serious bug when histogramming values of an Image when image is
+read from file as opposed to being initialized from Python.
+
+Fix double clicking on HDU selection of FITS file, or TTree in ROOT file.
+
+@subsection release_bug_fixes_1_17_7 Bug fixes since 1.17.6
+
+@section release_1_17_7 HippoDraw Release 1.17.7
+
+@subsection release_bug_fixes_1_17_7 Bug fixes since 1.17.6
+
+Allow running application from Python without connecting to Window
+system.  This allows running Python script in batch, for example.
+
+
+@section release_1_17_6 HippoDraw Release 1.17.6
+
+@subsection release_features_1_17_6 New features since 1.17.0
+
+On Mac OS X, HippoDraw now suport opening files when a recognized file
+type is selected by the Mac Finder.  If the application is not
+running, it will be launch first.
+
+@subsection release_bug_fixes_1_17_8 Bug fixes since 1.17.7
+
+Eliminate occasional crashes when running scripts from a script on Windows with Qt 4
+
+
+Fix compiling with Qt 4, compiling errors were introduced by adding
+support for Mac OS X as described above.
+
+@section release_1_17_5 HippoDraw Release 1.17.5
+
+@subsection release_bug_fixes_1_17_5 Bug fixes since 1.17.1
+
+Fixed libtool's config/ltmain.sh file for Mac OS X
+
+Fixed regression on Windows when adding plots to canvas.
+
+
+
+@section release_1_17_1 HippoDraw Release 1.17.1
+
+@subsection release_features_1_17_1 New features since 1.17.0
+
+Can now set the color of text representations.
+
+Can now draw Histogram with equal entries ( changable bin width ).
+
+One can now set a threshold and combine bins with entries number 
+lower than this threshold.
+
+
+@subsection release_features_1_17_1 Changes since 1.17.0
+
+Slowed down the variable rainbow sliders.
+
+Allow displays to be put outside of the printer margins.
+
+On Windows and Mac OS X, use native file dialogs instead of the Qt
+one.
+
+The configure script now expects CFITSIO to be install in @em
+/usr/local instead of @em /usr/local/cfitsio
+
+Support for ROOT TNtuple and TNtupleD which are derived classes of TTree.
+
+
+@subsection release_bug_fixes_1_17_1 Bug fixes since 1.17.0
+
+Fixed bug when dragging to re-size in zoom mode.
+
+Axis bin width slider now reduces bin width when dragged to the left.
+
+When changing to log scale with axis tabbed panel, update the panel
+immediately.
+
+When changing the offset on axis tabbed panel, update the panel
+immediately.
+
+Enable the mouse scroll wheel for the number of contours slider.
+
+Fixed bug introduced when trying to fix 100% CPU bug in setting range
+of Histogram from Inspector.
+
+Fixed 100% CPU usage when drawing text rep on histogram with fitted
+function applied.
+
+Fixed 20% CPU usage when drawing text representation on histogram with
+fitted linear sum function.
+
+Fix building class documenation on Mac OS X.
+
+Fixed range on Z axis when switched to log scale.
+
+Fix the installation of Python extension module so that it appears in
+the site-packages directory corresponding to the python executable
+detected.
+
+Fix in correct drawing of filled histogram when Y axis was on log scale.
+
+Canvas settings wasn't restoring state of selection on added plot.
+
+Menu and tool bar Cut action was not updated with new selection.
+
+Fix reading ASCII data source when data rows contain white space at
+end of line.
+
+Sometimes setting the bin width would cause strange range changes on same axis.
+
+Filled column histogram now can go negative.
+
+Automatically go into pick mode when pick table is displayed.
+
+Update correctly the tool bar and menu enable and disable when pasting
+to empty canvas.
+
+
+@section release_1_17_0 HippoDraw Release 1.17.0
+
+@subsection release_features_1_17_0 Changes since 1.16.9
+
+Allow canvas to be stretched accross mulitple physical screens.
+
+
+
+@subsection release_bug_fixes_1_17_0 Bug fixes since 1.16.9
+
+Fixed infinite loop when display text containing multiple lines, such
+as the function parameters text box.
+
+Fixes to eanble native build (Cocoa) on Mac OS X 10.4 (tiger).
+
+Fixed crash when text box selected and changing to Plot tabbed panel.
+
+Fixed contour bug in log scale.
+
+
+@section release_1_16_9 HippoDraw Release 1.16.9
+
+@subsection release_features_1_16_9 Changes since 1.16.8
+
+ROOT data type ULong64_t is now supported.
+
+
+@subsection release_bug_fixes_1_16_9 Bug fixes since 1.16.8
+
+When building without built-in help support, do not compile
+appropriate section of WindowController.cxx
+
+If ROOT branch contains a unsupported data type, throw exception
+instead of raising an assertion.
+
+
+
+@section release_1_16_8 HippoDraw Release 1.16.8
+
+@subsection release_features_1_16_8 New features since 1.16.7
+
+Save the positions of dock windows to settings.
+
+Keep a list of recently opened files.
+
+One can put several views in a group and resize or move the group.
+
+Can set cut or pick point in a view inside a group.
+
+Under Linux, can now use Qt 4.1.2.  The configure procedure for Qt 4.x
+is greatly improved.
+
+Can now change orientation of canvas window from Python.
+
+
+
+@subsection release_bug_fixes_1_16_8 Bug fixes since 1.16.7
+
+Restore fitter setting menu item which got lost in some previous release.
+
+Added Pick only menu item to match options on the toolbar.
+
+Write over old installation on Windows, thus not requiring user to remove first.
+
+Fix the ratio bug, when mouse is released ratio should not change.
+
+Removed unneed parameter in LogParabola function.
+
+The clear all menu item is always enabled.
+
+
+@section release_1_16_7 HippoDraw Release 1.16.6
+
+@subsection release_features_1_16_7 New features since 1.16.6
+
+One can now copy plots as images to system clipboard and paste them
+into other applications such as Microsoft PowerPoint and OpenOffice
+Impress.
+
+@subsection release_bug_fixes_1_16_7 Bug fixes since 1.16.6
+
+From Python, NTupleController::writeToFile should take DataSource as
+first argument instead of DataSource name.
+
+On the CreateNTuple dialog, make it clearer what the bottom text edit
+box is for.
+
+Fix printing bug when canvas spans multiple pages and user's monitor
+requires scaling the size of a page.
+
+@section release_1_16_6 HippoDraw Release 1.16.5
+
+@subsection release_features_1_16_6 New features since 1.16.5
+
+Can input new entries using keyboard to the pick table.
+
+Add a pick mode in addition to the cut modes.
+
+When right mouse clicked on FITS image with HammerAito transform, 
+use the transform information to get the correct coordinates.
+
+Show number of underflow and overflow entries in Stats tab.
+
+Added ability to create DataArray from ASCII NTuple file.
+
+Added ability to create a Cut from Boolean numarray.
+
+
+
+@subsection release_bug_fixes_1_16_6 Bug fixes since 1.16.5
+
+Fix installation bug for UNIX like systems when Numeric is installed
+but not numarray.
+
+Fix excessive long time to select a very dense color plot.
+
+Re-connect Edit -> undo menu item.   it got lost.
+
+Fix setting limits with Minuit.
+
+Fix crash when ColorPlot has X axis on log scale and resizing the
+view.
+
+Throw exception if could not open ASCII NTuple file.
+
+
+
+@section release_1_16_5 HippoDraw Release 1.16.5
+
+@subsection release_features_1_16_5 New features since 1.16.4
+
+Can show grid using the check box in plot panel. 
+
+
+@subsection release_bug_fixes_1_16_5 Bug fixes since 1.16.4
+
+Fixes various bug in handling of the function cuts with the GUI.
+
+Fixed regression bug in Inspector Data tabbed panel dealing with
+optional column bindings.
+
+
+@section release_1_16_4 HippoDraw Release 1.16.4
+
+@subsection release_features_1_16_3 New features since 1.16.2
+
+Creating an NTuple from existing one now can write directly to a file
+instead of just residing in memory.  For large files, this is
+considerably faster.  The created file can be ASCII NTuple format or
+FITS binary table.  The later is the fastest.
+
+From the GUI, can remove DataReps and add DataReps to a selected plot 
+with different colors.
+
+Can use shift key to select and move multiple plots at the same time.
+
+Show inversion states in the CreateNTuple dialog.
+
+Use tool tip to show full path name of current data source.
+
+Can read .tnt file missing title line or labels line.
+
+@subsection release_features_1_16_4 Changes since 1.16.3
+
+The Windows binary distribution was built with Visual Sudio 8 (aka
+vs.NET 2005).
+
+
+@subsection release_bug_fixes_1_16_3 Bug fixes since 1.16.2
+
+Fixed installation on UNIX like systems when help is disabled.
+
+Fixed finding path to data source file when opening document with
+reference to ROOT or FITS file.
+
+Show warning message before overwriting an exist ROOT or FITS file. 
+
+Ignore right mouse click on empty canvas instead of crashing.
+
+
+
+@section release_1_16_3 HippoDraw Release 1.16.3
+
+@subsection release_features_1_16_3 New features since 1.16.2
+
+
+From Python can append a NTuple from another.
+
+From the GUI, can add cut to multiple data representation.
+
+
+
+@subsection release_features_1_16_3 Changes since 1.16.2
+
+Attempting to add a row to a data source that is not capable of it now
+throws an exception instead of raising an exception.
+
+
+@subsection release_bug_fixes_1_16_3 Bug fixes since 1.16.2
+
+When configuring with no built-in help, linking the library does not
+attemp to link agains libqassisstantclient.a
+
+Fix bug when attempting to add all cuts to a cut whose target is also
+a cut.
+
+Fix bug when changing histogram from large range to one smaller than
+current bin width.
+
+
+
+@section release_1_16_2 HippoDraw Release 1.16.2
+
+@subsection release_features_1_16_2 New features since 1.16.1
+
+Histograms have a new filled column point representation available.
+
+From Python, can now add sequence of cuts to target display.
+
+Fill in filename from data source title when exporting to file.
+
+If data source reference in document file can not be found, then file
+dialog helps user find which file to use.
+
+
+@subsection release_bug_fixes_1_16_2 Bug fixes since 1.16.1
+
+Attempting to apply a cut to itself now leads to an information
+dialog, instead of an infinite loop.
+
+Fix the plotting widget, QtViewWidget, so that it gets its size.
+
+Always change cut range, even when it is selected.
+
+The tool bar list now contains labels that user can understand.
+
+Creating NTuple from file menu was way too slow when orignal data
+source had a large number of rows.
+
+Fixed bug in reading document with 2D cuts.
+
+Fixed bug in reading document that had one of the text representations
+in it.
+
+Fixed bug in trying to save document with stats display on it.
+
+Using setAspectRatio from Python was working immediately.
+
+Put application lock around setAspectRatio from Python because it will
+cause redrawing.
+
+
+
+@section release_1_16_1 HippoDraw Release 1.16.1
+
+@subsection release_features_1_16_1 New features since 1.16.0
+
+Added ability to export a DataSource as a FITS file as well as ASCII
+NTuple.
+
+One can now save a Color Plot or Contour Plot as a FITS image file.
+
+Can disable building the help files when installing.
+
+One can access and create a numarray out of a column in a ROOT file
+that contains an array.
+
+Fixed ROOT crashing when reading second file in same session with TH2
+object in the ROOT file.
+
+
+
+@subsection release_bug_fixes_1_16_1 Bug fixes since 1.16.0
+
+Fix bug in installation of documentation if version of Doxygen is
+older than 1.4.5.
+
+Get information dialog instead of throwing exception when trying to
+apply a cut to a static histogram.
+
+Fixed problems building if Minuit or Minuit2 was not located in
+/usr/local/include.
+
+Fixed bug when reading document file with cuts.  The cuts did not
+operate until cut range changed.
+
+Make sure the printer bounds is shown if setting for it is set by user.
+
+Fixed installation problems when not built with FITS support.
+
+
+
+@section release_1_16_0 HippoDraw Release 1.15.8
+
+@subsection release_features_1_16_0 New features since 1.15.8
+
+Either version of C++ Minuit, Minuit and Minuit2, can be
+used.
+
+Can now create a new NTUPLE from existing DataSource  under existing
+cuts and selecting columns.
+
+Built in help browser now supported.
+
+Documentation is always install with "make install"
+
+Documentation and examples are now installed in
+/usr/local/share/Hippodraw by default.   Can be changed by configure.
+
+
+
+@subsection release_bug_fixes_1_16_0 Bug fixes since 1.15.8
+
+Changing the Y range on 2D cuts now works.
+
+RootNTuple::getRow is now exposed the the hippo Python module.
+
+Fixed configuration script for version of boost.
+
+Fixed configuration script for build with Numeric
+
+Fixed support for Numeric replacing Numarray.
+
+Fixed handling of bin width when varying with slider, especially when
+axis is on log scale.
+
+
+@section release_1_15_8 HippoDraw Release 1.15.7
+
+@subsection release_features_1_15_8 New features since 1.15.7
+
+Exporting a ROOT file to ASCII file now writes one row at a time
+instead of puting the while ROOT file in memory.
+
+The @b Delete key now deletes the selected plot.
+
+If exporting a ROOT DataSource as ASCII file and a column contains an
+array, then in the ROOT file the array column is filled with zeros
+rather than not writing the file at all.
+
+
+@subsection release_bug_fixes_1_15_8 Bug fixes since 1.15.7
+
+LogNormal function was implemented as Novosibirsk function.  Now have
+new class for the Novosibirsk function and LogNormal has been fixed.
+
+In the Data tabbed panel of the Inspector, the add data rep button is
+re-connected.
+
+When replacing one DataSource with another, and cuts were being
+applied to some plots, then there was a bug if the column used by a
+cut had a different index.
+
+
+
+@section release_1_15_7 HippoDraw Release 1.15.6
+
+@subsection release_features_1_15_7 New features since 1.15.6
+
+Allow building the HippoDraw library without Qt.
+
+Scientific notation on tick labels now display as superscript.
+
+Cut ranges can be directly manipulated with the mouse.
+
+If duplicate labels of columns are found in opening a ROOT or FITS
+file, it is reported in a dialog box if file is opened from the
+CanvasWindow.
+
+
+
+@subsection release_bug_fixes_1_15_7 Bug fixes since 1.15.6
+
+Fixed drawing of exponent in EPS file.
+
+Fix size of labels on Inspector's data and axis tabbed panel for
+Windows XP style.
+
+Throw an exception if Python user trys to use a canvas that he has
+closed.
+
+Now checks if application is running before trying to lock/unlock.
+
+Opening document files now works again under Windows.
+
+Transform tabbed panel in Inspector no longer causes crash on empty canvas.
+
+A number of buttons were responding to return key stroke when they
+shouldn't have.
+
+Notify inspector when opening ROOT file from menu item.
+
+Fix bug when picking points on a plotter displaying a cut range.
+
+Fix bug when adding a cut to a target which is a cut.
+
+
+
+@section release_1_15_6 HippoDraw Release 1.15.5
+
+@subsection release_features_1_15_6 New features since 1.15.2
+
+There is now a tabbed panel in the inspector to select amongst 14
+different transforms.
+
+Can now drag on cut range with right mouse button to change range.
+
+When fitting function, can ignore the error bars by using check box on
+function tabbed panel.  Ignoring the errors means treating all points
+with equal weight.
+
+One can now implement a derived class of Observer in Python.
+
+One can add two functions as top level function to a DataRep as well
+as adding a function to a linear sum.
+
+
+@subsection release_changes_1_15_6 Changes since 1.15.1
+
+The Inspector is now placed high on the screen to allow a shell window
+to be visible underneath it.
+
+The open file dialog now shows all files by default.
+
+
+@subsection release_bug_fixes_1_15_6 Bug fixes since 1.15.4
+
+Allow bin width of histogram to be changed when function is applied.
+
+Draw function all the way to edge of range.
+
+Fix bug that was locking the application if exception was thrown when
+adding function to a display..
+
+Always use the default fitter even when adding function from Python.
+
+Fix invalid data flag for FITS based DataSource.
+
+Fix bug when using Minuit fitter with parameter names longer than 11
+characters.
+
+Fix bug in handling fixed parameter flags when fitting with Minuit.
+
+Combo boxes in data and cut tabbed panel remain at their position
+after adding a plot or adding a cut.
+
+Fixed crash when quiting application and two or more canvas windows
+were opened.
+
+Resize the data rep when set size of view from Python.
+
+Removing a region cut now works.
+
+The handling of functions on display with multiple data
+representations has been fixed.
+
+Fix incorrect handling of third function added to linear sum.
+
+Raise the fit failure dialog if fit fails to converge when adding a
+function as well as when clicking fit button.
+
+Set the default fitter after changing fitter choise with GUI.
+
+Do not disable function parameters group box.
+
+The Inspector data tabbed panel displays the optional bindings
+correctly again.
+
+Fix the Y axis scale factor when two data reps on a plot and changing
+the bin width of one of them.
+
+Fix the creation of EPS files.
+
+Fix bug when image file as x origin > 0.0
+
+Catch exception and display it in dialog when error occurs exporting
+ntuple file.
+
+Fix bug when RootNTuple contains array that varies in size.
+
+
+@section release_1_15_4 HippoDraw Release 1.15.4
+
+@subsection release_bug_fixes_1_15_4 Bug fixes since 1.15.3
+
+
+Handle exceptions thrown by Python when writing derived class of
+FunctionBase in Python.
+
+
+@section release_1_15_3 HippoDraw Release 1.15.3
+
+@subsection release_bug_fixes_1_15_3 Bug fixes since 1.15.2
+
+No longer crashes if adding a hightlighted region to display with no
+function on it.
+
+Restore cursor when canvas is in zoom/pan mode and mouse leaves the
+canvas.
+
+@section release_1_15_2 HippoDraw Release 1.15.2
+
+@subsection release_features_1_15_2 New features since 1.15.1
+
+One can now ask the Python application object if the HippoDraw
+application has terminated.
+
+Allow Python user to set and get the height and width of the displays
+on the canvas as well as their position
+
+Added support for doing FFT with Python.
+
+Added support for displaying a region on a plot that can be used to
+constrain the range of function fitting or creation of a NTuple.
+
+
+@subsection release_bug_fixes_1_15_2 Bug fixes since 1.15.1
+
+Be able to clone from C++ a function written in Python that does not
+have default constructor.  This allows FunctionBaseDecorator to be
+used for Python written functions.
+
+When document is saved, only in memory data sources are saves as ASCII
+NTuple files, not those created from a file.
+
+Fix bug in checking if DataSource has been saved to file, or not.
+
+Trying from Python to set line style to symbol type and visa versa now
+leads to Python exception.
+
+Initialization doesn't now crash when no Inpector dialog was created.
+
+Fix problem in counting number of entries in Image plot.
+
+Allow Inspector to change PointRep properities even of Function.
+
+Allow from Inspector to add more than one data rep.
+
+Restore cursor after picking a point.
+
+When pasting to an empty space on canvas, pasted view no longer get shifted
+
+Disable axis zoom/pan when selected axis is Z as it lead to strange results.
+
+When changing fitters the user' set attributes such as a fitting range
+was lost.  Now such attributes are transfered to the new fitter.
+
+
+@section release_1_15_1 HippoDraw Release 1.15.1
+
+@subsection release_features_1_15_1 New features since 1.15.0
+
+Functions with 2 dimensional coordinates are now supported for
+drawing, fitting and writing the function in Python.
+
+Allow user to set the default fitter in his settings and also set it
+from Python.
+
+
+@subsection release_changes_1_15_1 Changes since 1.15.0
+
+For SIP Python extension module, static data members where changed to
+an enumeration.
+
+For SIP Python extension module, CutController::createCut(...) no
+longer has a default argument value.
+
+For functions written in Python that are derived from the C++
+FunctionBase, one no longer needs to implement the copy constructor.
+
+Simplify the saving of user color models.
+
+
+
+@subsection release_bug_fixes_1_15_1 Bug fixes since 1.15.0
+
+Changing the X error to nil on XY plot no longer incorrectly also set
+the Y error off.
+
+Fix a number of small bugs related to the value to color transform
+model handling.
+
+Fix range zooming on Y axis even with function attached.
+
+Fix bug in restoring document that had functions applied.
+
+Fix bug when 2D data rep overlays a 3D one and one de-selected the 3D
+one.
+
+Contour plots now respond to deselection by plotting in light gray.
+
+Fix bug when registering a Data source where name is given to
+NTupleController.
+
+Text NTuple files no longer get opened twice when opening from GUI.
+
+When setting a function to a stated FCN in Python, the compatiblity of
+the minimizer and the function is checked.  That is, if the fitter
+needs derivatives then the function must provide them.
+
+The "reset" button on the Plot Inspector now resets the color range
+slider to 0 instead of the center.
+
+
+
+@section release_1_15_0 HippoDraw Release 1.15.0
+
+@subsection release_features_1_15_0 New features since 1.14.8
+
+In hippo Python externsion module, added the ability to retreive the
+available colors.
+
+In hippo Python extension module, added ability to set line style and
+point symbols via an enumberation.
+
+Allow plotting of functions without adding them to another DataRep.
+
+
+
+@subsection release_bug_fixes_1_15_0 Bug fixes since 1.14.8
+
+Zooming the range with mouse on some types of DataRep objects was fixed.
+
+Bug in pick table right mouse release is fixed.
+
+When changing range via Inspector slide, DataRep object now get the
+new range.  Previously they weren't.
+
+Fix bug in saving plot as image with EPS suffix.
+
+Fix handling of creation of RootNTuple to avoid crash when creating
+same DataSource from a file twice.
+
+Fix replacement of column not yet cached for FitsNTuple.
+
+Fix function representation when one or more axis are on log scale.
+
+Fix handling of color scale slider when selecting a variable value to
+color rep.
+
+
+@section release_1_14_8 HippoDraw Release 1.14.8
+
+@subsection release_bug_fixes_1_14_8_5 Bug fixes since 1.14.8.4
+
+Fix bug causing memory fault when clearing displays and NTuple tries
+notifying observers when it gets deleted.
+
+@subsection release_bug_fixes_1_14_8_4 Bug fixes since 1.14.8.2
+
+Fix memory leak in XyPlotter which was not deleting the contained
+CompositePlotter.  Bug was introduced at time Jim's stacked data rep
+feature was done.
+
+Have the View object destructor deletes its corresponding plotter.
+This is workaround for Python not deleting the plots as we would
+have expected.
+
+Fix bug in Canvas not using the flag that make plots selected when
+added to the canvas.   It now uses it and thus users can avoid the
+memory leak bug in the XML support.
+
+Added support so Python can set the above flag.
+
+@subsection release_bug_fixes_1_14_8 Bug fixes since 1.14.7
+
+Worked around bug that caused the value 36. to come out "35.:" in the
+XML document for the x coordinate of the first plot.
+
+Fixed reading document file when functions are applied to data rep.
+
+Fixed crash when adding a second cut to a different plot.
+
+Fixed bug that restoring function from document file did not have a
+fitter attached.
+
+Fixed bug when linear sum function is read from document file.
+
+Fixed drawing of EPS files so they are correctly place and not clipped.
+
+Fixed bug in reading document with cuts applied.
+
+
+@section release_1_14_7 HippoDraw Release 1.14.7
+
+@subsection release_features_1_14_6 New features since 1.14.5
+
+Inspector displays a warning if invalid data found in bound DataSource.
+
+
+@subsection release_bug_fixes_1_14_7 Bug fixes since 1.14.6
+
+Python no longer crashes when terminating if NTuple file was opened
+from mulitple scripts.
+
+Fix speed problem in saving many plots as image.
+
+Fix possible crash when closing last application window and Inspector
+was never created.
+
+Plot matrix size should not change unless radio button was toggled.
+
+Fixed retiling of CanvasView when changing orientation.
+
+
+
+@section release_1_14_6 HippoDraw Release 1.14.6
+
+@subsection release_features_1_14_6 New features since 1.14.5
+
+Added setFixedFlags to the Python module interface.
+
+Added setStepSize to the Python module interface.
+
+
+@subsection release_changes_1_14_6 Changes since 1.14.5
+
+FunctionBase no longer keep track of fixed parameters for fitting.
+Instead, the FCNBase derived class maintains them and all member
+functions that require them.   Use the Fitter interface to set them.
+
+
+@section release_1_14_5 HippoDraw Release 1.14.5
+
+@subsection release_features_1_14_5 New features since 1.14.0
+
+Jim Chiang added DataArray to Boost.Python so that numarrays are
+returned by Python subscript operator for all DataSources.  Also, can
+add column to DataSource with Python subscript operator and for those
+DataSources that support it, replace a column.
+
+Jim Chiang added direct access to Python of the numarray stored in
+NumArrayNTuple.
+
+Added support for Numeric Python extension module as well as numarray.
+
+Add ability to do fitting on a limit range.
+
+@subsection release_changes_1_14_5 Changes since 1.14.0
+
+Textual representations are no longer is selected state when added to
+canvas.
+
+Allow replacing column for bot FitsNTuple and RootNTuple.
+
+
+
+@subsection release_bug_fixes_1_14_5 Bug fixes since 1.14.0
+
+Fix plotting when Y axis is on log scale and a point has value of zero
+with error bars.
+
+The FitsNTuple and FitsController are now exported to Python.  Thus
+users can write scripts that need to read FITS files.
+
+Document file was being read as text ntuple.
+
+Fix error in getting errors of function upon reading a document file
+with a LinearSumFunction on one of the plots.
+
+Update static histogram if range change to force redrawing immediately.
+
+Disable log scale and autoscale for static histograms when binned axis
+is selected.
+
+Plot title was missing from document files.
+
+The HippoDraw Python extension module now has correct runtime linking
+and is no longer also copied to /usr/local/lib.
+
+Fix reading XML docuement with 2D cut in it.
+
+NTupleController now correctly returns crated NTuple as object to be
+managed by Python.
+
+Fix bug in calculating bin index of histograms when input data is
+largely integer data.
+
+Fix bugs in m4 macros that caused warnings when used with automake 1.8
+or higher.
+
+Fix bugs in handling of changing range of histogram in axis tabbed panel.
+
+Fix bug when using add data rep button and column is SVAC array.
+
+The new plot combo boxes do not change their selection when making new
+plot.
+
+When target of textual rep is lost, display error message instead of
+crashing.
+
+Fix creation of error display when doing one from script.
+
+Added /Factory/ annotation to sip Python module when returning newly
+created NTuple.
+
+Fixed bug when adding 2D cuts entirely from the GUI.
+
+Fixed bug FunctionController::createNTuple leaving plot with datarep
+in selected state.
+
+In SIP based Python module, DisplaycController::creatDisplay should be
+a SIP factory method to avoid memory leaks.
+
+Fixed bug when trying to use error on value axis for two dimension cuts.
+
+
+@section release_1_14_0 HippoDraw Release 1.14.0
+
+@subsection release_features_1_14_0 New features since 1.13.0
+
+NumArrayNTuple is now being built under Windows.
+
+Added member isMultiDimensional() to Python's RootNTuple.
+
+Variable rainbow value to color scale now can rotate around entire
+color wheel.
+
+@subsection release_changes_1_14_0 Changes since 1.13.0
+
+Included ROOT v4.02.00 in the Windows installer file.
+
+
+@subsection release_bug_fixes_1_14_0 Bug fixes since 1.13.1
+
+Fixed error in calculating errors when a parameter of function is
+fixed and fit is not yet done.
+
+In PickTable dialog, disable delete button if no item is selected.
+
+Save document with custom axis can be restored.
+
+Fits files were showing up in list of NTuples twice, once incorrectly.
+
+Newly added DataSource is one that gets displayed in Inspector.
+
+
+
+@section release_1_13_1 HippoDraw Release 1.13.1
+
+@subsection release_bug_fixes_1_13_1 Bug fixes since 1.13.0
+
+Fixed bad vs.net2003 project file.
+
+
+@section release_1_13_0 HippoDraw Release 1.13.0
+
+@subsection release_features_1_13_0 New features since 1.12.9
+
+Two dimensional fitting with Python function works.
+
+Writing functions in Python derived from C++ FunctionBase works for
+the SIP module as will as Boost.Python one.
+
+
+@subsection release_bug_fixes_1_12_9 Bug fixes since 1.12.7
+
+Fixed handling of point types in Inspector.
+
+Fixed bug when adding text rep to target that is not selected.
+
+
+
+@subsection release_bug_fixes_1_12_9 Bug fixes since 1.12.7
+
+Fix the Makefile for linking against C++ version of Minuit
+
+
+@section release_1_12_9 HippoDraw Release 1.12.9
+
+@subsection release_features_1_12_9 New features since 1.12.7
+
+When opening a file and suffix is not given as one of standard
+supported files types, then using all files will try to open files in
+supported file type anyway, before giving up as an un supported file
+type.
+
+The open file dialog now remembers the last open file type.
+
+Allow setting the plot's log scale when multiple plots are selected.
+
+Allow setting the plot's auto scale when multiple plots are selected.
+
+
+@subsection release_changes_1_12_9 Changes since 1.12.7
+
+
+Configuration script changed for Minuit 1.5.2
+
+Use Doxygen 1.4.0 features if available.
+
+
+@subsection release_bug_fixes_1_12_9 Bug fixes since 1.12.7
+
+When changing PointRep object of a DataRep, the previous Color is now
+preserved.
+
+In the PickTable, the delete picked point button is now disabled if
+the pick table is empty, thus avoiding a crash.
+
+Fix GUI blooper: when double clicked on item in ListDialog DataSource
+item, now does the same as Select button.
+
+Fix creation of NTuple directly from DataRep object.
+
+Update cut/copy/paste actions after select all window menu item selected.
+
+Save selected as images file dialog now remembers last image type selected.
+
+Fix bugs in reading ASCII NTuple file on 64 bit machines.
+
+
+@section release_1_12_7 HippoDraw Release 1.12.7
+
+@subsection release_features_1_12_7 New features since 1.12.6
+
+More configure options for the Boost installation.
+
+Support for ROOT files with array of unsigned int objects on a branch.
+
+Added variable rainbow value to color transformation.
+
+
+@subsection release_bug_fixes_1_12_7 Bug fixes since 1.12.5
+
+Fix qt/Makefile so to no attempt to include ROOT libraries if not
+building with ROOT support.
+
+HippoDraw documentation is linked to Minuit documentation.
+
+HippoDraw documentation is linked to Qt documentation.
+
+Fix readding UInt_t array in ROOT file.
+
+Use current value rep when changing point rep.
+
+Fix the qt/Makefile to handle ROOT properly.
+
+
+@section release_1_12_6 HippoDraw Release 1.12.6
+
+@subsection release_features_1_12_6 New features since 1.12.4
+
+Added 3 color value to color transform.
+
+Added 3 color with variable break point value to color transform.
+
+Added Tune Kamae's transform from variable value to color.
+
+Allow opening any FITS table when mulitiple HDU are in FITS file.
+
+@subsection release_changes_1_12_6 Changes since 1.12.5
+
+Build is with numarray by default and libnumarray.h is checked for in
+include directory used by Python.
+
+Support unsigned int type in ROOT files.
+
+
+@section release_1_12_5 HippoDraw Release 1.12.5
+
+@subsection release_changes_1_12_5 Changes since 1.12.4
+
+Re-ordered the point style in Inspector to correspond to enumeration
+that is actually used.  This avoid confusion for the Python script
+writer.
+
+DisplayController::createDisplay now throws exception if the member
+function with one string argument is used and the DataRep requires
+NTuple bindings.
+
+Added support for building under Mac OS X.
+
+Updated install documentation for Mac OS X.
+
+Added clear() to DataSource Boost.Python interface.
+
+DataSource::addRow() throws exception if not valid, thus no need to
+return a bool if successful.
+
+
+@subsection release_bug_fixes_1_12_5 Bug fixes since 1.12.4
+
+If Minuit doesn't converge, calculate principle errors with right size
+and zero value.
+
+
+@section release_1_12_4 HippoDraw Release 1.12.4
+
+@subsection release_features_1_12_4 New features since 1.12.3
+
+Added menu item to show Inspector window.
+
+Allow the user to close modified window without prompting.
+
+Added ability to stack DataRep object in plot as well as overlaying
+them.  Stacked objects each have their own Y axis Range.
+
+Added draw method to QtViewWidget.
+
+Documentation make external reference to Qt documentation.
+
+The parts of the C++ standard library that are used are documented.
+
+Put example of use of widget in sunken frame.
+
+
+
+@subsection release_bug_fixes_1_12_4 Bug fixes since 1.12.3
+
+Changing y error binding from Inspector now works again.
+
+Fix constructor of NTuple when parameter is const char *
+
+Fix broken Makefile in qt/examples.
+
+Disable plot title group box when no display is selected.
+
+
+@section release_1_12_3 HippoDraw Release 1.12.3
+
+@subsection release_bug_fixes_1_12_3 Bug fixes since 1.12.2
+
+On Cuts tabbed panel, range of cut displayed was last cut instead of
+selected cut.
+
+numarray is no longer needed to build with ROOT support.
+
+
+@section release_1_12_2 HippoDraw Release 1.12.1
+
+@subsection release_features_1_12_2 New features since 1.12.1
+
+Can now onvert an multi-dimensional array in a ROOT TBranch into
+equivalent numarray object for Python.
+
+@subsection release_bug_fixes_1_12_2 Bug fixes since 1.12.1
+
+Fix bug when adding a Python list as a column in RootNTuple.
+
+
+
+@section release_1_12_1 HippoDraw Release 1.12.0
+
+@subsection release_bug_fixes_1_12_1 Bug fixes since 1.12.0
+
+In RootNTuple, Check for invalid column in getColumn and throw
+exception if invalid.
+
+
+@section release_1_12_0 HippoDraw Release 1.12.0
+
+@subsection release_features_1_12_0 New features since 1.11.1
+
+Added ability to change DataSource of selected plot.
+
+Allow changing DataSource of multiple selected plots.
+
+Highlite the CutPlotter objects targeting the selected plot.
+
+Allow changing title of multiple selected plots.
+
+Allow user to set fitter before function is applied.
+
+Add @b Delete menu item to @b Edit menu
+
+
+@subsection release_changes_1_12_0 Changes since 1.11.1
+
+On the export text NTuple filed ialog, the list of data sources that
+can be save is no longer displayed.  Instead, the selected data source
+in the Inspector data tabbed panel is used.  This is what users
+expected to happen and the the dialog wasn't obvious enough.
+
+
+@subsection release_bug_fixes_1_12_0 Bug fixes since 1.11.1
+
+Do not add `.tnt' suffix when exorting DataSource if user has already
+added it.
+
+Test program in OpenGL library is now not intalled with make install.
+
+Fixed SIP interface to PlotterBase::setAspectRatio.
+
+After plots have been deleted or re-arrange, the retiling works as
+expected now.
+
+Any plot that needed Z axis was not allowing its Z value to go
+negative.
+
+In ColorBoxPointRep, surpress the values == 0.0 only if the range is
+0.0 to something.
+
+Fix bug when toggling active DataRep when function may be applied to
+one.
+
+Have all DataRep active when adding DataRep. This bug was a regression
+from the 1.10.0 release.
+
+Changes to SIP module so it is compatible with SIP 4.1.
+
+Fix autoscaling when data range on a axis is of length 0.0.
+
+Fix infinite loop in axis tick calculation if tick step size was 0.0.
+
+Fix labels of Z axis for Hammer-Aitoff transformation.
+
+Fix generation of Z axis color scale, the bug was visible with EPS
+format image file.
+
+Fix reading XML stream when TextDataRep is in stream.
+
+
+@section release_1_11_1 HippoDraw Release 1.11.1
+
+@subsection release_features_1_11_1 New features since 1.11.0
+
+fITS image files set aspect ratio if needed.
+
+Enable changine the value to color mapping for plots with Z axis.
+
+When add a function to a plot from the Inspector, a fit is
+automatically done as well.
+
+Fix BinToGreyScale when range has negative values.
+
+
+
+@subsection release_changes_1_11_1 Changes since 1.11.0
+
+Plots added with aspect ratio set increases its width instead of
+reducting its height.
+
+Added the additional arguments in constructor of CanvasWindow so that
+the window could be child of another.   Tested by Tony Willis.
+
+
+@subsection release_bug_fixes_1_11_1 Bug fixes since 1.11.0
+
+Setting functions fixed flag for linear sum function now works correctly.
+
+Adding a function when previsous function has a fixed parameter now
+works correctly.
+
+Can now only create one Inspector, was possible to create two.
+
+Autosaling a Z plot when the offset and step size was say, for example
+from a FITS file, now works correctly.
+
+Draw the color bar Z scale correctly when plot is empty.
+
+Be able to open document that has reference to a FITS file.
+
+Fix bug when accidenatly try to read Python script as ASCII NTuple.
+Now throws exception for bad file fromat.
+
+Be able to open document that has reference to a ROOT file.
+
+Fix bug in QtDisplay constructor with list of lists argument.  Was
+Windows only bug.
+
+
+@section release_1_11_0 HippoDraw Release 1.11.0
+
+@subsection release_features_1_11_0 New features since 1.10.4
+
+Support the editing of font individually for each plot.
+
+@subsection release_changes_1_11_0 Changes since 1.10.4
+
+Performance improvements is displaying FITS images.
+
+Support for reading FITS files directly with GUI and C++.
+
+
+@section release_1_10_4 HippoDraw Release 1.10.4
+
+@subsection release_features_1_10_4 New features since 1.10.3
+
+Add menu item to retile only one page.
+
+@subsection release_changes_1_10_4 Changes since 1.10.3
+
+Cosmetics of the Function tabbed panel of the Inspector improved.
+
+
+
+@section release_1_10_3 HippoDraw Release 1.10.3
+
+
+@subsection release_bug_fixes_1_10_3 Bug fixes since 1.10.2
+
+Adding a function to empty DataRep no longer crashed program.
+
+
+
+@section release_1_10_2 HippoDraw Release 1.10.2
+
+@subsection release_features_1_10_2 New features since 1.10.1
+
+Add a user setting to decided if new plots added from Python should be
+selected or not.  Being selected also implies the canvas being
+scrolled to make new plot visible.
+
+Allow adding a column for RootNTuple.
+
+Allow access to column containing an array in a RootNTuple.
+
+
+
+@section release_1_10_1 HippoDraw Release 1.10.1
+
+@subsection release_bug_fixes_1_10_1 Bug fixes since 1.10.0
+
+On 2D plots, when changing the binding on one axis, does not now auto
+scale the other axis.
+
+@subsection release_bug_fixes_1_10_1 Bug fixes since 1.10.0
+
+Fix restoring of saved documents when functions were applied.
+
+Fix restoring of saved document with error contours on canvas.
+
+Fix restoring of saved document if axis labels had been explicitly
+changed.
+
+
+@section release_1_10_0 HippoDraw Release 1.10.0
+
+@subsection release_features_1_10_0 New features since 1.9.0
+
+Open menu item in the CanvasWindow has file filter so it can open
+document, text ntuple, or root ntuple files.
+
+Allow selection of ROOT ntuple if multiple ntiples are in file.
+
+Added LineDataRep.
+
+Cuts can be temporarily disabled without losing connecton to target
+displays.
+
+For Boost.Python module, added addTargets method to take list of
+displays as targets of cut
+
+For Boost.Python module, add Cut constructor taking target and range
+arguments as well.
+
+On cuts tabbed panel of the Inspector, add button to add all existing
+cuts to the selected DataRep object.
+
+Support for landscape or portrait mode as user definable setting.
+
+Support as user definable setting showing page margins or not.
+
+
+
+@subsection release_changes_1_10_0 Changes since 1.9.0
+
+Enlarge the font size of the labels.
+
+Include function names when linear sum functions shows current values
+in textual representation.
+
+Do not automatically select plot added from Python script.  Thus newly
+added plots do not scroll the canvas window.
+
+Allow more items in axis binding combo boxes.
+
+Raise message box if function doesn't fit instead of printing to stdout
+
+Make the Canvas Window as height as possible, i.e 95% of screen size.
+
+Limit default font size for widgets to maximum of 10.
+
+When adding a cut to a cut, it is no longer added recursively to the
+targets of the other cut.
+
+
+@subsection release_bug_fixes_1_10_0 Bug fixes since 1.9.0
+
+Added C++ runtime library to MS installer file.
+
+Saving plot with color bar scale in EPS format is fixed.
+
+In zoom/pan mode, axis sliders would reset to starting point on mouse
+release.
+
+Fix cause of crash when ctrl-click on plot with function.
+
+Fix cause of crash when multiple DataRep objects in a plot and only
+one has a function applied.
+
+Fix bug in saving plot as image when used with SIP based Python
+extension module.
+
+Raise error dialog instead of crashing when attempting to open text
+ntuple file with bad format.
+
+Fixed display of 1D Cut when inverted.
+
+Fixed display of 2D Cut when an axis is on log scale.
+
+Ignore ROOT file with Histogram at top level instead of crashing.
+
+Take care of case where all elements of a column are +- infinity or
+nan.
+
+Fix drawing of function when function goes out of range of the drawing
+rectangle.
+
+Do not reset static histogram when changes displayed axis range.
+
+Fixed value of number of entries for dynamic 1D histograms.
+
+Save line and point style in document files.
+
+No longer draw LinePointRep lines outside X axis range.
+
+When all data was 0.0, X axis representation was wrong.
+
+Cut controls were disabled when function on data representation.
+
+Fix drawing of exponent so it doesn't go outside the view.
+
+Add text display from python to selected plotter, not selected view.
+
+Fixed line styles in generated EPS to match that of Qt's QPen styles.
+
+Fixed bug that could occur in removal of cuts.
+
+
+
+@section release_1_9_0 HippoDraw Release 1.9.0
+
+@subsection release_features_1_9_0 New features since 1.8.0
+
+Added support for reading ROOT ntuple files with Python.
+
+Added support for reading ROOT ntuple files from file menu.
+
+
+
+@subsection release_changes_1_9_0 Changes since 1.8.0
+
+Raise dialog if about to save plotter as image file if file already
+exists.  But do so only if user interaction from GUI, not from Python
+script.
+
+The Cuts tabbed panel now remembers for each target plot, what the
+last selected cut was.
+
+@subsection release_bug_fixes_1_9_0 Bug fixes since 1.8.0
+
+Fix bug when setting Range from Python, was changing width, now width
+stays constant.
+
+Use SaveAsImageEvent to save plotter as image file.  Fixes problem
+when doing so from non GUI thread.
+
+After manually setting low range, it was getting reset by changing
+setting on bin width or high range.
+
+Needed to update all tabbed panels after set axis on log scale.
+
+Update Inspector tabbed panels when binding to plot change.
+
+Fix bug in RootNTuple in calculating data range when some values of
+the column data are +infinity
+
+CanvasWindow does not send update to Inspector unless current canvas
+has changed.
+
+Allow copy and paste from one window to another.
+
+Don't save DataSource that was read from a file to a text tuple when
+using saveAll.
+
+Profile histograms create error and not standard deviation.
+
+Fix bug when inverting 2D Cut.
+
+@section release_1_8 HippoDraw Release 1.8.0
+
+@subsection release_features_1_8 New features since 1.7.0
+
+Added ListTuple class to support arrays of data residing in Python
+list objects.  Use of this class will avoid copying data from Python
+to C++.
+
+Added NumArrayTuple class to support arrays of data residing in
+Python.  In this way, data generated in Python does not need to be
+copied to a NTuple.
+
+Allow the user to change the default font used in all the displays.
+
+Can change the line style for DataRep objects that do line drawing.
+
+Can now write to ASCII file NumArrayTuple as well as NTuple.
+
+Fix GUI blooper, ask question before over-writing existing image file.
+
+Fix GUI blooper, newly selected plot should be on top of others.
+
+
+@subsection release_changes_1_8 Changes since 1.7.0
+
+Convert to use the Minuit-1.4.0pre1 or later.   The Minuit API changed
+slightly, so HippoDraw is now not compatible with older version.
+This versin does not require Fortran 77 compiler, the HippoDraw's
+Makefiles no longer link agains libf2c.a and the configure script does
+not look for the Fortran compiler.
+
+Removed two versions of Minuit fitters since they were the same
+underneath anyway.
+
+Throws DataSourceException if trying to set capacity of non-empty
+CircularBuffer.
+
+
+@subsection release_bug_fixes_1_8 Bug fixes since 1.7.2
+
+Fix segmentation fault when attempting to export text tuple when no
+tuples exist.
+
+Fix bug where under certain conditions, dragging the bin width slider
+in the Inspector would reset the bin width to 1.0.
+
+Fix bug in finding path to Python include and lib.
+
+DataSource with its name set now appears with that name in the
+Inspector.
+
+When fitting, the target plot updates its projected value NTuple
+before the fitting is done.  Fixes mulitple instance where it may not
+be up to date.
+
+When saving plot as image from Python and no file suffix is given to
+indicate image format, then JPEG is used instead of crashing.
+
+Fix crazy behaviour of line step buttons on scroll bars in axis tabbed
+panel.
+
+Fix crash when adding two functions to DataRep.
+
+When saving selected views as to image files, also save any colliding
+views.
+
+Update the tabbed panels after adding DataRep to a display.
+
+Disable function parameter box on function tabbed panel when no
+function on selected plot.
+
+@section release_1_7_2 HippoDraw Release 1.7.2
+
+@subsection release_bug_fixes_1_7_2 Bug fixes since 1.7.1
+
+Fix build problems when paths Minuit and Boost were not in standard places.
+
+@section release_1_7_1 HippoDraw Release 1.7.1
+
+@subsection release_changes_1_7 Changes since 1.6.0
+
+Zoom in keyboard short cut changed to Ctrl+=.
+
+
+@subsection release_bug_fixes_1_7_1 Bug fixes since 1.7.0
+
+Fix handling of 1D cuts in SIP based Python extension module.
+
+Fix crash under Windows when right clicking on some displays.
+
+
+@section release_1_7 HippoDraw Release 1.7
+
+@subsection release_features_1_7 New features since 1.6.0
+
+Save the printer page size settings for future sessions.
+
+Be able to change the new plot matrix in a canvas.
+
+Be able to change axis labels.
+
+Added accelerator keys for zoom in and zoom out.
+
+Added zoom reset menu item.
+
+
+@subsection release_changes_1_7 Changes since 1.6.0
+
+Disallow add column to NTuple whose label is same as existing one.
+
+
+Save the canvas new plot matrix settings for future sessions.
+
+
+@subsection release_bug_fixes_1_7 Bug fixes since 1.6.0
+
+Selected display added by Python needed to be put in selection copy.
+
+Handle underflow and overflow in linear binning correctly.
+
+Fix Cut1DPlotter so it doesn't need axis bindings parameter.  This
+also fixes bug for cuts in sihippo Python extension module.
+
+@section release_1_6 HippoDraw Release 1.6
+
+@subsection release_features_1_6 New features since 1.5.0
+
+Axis tick marks are both right and left, and top and bottom.
+
+Two dimensional cuts.
+
+Function error contour can be plotted after fitting.
+
+
+@subsection release_changes_1_6 Changes since 1.5.0
+
+The bin width scroll bars has twice the range.
+
+Removed use of valarray, thus can compile with more compilers.
+
+
+@subsection release_bug_fixes_1_6 Bug fixes since 1.5
+
+Fix bug in CanvasView::getViewFor(const PlotterBase * target) when @a
+target is not found.  Now returns a null pointer.
+
+Fix bug in CanvasView::removeDisplay.  Will do nothing if argument is
+null pointer.
+
+Fix bug in XY Plot when on Y axis is on log scale and error bar
+reaches 0.0.
+
+Fix bug in Inspector's function tabbed panel, when plot contained
+mulitple data reps and only one had function.
+
+Fix bug in calculation of error bars on Profile DataRep when only one
+entry in bin.
+
+Fix bug in inconsistent dragging and releasing bin width and offset.
+
+Fix bug with axis tick labels when log10 of number is less than -2.
+
+Fix bug in Z axis tick labels when log10 of number is less than -3.
+
+Fix bug when Cut is in zoom/pan mode and position goes outside of
+display range.
+
+Fix Hammer-Aitoff and Lambert transforms.
+
+Enable the stats text box when checkbox is checked.
+
+Fix bug when putting function of plot with multipe DataRep objects.
+
+
+
+@section release_1_5 HippoDraw Release 1.5
+
+@subsection release_features_1_5 New features since 1.4.0
+
+Allow user to change the NTuple name.
+
+Axes and cut sliders are now scroll bars so that slow/fast scrolling
+can be supported.   They also accept wheel focus.
+
+@subsection release_changes_1_5 Changes since 1.4.0
+
+enum AxesType put in namespace.
+
+Fixed the axes and cut sliders to behave correctly to keyboard shortcuts.
+
+ColorPlot shows points out of Z range in white, including bins of zero
+value.
+
+
+@subsection release_bug_fixes_1_5 Bug fixes since 1.4.0
+
+No longer crashes if right mouse on TextPlotter
+
+Fix printing across page boundaries.
+
+Fix Z value on picking.
+
+
+@section release_1_4_0 HippoDraw Release 1.4.0
+
+@subsection release_changes_1_4_0 Changes since 1.3.2
+
+Projected value classes and corresponding iterators replace by NTuple
+to provide data to point representations and objective function of
+fitters.
+
+Histograms plotted the bin axis from 0.0 when autoscaled, even if all
+bins are above zero.
+
+@subsection release_bug_fixes_1_4_0 Bug fixes since 1.3.2
+
+Selected NTuple in new plot group box is one corresponding to selected
+plot.
+
+@section release_1_3_2 HippoDraw Release 1.3.2
+
+@subsection release_features_1_3_2 New features since 1.3.0
+
+Ability to hide CanvasWindow from SIP Python module.
+
+
+@subsection release_changes_1_3_2 Changes since 1.3.0
+
+Support for configuing Python changed to use the AM_PYTHON_PATH M4
+macro that comes with automake.
+
+@subsection release_bug_fixes_1_3_2 Bug fixes since 1.3.0
+
+Fix missing MinuitFitter.cxx from distribution.
+
+Added work around for compilers needing mem_fun1 instead if mem_fun
+from the C++ stanard library.
+
+Fix bug in calculation of derivatives for Chi2Dist.
+
+Permanently disable Minuit checkbox in Inspector function tabbed panel
+when not built with Minuit.
+
+Save the in memory ntuples to file in same directory as document file
+instead of current working directory.
+
+Add .tnt suffix to exported ntuple files.
+
+
+@section release_1_3_0 HippoDraw Release 1.3.0
+
+@subsection release_features_1_3_0 New features since 1.2.0
+
+Use of @em  Minuit for fitting.
+
+Dynamic and static histograms can take a weight binding.
+
+Re-factored the Boost.Python interface to be more Pythonic
+
+Added ability to turn off error bars on ProfileHist.
+
+Added handling of cuts to SIP Python extension module.
+
+Added St1DHistograms to SIP Python extension module.
+
+Added St2DHistogram to the library and available to both SIP and Boost
+python extnsion modules.
+
+Added ability to create NTuple which is a copy of an NTuple used by a
+DateRep that has NTuple binding, but with rows removed that fail the
+cuts applied to that DataRep.
+
+Added ability to create function residuals display from the Inspector
+function tabbled panel.
+
+Added ability to get mouse coordinates from Python.
+
+Added ability to get errors on the fitted parameters.
+
+Added display of summary value in Inspector stats panel.
+
+
+
+@subsection release_changes_1_3_0 Changes since 1.2.0
+
+Changed name of Hist2DProjector to DyHist2DProjector.
+
+Introduced class Hist2DProjImp which becaomes the base class for both
+DyHist2DProjector and StHist2DPorjector.
+
+Remove Cut replace button.
+
+Enable editPasteAction in all windows after pasteboard is filled.
+
+Improved cout output of Range class to include minimum positive file.
+
+
+
+@subsection release_bug_fixes_1_3_0 Bug fixes since 1.2.0
+
+Various updates to the documentation.
+
+Disable create residual display if no function on plot.
+
+Saving path to NTuple file in XML document, when NTuple was read from
+file.
+
+Returning the Z value of ZPlot when origin and bin width were not the
+default.
+
+Fixed the drawing speed of the cross-hairs when display on top of
+large XYColorPlot.
+
+Can turn on error bars after default histogram changes its point rep
+to symbols.
+
+Can turn on and off error bars from Plot Inspector for DataRep objects
+that have error bars.
+
+Turn on error bars when returning to SymbolPointRep on XYPlot.
+
+No more Qt error message when DataRep has no PointRep options.
+
+Fix the updating of fixed flags in Inspector's function tabbed panel.
+
+Fix bug in generating Doxygen generated documentation in new build
+directory.
+
+Fix bug when new axis binding vector is not long enough to cover all
+binding options.
+
+Fix bug when remove item from canvas, crash would occur when Save All As.
+
+Fix bug when creating display with insufficient number of bindings.
+
+Update Inspector when active canvas window changes.
+
+Display of SymbolPointRep plotting when axis is scaled is fixed.
+
+Changing range with const bin width now works.
+
+Set error bars to old state when changing point representation.
+
+Fixed incorrect input to ContourPlot from non square
+MapMatrixProjector.
+
+Fix aspect of ratio of plots when initially placed on canvas.
+
+Don't plot ColorSymbolPointRep if Z value is out of range on log scale
+or linear scale.
+
+Got rid of many warning messages generated by Doxygen version 1.3.4
+
+Fixed AxisModelLog when pos is same as high range.
+
+Provide a What's this for inspector in case window system has what's
+this button in title bar
+
+Set the cut range to the full range displayed by the Cut1DPlotter.
+
+Fixed enabling edit paste action in all windows if cut or copy made in
+one.
+
+Fixed scaling of axis for certain combinations of multiple DataRep
+objects in the same plot.
+
+Allow same NTuple file to be opened by mulitple documents with open
+edit menu item.
+
+Catch ans exception thrown in trying to open docuement file.
+
+Throws exception in NTuple::setLabels if size of argument is wrong.
+
+Hammer Aitoff transform no longer crashes when setting Z axis to log
+scale.
+
+
+
+@subsection release_features_1_2_0 New features since 1.1.7
+
+Added ability of set aspect ratio of any plotter.
+
+Added ability to set the matrix size parameters for ZPlot.  With small
+Python script, can now display
+<a href="http://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html">FITS</a> image
+files.
+
+Exceptions that @b HippoDraw could throw when called from the SIP
+Python extension module are now caught and re-thrown as Python
+exception.
+
+Ability to create NTuple column from a numarray that has flat shape.
+
+Ability to create NTuple from a plot including function
+values and residuals.
+
+Ability for Inspector to create residuals display.
+
+Added Lambert transform.
+
+Added ability to get Chi-Squared and degrees of freedom from Python.
+
+
+@subsection release_changes_1_2_0 Changes since 1.1.7
+
+If file can not be opened, the a critical dialog window is show with
+reason for the problem.
+
+Move the "New plot" group box to top in Data tabbed panel of the
+Inspector.  This is more consistent with work flow from top to bottom.
+
+Drawing of plot is done to pixmap then flushed to canvas. This allows
+moving and selecting large image files without performance problem.
+
+Add grid lines to Hammer-Aitoff and Lambert transforms.
+
+The QtViewWidget now calls the Inspector directly instead of going via
+the top level widget.  This fixes problem in doing so with PyQt.
+
+
+@subsection release_bug_fixes_1_2_0 Bug fixes since 1.1.7
+
+Fix axis representation for non-rectangular axis boundaries.
+
+Fix reading NTuple file when label has leading blank.
+
+Some fixes for compiling with Qt 3.0.x.
+
+Fix cursor position when right clicking on plot with Hammer-Aitoff
+transform.
+
+Fix bug that was not displaying all the data in a ProfileHist plot.
+
+Fix for when Qt is compile with no STL support.
+
+Inspector now gets updated when NTuple is added and registered from
+Python script.
+
+Fix bug in parsing NTuple file after Windows has inserted CR before LF.
+
+Fix bug when displaying list of QCanvasItem when one is a TextView.
+
+Fix bug when reading saved document when one QCanvasItem is a TextView.
+
+Many bug and usability problems with the PickTable has been fixed.
+
+Fix bug in file name suffix when using SaveAll menu item.
+
+
+@section release_1_1_7 HippoDraw Release 1.1.7
+
+@subsection release_changes_1_1_7 Changes since 1.1.6
+
+The Print action is now also on the CanvasWindow tool bar.
+
+@subsection release_features_1_1_7 New features since 1.1.6
+
+Added @ref datareps_zplot to plot FITS file images.
+
+Added Error Function class, Erfc.
+
+Added Pick table.
+
+
+@subsection release_bug_fixes_1_1_7 Bug fixes since 1.1.6
+
+Allow cuts to be applied to single DataRep in plot with functions applied.
+
+
+@section release_1_1_6 HippoDraw Release 1.1.6
+
+@subsection release_changes_1_1_6 Changes since 0.9.9.6
+
+The Inspector is no longer tied to the CanvasView.  It can thus also
+be used with QtViewWidget as well as QtView.
+
+Shift mouse click now adds to selection while control mouse click
+toggles between multiple data representation in same plotter.
+
+Added Ctrl-Z as keyboard accelerator to Undo menu item.
+
+Prompt user before over-writing document file.
+
+Added warning before clearing all canvas items.
+
+Much updated documentation especially examples in Python and C++.
+
+
+@subsection release_new New features since 0.9.9.6
+
+Doing right mouse click on selected displays the X, Y, and if
+available Z coordinates, of the mouse cursor in the main window status
+bar..
+
+Added "Select all" menu item.
+
+Added "Retile menu item.
+
+Added CanvasWindow::saveAllAs so one can save document
+and all its NTuple to a file.
+
+Added "Save all as..." menu item to the file menu.
+
+Expose TextRepFactory to Python SIP extension module.
+
+A table of plots is available.
+
+Added saving plot as image file from program and SIP extension module.
+
+Added CircularBuffer class with interface to both SIP and Boost.Python.
+
+Added ability to register ntuple with the application.
+
+Added static histogram.
+
+Added ability to change point representation of DataRep.  This, for
+example, converts a ColorPlot to ContourPlot and vice versa.
+
+Added ability for user to set the ContourPlot level manually.
+
+
+@subsection release_fixed Bug fixes since 0.9.9.6
+
+Fixed missing string terminator in function parameters values in FuncParmRep.
+
+When saving two or more images whose bound rectangle would
+include other non selected images.
+
+Text box in Stats tabbed panel was always disabled.
+
+ColorSymbolPointRep of size 1 now work.
+
+*/

@@ -1,0 +1,63 @@
+""" -*- mode: python -*-
+
+This script tests throwing exceptions when errors are made in the
+creation fo NTuple or Displays
+
+Copyright (C) 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: histexceptions.py.in,v 1.26 2004/07/07 21:48:48 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+print "Try to open non existent file..."
+try :
+    nt1 = ntc.createNTuple ( '@top_srcdir@/examples/XXX.tnt' )
+except RuntimeError, detail :
+    print detail
+
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+print "\nTry bad data rep type..."
+try :
+    hist = Display ("H istogram", nt1, ('Cost', ) )
+except RuntimeError, detail :
+    print "RuntimeError: ", detail
+
+print "\nTry invalid binding..."
+try :
+    hist = Display ("Histogram", nt1, ('C ost', ) )
+except RuntimeError, detail :
+    print detail
+
+print "\nTry insufficient bindings..."
+try :
+    hist = Display ( "Color Plot", nt1, ( 'Cost', ) )
+except RuntimeError, detail :
+    print detail
+    
+hist = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist )
+
+hist.setRange ( 'x', 0., 30000. )
+
+print "\nTry bad axis"
+try :
+    hist.getRange ( 'z' )
+except RuntimeError, detail :
+    print detail
+
+hist2 = Display ( "Histogram", nt1, ('Service',) )
+canvas.addDisplay ( hist2 )
+
+hist2.setBinWidth ( 'x', 1.0 )
+hist2.setOffset ( 'x', 0.5 )

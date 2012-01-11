@@ -1,0 +1,9 @@
+/** @dir binners
+
+This directory contains source and header files of classes related to
+accumulation of values into bins.
+
+@sa @ref overview_binner and @ref overview_binneraxis.
+
+*/
+

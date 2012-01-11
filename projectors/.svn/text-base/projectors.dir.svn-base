@@ -1,0 +1,15 @@
+/** @dir projectors
+
+This directory contains source and header files of classes related to
+projection.
+
+This directory contains source and header files of the abstract base
+class ProjectorBase and its derived classes.  It also contains some
+helper classes.
+
+@sa @ref overview_projector
+
+*/
+
+
+

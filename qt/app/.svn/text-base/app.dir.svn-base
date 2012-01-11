@@ -1,0 +1,33 @@
+/** @dir app
+
+This directory contains source and configuration files for creating an
+application for Linux KDE/Gnome and Mac OS X.
+
+
+@li HippoDraw.desktop.in This file, after processing by configure, is
+used as a KDE and Gnome desktop configuration file.  The file is used
+when installing @b HippoDraw with an RPM file.  Its adds the
+application to the users start menu.
+
+
+*/
+
+
+/** @file Info.plist
+
+Mac OS X bundle configuration file.
+
+This file is placed in the Mac OS X application bundle to describe the
+characterics of the application.  It includes its icon and the file
+suffixes that can be opened by the application.
+
+*/
+
+/** @file PkgInfo
+
+Mac OS X package configuration file.
+
+This file is placed in the Mac OS X application bundle to describe the
+bundle as an application.
+
+*/

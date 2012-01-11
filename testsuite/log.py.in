@@ -1,0 +1,47 @@
+""" -*- python -*-
+This script tests the log scale transforms.
+
+Copyright (C) 2001, 2--3  The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: log.py.in,v 1.20 2004/07/07 21:48:48 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create ntuple with its controller so that the Inspector can see it
+nt = ntc.createNTuple( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt, ('Age',) )
+canvas.addDisplay( hist )
+
+hist1 = Display ("Histogram", nt, ('Age',) )
+canvas.addDisplay( hist1 )
+
+## hist1.setTransform( 'Linear', 'Log' )
+hist1.setLog ( 'y', 1 )
+
+hist2 = Display ("Histogram", nt, ('Age',) )
+canvas.addDisplay( hist2 )
+
+## hist2.setTransform( 'Log', 'Linear')
+hist2.setLog ( 'x', 1 )
+
+hist3 = Display ("Histogram", nt, ('Age',) )
+canvas.addDisplay( hist3 )
+
+##hist3.setTransform( 'Log', 'Log' )
+hist3.setLog ( 'x', 1 )
+hist3.setLog ( 'y', 1 )
+
+profile = Display ( "Profile", nt, ("Age", "Cost" ))
+canvas.addDisplay ( profile )
+profile.setLog ( 'y', 1 )

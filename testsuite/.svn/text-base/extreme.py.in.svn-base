@@ -1,0 +1,45 @@
+""" -*- mode: python -*-
+Create an NTuple with power-law weights and exercise axis bindings
+access through PyDataRep.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+#$Id: extreme.py.in,v 1.1 2004/01/13 01:30:20 pfkeb Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from setPath import *
+
+import random
+shoot = random.uniform
+
+pl_wt = lambda x:x**(-2.1)
+
+import hippoplotter as plot
+nt = plot.newNTuple( ([], [], [], []), ("x", "y", "wt", "ywt") )
+
+nsamp = 10000
+for i in range(nsamp):
+    x = shoot(0, 1)
+    y = shoot(0, 1)
+    nt.addRow( (x, y, pl_wt(x), pl_wt(y)) )
+
+#
+# Set the "plot" x-axis range to suppress empty bins at small x values.
+#
+xcol = nt.getColumn("x")
+hist = plot.Histogram( nt, "x", xlog=1, ylog=1,
+                               xrange=(min(xcol), max(xcol)) )
+
+dataRep = hist.getDataRep()
+dataRep.setWeight( "wt" )
+
+powerlaw = plot.hippo.Function( "PowerLaw", dataRep )
+powerlaw.addTo( hist )
+powerlaw.fit()

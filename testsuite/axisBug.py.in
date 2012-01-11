@@ -1,0 +1,58 @@
+""" -*- mode:python -*-
+
+Expose bug in resetting x-axis range.
+
+author James Chiang
+
+"""
+
+#$Id: axisBug.py.in,v 1.5 2004/09/06 02:55:52 jchiang Exp $
+
+from setPath import *
+
+import hippoplotter as plot
+import numarray as num
+
+x = num.arange(10)
+y = x
+
+disp1 = plot.scatter(x, y, pointRep='Line')
+disp1.setRange('x', 2, 8)
+
+xx = 10.**(num.arange(10, type=num.Float)/9.*10. - 13)
+yy = 1./xx
+
+disp2 = plot.scatter(xx, yy, xlog=1, ylog=1, pointRep='Line')
+disp2.setRange('x', 1e-11, 1e-5)
+
+
+print "This script used to draw lines outside the axis range boundary"
+print "before HippoDraw was fixed."
+
+plot.canvas.selectDisplay ( disp2 )
+
+plot.prompt("\nThis looks ok, but now try to add a line point rep that\n"
+            + "connects two points lying outside the boundary of the "
+            + "current plot,\n"
+            + "i.e., an ntuple (x, y) = ([1e-9, 1e-9], [1e2, 1e14]): ")
+
+plot.scatter([1e-9, 1e-9], [1e2, 1e14], pointRep="Line", oplot=1, color='red')
+
+plot.prompt("\nWhere is it?\nTry one with one end inside the "
+            + "current boundaries,\n(x, y) = ([1e-9, 1e-9], [1e1, 1e12]): ")
+
+plot.scatter([1e-9, 1e-9], [1e1, 1e12], pointRep="Line", oplot=1, color='red')
+
+plot.prompt("\nHmmmm....how about a line along the x-axis?\n"
+            + "(x, y) = [1e-12, 1e-4], [1e6, 1e6]: ")
+
+plot.scatter([1e-12, 1e-4], [1e6, 1e6], pointRep="Line", oplot=1, color='blue')
+
+plot.prompt("\nNo sign of it....try (x, y) = [1e-12, 1e-5], [1e6, 1e6]: ")
+
+plot.scatter([1e-12, 1e-5], [1e6, 1e6], pointRep="Line", oplot=1, color='blue')
+
+print "\nThat seems to work.  Still, it would be nice if it both end points "
+print "could lie outside the plot region."
+
+

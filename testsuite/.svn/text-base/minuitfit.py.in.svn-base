@@ -1,0 +1,83 @@
+""" -*- python -*-
+
+   This is a script to compare fitting with built-in
+   Levenberg-Marquart and Minuit Variable Metric
+
+Copyright (C) 2002, 2003 The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: minuitfit.py.in,v 1.7 2004/07/07 21:48:48 pfkeb Exp $nt
+
+"""
+import setPath
+
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+# Create NTuple with its controller so Inspector can see it.
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ( "Histogram", nt1, ("Cost", ) )
+canvas.addDisplay( hist )
+datarep1 = hist.getDataRep()
+
+from hippo import Function
+
+gauss = Function ( "Gaussian", datarep1 )
+gauss.addTo ( hist )
+
+print "parameter names are"
+parmnames = gauss.parmNames ( )
+print "names  = ", parmnames
+
+print "Before fitting parameters are"
+init_parms = gauss.parameters ( )
+print "gauss  = ", init_parms
+
+## # Now do the fitting.
+## gauss.fit ( )
+
+## print "After fitting parameters are"
+## parms = gauss.parameters ( )
+## print "gauss  = ", parms
+
+## print "while the errors are"
+## errors = gauss.principleErrors( )
+## print "gauss  = ", errors
+
+gauss1 = Function ( "Gaussian", datarep1 )
+gauss1.addTo ( hist )
+
+init_parms1 = gauss1.parameters ()
+print "gauss1 = ", gauss1.parameters ()
+
+# Do another fit, should fit to linear sum
+print "Fitting with ", gauss1.getFitterName()
+gauss1.fit ()
+
+print "Results after fitting to linear sum"
+print "gauss  = ", gauss.parameters()
+print "gauss1 = ", gauss1.parameters()
+
+print "Now reset the initial parameters and use Minuit"
+gauss.setParameters ( init_parms )
+gauss1.setParameters ( init_parms1 )
+
+gauss1.setFitter ( "ChiSq: Minuit(Migrad)" )
+print "Before fitting parameters are"
+print "gauss =  ", gauss.parameters ()
+print "gauss1 = ", gauss1.parameters ()
+
+print "Fitting with ", gauss1.getFitterName()
+gauss1.fit()
+
+print "After Minuit fitting"
+print "gauss  = ", gauss.parameters()
+print "gauss1 = ", gauss1.parameters()
+

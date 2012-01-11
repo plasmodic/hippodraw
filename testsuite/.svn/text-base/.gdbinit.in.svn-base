@@ -1,0 +1,49 @@
+# gdb macros for gcc 3.x implemenation of standard C++ library
+# 
+# Idea taken from article in C/C++ Users journal, June 2004, page 24.
+# 
+# author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+#
+
+def vecsize
+  set $vecsize = $arg0._M_impl._M_finish - $arg0._M_impl._M_start
+end
+
+document vecsize
+Set the variable $vecsize to the size of the std::vector.
+end
+
+
+define pvecsize
+  vecsize $arg0
+  output $vecsize
+  echo \n
+end
+
+document pvecsize
+Print the size of a std::vector
+end
+
+
+define pvecat
+  output *($arg0._M_impl._M_start + $arg1)
+  echo \n
+end
+
+document pvecat
+Print vector element at ith position.
+end
+
+
+define pvec
+  vecsize $arg0
+  set $loop = 0
+  while ( $loop < $vecsize )
+    pvecat $arg0 $loop
+    set $loop = $loop + 1
+  end
+end
+
+document pvec
+Prints all the elements of the std::vector
+end

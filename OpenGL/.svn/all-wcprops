@@ -1,0 +1,83 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL
+END
+OpenGLView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLView.cxx
+END
+OpenGL.dir
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGL.dir
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/Makefile.in
+END
+OpenGLWindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLWindow.h
+END
+TextTTF.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/TextTTF.cxx
+END
+OpenGLView.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLView.h
+END
+OpenGLApp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLApp.cxx
+END
+TextTTF.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/TextTTF.h
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/Makefile.am
+END
+OpenGL.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGL.h
+END
+OpenGLApp.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLApp.h
+END
+OpenGLWindow.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/OpenGLWindow.cxx
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/47802/tools/hippodraw/trunk/OpenGL/README
+END

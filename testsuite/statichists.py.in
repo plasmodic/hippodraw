@@ -1,0 +1,96 @@
+import setPath
+
+import hippoplotter
+import random
+from time import sleep
+
+class LowlevelPlotter:
+  def __init__(self,circularBuffer=1000,showTkr=0,showCal=0):
+    self.__debug=1
+    self.histDict     = {}
+    # a dictionary for ntuples
+    self.ntDict       = {}
+    # if greater than 0, this is circular buffer size
+    # if zero, use only static histograms
+    self.circularBuffer= circularBuffer
+    self.__initHippo()
+    self.__initHists()
+    
+  def analyseEvent(self):
+    """Analyse an event
+    """
+    # generate random numbers
+    tower = 0
+    layer = int(8*random.random())
+    column = int(12*random.random())
+    posRange = 0
+    posValue = int(4096*random.random())
+    negRange = 0
+    negValue = int(4096*random.random())
+    # fill basic plots if static
+    if self.circularBuffer:
+        # fill log ntuple if it exists
+        cNt = None
+        try:
+            cNt = self.ntDict["CALlogs"]
+        except:
+            pass
+        if cNt:
+            cNt.addRow((tower,layer,column,posRange,posValue,negRange,negValue))
+            if self.__debug:
+                print "filling cal log nt"
+    else:
+      # add to general adc hist if we find it
+      hName = "CalAdc"
+      cHist = None
+      try: 
+        cHist  = self.histDict[hName]
+      except KeyError:
+        print "Can't find expected CAL overview histo ",hName
+      if cHist is not None:
+        cHist.addValues ( (posValue, ) )
+        cHist.addValues ( (negValue, ) )
+
+  def __initHippo(self):
+    # BOOST version
+    if self.circularBuffer:
+      if self.__debug:
+        print "Making ntuples"
+      # circular buffer...
+      cNt = hippoplotter.ntc.createCircularBuffer(8)
+      cNt.setTitle("CAL Ntuple")
+      cNt.setLabels( ("tem", "layer", "column", "prange", "pvalue", "nrange", "nvalue") )
+      cNt.reserve(self.circularBuffer)
+      self.ntDict["CALlogs"] = cNt
+
+  def __initHists(self):
+    """Initialize the default overview histograms
+    """
+    if self.circularBuffer:
+      hTitle = "CAL ADC+ Counts"
+      hName  = "CalAdc"
+      cNt = self.ntDict['CALlogs'];
+      cHist = hippoplotter.Histogram( cNt,"pvalue",title=hTitle,
+                                      xrange = (0, 4096))
+      cHist.setBinWidth( "x", 1 )
+      self.histDict[hName]=cHist
+    else:
+      hTitle = "CAL ADC Counts"
+      hName  = "CalAdc"
+      cHist = hippoplotter.StaticHist( title=hTitle,
+                                       xlabel = "ADC", xrange = (0, 4096),
+                                       xBinWidth = 1 )
+      self.histDict[hName]=cHist
+
+if __name__ == '__main__':
+  consumer = LowlevelPlotter(circularBuffer=0,showTkr=0,showCal=0)
+  eventCount=0
+  while (1):
+      eventCount+=1
+      consumer.analyseEvent()
+      sleep(0.05)
+      if (eventCount>=100):
+          break
+
+  print "Read in %d events" % eventCount
+  

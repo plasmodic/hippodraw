@@ -1,0 +1,46 @@
+#!/usr/bin/env python
+"""
+Script to demonstrate autoscaling bug for numarray.Int data using
+NumArrayTuple.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Header: /afs/slac/g/ek/reason_cvs/hippodraw/testsuite/test_autoscale.py.in,v 1.1 2004/05/07 16:12:40 jchiang Exp $
+#
+
+from setPath import *
+
+import hippoplotter as plot
+import numarray as num
+
+print "Autoscale works properly for type numarray.Float..."
+npts = 100
+x = num.arange(npts)*2.*num.pi/(npts-1)
+y = 2.*num.sin(x) + 2.
+
+nt = plot.newNumArrayTuple( (x, y), ('x', 'y') )
+
+plot.Scatter(nt, 'x', 'y')
+
+plot.prompt("but not for type numarray.Int <return>: ")
+
+npts = 100
+x = num.arange(npts)*2.*num.pi/(npts-1)
+y = num.zeros(npts)   # This forces y to be of type numarray.Int
+yy = 2*num.sin(x) + 2.
+for i, yval in zip(xrange(len(yy)), yy):
+    y[i] = yval
+
+nt = plot.newNumArrayTuple( (x, y), ('x', 'y') )
+
+plot.Scatter(nt, 'x', 'y')
+    
+plot.prompt("Here's what it should look like, using NTuple <return>: ")
+
+nt = plot.newNTuple( (x, y), ('x', 'y') )
+
+plot.Scatter(nt, 'x', 'y', yrange=(0, 4))
+
+
+

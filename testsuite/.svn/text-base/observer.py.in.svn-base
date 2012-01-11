@@ -1,0 +1,48 @@
+"""-*- mode: python -*-
+
+Demonstraton implementing an observer in Python.
+
+  @author Paul F. Kunz <Paul_Kunz@slacs.stanford.edu>
+
+"""
+#
+# $Id: observer.py.in,v 1.1 2005/11/02 16:13:50 pfkeb Exp $
+#
+
+import random
+from time import sleep
+
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import Display
+from hippo import NTuple
+from hippo import NTupleController
+
+ntuple = NTuple ( )
+ntuple.setLabels ( ('X value', ) )
+
+NTupleController.instance().registerNTuple ( ntuple )
+dyhist = Display ( "Histogram", ntuple, ('X value',  ) )
+canvas.addDisplay ( dyhist )
+
+mean = 45
+sigma = 10
+
+gauss = random.gauss
+
+for i in range(1000):
+    x = gauss( mean, sigma )
+    ntuple.addRow ( (x, ) )
+
+from hippo import Observer
+class AxisGen ( Observer ) :
+    def __init__ ( self ):
+        Observer.__init__ ( self )
+    def update ( self, obs ) :
+        print "update called"
+
+gen = AxisGen ()
+
+dyhist.addObserver ( gen )
+

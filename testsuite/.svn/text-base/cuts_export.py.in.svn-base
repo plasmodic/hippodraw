@@ -1,0 +1,58 @@
+""" -*- mode: python -*-
+
+This script tests using cut lists and column lists to create NTuple in memory,
+save to .tnt and .fits files.
+
+Copyright (C) 2002 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: cuts_export.py.in,v 1.1 2006/03/04 17:38:02 xiefang Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance ()
+
+# Create NTuple via its controller so Inspector can see it.
+nt1 = ntc.createNTuple ( '../../hippodraw/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Age', ) )
+canvas.addDisplay( hist )
+hist2 = Display ("Histogram", nt1, ('Cost', ) )
+canvas.addDisplay( hist2 )
+
+# Test adding a cut and setting its range
+from hippo import Cut
+agecut = Cut ( nt1, ('Age', ) )
+canvas.addDisplay ( agecut ) 
+agecut.addTargets ( ( hist, hist2 ) )
+agecut.setCutRange ( 40., 100., 'x' )
+agecut.setLog ( 'y', 1 ) # used to be a bug
+
+# test recursive adding of cuts
+service = Cut ( nt1, ('Service', ) )
+canvas.addDisplay ( service )
+service.addTarget ( agecut )
+service.setCutRange ( 12., 40., 'x')
+
+
+# Create new NTuple with cut and column lists.
+col_list=('Age','Service','Cost')
+cut_list=( agecut, service )
+nt2=Cut.createNTuple ( col_list, cut_list, nt1 )
+ntc.registerNTuple( "create in memory test", nt2 )
+hist3 = Display ("Histogram", nt2, ('Age', ) )
+hist4 = Display ("Histogram", nt2, ('Cost',) )
+canvas.addDisplay ( hist3 )
+canvas.addDisplay ( hist4 )
+
+# Export as TNT and FITS files. Will cover old files.
+#Cut.createTnt ( col_list, cut_list, nt1, "cuts_export.tnt", "export TNT file test");
+#Cut.createFits ( col_list, cut_list, nt1, "cuts_export.fits", "export FITS file test");
+

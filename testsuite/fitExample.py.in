@@ -1,0 +1,228 @@
+""" -*- mode: python -*-
+A demonstration of the interactive analysis capabilities of HippoDraw.
+
+An "observed" dataset is generated following an input distribution,
+power-law or Gaussian, and is fit using HippoDraw's standard menu of
+functions.
+
+The createNTuple method is used to obtain the original and fitted
+distribution, one of which is resampled via its cumulative distribution.
+
+A number of Monte Carlo trials are generated to replicate the
+statistics of the original distribution, and each trial distribution
+is fit with the same function as used for the original.
+
+The trial fit parameters are accumulated and histogrammed, and the
+resulting parameter distributions are analyzed to obtain estimates of
+the uncertainties in the original fit parameters.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: fitExample.py.in,v 1.4 2003/10/02 17:02:38 jchiang Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from setPath import *
+
+import math, random, hippoplotter as plot, numarray
+
+class powerLaw:
+    """
+    A power-law distribution for an index gamma such that
+    
+       dN/dx \propto x^\gamma
+
+    usage: func = powerLaw( gamma, xrange=(xmin, xmax))
+           x = func.deviate()
+    """
+    def __init__(self, gamma, xrange=(0.1, 10)):
+        self.gamma = gamma
+        if gamma == -1:
+            self.norm = math.log(xrange[1]/xrange[0])
+        else:
+            self.norm = self._integral(xrange[1]) - self._integral(xrange[0])
+        self.xr = xrange
+    def _integral(self, x):
+        return x**(1.+self.gamma)/(1. + self.gamma)
+    def deviate(self):
+        xi = random.random()
+        return self.xval(xi)
+    def xval(self, xi):
+        xi *= self.norm
+        if self.gamma == -1:
+            return self.xr[0]*math.exp(xi)
+        else:
+            return math.pow( (self.gamma+1.)*(self._integral(self.xr[0]) + xi),
+                             1./(self.gamma+1.) )
+
+#
+# Create a new NTuple with one column to hold the data.
+#
+nt = plot.newNTuple( ([], ), ("x", ) )
+
+nsamp = 300
+
+funcName = "Gaussian"
+#funcName = "PowerLaw"
+
+if funcName == "PowerLaw":
+    #
+    # Sample a power-law y = x**gamma over a range (0.1, 10).
+    #
+    params = ("Prefactor", "Index" )
+    gamma = -2.
+    
+    func = powerLaw(gamma)
+
+    for i in range(nsamp):
+        x = func.deviate()
+        nt.addRow( (x, ) )
+
+    hist = plot.Histogram( nt, "x", xlog=1, ylog=1, xrange=(0.1, 10) )
+    hist.setBinWidth("x", 2./40.)
+        
+elif funcName == "Gaussian":
+    #
+    # Sample a Gaussian function.
+    #
+    params = ("Mean", "Sigma")
+    mean = 1.
+    sigma = 0.3
+
+    for i in range(nsamp):
+        x = random.gauss(mean, sigma)
+        nt.addRow( (x, ) )
+
+    hist = plot.Histogram( nt, "x", xrange=(0, 2) )
+    hist.setBinWidth("x", 2./40.)
+    
+hist.setTitle("Input and Trial Distributions")
+
+#
+# Fit these data.
+#
+def fitData( display, funcName ):
+    func = plot.hippo.Function( funcName, display.getDataRep() )
+    func.addTo(display)
+    func.fit()
+    paramDict = {}
+    errorDict = {}
+    names = func.parmNames()
+    params = func.parameters()
+    errors = func.principleErrors()
+    for name, param, error in zip(names, params, errors):
+        paramDict[name] = param
+        errorDict[name] = error
+    return (paramDict, errorDict)
+
+(fitParams, fitErrors) = fitData( hist, funcName )
+
+#
+# Get the NTuple of the plotted data
+#
+nt2 = hist.createNTuple()
+
+class integralDist:
+    "Create an integral distribution from a HippoDraw NTuple"
+    def __init__(self, nt, x, y, wt=None):
+        self.x = numarray.array(nt.getColumn(x))
+        self.y = numarray.array(nt.getColumn(y))
+        if wt:
+            self.wt = numarray.array(nt.getColumn(wt))
+            self.y *= self.wt    # Get back the number of events in each bin
+        self.yint = [0]
+        for i in range(1, len(self.y)):
+            self.yint.append(self.yint[-1] + self.y[i])
+        self.yint = numarray.array(self.yint)/self.yint[-1]
+    def deviate(self):
+        """
+        Return a random deviate distributed as the selected NTuple
+        distribution.
+        """
+        import bisect
+        xi = random.random()
+        i = bisect.bisect( self.yint, xi )
+        return ( (xi - self.yint[i-1])/(self.yint[i] - self.yint[i-1])
+                 *(self.x[i] - self.x[i-1]) + self.x[i-1] )
+    
+#
+# An integralDist object for resampling the original distribution.
+#
+int_dist = integralDist(nt2, "x", funcName, "Width")
+
+#
+# Create a circular buffer to contain the data for each MC trial
+# dataset.
+#
+ntc = plot.hippo.NTupleController.instance()
+buffer = ntc.createCircularBuffer(1)
+buffer.setLabels( ("x", ) )
+buffer.reserve(nsamp)
+
+#
+# Generate the MC trials to sample parameter space
+#
+paramDisp = []
+ntrials = 500
+print "Generating %i trials..." % ntrials
+for i in range(ntrials):
+    #
+    # Draw from the fitted distribution.
+    #
+    for j in range(nsamp):
+        x = int_dist.deviate()
+        buffer.addRow( (x, ) )
+
+    if i == 0:
+        #
+        # Create a display, but don't add it to the canvas.
+        #
+        myDisplay = plot.hippo.Display( "Histogram", buffer , ("x", ) )
+        if funcName == "PowerLaw":
+            myDisplay.setLog("x", 1)
+            myDisplay.setLog("y", 1)
+            myDisplay.setRange("x", 0.1, 10)
+            myDisplay.setBinWidth("x", 2./40.)
+        #
+        # Add the current trial datarep to the original data display.
+        #
+        myRep = myDisplay.getDataRep()
+        hist.addDataRep(myRep)
+        myRep.setColor( "green" )
+        #
+        # Fit the trial dataset with the same function as the original,
+        # and plot the distributions of fit parameters.
+        #
+        func2 = plot.hippo.Function( funcName, myDisplay.getDataRep() )
+        func2.addTo( myDisplay )
+        fitNames = func2.parmNames()
+        cols = []
+        for name in fitNames: cols.append([])
+        nt_fit = plot.newNTuple( cols, fitNames )
+        for param in params:
+            paramDisp.append( plot.Histogram(nt_fit, param) )
+        scatter = plot.Scatter( nt_fit, fitNames[-2], fitNames[-1] )
+        scatterRep = scatter.getDataRep()
+        scatterRep.setErrorDisplay("y", 0)
+    #
+    # Set the parameter values to the ones fit for the original dataset,
+    # but slightly tweaked to avoid biasing the fit.
+    #
+    setParams = []
+    for name in func2.parmNames():
+        offsetScale = 1. + (0.5 - random.random())/10.
+        setParams.append(fitParams[name]*offsetScale)
+    func2.setParameters(setParams)
+    func2.fit()
+    fit2Params = func2.parameters()
+    nt_fit.addRow(fit2Params)
+
+for name, disp in zip(params, paramDisp):
+    (fit2Params, fit2Errors) = fitData( disp, "Gaussian" )
+    print "%s = %.4f +/- %.4f (+/- %.4f)" % (name, fitParams[name], fit2Params["Sigma"], fitErrors[name])

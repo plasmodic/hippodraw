@@ -1,0 +1,269 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/49201/tools/hippodraw/trunk/projectors
+END
+LineProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/LineProjector.cxx
+END
+StHist1DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/StHist1DProjector.h
+END
+DyHist1DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/DyHist1DProjector.cxx
+END
+StHist2DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/StHist2DProjector.h
+END
+DyHist2DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/DyHist2DProjector.cxx
+END
+NTupleProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/NTupleProjector.h
+END
+Map1Projector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/Map1Projector.cxx
+END
+Map3Projector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Map3Projector.cxx
+END
+MapMatrixProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/MapMatrixProjector.cxx
+END
+ProjectorHelper.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/ProjectorHelper.h
+END
+Hist1DProjImp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Hist1DProjImp.cxx
+END
+Hist2DProjImp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Hist2DProjImp.cxx
+END
+BinningProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/BinningProjector.h
+END
+ProjectorBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/ProjectorBase.cxx
+END
+LineProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/LineProjector.h
+END
+DyHist1DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/DyHist1DProjector.h
+END
+EqualEntriesHist1DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 84
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/EqualEntriesHist1DProjector.cxx
+END
+projectors.dir
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/projectors.dir
+END
+DyHist2DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/DyHist2DProjector.h
+END
+Map1Projector.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Map1Projector.h
+END
+StripChartProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/StripChartProjector.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/48411/tools/hippodraw/trunk/projectors/CMakeLists.txt
+END
+Map3Projector.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Map3Projector.h
+END
+FunctionProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/FunctionProjector.cxx
+END
+Profile2DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Profile2DProjector.cxx
+END
+MapMatrixProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/MapMatrixProjector.h
+END
+Hist1DProjImp.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Hist1DProjImp.h
+END
+Hist2DProjImp.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Hist2DProjImp.h
+END
+MeshProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/MeshProjector.cxx
+END
+Map2Projector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/Map2Projector.cxx
+END
+ProjectorBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/ProjectorBase.h
+END
+ProfileProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47803/tools/hippodraw/trunk/projectors/ProfileProjector.cxx
+END
+EqualEntriesHist1DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/EqualEntriesHist1DProjector.h
+END
+StHist1DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/StHist1DProjector.cxx
+END
+StHist2DProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/StHist2DProjector.cxx
+END
+NTupleProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/49201/tools/hippodraw/trunk/projectors/NTupleProjector.cxx
+END
+StripChartProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/StripChartProjector.h
+END
+FunctionProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/FunctionProjector.h
+END
+Profile2DProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Profile2DProjector.h
+END
+ProjectorHelper.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/ProjectorHelper.cxx
+END
+MeshProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/MeshProjector.h
+END
+Map2Projector.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/Map2Projector.h
+END
+BinningProjector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/BinningProjector.cxx
+END
+ProfileProjector.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/projectors/ProfileProjector.h
+END

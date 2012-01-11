@@ -1,0 +1,81 @@
+""" -*- mode:python -*-
+
+Test of RootNTuple class
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import RootController, Display
+rc = RootController.instance()
+
+print "Try to openfile that doesn't exist"
+filename = "Bad_filename"
+try :
+    rc.getNTupleNames ( filename )
+except RuntimeError, detail :
+    print detail
+
+filename = "/nfs/farm/g/glast/u33/InstrumentAnalysis/MC/EngineeringModel-v6r070329p28/Surface_muons/surface_muons_4M_merit.root"
+
+print "Opening file ", filename
+ntuple_names = rc.getNTupleNames ( filename  )
+print "In this file, tree names are ", ntuple_names
+
+
+name = ntuple_names[1]
+
+
+ntuple = rc.createNTuple ( filename, name )
+print "Number of columns = ", ntuple.columns
+print "Column labels are ..."
+print ntuple.getLabels()
+
+print "Number of rows = ", ntuple.rows
+
+
+hist = Display ( "Histogram", ntuple, ('TkrEnergyCorr', ) )
+canvas.addDisplay ( hist )
+
+hist.setLog ( 'y', True )
+
+print "Try getting column with invalid label..."
+
+try :
+    event_ids = ntuple.getColumn ( 'Evnet_ID' )
+except RuntimeError, detail :
+    print detail
+
+event_ids = ntuple.getColumn ( 'EvtEventId' )
+
+print event_ids[:10]
+
+print "Try to access bad column ..."
+try :
+    events = ntuple.getColumn ( 500 )
+except RuntimeError, detail :
+    print detail
+
+
+sum = 0.
+for x in event_ids :
+    sum += x
+
+rows = ntuple.rows
+print "Average event id is ", sum/rows
+
+## badname = "surface_muons_2M_svac.root"
+
+## nt = rc.createNTuple ( badname, "Output" )
+
+## print "Try to use a unusable branch"
+## try :
+##     badhist = Display ( "Histogram", nt, ( 'TkrReq', ) )
+## except RuntimeError, detail :
+##     print detail
+

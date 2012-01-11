@@ -1,0 +1,19 @@
+$Id: README,v 1.15 2006/09/24 20:21:32 pfkeb Exp $
+
+   This HippoDraw distribution is for building and installing
+HippoDraw application and its Python extension module on an UNIX-like
+platforms.   See the INSTALL file for instructions.
+
+   Building HippoDraw under Windows requires a Trolltech Qt commercial
+license, Thus, for Windows users a Microsoft installer file is
+provided at
+
+ftp://ftp.slac.stanford.edu/users/pfkeb/hippodraw/hippodraw-*.msi
+
+   
+   Comments, bug reports, etc.  on the application should be send to
+me at
+	Paul_Kunz@slac.stanford.edu
+
+Please, send one comment per e-mail item.
+

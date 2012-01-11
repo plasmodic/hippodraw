@@ -1,0 +1,26 @@
+/* -*- mode:c++ -*- */
+
+/** @file numeric Numeric component of C++ standard library.
+
+List of functions used by @b HippoDraw from the
+numeric component of the C++ standard library.
+
+@note This list may be incomplete.
+
+*/
+
+namespace std {
+
+/** @brief A C++ standard library function.
+
+    Accumulates into @a initial the sum of the elements in the range.
+*/
+  template < typename InputIterator, typename Type >
+    Type
+    accumulate ( InputIterator first,
+		 InputIterator last,
+		 Type init );
+
+
+
+};

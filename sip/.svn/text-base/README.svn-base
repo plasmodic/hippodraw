@@ -1,0 +1,20 @@
+   This directory contains source code for building a HippoDraw Python
+extension module using SIP, see
+
+   http://www.riverbankcomputing.co.uk/sip/index.php
+
+for overview.   SIP is used to build PyQt, see
+
+   http://www.riverbankcomputing.co.uk/pyqt/index.php
+
+It appears that in order to use PyQt, a SIP based HippoDraw Python
+extension moulde must be used as there are conflicts with a
+Boost.Python based one.
+
+   By default, this module will not be built.  It requires that SIP
+and PyQt have been installed.  It also requires access to PyQt source
+code.  To build it, first edit the Makefile.am file in this directory
+to set the PYQT_SRCS macro to the path to the PyQt SIP source
+code. Then run configure with the `--enable-sipbuild' option.
+
+   

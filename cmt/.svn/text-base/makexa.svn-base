@@ -1,0 +1,6 @@
+#!/bin/sh -f
+
+cd ../examples
+find ../msdevstudio -name "*.py" -print -exec cp {} . \;
+find . -name "*.py" -print -exec ../cmt/subs {} \;
+

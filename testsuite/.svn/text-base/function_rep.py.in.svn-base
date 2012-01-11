@@ -1,0 +1,107 @@
+""" -*- mode:python -*-
+
+Demonstrates implement function in Python derived from the C++
+abstract base class.  Also demonstrates use of the fitter from Python,
+without using the GUI
+
+@author Paul F. Kunz <paul_kunz@slac.stanford.edu>
+
+"""
+#
+#$Id: function_rep.py.in,v 1.2 2007/05/17 17:57:10 pfkeb Exp $
+#
+
+from setPath import *
+
+import random, numarray
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+
+#
+# Define a class in Python that is derived from C++ base class
+#
+from hippo import FunctionBase
+class Linear ( FunctionBase ) :
+    def __init__ ( self, other = None ) :
+        if other : # copy constructor
+            FunctionBase.__init__( self, other )
+        else : # default constructor
+            FunctionBase.__init__( self )
+            self.initialize ()
+
+    def initialize ( self ) :
+        self.setName ( 'linear' )
+        self.setParmNames ( [ 'Intercept', 'Slope' ] )
+        self.setParameters ( [ intercept, slope ] )
+    
+    def valueAt ( self, x ) :
+        parms = self.getParameters ()
+        
+        return x * parms[1] + parms[0]
+
+    def derivByParm ( self, i, x ) :
+        if i == 0 :
+            return 1.0
+        if i == 1 :
+            return x
+
+gauss = random.gauss
+
+# Generate some data using numarray
+npts = 20
+x = numarray.arange(npts)
+y = numarray.array( [gauss(slope*xx + intercept, sigma) for xx in x] )
+xerr = numarray.ones ( npts )
+yerr = sigma*numarray.ones(npts)
+
+# Create a DataArray and register it so that the Inspector can display it.
+# The DataArray is will wrap a DataSource of type NTuple.
+
+from hippo import DataArray
+da = DataArray ( 'NTuple' ) # use NTuple to store data
+da.register ( 'randomized line' ) # name the data source
+
+# Fill the contents by adding named columns in the order expected by
+# the fitter (more later)
+
+da['x'] =  x
+da['y'] =  y
+da['xerr'] = xerr
+da['yerr'] = yerr
+
+# Create an XY plot, ignoring xerr, and add it to the canvas.
+import hippo
+app = hippo.HDApp()
+canvas = app.canvas()
+
+from hippo import Display
+disp = Display ('XY Plot', da, ('x', 'y', 'nil', 'yerr' ) )
+canvas.addDisplay ( disp )
+
+
+# Get the name of the available fitters from the factory
+from hippo import FitterFactory
+factory = FitterFactory.instance()
+fitters = factory.names()
+print fitters
+
+# Create a fitter, in this case Minuit Migrad algorithm with Chi Sq
+migrad = factory.create ( fitters[1] )
+print migrad.name()
+
+
+# create a function
+f = Linear ()
+print f.name()
+print f.parmNames()
+
+
+frep = hippo.Function ( f )
+
+fdisp = Display ( frep )
+fdisp.setRange ( 'x', 0, 20 )
+fdisp.setRange ( 'y', 0, 50 )
+canvas.addDisplay ( fdisp )
+

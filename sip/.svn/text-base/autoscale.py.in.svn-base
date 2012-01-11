@@ -1,0 +1,27 @@
+from sihippo import *
+from qt import *
+from random import randint
+import sys
+
+app = QApplication ( sys.argv )
+wc = WindowController.instance()
+canvas = CanvasWindow()
+canvas.show()
+ntScan = NTupleController.instance()
+NtThrScan = ntScan.createNTuple( ["x","y"] )
+dc = DisplayController.instance()
+PlotThrScan = dc.createDisplay ('Color Plot', NtThrScan, ["x", "y"])
+xp= dc.createDisplay ('Histogram', NtThrScan, ["x"])
+yp = dc.createDisplay ('Histogram', NtThrScan, ["y"])
+#PlotThrScan.setRange('x', 0 , 24 )
+#PlotThrScan.setRange('y', 0 , 61 )
+#PlotThrScan.setRange('z', 0, 99  )
+canvas.addDisplay(PlotThrScan)
+canvas.addDisplay(xp)
+canvas.addDisplay(yp)
+NtThrScan.setIntervalCount(1)
+for i in range(1000):
+  x = randint(0,24)
+  y = randint(0,61)
+  NtThrScan.addRow([x,y])
+app.exec_loop()

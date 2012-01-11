@@ -1,0 +1,18 @@
+$Id: INSTALL,v 1.81 2005/09/24 20:09:34 pfkeb Exp $
+
+HippoDraa is installed with the standard configure, make, make install
+dance.  If you are familiar with the GNU auto-tools, you can probably
+figure out how to install HippoDraw by doing a ...
+
+> ./configure --help
+
+and supplying the options needed for your system.
+
+If this fails, or you want to read
+
+http://www.slac.stanford.edu/grp/ek/hippodraw/install_notes.html
+
+for detailed instructions, .  Or, if you are off the internet, then
+the file doc/install.txt is the source for the Doxggen generated
+doumentation pointed to above.
+

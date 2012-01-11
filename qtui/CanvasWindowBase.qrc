@@ -1,0 +1,18 @@
+<RCC>
+    <qresource prefix="/CanvasWindowBase" >
+        <file>images/open-file.png</file>
+        <file>images/save.png</file>
+        <file>images/cut.png</file>
+        <file>images/copy.png</file>
+        <file>images/paste.png</file>
+        <file>images/print.png</file>
+        <file>images/new.png</file>
+        <file>images/zoom.png</file>
+        <file>images/previous.png</file>
+        <file>images/next.png</file>
+        <file>images/drag-cut-edge.png</file>
+        <file>images/click-cut-edge.png</file>
+        <file>images/drag-cut-position.png</file>
+        <file>images/pick-points.png</file>
+    </qresource>
+</RCC>

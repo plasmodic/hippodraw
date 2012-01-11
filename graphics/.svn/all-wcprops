@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/60908/tools/hippodraw/trunk/graphics
+END
+Point.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Point.h
+END
+Color.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Color.cxx
+END
+GroupViewBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/GroupViewBase.cxx
+END
+EpsView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/60908/tools/hippodraw/trunk/graphics/EpsView.cxx
+END
+FontBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/FontBase.h
+END
+ViewFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/ViewFactory.h
+END
+Rectangle.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Rectangle.h
+END
+Point.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Point.cxx
+END
+DataView.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60761/tools/hippodraw/trunk/graphics/DataView.h
+END
+ViewBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60761/tools/hippodraw/trunk/graphics/ViewBase.h
+END
+SymbolType.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/SymbolType.h
+END
+LineStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/LineStyle.h
+END
+Size.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Size.h
+END
+ViewFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/ViewFactory.cxx
+END
+Color.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Color.h
+END
+Rectangle.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Rectangle.cxx
+END
+DataView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/60761/tools/hippodraw/trunk/graphics/DataView.cxx
+END
+ViewBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/ViewBase.cxx
+END
+GroupViewBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/GroupViewBase.h
+END
+EpsView.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/60908/tools/hippodraw/trunk/graphics/EpsView.h
+END
+SymbolType.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/SymbolType.cxx
+END
+LineStyle.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/LineStyle.cxx
+END
+Size.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/Size.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/graphics/CMakeLists.txt
+END
+graphics.dir
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/graphics/graphics.dir
+END

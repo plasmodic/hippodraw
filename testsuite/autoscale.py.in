@@ -1,0 +1,25 @@
+""" -*- mode:python -*-
+
+Demonstrates a former bug in autoscaling under the fillowing
+condition.  Start by displaying an empty ntuple on the canvas.  Then
+add one event at x = 300.
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+from hippo import *
+
+nt = NTuple ( 1 )
+nt.setLabels ( ['x'] )
+
+h = Display ( "Histogram", nt, ('x', ) )
+canvas.addDisplay ( h )
+
+nt.addRow ( [ 300. ] )
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+

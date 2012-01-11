@@ -1,0 +1,608 @@
+/** @page pythonoverview_root Python extension modules
+
+The @b HippoDraw library can be used with the
+<a href="http://www.python.org"> Python </a>programming language.  To do
+that, a Python extension module is built so that the C++ classes
+appear as Python classes.  Two different extension modules can be
+built and they have a different interface.  The first is @ref
+python_interact designed to for interactive use or from a Python script
+This is the @em hippo Python extension module.
+With it, @b HippoDraw can be manipulated interactively or via scripts
+written in Python.  The second, is @ref python_appli designed for use
+with
+<a href="http://www.riverbankcomputing.co.uk/pyqt/index.php">PyQt</a>.
+It is the @em sihippo Python extension module.
+The two uses are quite different and thus the interface is different.
+
+For interactive use of @b HippoDraw, the
+<a href="http://www.boost.org/libs/python/doc/index.html"> Boost.Python
+</a> package is used to build the extension module.  Version 2 of
+Boost.Python is required.  It is distributed as part of the
+<a href="http://www.boost.org"> Boost </a> distribution since version
+1.29.0.  This version is simpler and has less problems with common
+C++ compilers then version 1.  The source code for building the Python
+extension module with Boost.Python is in the @c python subdirectory.
+
+To write applications using
+<a href="http://www.trolltech.com/products/qt/index.html"> Qt
+</a> with Python, the
+<a href="http://www.riverbankcomputing.co.uk/pyqt/index.php"> PyQt </a>
+package can be used.  PyQt uses the
+<a href="http://www.riverbankcomputing.co.uk/sip/index.php"> SIP </a>
+package to build the Python extension module.  Before SIP version 4,
+SIP and Boost.Python appeared to be incompatible (see the discussion in
+<a href="http://mats.gmd.de/mailman/listinfo/pykde"> PyKDE </a> and
+<a href="http://mail.python.org/mailman/listinfo/c++-sig"> Python C++-sig
+</a> mailing list archives).  This maybe fixed with version 4, but it
+has not been tested. Thus, @b HippoDraw has an Python extension module
+built with SIP as well.  All the sip interface sources are in the @c
+sip subdirectory.
+
+Note that the Python extension modules built with Boost.Python seem to
+be compatible with ones build with <a href="http://www.swig.org">SWIG
+</a>.  As there are many more Python extension modules built with SWIG
+or Boost.Python than with SIP, the Boost.Python built module for @b
+HippoDraw is always built, while the SIP one is optional.
+
+*/
+
+/**
+@page python_interact Python extension module tutorial
+
+The @b hippo Python extension module is designed to be used interactively
+or via Python scripts.  Thus the interface is somewhat different from
+the C++ interface to the @b HippoDraw library.
+
+Using @b %HippoDraw interactively can be as simple as two lines of Python
+code.     Below is an example session.
+
+@verbatim
+> python
+Python 2.4 (#2, Apr 15 2005, 17:09:59)
+[GCC 3.4.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import hippo
+>>> app = hippo.HDApp()
+>>>
+@endverbatim
+
+Obviously, even typing these two lines for every session can get
+boring.  Instead one can put the commands in a file and use that as
+initialization step for the Python session.  For example, the 
+file, @em canvas.py, in the testsuite directory contains
+
+@verbatim
+import hippo
+app = hippo.HDApp()
+canvas = app.canvas()
+@endverbatim
+
+where we also show how to get a handle on the current canvas window.
+One can run this script from a UNIX shell or Windows command prompt
+like this
+
+@verbatim
+> python -i canvas.py
+>>>
+@endverbatim
+
+This launches the complete @b %HippoDraw application in a separate thread
+with the ability to interact with it from the Python shell. 
+
+@section python_interact_help Getting help and documentation
+
+Python has interactive help system.   The get all help for the @em hippo module, just do the following...
+
+@verbatim
+> python
+Python 2.4 (#2, Apr 15 2005, 17:09:59)
+[GCC 3.4.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import hippo
+>>> help ( hippo )
+@endverbatim
+
+This gives you all the built-in documentation in a pager like the UNIX
+@em more or @em less command which is not always convienent.  However,
+one can get the documentation on one class by ...
+
+@verbatim
+> python
+Python 2.4 (#2, Apr 15 2005, 17:09:59)
+[GCC 3.4.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import hippo
+>>> help ( hippo.HDApp )
+@endverbatim
+
+Or even one member function like this ...
+
+@verbatim
+> python
+Python 2.4 (#2, Apr 15 2005, 17:09:59)
+[GCC 3.4.3] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import hippo
+>>> help ( hippo.HDApp.canvas )
+@endverbatim
+
+
+Another way to access the same information is to use the @em pydoc
+program that came with your Python installation (except under Windows).
+
+@verbatim
+> pydoc hippo
+@endverbatim
+
+This also gives you all the built-in help in a pager.  Probably the
+most convienent method is to generate html version of the
+documentation.  You do this by typing ...
+
+@verbatim
+> pydoc -w hippo
+@endverbatim
+
+and a <em> hippo.html </em> file is created in your working directory.
+<a href="hippo.html">Here</a> is what it looks like.  Not very pretty,
+but it is the standard ouput from @em pydoc.  You can use this link as
+your documentation for @b HippoDraw.  However, it will get updated for
+each release and you may be using an older version.
+
+
+The following sections shows and explains some example script.  See
+also @ref examples_page for more examples
+
+@section python_interact_generate Creating the NTuple in Python
+
+One might generate some data in Python that you want to display with
+@b %HippoDraw. For example, you could generate a Python list with
+random Gaussian distribution like this
+
+
+@verbatim
+>>> import random
+>>> x = []
+>>> for i in range ( 10000 ) :
+...     x.append ( random.gauss ( 45, 10 ) )
+...
+>>>
+@endverbatim
+
+To display the data as a histogram, one can then type
+
+@verbatim
+>>> from hippo import Display
+>>> hist = Display ( 'Histogram', ( x, ), ('Gaussian', ) )
+>>> canvas.addDisplay ( hist )
+>>>
+@endverbatim
+
+The first argument to the Display function specifies the type of
+display to create.  The second is a Python tuple of Python list
+objects that will be used by the display.  The third argument is a
+Python tuple of string labels for the lists.
+
+You can now modify the plot, for example, changing the width of the
+bins in two ways.  From the Python shell, one can invoke a member
+function of the histogram object like this...
+
+@verbatim
+>>> hist.setBinWidth ( 'x', 2 )
+>>>
+@endverbatim
+
+But it is much easier to use @ref inspector_axis and change it with
+the slider or text field.
+
+The function created a DataSource called a ListTuple.  It holds
+references to the Python list objects as columns.  The list is not
+copied, just referenced. It also holds the labels of each column.
+Displays don't redraw themselves unless they know there's been a
+change, like changing the bin width.  But should the contents of your
+Python list change, the Display wouldn't know about it.  But you can
+force the display to redraw like this...
+
+@verbatim
+>>> hist.update()
+>>>
+@endverbatim
+
+The Python tuple of strings provide the data source labels, but they
+also giving the bindings of the displays to the data source.  Some
+displays have binding that are optional.  For the example, an "XY
+Plot" display had binding for the X and Y axis, and optionally, for an
+error on X or Y.  To say which optional bindings not to use the "nil"
+column label is used.  The we can do the following
+
+
+@verbinclude examples/simple_xyplot.py
+
+The "nil" string can also be use by the @ref inspector_data as well.
+Note in this example, we used list of lists instead of tuple of lists.
+Either can be used.
+
+Speaking of the @b Data @b %Inspector, sometimes it is more convenient
+to give @b HippoDraw all the data you might want to use for displays,
+and use the @b Data @b %Inspector to create them.  To do this, one
+creates a DataSource manually.  There are three kinds supported:
+ListTuple, NTuple, and NumArrayTuple.  They share a common interface
+and differ on how they store the column data.  As we've seen, the
+ListTuple stores references to Python list objects.  The NTuple makes
+copies of Python list objects and stores it internally as a C++ vector
+of doubles.  The NumArrayTuple stores references to rank 1
+<a href="http://www.stsci.edu/resources/software_hardware/numarray">
+numarray </a> objects.  The NTuple has the feature that you can add
+and replace rows or columns.
+
+Creating displays with the %DataInspector doesn't preclude one from
+also creating them with Python.  The interface is similar to what
+we've already seen.  For example
+
+@verbatim
+>>> energy = [90.74, 91.06, 91.43, 91.5, 92.16, 92.22, 92.96, 89.24, 89.98 ]
+>>> sigma  = [ 29.0, 30.0,  28.40, 28.8, 21.95, 22.9,  13.5,   4.5,  10.8 ]
+>>> errors = [  5.9,  3.15,  3.0,   5.8,  7.9,   3.1,   4.6,   3.5,   4.6,]
+>>> ntuple = NTuple () # an empty NTuple
+>>> ntc = NTupleController.instance ()
+>>> ntc.registerNTuple ( ntuple )
+>>> ntuple.addColumn ( 'Energy', energy )
+>>> ntuple.addColumn ( 'Sigma', sigma )
+>>> ntuple.addColumn ( 'error', errors )
+
+>>> xy = Display ( "XY Plot", ntuple,  ('Energy', 'Sigma', 'nil', 'error' ) )
+>>> canvas.addDisplay ( xy )
+>>>
+@endverbatim
+
+Registering the ntuple with the NTupleController is necessary in order
+for the @b Data @b %Inspector to know of their existence.
+
+@section python_interact_file Getting data from a file
+
+An %NTuple data source can also be created by reading a plain text
+file.  See @ref file_ascii for the details.  The example file, @em
+histogram.py, in the testsuite directory shows how to read a file and
+create displays from Python.  It contains ...
+
+@includelineno histogram.py
+
+After reading a @b %HippoDraw compatible @ref ntuple_root file, this
+Python script creates two displays.  It sets the range on the first
+and the bin width on the second.  The results of running this script
+are shown below.
+
+@image html hist_2.png Result of using @em histogram.py
+@image latex hist_2.eps Result of using @em histogram.py
+
+The @c Display class is actually a small wrapper around the internal
+@b %HippoDraw C++ library class.  It is needed because Qt is running in a
+separate thread from Python.  Since creating a display and perhaps
+modifying it requires interaction with Qt's event loop, the
+application must be locked before calling a member function of the
+actual @b %HippoDraw class and then unlocked when returning.
+
+@section python_interact_hippoplotter Using the hippoplotter interface
+
+Making use of Python's default parameter value feature in calling
+functions, Jim Chiang has extended the %HippoDraw interface with his
+@ref hippoplotter.
+
+The file, @em pl_exp_test.py, in the testsuite directory shows an
+example of using this module.
+
+@verbinclude pl_exp_test.py
+
+The above script leads to the canvas shown below
+
+@image html hist_exp.png Results of @em pl_exp_test.py script
+@image latex hist_exp.eps Results of @em pl_exp_test.py script
+
+@section python_interact_extract Extracting data from a display
+
+The interaction with @b %HippoDraw from Python is not just one direction.
+Once can extract data from the displays and use them in Python.  The
+file @em function_ntuple.py illustrates this...
+
+@includelineno function_ntuple.py
+
+Like the previous script, it fits two functions to a histogram.  It
+also shows how to extract the function parameter names and their
+values.  Near the end of the script, one extracts the contents of the
+histogram bins in the form of an %NTuple.  In the @c for loop at the
+end, one uses the %NTuple to calculate the residuals between the
+function and the bin contents and put them in a Python list.  The the
+list is added as a column to the %NTuple.  Finally, one creates an
+XYPlot to display them and adds it to the canvas.  The result looks
+like this...
+
+@image html hist_resid.png Results of @em function_ntuple.py
+@image latex hist_resid.eps Results of @em function_ntuple.py
+
+However, one didn't have to write this script to plot the residuals,
+as the is a control in the @ref inspector_functions that does it for
+you.
+
+@section python_interact_fits Using a FITS file 
+
+A <a href="http://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html">
+FITS</a> file can be used as input to @b HippoDraw.   
+Here's how one can it to view an image of the EGRET All-Sky survey
+from such a file
+
+@includelineno egret.py
+
+The resulting canvas is shown below
+
+@image html canvas_egret.png The EGRET All-Sky survey.
+@image latex canvas_egret.eps The EGRET All-Sky survey.
+
+The FITS data format is a standard astronomical data and mandated by
+NASA for some projects.  It supports images as well as binary or ASCII
+tables.  A FITS table is essentially a %NTuple with added information
+in the form of keyword-value pairs.  James Chiang also wrote the
+following Python function to convert a FITS table to a @b %HippoDraw
+%NTuple.
+
+@includelineno python/FitsNTuple.py
+
+@section python_interact_root Using ROOT files
+
+Another example is reading a <a href="http://root.cern.ch">ROOT</a>
+file that has the form of an ntuple as define in @ref
+ntuple_roottuple.  The Python code might look like this...
+
+@includelineno svac.py
+
+This script not only uses ROOT, but it also uses numarray.  It
+converts a ROOT brach into a numarray array so it can do vector
+calculations.  The ROOT C++ macro to do the equivalent of the above
+Python script would be considerable more complex.
+
+@section python_interact_limitations  Limitations.
+
+With this release, not all of @b %HippoDraw's C++ library is exposed to
+Python.  Although this could be done, it is thought to be not
+necessary.  Rather, selected higher level components are exposed in
+one of two ways.  Some classes are exposed directly with a one to one
+relationship between the C++ member functions and Python member
+functions.  An example is the NTuple class.  
+
+One can view the reference documentation for the hippo extension
+module with Python's online help command, One can also use the pydoc
+program to view it or generated HTML file with the command "pydoc -w
+hippo".
+
+In order to be able to have an interactive Python session that
+interacts with the @b %HippoDraw canvas items and at the same time have
+interaction with the same items from the %Inspector, it was necessary to
+run the @b %HippoDraw application object in a separate thread.
+Threading conflicts could then occur.  Thus some of @b %HippoDraw's C++
+classes are exposed to Python via a thin wrapper class which locks the
+Qt application object before invoking an action and unlocks it when
+done.
+
+One good thing about Python is that what ever you do, Python never
+crashes. Thus, what ever you do with the @b %HippoDraw extension module
+should not crash Python.  An interactive user, however, can easily
+mis-type an argument to a function.  For example, he could try to create
+a display with "ContourPlot" instead of "Contour Plot".  For such
+errors, the C++ library throws a C++ exception.  The @b %HippoDraw
+extension module catches them and translates them to a Python
+exception.  Thus, when the Python user makes an error, he will receive
+a message instead of crashing his session.
+
+Another reason the wrapper classes exist is to try to present a more
+Python "interactive friendly" interface to the user than the raw C++
+interface which was designed for the application writer.  With this
+release, it is not clear what a more "friendly" interface should look
+like.  Maybe the Python extension module should be closer to the C++
+interface and provide Python classes to wrap them in a more friendly
+way like James Chiang has done.  Feed back on this topic would be very
+welcome.
+
+
+*/
+
+/**
+@page python_appli Python extension module: sihippo
+
+Applications can be written using @b HippoDraw library in either C++
+or Python.  The @b HippoDraw's @em sihippo Python extension module is
+used with
+<a href="http://www.riverbankcomputing.co.uk/pyqt/index.php">PyQt</a>.
+Thus it uses the
+<a href="http://www.riverbankcomputing.co.uk/sip/index.php"> SIP </a>
+tool to built the Python extension module.  Modules built with SIP
+are not compatible with those built with SWIG or Boost.Python.
+
+A complete @b HippoDraw application written in Python can be as simple
+as this...
+
+
+@verbatim
+
+> python
+Python 2.2.3 (#1, Jun 21 2003, 08:34:26)
+[GCC 3.2.2 20030222 (Red Hat Linux 3.2.2-5)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>> import sys
+>>> from qt import *
+>>> app = QApplication ( sys.argv )
+>>> from sihippo import *
+>>> window = CanvasWindow()
+>>> window.show()
+>>> app.exec_loop()
+
+@endverbatim
+
+This produces the equivalent of the @b HippoDraw stand-a-lone
+application.  
+
+With this release, Not all of @b HippoDraw's C++ library has been
+exposed to Python.  Although this could be done, as was done with
+PyQt, it is not believed to be necessary.  Rather, selected high level
+components have been exposed.  More can be exposed in future releases
+as needed.
+
+It is perhaps more interesting to add the @b HippoDraw to an existing
+application.  This can be done by using a @b HippoDraw display as a Qt
+widget, or by adding a canvas window and %Inspector to an existing
+application.
+
+The @em testwidget.py file in the @em sip subdirectory demonstrates
+using @b HippoDraw library as a Qt widget.  Its contents is...
+
+@code
+
+import sys
+from qt import *
+
+app = QApplication ( sys.argv )
+
+from sihippo import *
+
+ntc = NTupleController.instance()
+nt = ntc.createNTuple ( '../../hippodraw/examples/aptuple.tnt )
+
+dc = DisplayController.instance();
+plotter = dc.createDisplay ( "Histogram", nt, [ 'Cost' ] )
+
+view = QtViewWidget()
+view.setPlotter ( plotter )
+
+view.resize ( 400, 400 )
+app.setMainWidget ( view )
+view.setCaption ( "Qt Hippodraw - View widget" )
+view.show()
+
+app.exec_loop()
+
+@endcode
+
+Note that the @b HippoDraw library interface with SIP mirrors the C++
+interface.  Also since calls to these member functions are being done
+from the same thread as the one that Qt %QApplication object created,
+no locking or unlocking of the application is needed.
+
+The results looks like this...
+
+@image html widget_window.png Window with HippoDraw Qt widget.
+@image latex widget_window.eps Window with HippoDraw Qt widget.
+
+
+At SLAC, a data acquisition system was built entirely with Python and
+PyQt. @b HippoDraw was added to it to display the collected data.  The
+run control panel is initialized in its @c startup member function
+like this...
+
+@code
+
+
+import sys
+from qt import *
+from sihippo import *
+
+import RunControl as rc
+
+def startup():
+  # Start up run control
+  app    = QApplication(sys.argv)
+  QObject.connect(app, SIGNAL("lastWindowClosed()"), app, SLOT("quit()"))
+
+  canvas = CanvasWindow()
+  canvas.show()
+  
+  runCtl = rc.RunControl()
+  app.setMainWidget(runCtl)
+  runCtl.show()
+
+  app.exec_loop()
+
+@endcode
+
+The result is a run control panel, a @b HippoDraw @ref canvas_root and
+the @b HippoDraw @ref inspector_root.  Elsewhere, this example
+application creates two empty one column NTuples to monitor the run.
+The code looks like this
+
+@code
+
+    label1 = ['Strip Hits']
+    label2 = ['Event Size']
+    ntc = NTupleController.instance()
+    self.__nt = ntc.createNTuple(1)
+    self.__nt2 = ntc.createNTuple ( label2 )
+    self.__nt.setTitle('Event Readout #1')
+    self.__nt2.setTitle('Event Readout #2')
+    self.__nt.setLabels(label1)
+    self.__nt.reserve ( 512 )
+    self.__nt2.reserve ( 512 )
+
+@endcode
+
+Later in this application's code, two displays are created like this...
+
+@code
+
+    wc = WindowController.instance()
+    canvas = wc.currentCanvas()
+    dc = DisplayController.instance()
+    hist = dc.createDisplay ( 'Histogram', self.__nt, label1 )
+    hist2 = dc.createDisplay ( 'Histogram', self.__nt2, label2 )
+    canvas.addDisplay(hist)
+    canvas.addDisplay(hist2)
+    self.__nt.setIntervalCount ( 500 )
+    self.__nt2.setIntervalCount ( 100 )
+
+@endcode
+
+Again, the SIP built interface mirrors the C++ interface. At this
+point we have displays attached to an empty ntuples.  As the ntuples
+get filled. they send an Observer::update message to their
+observers.  This will cause the displays to be refreshed.  The
+NTuple::setIntervalCount slows down the refresh rate so that application can
+spend more time collecting data.  The first ntuple sends the update
+message only for every 500 updates of the ntuple, while the second
+only 100 updates.
+
+The @c startRun member function looks like this...
+
+@code
+
+    self.__nt.clear()
+    self.__nt2.clear()
+    wc = WindowController.instance()
+    canvas = wc.currentCanvas()
+    canvas.setIntervalEnabled ( 1 )
+    cnt = self.__arg.getValue("Enter number of triggers to take")
+
+@endcode
+
+The ntuples are cleared at the beginning of a run.  The interval
+counting is enabled by calling CanvasWindow::setIntervalEnabled
+member function. It forward the enabling message to all the ntuples
+that have displays in the window.  At the end of the run, interval
+counting will be turned off so that the displays will refresh to the
+current state of the ntuple.
+
+The event processing is not very interesting but looks like this...
+
+@code
+
+  def process(self, buffer):
+    "Method called back for each data event taken"
+
+    self.evtCli.evDumpTKR()
+    for stripData in self.evtCli.evt.TKRstrips:
+      self.__nt.addRow([stripData.ui])
+    self.__nt2.addRow([self.evtCli.evt_size])
+
+@endcode
+
+Thus, the ntuples are built row by row.  This applications collects
+about 80 events per second.  With the interval counting enabled, the
+histograms still refresh about once a second.  Without interval
+counting, the event rate would be cut in half, because the application
+would be spending so much time drawing new histograms.
+
+*/

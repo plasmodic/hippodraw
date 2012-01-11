@@ -1,0 +1,53 @@
+K 25
+svn:wc:ra_dav:version-url
+V 41
+/svn/!svn/ver/79127/tools/hippodraw/trunk
+END
+config.h.cmake.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/49150/tools/hippodraw/trunk/config.h.cmake.in
+END
+LICENSE
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/47802/tools/hippodraw/trunk/LICENSE
+END
+INSTALL
+K 25
+svn:wc:ra_dav:version-url
+V 49
+/svn/!svn/ver/47802/tools/hippodraw/trunk/INSTALL
+END
+DISCLAIMER.rtf
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/DISCLAIMER.rtf
+END
+.mailinglist
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/60701/tools/hippodraw/trunk/.mailinglist
+END
+HippoDraw.spec.in
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/HippoDraw.spec.in
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/64815/tools/hippodraw/trunk/CMakeLists.txt
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/47802/tools/hippodraw/trunk/README
+END

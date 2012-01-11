@@ -1,0 +1,87 @@
+""" -*- mode: python -*-
+
+This script tests the creation NTuple from binning projectors.
+
+Copyright (C) 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: hist_ntuple.py.in,v 1.16 2006/09/25 17:15:25 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist )
+hist.setRange ( 'x', 0., 20000. )
+hist.setBinWidth ( 'x', 400. )
+
+nt2 = hist.createNTuple ()
+
+ntc.registerNTuple ( nt2 )
+
+def printContents ( nt ) :
+    # show number of rows
+    r = nt.rows
+    print "Number of rows = ", r
+
+    columns = nt.columns
+    for i in range ( columns ) :
+        print "column ", i, " is ", nt.getLabel ( i )
+
+    # print the data
+    for i in range ( r ) :
+        print i, nt.getRow ( i )
+
+printContents ( nt2 )
+
+hist.setRange ( 'y', 100., 350. )
+nttest = hist.createNTuple ()
+print "Should be same as above"
+printContents ( nttest )
+
+hist2 = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist2 )
+
+hist2.addDataRep( "XY Plot", nt2, [ 'Cost', 'Density', 'nil', 'Error' ])
+hist2.setRange ( 'x', 0., 20000. )
+hist2.setBinWidth ( 'x', 400. )
+
+color = Display ( "Color Plot", nt1, ('Age', 'Cost' ))
+color.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( color )
+
+nt3 = color.createNTuple()
+ntc.registerNTuple ( nt3 )
+
+color2 = Display ( "XYZ Plot", nt3, ('Age', 'Cost', 'Entries / bin' ))
+canvas.addDisplay ( color2 )
+
+profile2D = Display ( "Profile 2D", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profile2D )
+
+nt4 = profile2D.createNTuple()
+ntc.registerNTuple ( nt4 )
+
+profile2D2 = Display ( 'XYZ Plot', nt4, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profile2D2 )
+
+xyz = Display ( "XYZ Plot", nt1, ('Age', 'Service', 'Cost' ))
+xyz.setRange ( 'x', 20., 60. )
+
+canvas.addDisplay ( xyz )
+
+nt5 = xyz.createNTuple ()
+ntc.registerNTuple ( "xyz", nt5 )
+
+xyz2 = Display ( "XYZ Plot", nt5, ('Age', 'Service', 'Cost' ))
+canvas.addDisplay ( xyz2 )

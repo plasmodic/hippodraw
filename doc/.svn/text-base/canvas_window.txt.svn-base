@@ -1,0 +1,425 @@
+/**
+@page canvas_root Canvas Window Users Guide
+
+Most users of @b HippoDraw will use the %CanvasWindow.  It is called a
+canvas because plots entered upon it can be moved around and resized,
+just like graphic objects in a typical drawing program.  The canvas
+can be extended over multiple pages.  The canvas and all its items can
+be saved to a document file and previously saved documents can be open
+at a later date.  The document file format is
+<a href="http://www.w3.org/XML/">XML</a>.
+
+  The document files never save any @ref ntuple_root objects used by the canvas
+items, rather a reference to the data source file is saved as a relative
+path.  If the data in the data source file has changed since the document
+was saved, then when the document is opened, the plots display the
+data source's new data.   
+
+   The CanvasWindow looks like this ...
+
+@image html canvaswindow.png A canvas window
+@image latex canvaswindow.eps "A canvas window" width=\textwidth
+
+Under the menu bar, there are 4 detachable tool bars, containing short
+cuts to the most frequently used menu items.  One can right click on
+the tool bar to show or hide individual tool bars.
+
+
+@section canvas_mouse Control with the mouse
+
+   Both canvas window controls and @ref inspector_root act on the <em>
+selected canvas item </em> One selects an item with a left mouse click
+with the mouse cursor over the item.   The item then appears like this ...
+
+@image html canvasitemselected.png A canvas item in selected state
+@image latex canvasitemselected.eps A canvas item in selected state
+
+The canvas item shows it is selected by having a light gray rectangle
+around it.  Note the @em knobs on the rectangle.  One can click and
+drag on these to resize the item.  To move the item, click and drag on
+the item but away from the knobs.  Multiple items can be selected
+by doing a @em shift-click.  When multiple data representations are on
+the same plot, then @em control-click is used to select among them.
+
+Holding down the right mouse button turns the mouse cursor into a set of
+cross hairs.  Also the data coordinate of the position of the cross
+hairs is shown in the canvas window status bar.   This is illustrated below.
+
+@image html canvaswindowrightmouse.png Canvas window with right mouse down
+@image latex canvaswindowrightmouse.eps "Canvas window with right mouse down" width=\textwidth 
+
+The right mouse button can also be used to change the range of cuts.
+There are three cut modes to be selected from tool bar or the view menu. 
+In <b>Drag edge</b> mode, just hold the right mouse button down, the edge or 
+corner of the cut nearest the mouse down can then be dragged.  In <b>Click
+edge</b> mode, click the right mouse button to select the two edges for 1D cut 
+plotter, or two corners for 2D cut plotter.  In <b>Drag cut</b> mode, hold 
+the right mouse button down, then drag to move the cut range.  A change of 
+the cut range using right mouse button is shown below.
+
+@image html canvaswindowcut.png Change the range of cut with right mouse button
+@image latex canvaswindowcut.png "Change the range of cut with right mouse button" width=\textwidth
+
+@section canvas_menu Menu and tool bar controls
+
+   The controls offered by the CanvasWindow are mostly menu items.
+However, some frequently used controls also have a icon on the tool
+bar and a keyboard short cut.  Shown below is a more detailed view of
+the menu bar and the task bar.
+
+@image html canvaswindowdetail.png Detail of menu bar and tool bar
+@image latex canvaswindowdetail.eps Detail of menu bar and tool bar
+
+The tool bar icon are convenient shortcuts to a control, but it is not
+always obvious from the icon what the control action will be.  To
+verify what the icon does, hold the mouse cursor over the icon for a
+few seconds.  A tool tip will appear describing the control.  Also the
+keyboard short cut, if any, will be display in the tool tip and the
+canvas window status bar.  Also, the same icon is used in toolbar and
+menu item.
+
+
+Like tool bars in most applications, the tool bar can be moved to
+either side or the bottom of the CanvasWindow.  To do so, click and
+drag on the vertical handle, which is at the extreme left in the
+illustration above.
+
+The remainder of this page is divided into the following subsections
+
+@li @ref canvas_menu_file
+@li @ref canvas_edit_menu
+@li @ref canvas_view_menu
+@li @ref canvas_view_settings
+@li @ref canvas_view_about
+
+
+@subsection canvas_menu_file File menu
+
+The file menu has controls for handling files, printing, and
+terminating the application.  It is shown below.
+
+@image html menu_file.png File menu
+@image latex menu_file.eps File menu
+
+The actions of most of the menu items is pretty obvious.  The icon
+used by the tool bar control is shown alongside the menu item along
+with its keyboard shortcut, if any.   
+
+The first two items creates a new canvas window, opens and existing
+one.  The @b Browse... item opens an existing canvas in browse mode.
+That is, the canvas is off screen and plot selection dialog is
+displayed.  By choosing a display from this dialog, one can make a
+copy of the display to the canvas window.
+
+
+The @ b Save item is used to save the current canvas to a file.  The
+<b> Save As... </b> menu items allows one to save the current canvas
+to a different file.  By default the suffix @em .hpo is used for
+canvas document files.  If the canvas is a new one and has not yet
+been saved to a file, than the menu items @b Save and <b> Save
+As... </b> are equivalent.
+
+The @b Open menu item also allows one to open a file of different
+types.  The default is to show all files.
+By using the <b> File type </b> control, one can
+also open a data source file.  Under UNIX-like systems, one can use
+the mouse wheel to scroll through the options.  This doesn't work
+under Windows because the Windows native file dialog is used and it
+doesn't support it.
+
+Data sources in @b HippoDraw's
+native form (@ref file_ascii) is always available.  ROOT ntuple like
+files (@em .root) and FITS files (@em .fits) are also available if @b
+HippoDraw was configured with those options.  The example below shows
+the file dialog for opening a ROOT ntuple file.
+
+@image html canvasfiledialog.png File dialog window.
+@image latex canvasfiledialog.eps File dialog window.
+
+By using the <b> File type: </b> combo box, one selects the type of
+file to open.  As shown above, one is selecting a ROOT file that is in
+the form of an %NTuple. See @ref ntuple_roottuple for description of
+what ROOT files are supported.  Other supported format are @b FITS
+tables and <b> HippoDraw's </b> ASCII text file, see @ref file_ascii
+for details.
+
+The last available selection in the <b> File type: </b> combo box is
+@em all @em files.  When this is selected, the @b HippoDraw tries to
+open the file with specific formats, like FITS, and it fails, tries
+plain text tuple.  If it fails, then an error dialog is raised.
+
+The <b> Save All </b> menu item saves the canvas and any @ref
+ntuple_root objects that were created in memory and not yet saved to a
+file.  The data source is saved is the same directory as the canvas and
+given a file name the same as the canvas document with integer index
+appended, but with the suffix @em .tnt.  Thus if the document file
+name is @em foo.hpo, then the first %NTuple file name will be @em
+foo0.tnt.  The menu item <b> Save All As... </b> allows one to save
+the document and its %NTuple objects to a different filename and the
+<b> Save All </b> is equivalent to it if the document has not yet been
+saved.
+
+The @b Close menu items closes the current canvas window.  If changes
+have been made to it, the users is prompted to save them, discard the
+document, or canceling the action.  If only one canvas window is
+active, then closing it will also terminate the application.
+
+The <b> Save selected as image.. </b> menu item saves one or more
+selected canvas items to an image file.  The image format is chosen
+by the file type selected.  At least 9 formats are available including
+the popular EPS, JPEG, and PNG formats.  GIF format is also available
+if @b HippoDraw was built with a Qt library configured to support GIF.
+
+If more than one canvas item is selected, the image file will be the
+size of the rectangle enclosing all the selected canvas items.  Their
+relative positions are conserved in the image file.
+
+The <b> Create NTuple... </b> menu item allows one to create a new
+NTuple with selected cuts and columns.  The dialog is shown below.
+
+@image html canvascreatentuple.png Create NTuple dialog window.
+@image latex canvascreatentuple.eps Create NTuple dialog window.
+
+Using the <b> Data Source </b> combo box, one can select the source NTuple.  
+The cut and column lists are used as filters to generate the new ntuple.  
+After input the ntuple name and click the <b> Create NTuple </b>
+button, one can see the new ntuple in the inspector.
+
+
+The <b> Export text ntuple.. </b> menu item allows you to save a
+%NTuple to a file in the ASCII file format supported by @b
+HippoDraw. See @ref file_ascii for details.
+
+The @b Print menu items prints the canvas.  A print dialog is first
+presented with the standard options of choosing a printer or creating
+a Postscript file.
+
+The <b> Recently opened files </b> menu item allows you to open a file
+that is recently opened. The sub menu keeps five recently opened files.
+
+The @b Exit menu item terminated the application.  If there are any
+modified and unsaved canvases, the user is prompted to save or discard
+those changes.
+
+
+
+@subsection canvas_edit_menu Edit menu
+
+The @b Edit menu item controls some editing actions on the canvas
+items.  It is shown below.
+
+@image html menu_edit.png Edit menu
+@image latex menu_edit.eps Edit menu
+
+The actions of most of the menu items is pretty obvious.  The icon
+used by the tool bar control is show alongside the menu item along
+with its keyboard shortcut, if any.   
+
+The @b Cut, @b Copy, and @b Paste menu items have actions like most
+applications today and use the standard set of keyboard short cuts.
+@b Cut first makes a copy of the selected items to @b HippoDraw's
+pasteboard then removes the items from the canvas.  @b Copy makes a
+copy of the selected items to @b HippoDraw's pasteboard.  @b Paste
+copies the items on @b HippoDraw's pasteboard to the canvas.  If an
+item is selected on the canvas, the pasting is done near it.  The @b
+Delete menu item is like @b Cut except that a copy is not made to the
+pasteboard.
+
+@note With this release, @b HippoDraw's pasteboard is not the system
+pasteboard.  It is expected that in a future release, one will be able
+to copy and pasted canvas items between @b HippoDraw and other
+applications.
+
+The <b> SelectAll </b> menu item will put all canvas items in the
+selected state.
+
+By default, items are inserted in the canvas, either from the @ref
+inspector_root or by one of the @ref pythonoverview_root, on a grid.
+The size of the items is such that two items horizontally and three
+items vertical fit the selected paper size without falling on the page
+break.  The user can resize and move the items around after they are
+inserted.  Sometimes, he make a mess.  The @b Retile menu item will
+move and resize all canvas items so that the default grid is
+re-established while the @b Retile @b page will re-tile only the
+current page.
+
+@note With this release, the default paper size is US. Letter.  In
+future release it is expected that the user will be able to select
+other sizes as a preference.
+
+The @b Undo menu items un-does what ever actions changed the selected
+canvas item.  They way it works is that a copy of the item is made
+when it is first selected.  The @b Undo action first removes the
+selected item, than inserts the copy that was made.
+
+The <b> Clear All </b> removes all items from the canvas.  Since this
+operation can not be un-done, the user is prompted to acknowledge he
+wants this action.
+
+
+
+@subsection canvas_view_menu View menu
+
+The @b View menu controls some aspects of the view the canvas without
+modifying and canvas items.   It is shown below.
+
+@image html menu_view.png View menu
+@image latex menu_view.eps View menu
+
+By the default, pages are added to the canvas automatically as new
+canvas items are inserted.  The <b> Add page </b> allows the user to
+manually add a page.
+
+@note With this release, there's no control to remove empty pages.
+However, empty pages will not be printed.
+
+Canvas Items can be @em locked on the canvas so that they can not be
+accidentally moved or resized.  The @b Lock menu item locks the
+selected item, while the @b Unlock menu item will unlock locked items.
+
+The <b> Zoom in </b> and <b> Zoom out </b> menu items enlarge and
+un-enlarge the canvas.  Zooming in might be useful for viewing details
+without resizing the item.  Zooming out allows one to see more plots as
+thumbnails without resizing all the items.
+
+@note With this release, the point zoomed into is ill defined.
+
+The <b>Show pick table </b> opens a window with a table of picked
+points. The table is shown below.
+
+@image html pick_table.png The pick table
+@image latex pick_table.eps The pick table
+
+With the pick mode selected, one can right click with the mouse to
+pick a point on the selected plot.  Upon release of the right mouse
+button, the X, Y, and Z, if applicable, point is added to the table
+along with pick number.  An %NTuple is also created in memory with the
+contents of the pick table.  It can be used to create other plots.
+If the <b>Show picked points</b> checkbox is checked, a ScatterPlot 
+data representation is added to the selected plot which displays the 
+contents of the %NTuple.  As additional picks are made, the %NTuple 
+is updated, along with any plots bound to that %NTuple.  The table may 
+be sorted by any column by clicking on labels at the top of the pick 
+list.  The first click on a column label sorts that column in ascending 
+order.  The second click on the same column changed the sorting order 
+to descending.  Further clicks toggle the sorting order.  The %NTuple 
+is also sorted. and the pick table always represents the current contents 
+of the %NTuple. In addition to picked points, one can also use 
+<b>Add entry</b> button to input data into the pick table.
+
+The <b>Show plot table </b> opens a window with a table of all the
+items on the canvas.   The table looks like this.
+
+@image html plot_table.png The plot table
+@image latex plot_table.eps The plot table
+
+The items' title, data representation type, the binding to the X and Y
+axes, and optionally the Z axis is shown.  One can sort any column by
+clicking the the column's label.  Clicking on an entry in the table
+will select that item on the canvas.
+
+The next three items control the range of data being displayed on the
+selected plot.  The <b>Range zoom</b> toggles the range zoom mode.
+When in the mode, one can select a rectangle with the left mouse
+button For 2D plots, such as a histogram, the range of the X axis will
+change to be the size of the width of the rectangle.  For 3D plots,
+such as a contour plot, both the X and Y axis will be changed to the
+size of the rectangle.  When not in range zoom mode, the right mouse
+is used for selection and moving the plot as described above.
+
+One can zoom the range multiple times.  The <b>Previous range </b>
+takes one back one range, while the <b>Next range</b> takes one
+forward.  Each save range is in a circular buffer so when there is on
+@em next or @em previous range, one wraps around to the other end of
+the buffer.
+
+The next four items are the modes used to change the range of cut and to
+pick points in the plot. One can see and edit the picked table as decribed
+above. The difference of the three cut modes is described in @ref 
+canvas_mouse section.
+
+One can group several views into a group view using the <b>Group View</b>. 
+The group view can move and resize as a single view. One can also perform 
+set cut and pick point operations in any single view in the group. The
+<b>Ungroup View</b> ungroup the group view into several single views.
+
+
+
+@subsection canvas_view_settings Settings menu
+
+The <b> Setting </b> menu allows one to configure certain aspects of
+<b> HippoDraw </b> along user preferences and save them for future
+sessions.  The menu looks like this.
+
+@image html canvaswindowsettings.png The settings menu
+@image latex canvaswindowsettings.eps The settings menu
+
+The settings are grouped by settings for the @b Canvas, default @b
+Fitter, the @b Printer, and default @b Fonts.
+
+Under Unix like systems, such as Linux, the settings are saved in the
+<em>.qt/hippodrawrc</em> of the user's home directory.  Under
+Windows, the settings are saved in the Windows Registry.
+
+With the <b> Canvas </b> menu item, one can adjust the default size,
+plot matrix, and other attributes.  The canvas setting panel is shown below.
+
+@image html canvaswindowsettingsdialog.png The canvas settings dialog
+@image latex canvaswindowsettingsdialog.eps The canvas settings dialog
+
+The first box sets whether the plots are lay outed in portrait or
+landscape mode.  The Plot Matrix box sets how may plots are displayed
+horizontally and vertically for each page.  The Added plots radio
+buttons control whether newly added plots from should be selected or
+not.  If selected, the canvas scrolls to make the selected plot
+visible.  The Printer Margin box set whether the printer margin is
+display on the screen or not.
+
+The <b> Save @& Retile </b> button will save the settings and rearrange the
+plots on the current canvas for the new settings if necessary The @b
+Retile button retiles the current canvas but does not changing the
+save settings.  The @b Cancel button will close the dialog without
+making any changes.
+
+With the @b %Fitter menu item, one can select the default minimizer -
+objective function combination.  It can be overridden during any
+session by a selection on the @ref inspector_functions dialog.
+
+With the <b> Printer </b> menu item, one can configure the printer
+settings.  With this release, only the page size and orientation is
+save. 
+
+If the @b Fonts menu item is selected, a standard font dialog panel is
+presented. This controls the fonts used by the plots (not the fonts in
+various dialogs and windows.
+
+With the <b> Default toolbar </b> menu item, one can set the toolbars
+to the default position, which is in the top dock area. One can drag
+and drop any toolbar to anywhere. The positions will also be saved.
+
+@subsection canvas_view_about About menu
+
+The @b Help menu contains items.   It looks like this ...
+
+@image html canvaswindowhelp.png The help menu
+@image latex canvaswindowhelp.eps The help menu
+
+The first item is the built-in help for the @b HippoDraw application
+using the Qt Assistant application.  Its use is pretty obvious and it
+itself has built-in help.   Here's what it looks like ...
+
+@image html canvaswindowassistant.png The Qt Assistant
+@image latex canvaswindowassistant.eps The Qt Assistant
+
+
+The @b About menu brings up the version number of the application and
+and credits to those that contributed.  Also version numbers of
+external packages that the application was created with and their
+version number if available.
+
+The @b About @b Qt menu brings up information on the version of Qt that
+was used.
+
+
+
+*/

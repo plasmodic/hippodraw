@@ -1,0 +1,83 @@
+"""
+Test DataArray class
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+# $Id: test_DataArray.py.in,v 1.5 2007/06/25 19:12:56 pfkeb Exp $
+
+num = None
+d_type = None
+try:
+    import numarray as num
+    d_type = num.double 
+except:
+    import numpy as num
+    d_type = 'd'
+import setPath
+import hippoplotter as plot
+hippo = plot.hippo
+
+#
+# NTuple is the default DataSource type
+#
+nt = hippo.DataArray()
+nt.addColumn('x', range(10))
+
+lt = hippo.DataArray('ListTuple')
+lt.addColumn('x', range(10))
+
+numt = hippo.DataArray('NumArrayTuple')
+numt.addColumn('x', num.array( num.arange(10.), d_type) )
+
+#
+# For NTuple and ListTuple, using addColumn, one cannot use a numarry
+#
+try:
+    nt.addColumn('y', num.arange(10))
+except RuntimeError:
+    print "attempted to add invalid column type to NTuple"
+    
+#
+# For NumArrayTuple, one must use a numarray
+#
+try:
+    numt.addColumn('y', range(10))
+except RuntimeError:
+    print "attempted to add invalid column type to NumArrayTuple"
+
+#
+# But one can add numarray columns to NTuple and ListTuple
+# objects using __setitem__
+#
+nt['y'] = num.array( num.arange(10), d_type )
+lt['y'] = num.arange(10)
+lt[1] = num.arange(10)*2
+
+#
+# __getitem__ numarray bindings allow natural arithmetic syntax
+#
+print nt['x'] + lt['x'] + numt['x']
+
+numt.replaceColumn('x', num.pi*nt['x'])
+print numt['x']
+
+numt['foo'] = 5.*nt['x']
+print numt['foo']
+
+#
+# A plotting example (registering is not required to plot)
+#
+nt1 = hippo.DataArray('NumArrayTuple')
+
+phi = num.arange(100)/99.*num.pi*2.
+
+nt1['x'] = phi*num.cos(phi)
+nt1['y'] = phi*num.sin(phi)
+
+plot.Scatter(nt1, 'x', 'y', pointRep='Line')
+
+#
+# But in order to see the object from the Inspector, one must explicitly
+# register the object.
+#
+nt1.register('foo')

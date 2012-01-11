@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist SYSTEM "file://localhost/System/Library/DTDs/PropertyList.dtd">
+<plist version="0.9">
+<dict>
+	<key>CFBundleIconFile</key>
+	<string>hippodraw.icns</string>
+	<key>CFBundlePackageType</key>
+	<string>APPL</string>
+        <key>CFBundleGetInfoString</key>
+	<string>Created by make</string>
+	<key>CFBundleSignature</key>
+	<string>ttxt</string>
+	<key>CFBundleExecutable</key>
+	<string>hippodraw</string>
+	<key>CFBundleDocumentTypes</key>
+        <array>
+                <dict>
+                        <key>CFBundleTypeExtensions</key>
+                        <array>
+				<string>hpo</string>
+                                <string>tnt</string>
+                                <string>fits</string>
+                                <string>root</string>
+                        </array>
+			<key>CFBundleTypeIconFile</key>
+			<string>hippodraw.icns</string>
+                        <key>CFBundleTypeRole</key>
+                        <string>Editor</string>
+                        <key>LSIsAppleDefaultForType</key>
+                        <true/>
+                </dict>
+        </array>
+	<key>NOTE</key>
+	<string>HippoDraw by Stanford UniversityS</string>
+</dict>
+</plist>

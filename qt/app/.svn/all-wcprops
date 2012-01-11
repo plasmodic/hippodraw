@@ -1,0 +1,41 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/79127/tools/hippodraw/trunk/qt/app
+END
+HippoDraw.desktop
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/60907/tools/hippodraw/trunk/qt/app/HippoDraw.desktop
+END
+Info.plist
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/app/Info.plist
+END
+main.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/app/main.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/79127/tools/hippodraw/trunk/qt/app/CMakeLists.txt
+END
+PkgInfo
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/app/PkgInfo
+END
+app.dir
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/app/app.dir
+END

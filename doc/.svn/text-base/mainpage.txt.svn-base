@@ -1,0 +1,76 @@
+/*! \mainpage HippoDraw Users Guide
+
+@ref quick_root
+
+@image html canvaswindow.png "HippoDraw canvas window"
+@image latex canvaswindow.eps "HippoDraw canvas window" width=\textwidth
+
+   @b HippoDraw provides a highly interactive data analysis
+environment.  It is written in C++ with the
+<a href="http://www.trolltech.com/products/qt/index.html">Qt</a>
+library from <a href="http://www.trolltech.com"> Trolltech.</a> It
+should run anywhere %Qt runs which is just about
+<a href="http://www.trolltech.com/developer/notes/supported_platforms">
+everywhere</a>.  This release has been tested on Red Hat Enterprise
+Linux 3 and 4, Fedora Core 5, Microsoft Windows XP, and Mac OS X 10.4
+both native and with X Windows.
+
+@b HippoDraw can be used as a stand-a-lone application or a Python
+extension module.  In the latter case, Python is effectively the
+scripting language for @b HippoDraw.
+
+Here are some @ref comments_root.
+
+This page gives an overview of @b HippoDraw.  Go to the @ref
+quick_root to find a short cuts to tutorials, user guides, examples,
+etc.
+
+    @b HippoDraw has highly interactive controls on the data plots via
+a dialog window called the @b %Inspector.  For example, one can change
+the width of the bins of a histogram via a slider and see the
+histogram plot re-display itself many times a second.  See @ref
+inspector_root and @ref canvas_root for a description of the available
+controls.
+
+   A data source for @b HippoDraw is typically a %NTuple, but @b
+HippoDraw supports a number of different kinds described in the @ref
+ntuple_root page.  When used as a @ref pythonoverview_root, Python
+numerical arrays are also supported.  A number of visual @ref
+datareps_root can be made with this data.  They are typically placed
+on a canvas as shown @ref canvas_root.
+
+   Doing easy data analysis tasks should be easy and they are done
+with @b HippoDraw's %Inspector.  Doing more difficult tasks should be
+possible.  Here, one would expect to find a command line and/or
+scripting interface to @b HippoDraw.  But @b HippoDraw does not have
+either.  Instead one of @b HippoDraw's @ref pythonoverview_root is
+used.  The @ref python_interact allows user manipulation of the data
+representations as if they were Python objects.  This can be done
+either interactively, or via scripts written in Python.  Changes made
+via Python are reflected in the %Inspector and vice versa.
+
+   One can use @b HippoDraw's C++ library for @ref customapps_root in
+either C++ or Python. See @ref customapps_examples.  The library
+consists of over 100 classes with about 50K lines of source code. The
+library is in two parts the core and the GUI part. With debugging
+symbols, they are about 10 MB and 5 MB respectively with all the
+optional support enabled.  Without debugging symbols, they are under
+1.5MB and 1MB.  Both can compiled and linked in just over 6 minutes
+with GCC 4.1.0 on a 2 Ghz Pentium M laptop.  A descriptive of the
+library begins is <a href="lib/index.html">here</a>.
+A mirror of 
+<a href="http://www-glast.stanford.edu/cgi-bin/viewvc/?root=HIPPO">
+the CVS archive
+is browseable on the Web</a>.
+
+For more information
+@li See @ref download_root page for available pre-built binaries and source code.
+@li See @ref install_notes instructions for Windows, Mac OS X,  and Unix like systems.  
+@li See @ref release_notes for new features, changes and bug fixes.
+@li The
+<a class="el" href="http://www-glast.stanford.edu/mailman/listinfo/hippodraw">
+HippoDraw mailing list.</a>
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+*/

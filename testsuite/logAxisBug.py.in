@@ -1,0 +1,8 @@
+import setPath
+import hippoplotter as plot
+import numarray as num
+
+x = 10.**(num.arange(20, type=num.Float))
+y = x
+
+plot.scatter(x, y, xlog=1, ylog=1)

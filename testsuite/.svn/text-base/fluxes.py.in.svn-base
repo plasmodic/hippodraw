@@ -1,0 +1,16 @@
+import setPath
+from load_hippo import  app, canvas
+
+import hippoplotter as plot
+import numarray as num
+
+file = open('@top_srcdir@/examples/fluxes.tnt', 'r')
+fluxes = []
+for line in file:
+    fluxes.append(float(line.split('\n')[0]))
+
+fluxes = num.array(fluxes)
+
+plot.histogram(fluxes, 'flux', xlog=1, ylog=1)
+
+print "Tested axis ticks when all are less than 1. on log scale"

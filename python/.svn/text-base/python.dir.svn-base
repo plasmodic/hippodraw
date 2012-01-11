@@ -1,0 +1,49 @@
+/** @dir python
+
+This directory contains source and header files of classes related to
+a python extension module.
+
+This directory contains source and header files of classes related to
+a python extension module built with Boost.Python.  It also contains a
+derived class of DataSource, and ListTuple  that uses Python list objects.
+In addition, there are several Python files used by the hippoplotter module.
+The <em> pyfits.py </em> comes from
+<a href="http://www.stsci.edu/resources/software_hardware/pyfits"> PyFITS </a> project and is included here for convenience.
+
+@bug @@ hsimple.py and pl_exp_test.py, don't do anything under
+run_test_scripts.py.  (This isn't a bug.  run_test_scripts.py launches
+scripts using the import command.  Since hsimple.py and pl_exp_test.py
+are launched by SciPy_demo.py before they are launched by
+run_test_scripts.py, Python's import mechanism prevents the scripts
+from being re-run.)
+
+*/
+
+
+/** @brief The namespace for the boost C++ libraries.
+
+@sa <a href="http://www.boost.org"> Boost.org </a> details.
+*/
+namespace boost {
+
+/**  @brief The namespace for the boost::python class library.
+
+The namespace for the boost::python class library.  boost::python is a
+component of the Boost.org C++ class libraries and is used to generate
+the hippo Python extension module.
+
+@sa <a href="http://www.boost.org/libs/python/doc/index.html">
+Boost.Python</a>  for details.
+
+*/
+  namespace python {
+
+    /** A wrapper class for Python list objects.
+     */
+    class list {};
+
+    /** A wrapper class for Python tuple objects.
+     */
+    class tuple {};
+  }
+}

@@ -1,0 +1,143 @@
+""" -*- mode:python -*-
+
+Demonstrates implement function in Python derived from the C++
+abstract base class.  Also demonstrates use of the fitter from Python.
+
+@author Paul F. Kunz <paul_kunz@slac.stanford.edu>
+
+"""
+#
+#$Id: fitting.py.in,v 1.7 2005/03/21 20:08:07 pfkeb Exp $
+#
+
+import sys
+from qt import *
+from qtcanvas import *
+
+from random import gauss, random
+
+app = QApplication ( sys.argv )
+
+import sihippo
+print "HippoDraw version " + sihippo.__version__
+
+wc = sihippo.WindowController.instance()
+wc.quitOnLastWindowClose ( True )
+wc.createInspector ()
+window = sihippo.CanvasWindow()
+window.show()
+
+
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+ntc = sihippo.NTupleController.instance ()
+ntuple = ntc.createNTuple ()
+ntuple.setTitle ( "Roughly a straight line" )
+ntuple.setLabels ( ['x', 'y', 'width', 'error'] )
+
+npts = 20
+for i in range ( npts ) :
+    x = i
+    y = gauss ( slope * x + intercept, sigma )
+    error = sigma
+    ntuple.addRow ( [ x, y, 1, error ] )
+
+## nt = plot.newNTuple( (x, y, xerr, yerr), ('x', 'y', 'xerr', 'yerr') )
+
+## disp = plot.XYPlot(nt, 'x', 'y', yerr='yerr')
+
+display_controller = sihippo.DisplayController.instance()
+
+bindings = [ 'x', 'y', 'nil', 'error']
+plot = display_controller.createDisplay ( 'XY Plot', ntuple, bindings )
+
+## Get CanvasWindow from WindowController, like application will do.
+canvas = wc.currentCanvas()
+canvas.addDisplay ( plot )
+
+
+import copy
+import sip
+
+from sihippo import FunctionBase
+class Linear ( FunctionBase ) :
+    def __init__ ( self, other = None ) :
+        if other :
+            FunctionBase.__init__( self, other )
+            self.initialize ()
+        else:
+            FunctionBase.__init__( self )
+            self.initialize ()
+
+    def initialize ( self ) :
+        self.setName ( 'linear' )
+        self.setParmNames ( [ 'Intercept', 'Slope' ] )
+        self.setParameters ( [ intercept, slope ] )
+
+    def initialParameters ( self, helper ) :
+        print "initialParameters"
+    
+    def clone ( self ) :
+        return Linear ( self )
+    
+    def __call__ ( self, x ) :
+        parms = self.getParameters ()
+        
+        return x * parms[1] + parms[0]
+
+    def derivByParm ( self, i, x ) :
+        if i == 0 :
+            return 1.0
+        if i == 1 :
+            return x
+
+f = Linear ()
+print f.name()
+parm_names = f.parmNames()
+print parm_names
+
+ff = sihippo.FunctionFactory.instance()
+ff.add ( f )
+
+fc = sihippo.FunctionController.instance()
+fb = fc.addFunction ( plot, 'linear' )
+
+fitters = fc.getFitterNames()
+print fitters
+fc.setFitter ( plot, fitters[1] )
+ok = fc.fitFunction ( plot )
+print "Did fit converge: ", ok
+
+parms = fb.getParameters ()
+print parms
+
+migrad = fc.getFitter ( plot )
+migrad.setLimits ( parm_names[1], 0.0, 1.0 )
+ok = migrad.calcBestFit ()
+
+parms = fb.getParameters ()
+print parms
+
+
+
+## factory = sihippo.FitterFactory.instance()
+## fitters = factory.names()
+## print fitters
+
+## migrad = factory.create ( fitters[1] )
+## print migrad.name()
+
+
+## fcn = migrad.getFCN ()
+## fcn.setFunction ( f )
+## fcn.setDataSource ( nt )
+## fcn.setUseErrors ( True )
+
+## migrad.minimize()
+
+## print f.getParameters()
+
+app.exec_loop ()
+

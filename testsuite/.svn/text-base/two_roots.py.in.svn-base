@@ -1,0 +1,53 @@
+""" -*- mode:python -*-
+
+Tests access column which is array by its name.
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+import numarray
+
+from load_hippo import app, canvas
+
+from hippo import NTupleController, RootController, NumArrayTuple
+ntc = NTupleController.instance()
+rc = RootController.instance()
+
+ntuple = NumArrayTuple ()
+ntuple.setName ( 'combined ntuple' )
+ntuple.setTitle ( 'merit and svac' )
+ntc.registerNTuple ( ntuple )
+
+
+meritfile = "/nfs/farm/g/glast/u11/InstrumentAnalysis/MC/EngineeringModel-v5r0608p7/2Tower_surface_muons/surface_muons_4M_merit.root"
+
+merit_names = rc.getNTupleNames ( meritfile  )
+name = merit_names[0]
+merit = rc.createNTuple ( meritfile, name )
+
+mcolumn = 'TkrEnergyCorr'
+tkr_ene_corr = numarray.array ( merit.getColumn ( mcolumn ) )
+ntuple.addColumn ( mcolumn, tkr_ene_corr )
+
+svacfile = "/nfs/farm/g/glast/u11/InstrumentAnalysis/MC/EngineeringModel-v5r0608p7/2Tower_surface_muons/surface_muons_4M_svac.root"
+
+svac_names = rc.getNTupleNames ( svacfile  )
+name = svac_names[0]
+svac = rc.createNTuple ( svacfile, name )
+
+scolumn = 'TkrDepositEne'
+indices = [ 0, 0, 0 ]
+tkr_dep_ene = numarray.array ( svac.getColumn ( scolumn, indices ) )
+ntuple.addColumn ( scolumn, tkr_dep_ene )
+
+scolumn2 = 'TkrNumClusters[0][0][0]'
+tkr_num_clu = numarray.array ( svac.getColumn ( scolumn2 ) )
+ntuple.addColumn ( scolumn2, tkr_num_clu )
+
+tkr_ene = merit.getColumn ( mcolumn )
+svac.addColumn ( mcolumn, tkr_ene )
+
+                               

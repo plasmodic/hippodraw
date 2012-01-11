@@ -1,0 +1,545 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/73146/tools/hippodraw/trunk/colorreps
+END
+BinToNature.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToNature.h
+END
+BinToRedTemp.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRedTemp.h
+END
+BinToKamaeScale.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToKamaeScale.cxx
+END
+BinToMovingBrkPt.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToMovingBrkPt.h
+END
+BinToRedPurple.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRedPurple.h
+END
+BinToBGRY.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBGRY.h
+END
+BinToColorScaleMovingBrkPt.h
+K 25
+svn:wc:ra_dav:version-url
+V 80
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColorScaleMovingBrkPt.h
+END
+BinToFullColorScale.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToFullColorScale.h
+END
+BinToUsrDefinedScale.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToUsrDefinedScale.cxx
+END
+BinToHueSatLight1.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatLight1.cxx
+END
+BinToBeach.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBeach.cxx
+END
+BinToHueSatLight2.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatLight2.cxx
+END
+BinToHueSatValue1.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatValue1.cxx
+END
+BinToLineStyle.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToLineStyle.cxx
+END
+BinToHueSatValue2.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatValue2.cxx
+END
+BinToGPink.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGPink.cxx
+END
+BinToKamaeScale.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToKamaeScale.h
+END
+BinToHaze.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHaze.h
+END
+BinToStdGamma2.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToStdGamma2.cxx
+END
+BinToStern.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToStern.h
+END
+BinToMacStyle.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToMacStyle.cxx
+END
+BinToOcean.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToOcean.cxx
+END
+BinToUsrDefinedScale.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToUsrDefinedScale.h
+END
+BinToGRBW.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGRBW.h
+END
+BinToRainbow.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRainbow.h
+END
+BinToHueSatLight1.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatLight1.h
+END
+BinToBeach.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBeach.h
+END
+BinToEosA.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToEosA.cxx
+END
+BinToBWLinear.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBWLinear.h
+END
+BinToEosB.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToEosB.cxx
+END
+colorreps.dir
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/colorreps.dir
+END
+BinToPrism.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPrism.cxx
+END
+BinToRainbowIDL.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRainbowIDL.cxx
+END
+BinToLineStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToLineStyle.h
+END
+BinToHueSatValue2.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatValue2.h
+END
+BinToGPink.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGPink.h
+END
+BinTo3ColorScale.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinTo3ColorScale.h
+END
+BinToPurpleRed.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPurpleRed.cxx
+END
+BinToBGRY.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBGRY.cxx
+END
+BinToGWLinear.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGWLinear.cxx
+END
+BinToPeppermint.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPeppermint.h
+END
+BinToColorScaleMovingBrkPt.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 82
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColorScaleMovingBrkPt.cxx
+END
+BinToFullColorScale.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToFullColorScale.cxx
+END
+BinToGWExpon.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGWExpon.h
+END
+BinToBlack.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlack.cxx
+END
+BinToEosB.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToEosB.h
+END
+BinToGreyScale.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGreyScale.cxx
+END
+BinToColor.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColor.cxx
+END
+BinToPrism.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPrism.h
+END
+BinToRainbowIDL.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRainbowIDL.h
+END
+BinToHardCandy.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHardCandy.h
+END
+BinToHaze.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHaze.cxx
+END
+BinToPurpleRed.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPurpleRed.h
+END
+BinToStern.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToStern.cxx
+END
+BinToGWLinear.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGWLinear.h
+END
+BinToBluePastel.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBluePastel.cxx
+END
+BinToPastels.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPastels.h
+END
+BinToGRBW.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGRBW.cxx
+END
+BinToBlack.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlack.h
+END
+BinToRainbow.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRainbow.cxx
+END
+BinToGreyScale.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGreyScale.h
+END
+BinToBWLinear.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBWLinear.cxx
+END
+BinToColor.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColor.h
+END
+BinToColorFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColorFactory.cxx
+END
+BinTo3ColorScale.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinTo3ColorScale.cxx
+END
+BinToColorMap.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/73146/tools/hippodraw/trunk/colorreps/BinToColorMap.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/48411/tools/hippodraw/trunk/colorreps/CMakeLists.txt
+END
+BinToGamma.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGamma.cxx
+END
+BinToBlueRed.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlueRed.cxx
+END
+BinToPeppermint.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPeppermint.cxx
+END
+BinToBluePastel.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBluePastel.h
+END
+BinToGWExpon.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGWExpon.cxx
+END
+BinToHueSatLight2.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatLight2.h
+END
+BinToBlueWhite.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlueWhite.cxx
+END
+BinToColorFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColorFactory.h
+END
+BinToHueSatValue1.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHueSatValue1.h
+END
+BinToHardCandy.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToHardCandy.cxx
+END
+BinToNature.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToNature.cxx
+END
+BinToRedTemp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRedTemp.cxx
+END
+BinToColorMap.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToColorMap.h
+END
+BinToMovingBrkPt.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToMovingBrkPt.cxx
+END
+BinToRedPurple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToRedPurple.cxx
+END
+BinToStdGamma2.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToStdGamma2.h
+END
+BinToMacStyle.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToMacStyle.h
+END
+BinToGamma.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToGamma.h
+END
+BinToBlueRed.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlueRed.h
+END
+BinToOcean.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToOcean.h
+END
+BinToPastels.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToPastels.cxx
+END
+BinToEosA.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToEosA.h
+END
+BinToBlueWhite.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/colorreps/BinToBlueWhite.h
+END

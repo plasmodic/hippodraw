@@ -1,0 +1,89 @@
+""" -*- mode: python -*-
+
+   Testing the PowerLaw and Exponential classes and
+   exercising the hippoplotter.py wrapper.
+
+   author: James Chiang <jchiang@slac.stanford.edu>
+   
+"""
+#
+# $Id: pl_exp_test.py.in,v 1.12 2005/04/08 02:08:42 jchiang Exp $
+#
+# Author: J. Chiang <jchiang@slac.stanford.edu>
+#
+
+from setPath import *
+
+import random, math
+
+import hippoplotter as plot
+
+#
+# Generate power-law and exponential distributions
+#
+nt1 = plot.newNTuple( ([], ), ("x", ) )
+pl_display = plot.Histogram(nt1, "x", xlog=1, ylog=1,
+                               title="power-law dist.")
+
+nt2 = plot.newNTuple( ([], ), ("x", ) )
+exp_display = plot.Histogram(nt2, "x", ylog=1, title="exponential dist.")
+
+both = plot.newNTuple( ([], ), ("x",) )
+combo_display =plot.Histogram(both, "x", ylog=1,
+                                 title="power-law & exponential dists.")
+
+shoot = random.uniform
+
+#
+# The parameters describing the distributions
+#
+x0 = 5.            # Characteristic scale for exponential
+
+xmin = 1.          # Bounds for the power-law distribution
+xmax = 100.
+gamma = 2.1        # The power-law index
+
+xpmax = math.pow(xmax, 1.-gamma)
+xpmin = math.pow(xmin, 1.-gamma)
+
+nsamp = 10000
+
+print "Filling NTuple with data."
+
+for i in range(nsamp):
+    xi = shoot(0, 1)
+    xx1 = math.pow( xi*(xpmax - xpmin) + xpmin, 1./(1.-gamma) )
+    nt1.addRow( (xx1, ) )
+    both.addRow( (xx1,) )
+    
+    xi = shoot(0, 1)
+    xx2 = -x0*math.log(1. - xi)
+    nt2.addRow( (xx2, ) )
+    both.addRow( (xx2, ) )
+
+#
+# Fit these distributions
+#
+Function = plot.hippo.Function
+powerlaw = Function( "PowerLaw", pl_display.getDataRep() )
+powerlaw.addTo( pl_display )
+powerlaw.fit()
+
+exponential = Function( "Exponential", exp_display.getDataRep() )
+exponential.addTo( exp_display )
+exponential.fit()
+
+#
+# Do a fit to sum of functions.
+#
+pl = Function ( "PowerLaw", combo_display.getDataRep() )
+pl.addTo( combo_display )
+
+exp2 = Function ( "Exponential", combo_display.getDataRep() )
+exp2.addTo( combo_display )
+
+# Fit to linear sum
+exp2.fit()
+
+print "Demonstrated power law, exponential, and linear sum fitting"
+print ""

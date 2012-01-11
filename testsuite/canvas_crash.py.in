@@ -1,0 +1,33 @@
+""" -*- python -*-
+
+Script bring up empty canvas, close it, and catch exception when
+trying to use it.
+
+Copyright (C) 2001 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: canvas_crash.py.in,v 1.1 2005/11/27 00:14:13 pfkeb Exp $
+
+"""
+import setPath
+from hippo import HDApp
+
+app = HDApp()
+canvas = app.canvas()
+
+print "Brought up an empty canvas"
+print "Now close it"
+canvas.close()
+
+print "Try to use closed canvas"
+try:
+    canvas.show()
+except RuntimeError, detail :
+    print detail
+
+print "Got exception instead"
+
+    
+    

@@ -1,0 +1,71 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/73148/tools/hippodraw/trunk/qtui
+END
+HippoIcons.qrc
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/73148/tools/hippodraw/trunk/qtui/HippoIcons.qrc
+END
+qtui.dir
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qtui/qtui.dir
+END
+CanvasWindowBase.qrc
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/73148/tools/hippodraw/trunk/qtui/CanvasWindowBase.qrc
+END
+CreateNTupleBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qtui/CreateNTupleBase.ui
+END
+ListDialogBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/61152/tools/hippodraw/trunk/qtui/ListDialogBase.ui
+END
+CanvasSettingsBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/61152/tools/hippodraw/trunk/qtui/CanvasSettingsBase.ui
+END
+PickTableBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qtui/PickTableBase.ui
+END
+CanvasWindowBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/73148/tools/hippodraw/trunk/qtui/CanvasWindowBase.ui
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/57486/tools/hippodraw/trunk/qtui/CMakeLists.txt
+END
+InspectorBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/61156/tools/hippodraw/trunk/qtui/InspectorBase.ui
+END
+PlotTableBase.ui
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qtui/PlotTableBase.ui
+END

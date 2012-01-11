@@ -1,0 +1,27 @@
+## -*- mode:python -*-
+
+from setPath import *
+import numarray
+import hippoplotter as plot
+
+npts = 100
+phi = numarray.arange(npts)/(npts-1.)*2.*numarray.pi;
+x = numarray.cos(phi)
+y = numarray.sin(phi)
+
+nt = plot.newNTuple( (phi, x, y), ("phi", "x", "y") )
+
+disp = plot.Scatter( nt, "x", "y" )
+
+rep = disp.getDataRep()
+
+rep.addCut ()
+rep.setCutRange ( 0, 1 )
+
+nt2 = rep.createNTupleUnderRegion()
+
+print "Old ntuple has ", nt.rows, " rows"
+print "New ntuple has ", nt2.rows, " rows"
+
+disp2 = plot.Scatter ( nt2, 'x', 'y' )
+

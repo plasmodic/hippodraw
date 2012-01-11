@@ -1,0 +1,7 @@
+/** @dir axes
+
+This directory contains source and header files of classes related to
+axes of plots.  It also contains the Range class for lack of better
+place to put it.
+
+*/

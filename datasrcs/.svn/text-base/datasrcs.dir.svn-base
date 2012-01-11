@@ -1,0 +1,13 @@
+/** @dir datasrcs
+
+This directory contains source and header files for classes related to
+data sources.
+
+This directory contains source and header files for classes related to
+data sources.  It contains concrete implementations for some derived
+classes of DataSource.  Other derived classes are optional and
+contained in other directories.
+
+@sa <a href="../../user/html/ntuple_root.html">Data sources</a>
+
+*/

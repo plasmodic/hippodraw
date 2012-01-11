@@ -1,0 +1,329 @@
+K 25
+svn:wc:ra_dav:version-url
+V 50
+/svn/!svn/ver/60883/tools/hippodraw/trunk/datareps
+END
+FunctionRep2.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep2.cxx
+END
+XYZPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/XYZPlot.h
+END
+CompositeFunctionRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 75
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/CompositeFunctionRep.cxx
+END
+DyHistogram.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DyHistogram.h
+END
+DataRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/60883/tools/hippodraw/trunk/datareps/DataRep.cxx
+END
+FunctionRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep.h
+END
+XYPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/XYPlot.h
+END
+TextDataRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/TextDataRep.cxx
+END
+Profile2D.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/Profile2D.cxx
+END
+FunctionParameter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionParameter.cxx
+END
+LineDataRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/LineDataRep.cxx
+END
+ProfileHist.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ProfileHist.cxx
+END
+St1DHistogram.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/St1DHistogram.cxx
+END
+St2DHistogram.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/St2DHistogram.cxx
+END
+DataRepException.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DataRepException.cxx
+END
+FunctionRep1.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep1.h
+END
+ColorPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ColorPlot.h
+END
+VariableMesh.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/VariableMesh.cxx
+END
+FunctionRep2.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep2.h
+END
+CompositeFunctionRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/CompositeFunctionRep.h
+END
+ScatterPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ScatterPlot.cxx
+END
+DataRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DataRep.h
+END
+YPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/YPlot.cxx
+END
+DataRepFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DataRepFactory.cxx
+END
+ProfileContour.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ProfileContour.cxx
+END
+TextDataRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/TextDataRep.h
+END
+Profile2D.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/Profile2D.h
+END
+FunctionParameter.h
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionParameter.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/48411/tools/hippodraw/trunk/datareps/CMakeLists.txt
+END
+DyHistogramEqualEntries.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 78
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DyHistogramEqualEntries.cxx
+END
+LineDataRep.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/LineDataRep.h
+END
+ProfileHist.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ProfileHist.h
+END
+St1DHistogram.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/St1DHistogram.h
+END
+St2DHistogram.h
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/St2DHistogram.h
+END
+datareps.dir
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/datareps.dir
+END
+Image.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/Image.cxx
+END
+StripChart.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/StripChart.cxx
+END
+DataRepException.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DataRepException.h
+END
+VariableMesh.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/VariableMesh.h
+END
+ContourPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ContourPlot.cxx
+END
+ScatterPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ScatterPlot.h
+END
+XYZPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/XYZPlot.cxx
+END
+DyHistogram.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DyHistogram.cxx
+END
+FunctionRep.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep.cxx
+END
+YPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/YPlot.h
+END
+DataRepFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DataRepFactory.h
+END
+ProfileContour.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ProfileContour.h
+END
+XYPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/XYPlot.cxx
+END
+DyHistogramEqualEntries.h
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/DyHistogramEqualEntries.h
+END
+Image.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/Image.h
+END
+StripChart.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/StripChart.h
+END
+FunctionRep1.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/FunctionRep1.cxx
+END
+ColorPlot.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ColorPlot.cxx
+END
+ContourPlot.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/datareps/ContourPlot.h
+END

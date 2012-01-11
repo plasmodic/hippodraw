@@ -1,0 +1,46 @@
+""" -*- mode: python -*-
+
+   Displaying the Whirlpool galaxy (M51) test image.
+
+   author: James Chiang <jchiang@slac.stanford.edu>
+   
+"""
+#
+# $Id: m51.py.in,v 1.9 2005/07/09 14:43:38 pfkeb Exp $
+#
+# @author: J. Chiang <jchiang@slac.stanford.edu>
+#
+
+import setPath
+import math
+import pyfits
+
+m51 = pyfits.open('@top_srcdir@/examples/m51.fits')
+prihdr = m51[0].header
+nx = prihdr['naxis1']
+ny = prihdr['naxis2']
+image = []
+resample = 4
+for i in range(0, nx, resample):
+    for j in range(0, ny, resample):
+        image.append(m51[0].data[i][j])
+
+from load_hippo import hippo, app, canvas
+from hippo import *
+
+# This ntuple will be built column-wise, that's the hardest.
+nt = NTuple()
+
+# Register the ntuple so it is visible to the application
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+nt.setTitle ( 'M51 - The Whirlpool Galaxy' )
+label = 'Intensity'
+nt.addColumn ( label, image )
+
+plot = Display ( "Image", nt, (label,) )
+plot.setRange ( 'x', 0., nx/resample )
+plot.setRange ( 'y', 0., nx/resample )
+
+canvas.addDisplay ( plot )

@@ -1,0 +1,18 @@
+/* -*- mode:c++ -*- */
+
+/** @file exception List of functions used by @b HippoDraw from the
+    exception component of the C++ standard library.
+
+    @note This list maybe incomplete.
+*/
+
+namespace std {
+
+  /** A C++ standard library class.  This class is the base class of
+      all C++ standard library exception classes and all @b HippoDraw
+      exception classes.
+  */
+  class exception {};
+
+};
+

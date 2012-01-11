@@ -1,0 +1,168 @@
+/**
+@page hippoplotter The hippoplotter.py module
+
+Here is a summary of the classes and functions available in this module.
+
+- <tt>newNTuple(arrays, labels, name="", register=1)</tt>\n Define and
+  register a new hippo n-tuple. @c arrays is a tuple or list of
+  numeric sequences (all the same length), and @c labels is a tuple or
+  list of the labels to be applied to each sequence.
+
+- <tt>addNTuple(nt, key="")</tt>\n Add an existing hippo n-tuple to
+  hippoplotter's internal list.
+  
+- <tt>getDisplay()</tt>\n Returns the handle to the selected display.
+
+- <tt>getDisplays()</tt>\n Returns a tuple of handles to all of the
+  displays on the canvas.
+
+Each of the plotting functions can use either the hippo n-tuple or be
+passed sequences as arguments.  The former type of functions has
+capitalization appropriate for proper names.  For example,
+
+- <tt>Histogram(nt, xname, xlog=0, ylog=0, 
+                xrange=(), yrange=(), title="",
+                pointRep="Column", oplot=0, color=None)</tt>\n 
+  Create a histogram of the values in the @c xname column of the n-tuple @c nt.
+    
+- <tt>histogram(x, xname='x', xlog=0, ylog=0, 
+                xrange=(), yrange=(), title="",
+                pointRep="Column", oplot=0, color=None)</tt>\n 
+   Create a histogram of the values in @c x, which can be any kind of
+   sequence (e.g., tuple, list, or flat numarray) of floats or
+   integers.
+
+Hereafter, we give only the signature and descriptions, when
+necessary, of the n-tuple versions of these plotting functions:
+
+- <tt>YPlot(nt, yname, xlog=0, ylog=0, xrange=(), yrange=(),
+            title="", pointRep="Symbol", oplot=0, color=None)</tt>
+
+- <tt>Scatter(nt, xname, yname, xlog=0, ylog=0, xrange=(), yrange=(), 
+              title="", pointRep="Symbol", oplot=0, color=None)</tt>
+
+- <tt>XYPlot(nt, xname, yname, xerr=None, yerr=None, xlog=0, ylog=0,
+             xrange=(), yrange=(), title="", pointRep="Symbol", oplot=0,
+             color=None)</tt>
+
+- <tt>StripChart(nt, xname, yname, xlog=0, ylog=0, xrange=(), yrange=(), 
+                title="", pointRep="Line", oplot=0, color=None)</tt>
+
+- <tt>Profile(nt, xname, yname, xlog=0, ylog=0, xrange=(), yrange=(),
+              pointRep="Symbol", title="", oplot=0, color=None)</tt>
+
+- <tt>XYHist(nt, xname, yname, xbinsize=0, ybinsize=0,
+            xrange=(), yrange=(), xlog=0, ylog=0, Aitoff=0, title="",
+            pointRep="ColorBox", oplot=0)</tt>\n
+   HippoDraw's Color Plot.
+
+- <tt>Contour(nt, xname, yname, xbinsize=0, ybinsize=0,
+             xrange=(), yrange=(), xlog=0, ylog=0, Aitoff=0, title="",
+             pointRep="Contour", oplot=0)</tt>
+
+- <tt>Image(nt, zlog=0, aspect=0, transform=None, title="")</tt>\n
+  HippoDraw's Z Plot, assuming @c nt has only one column.
+
+- <tt>fitsImage(fits_image, zlog=0, aspect=0, transform=None, title="")</tt>\n
+  Create an image display using @c Image, reading the data from the
+  FITS file @c fits_image.  @c fits_image can also be a @c FitsImage
+  object.
+
+- <tt>class FitsImage(file)</tt>\n 
+  @c file is the filename of a FITS image file.  This is a thin wrapper
+  to a pyfits object, providing a single column hippo n-tuple of the
+  image data and a method, @c getKeyVal, to access the primary image
+  keyword values.
+
+- <tt>FitsNTuple(fitsFiles, extension=1, name="")</tt>\n
+  This wraps the <tt>FitsNTuple.FitsNTuple</tt> class, which reads in
+  FITS files and creates a hippo n-tuple of the FITS columns and a @c
+  FitsNTuple object that has numarrays of each FITS column as
+  attributes.  @c fitsFiles can either be the filename of a single
+  FITS file or a tuple or list of FITS files, all having the same
+  format.
+
+- <tt>class StaticHist(xrange=(-1, 1), xBinWidth = 0.1, title="", xlabel="",
+                       color=None)</tt>\n
+  This class wraps HippoDraw's Static Histogram display and delegates
+  directly to the filling methods of the Static Histogram objects.
+
+- <tt>class Static2DHist(xrange=(-1, 1), yrange=(-1, 1),
+                         xBinWidth=0.1, yBinWidth=0.1,
+                         title="", xlabel="", ylabel="")</tt>\n
+  This class wraps HippoDraw's Static 2D Histogram class.
+
+- <tt>setCut()</tt>\n
+  This function allows the user to set the cut boundaries by right
+  clicking at the end points of the range on a Cut display.  To exit
+  the @c setCut mode, the user must click on an empty part of the
+  canvas.
+
+- <tt>dragCut()</tt>\n
+  This allows the user to set the center of an existing cut by right
+  clicking on a Cut display.  
+
+- <tt>resize(restore=None)</tt>\n
+  This function allows the user to set the plot limits by right
+  clicking on opposite corners of the rectangular region defining the
+  new plot limits.  If a non-<tt>None</tt> @c restore argument is provided,
+  then right clicking a display will restore its plot limits to the
+  values it had when the display was created.
+
+- <tt>fitData(display, funcName)</tt>\n 
+  This will apply and fit a hippo function, e.g., <tt>"PowerLaw"</tt>,
+  to the dataRep in the specified display.  It returns a tuple of
+  dictionaries of parameter values and error estimates and the handle
+  to the function itself:
+  @verbatim
+  >>> (params, errors, func) = fitData(display, "PowerLaw")
+  >>> print "%.2e +/- %.2e" % (params["Index"], errors["Index"])
+  -1.78e+00 +/- 5.93e-03
+  @endverbatim
+
+- <tt>slopes()</tt>\n 
+  This allows the user to estimate slopes, exponential scales, or
+  power-law indices of displayed data without having to go through the
+  fitter.  Right clicking at two points on a display will cause a
+  straight line to be drawn connecting the points; the slope, scale
+  factor, or power-law index appropriate for that line will be printed,
+  depending on whether the axes are both linear, log-linear, or
+  log-log, respectively.  This mode is exited by clicking on an empty
+  part of the canvas.
+
+- <tt>hline(y=None)</tt>\n
+  This will draw a horizontal line on the selected display at @c y, if
+  it is given. If @c y is not given, then the line will be drawn at the
+  location given by a right-click on any display.
+
+- <tt>vline(x=None)</tt>\n
+  See @c hline.
+
+- <tt>pickData()</tt>\n 
+  This allows the user to pick data values from a display by right
+  clicking.  The locations are printed, and a hippo n-tuple containing
+  the pick data is returned.  Once a display is selected by the
+  initial right-click, only pick data from that display is extracted.
+  Clicking on an empty portion of the canvas exits from the @c
+  pickData mode.
+
+- <tt>clear()</tt>\n
+  This clears all displays from the canvas.
+
+- <tt>prompt(prompt=None)</tt>\n
+  Useful for writing interactive scripts, this prompts the user for input.
+
+- <tt>setParam(target, value, func)</tt>\n
+  This wraps the @c setParameters method of hippo function objects and
+  allows a single parameter to be set:
+  @verbatim
+  >>> setParam("Index", -2.1, pl)
+  @endverbatim
+
+- <tt>setFixed(targets, func)</tt>\n
+  This wraps the @c setFixedFlags method of hippo function objects, allowing
+  the user to pass a tuple of parameter names that he/she wishes to fix:
+  @verbatim
+  >>> setFixed(("Prefactor", "Index"), pl)
+  @endverbatim
+*/

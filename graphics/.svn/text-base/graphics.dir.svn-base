@@ -1,0 +1,16 @@
+/** @dir graphics
+
+This directory contains source and header files for classes related to
+drawing.
+
+This directory contains source and header files for classes related to
+drawing that is independent of the graphic tool kit being used.  It
+contains the abstract base class for all drawing and helper classes.
+It also contains an implementation of a class to create Encapsulated
+Postscript files.
+
+@sa @ref overview_view
+
+*/
+
+

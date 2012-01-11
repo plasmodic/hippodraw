@@ -1,0 +1,39 @@
+"""
+Cuts based on column id.
+
+"""
+#
+#$Id: cutId.py.in,v 1.1 2007/06/07 18:16:05 pfkeb Exp $
+#
+
+from setPath import *
+import hippoplotter as plot, random, numarray
+import hippo
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+
+gauss = random.gauss
+
+npts = 200
+x = numarray.arange(npts)
+c = numarray.arange(0, npts, 2)
+
+# y = [gauss(slope*xx + intercept, sigma) for xx in x]
+y = [slope*xx + intercept for xx in x]
+yerr = sigma*numarray.ones(npts)
+
+nt = plot.newNTuple( (x, y, yerr), ('x', 'y', 'yerr') )
+ntc = plot.newNTuple(  (c, ), ('x', ) )
+disp = plot.XYPlot(nt, 'x', 'y', yerr='yerr')
+
+cc = hippo.CutController.instance()
+cc.createIdCut ( ntc, nt )
+
+ids = hippo.Cut ( nt, ( 'x_cut', ) )
+plot.Canvas().addDisplay ( ids )
+ids.setCutRange ( 0.8, 1.2, 'x' )
+ids.addTarget ( disp)
+
+

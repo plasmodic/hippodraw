@@ -1,0 +1,93 @@
+"""
+A rebinning function that ensures there are nmin entries per bin.
+
+Usage: (new_xlower, new_xupper, newEntries) = rebin(xlower, xupper, entries)
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+
+"""
+#
+# $Id: rebin.py.in,v 1.5 2004/10/31 22:38:23 jchiang Exp $
+#
+
+import sys
+from setPath import *
+
+def rebin(xmin, xmax, entries, nmin):
+    upper = []
+    bins = []
+    #
+    # A running total of counts, adding counts from subsequent bins.
+    #
+    sum = 0
+    for x, y in zip(xmax, entries):
+        sum += y
+        done = 0
+        if sum >= nmin:
+            #
+            # Append to the output bins if running total satisfies >= nmin.
+            #
+            bins.append(sum)
+            upper.append(x)
+            #
+            # Reset the running total for the next output bin.
+            #
+            sum = 0
+            #
+            # This flag is used only to set the status of the final
+            # output bin.
+            #
+            done = 1
+    #
+    # Figure out what to do with the final output bin.
+    #
+    if not done:
+        #
+        # It's below threshold, so add it to the previous bin.
+        #
+        bins[-1] += sum
+        upper[-1] = x
+    #
+    # Fill the list of bin lower bounds.
+    #
+    lower = [xmin[0]]
+    for x in upper[:-1]: lower.append(x)
+    return (lower, upper, bins)
+
+def makeHist(xmin, xmax, bins):
+    xx = []
+    yy = []
+    for x, y, z in zip(xmin, xmax, bins):
+        xx.append(x)
+        xx.append(y)
+        yy.append(z/(y-x))
+        yy.append(z/(y-x))
+    return (xx, yy)
+
+if __name__ == "__main__":
+    import random, utilities, math
+    flatHist = utilities.histogram(0, 1, 50)
+    cosHist = utilities.histogram(0, 1, 50)
+    shoot = random.uniform
+    npts = 5000
+    for i in range(npts):
+        flatHist.fill( shoot(0, 1) )
+        cosHist.fill( math.asin(shoot(0, 1))/(math.pi/2.) )
+    xmin = flatHist.abscissa()
+    xmax = xmin + flatHist.xstep
+
+    nmin = 100
+
+    import hippoplotter as plot
+
+    for hist in (flatHist, cosHist):
+        (xx, yy) = makeHist(xmin, xmax, hist.hist)
+        plot.scatter(xx, yy, pointRep="Line", yrange=[0, max(yy)])
+
+        (xl, xu, bins) = rebin(xmin, xmax, hist.hist, nmin)
+        (xx, yy) = makeHist(xl, xu, bins)
+        plot.scatter(xx, yy, oplot=1, pointRep="Symbol")
+        plot.scatter(xx, yy, oplot=1, pointRep="Line")
+        total = 0
+        for z in bins: total += z
+        assert(total == npts)

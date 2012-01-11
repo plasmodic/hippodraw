@@ -1,0 +1,25 @@
+""" -*- python -*-
+This script tests ignoring bad data in the NTuple file
+
+Copyright (C) 2004   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: baddata2.py.in,v 1.1 2004/04/09 16:50:24 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+from hippo import NTupleController
+
+ntc = NTupleController.instance()
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.baddata2' )
+
+from hippo import Display
+
+
+xy = Display ( "XY Plot", nt1, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+

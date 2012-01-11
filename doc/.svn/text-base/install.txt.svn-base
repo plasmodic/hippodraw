@@ -1,0 +1,1265 @@
+o/** @page install_notes Installation
+
+@b HippoDraw is a cross platform library and application. The
+components of the distribution are
+
+@li A core library, @em libhippo, not dependent on a graphics toolkit.
+
+@li A graphics library, @em libhippoqt, built upon the %Qt graphics toolkit.
+
+@li A standalone application, @em hippodraw, that uses the above libraries.
+
+@li A Python extension module, @em hippomodule, which allows use of
+the @b HippoDraw libraries with the Python programming language.
+
+@li (optionally) A Python extension module, @em sihippo, which allows
+use of the @b HippoDraw libraries with PyQt Python extension module.
+
+These instructions will help you install @b HippoDraw on all supported
+platforms.
+
+@li @ref install_windows
+@li @ref install_macosx
+@li @ref install_unix
+
+@section install_windows Microsoft Windows
+
+For Microsoft Windows, pre-built binaries are available in the form of
+a Microsoft installer file (@em .msi ) located <a
+href="ftp://ftp.slac.stanford.edu/users/pfkeb/hippodraw"> here</a>.
+It includes support for ROOT and FITS files.  It also includes C++
+version of Minuit To use it, one needs Microsoft's .NET Framework 1.1.
+Download and install the
+<a href="http://msdn2.microsoft.com/en-us/netframework/aa569265.aspx">
+Microsoft .NET Framework 1.1 Redistributable </a> from Microsoft web
+site if you don't already have it installed.
+
+To install @b HippoDraw, just double click on the .msi file and follow
+the instructions.  The installer file includes everything you need
+except Python. To use @b HippoDraw with Python, pre-built binaries for
+Python are available from the Python
+<a href="http://www.python.org/download"> download </a> page.  You'll
+need to add @b HippoDraw to your Python path.  Right click on
+MyComputer icon and go to
+
+MyComputer->Properties->Advanced->Environmental Variables.  
+
+Create a new variable, @em PYTHONPATH, if you don't already have one,
+and add HippoDraw to it, for example, @em C:@\Program Files@\HippoDraw
+
+
+Building @b HippoDraw with Qt 3 from source under Windows requires a
+Trolltech %Qt commercial license, Microsoft VC++ 8.0 project files and
+instructions on how to use them are located in the @em vs.net2005
+directory.  Building @b HippoDraw with Qt 4 under Windows has not been
+tested with this release.
+
+@section install_macosx Mac OS X
+
+On a Mac OS x system, @b HippoDraw can be built from source code like
+other Unix like systems.   However, there are a few steps and
+precautions one should take and they are noted in the @ref
+install_mac_root page.
+
+
+@section install_unix Unix like System, Linux, Solaris, etc.
+
+These are instructions for building the @b HippoDraw application
+and Python extension module from source on UNIX-like system.  This
+includes UNIX systems such as Sun's Solaris, Linux systems, and Mac OS
+X with X windows.  
+
+In most cases, just doing the standard configure, make, and make
+install dance should work.  The configure script will find the
+required software if they are installed in their default locations
+(usually @em /usr/local).  If it doesn't, read the @ref
+install_build  section below for configuring with @b HippoDraw with
+some external packages located on usual places (especially for Mac OS X).
+
+The major sections on the remainder of this page are
+
+@li @ref install_requirements
+@li @ref install_build
+@li @ref install_config_fail
+@li @ref install_make
+@li @ref install_build_fail
+@li @ref install_install
+@li @ref install_run
+@li @ref install_external
+@li @ref install_problems
+
+
+@section install_requirements Required and Optional Software.
+
+Building  the complete HippoDraw package from source requires a C++
+compiler, the %Qt library, the Boost.Python library, and Python.  On a
+modern Linux distributions all are part of the distribution.  On older
+distributions, only Boost.Python might be missing.
+
+@subsection install_cpp C++ compiler
+
+   @b HippoDraw requires a fairly standards compliant C++ compiler and
+library.  However, some C preprocessor macros have been defined to
+enable workaround code for older compilers.  These macros all have
+`_DEFECT' in their name.  The configure script (see below) will define
+these macros as needed.  There are also a few @em @#ifdef in the source
+code for specific operating systems such as Windows and Mac OS X.
+
+
+The current release was tested with gcc 3.2.3 on Red Hat Enterprise
+3,4.6 pm Red Jat Emter[rose 4 gcc 4.2.1 on Fedora Core 7, gcc 4.0.1 on
+Mac OS X, and Windows XP with Visual Studio 8 (aka .NET 2005).  Older
+versions of these compilers have been know to be sufficient in the
+past.  That is, gcc 2.95.3 should still work.  There are @em @#ifdef
+in the source mainly for Visual Studio 6 but more may be needed.
+
+
+@subsection install_qt Trolltech's Qt 
+
+   The current release of @b HippoDraw requires %Qt 3.1.0 or later
+built with thread support.  However, the core library can be built
+without the graphical interface, see @ref install_config_qt.  Also,
+versions of Qt in the 3.3 series, (3.3.3, and 3.3.4) had @ref
+install_qt_print
+
+Modern Linux
+distributions have a compatible version of the %Qt 3 libraries
+installed.  However, the header files might be missing unless the
+"developer" package of %Qt was also installed.  On some distributions,
+this is part of the KDE developer package.
+
+The current release of %Qt is 3.3.7. and %Qt 4.1.4.  @em HippoDraw has
+been tested with both version on Linux, Mac OS X, and Windows
+
+   If an adequate version of %Qt is not already installed on your
+system, it must be built and installed from source.  See @ref
+install_extern_qt section below.
+
+   This release was developed with %Qt 3.3.7 on Linux, Mac OS X, and
+Windows, but also tested with %Qt 3.1.2 on Red Hat Enterprise 3 system
+and %Qt 4.1.2, on Fedora Core 6.
+
+@subsection install_python Python
+
+@b HippoDraw requires Python 2.3 or later for full functionality of
+its Python extension module.  The reason for this requirement is to
+allow the user to write classes in Python that are derived from @b HippoDraw
+C++ base class.  If earlier version of Python is found, these features
+will be disabled in the build.  Only two classes are involved, the
+ObserverWrap and FunctionWrap.
+
+Python can be obtained from http://www.python.org.  This release was
+tested with Python 2.2, 2.3,  and 2.4.
+
+
+@subsection install_boost Boost.Python
+
+@b HippoDraw uses <a href="http://www.boost.org/libs/python/doc/index.html">
+Boost.Python </a> to build its Python extension module. Boost.Python
+is one of the libraries of the <a href="http://www.boost.org">
+Boost.org </a> project.
+
+   Boost.Python version
+1.32.0 or later is required for full functionality of @b HippoDraw's
+Python extension modules.
+
+Only one class, FunctionWrap, requires this recent version
+of Boost, all others could use Boost-1.29.0 or later.  
+See @ref install_config_boost for configuring @b HippoDraw for older
+versions of Boost.  This release was developed with Boost-1_33_1.
+
+See the @ref
+install_extern_boost section for tips on installing Boost.
+
+
+@subsection install_minuit Minuit (optional)
+
+The C++ version of Minuit can be used by @b HippoDraw.   This version
+is a grounds up re-write with involement of Fred James, the author of
+the original Fortran version.
+
+Do not get confused by the older libMinuit.so shared library that
+comes with the ROOT distribution, it is not the same thing.  That
+library is an f2c'd version of the original Fortran. 
+
+@subsection install_fits FITS (optional)
+
+@b HippoDraw's built-in support for reading a
+<a href="http://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html"> FITS </a>
+file is implemented by using the
+<a href="http://heasarc.gsfc.nasa.gov/docs/software/fitsio/fitsio.html">
+CFITSIO </a> library.  FITS binary and ASCII tables are supported as
+well as images.
+
+@subsection install_wcslib World CoordinateSystem library (WCSLIB) (optional)
+<a href="http://www.atnf.csiro.au/people/mcalabre/WCS/">WCSLIB</a>
+ is a C implementation of the coordinate transformations defined in
+the FITS WCS papers.  When configured to use this library, @b
+HippoDraw provides and additional 10 transforms to its built-in
+transforms.
+
+
+@subsection install_numarray Python numerical arrays (optional)
+
+<a href="http://www.stsci.edu/resources/software_hardware/numarray" >
+Numarray </a>,  
+<a href= "http://numpy.scipy.org/"> NumPy</a>, and <a href="http://numeric.scipy.org">Numeric</a>
+provide numerical array manipulation and computational capabilities
+similar to those found in IDL, Matlab, or Octave. When using numerical
+arrays, it is possible to write many efficient numerical data
+processing applications directly in Python.  Thus it is highly
+recommended to use @b HippoDraw with one of the numerical array
+modules.
+
+@b HippoDraw can return a numerical array to Python from any of the
+type of DataSource objects that are supported.  One can also import
+data to a @b HippoDraw DataSource from a numerical array.  This
+requires that at least one of numerical array Python modules has been
+installed and @b HippoDraw configured to build with to use it.
+
+@subsection install_pyfits PyFITS (optional)
+
+<a href="http://www.stsci.edu/resources/software_hardware/pyfits">PyFITS
+</a> provides an interface to FITS formated files for the Python. @b
+HippoDraw also supports reading FITS files from Python but the support
+is not as complete as PyFits. It requires installation of numarray.
+PyFits implementation is provided as part of the @b HippoDraw installation.
+It is needed if you want to read FITS files with a Python script.  It
+is not needed for @b HippoDraw's built-in FITS support.
+
+@subsection install_root ROOT (optional)
+
+One common use of <a href="http://root.cern.ch"> ROOT </a> files, is store a
+table of data as TBranch objects each with a single TLeaf.  Files of
+this type can be imported by @b HippoDraw as a RootNTuple.   HippoDraw
+has been tested with versions  3.10/02, 4.02/00, and 5.14/00 on both Linux and
+Windows.
+
+
+
+@subsection install_sip SIP (optional)
+
+   You only need to build the SIP version of @b HippoDraw's Python
+module if you want to use @b HippoDraw with
+<a href="http://www.riverbankcomputing.co.uk/pyqt/index.php"> PyQt.</a>
+You need to set the PyQt version number in the sip/Makefile.
+See the INSTALL file in the sip subdirectory for instructions.
+
+@subsection install_opengl OpenGL (optional)
+
+Guy Barrand <barrand@lal.in2p3.fr> has contributed code to use OpenGL
+for graphics with @b HippoDraw.  See documentation in the OpenGL
+subdirectory.  Although this work is not complete, one can configure
+@b HippoDraw to build a test program with it.  The options is
+`--enable-openglbuild'.
+
+@section install_build Configuring HippoDraw
+
+@b HippoDraw needs to be configured before building.  This is done by
+running the configure script in the build directory.  If all the
+required software was installed in their default places (usually
+@em /usr/local) then no configuration options should be needed.   
+
+@subsection install_autogen Autogen 
+
+   If you obtained the source code from the CVS repository, you need
+to first create the configure script. Due to security restrictions at
+the SLAC, CVS access is only allowed to users with valid UNIX accounts
+at SLAC. If you obtained the source code from a gzipped tar file, the
+configure script has already been built and you can skip this step.
+
+In source directory, just type ...
+
+@verbatim
+> ./autogen
+@endverbatim
+
+   This will create the Makefile.in in each subdirectory and the
+configure script that will be used in the next step.  It will also
+create symbolic links in the @em config directory for scripts required
+by @em autoconf, @em automake, and @em libtool.
+
+
+
+@subsection install_configure Configuring
+
+The configure script allows one to specify where the various required
+and option software libraries are located.  If they are installed in
+their default locations, then configure will find them automatically.
+Thus, if one runs configure like this...
+
+@verbatim
+> ../hippodraw/configure
+@endverbatim
+
+one should be configured with  with the required external packages and
+any  optional packages  that  were  found to  be  installed.  If  this
+doesn't  work, then  read  on  in this  section  for configuring  with
+external  packages installed  in non-standard  places and  see section
+@ref  install_config_fail for  possible  causes of  the failure.   The
+latter section also contains some special problems with Mac OS X.
+
+
+  It is recommended that you build in a separate directory from the
+source code.  For example, if the name of the directory where the
+hippodraw source code is located is hippodraw/, then from the
+directory above it you might do
+
+@verbatim
+> mkdir hippodraw-BUILD 
+> cd hippodraw-BUILD
+> ../hippodraw/configure --with-Qt-dir=/usr/local/qt
+@endverbatim
+
+   This will force using %Qt in @em /usr/local.  The configure script
+will test the %Qt installation and fail if faulty or incorrect path.
+
+   The configure script setups the build for the version of Python in
+your path.  If this is not the version you want to build with, set
+your PATH environmental variable before running configure.
+
+
+On Mac OS X, there are some special steps to be taken before running
+configure.  See @ref install_libtool_mac and @ref install_config_mac
+below.
+
+
+The configure script has many other options, which you can see by
+typing...
+
+@verbatim
+> ./configure --help
+@endverbatim
+
+Most options are the same as other packages that use the GNU
+auto-tools suite.   Some specific to @b HippoDraw are
+
+@subsubsection install_config_qt Qt 3 path and library
+
+@em --with-Qt-dir= sets the path to the root of the %Qt tree.  The
+default if not given, is to try @em /usr/local/qt and if that fails,
+@em /usr/lib/qt-3.1. To build %b HippoDraw without %Qt interface, use
+<em>--without-Qt-dir</em>
+
+@em --with-Qt-lib= sets the name of the %Qt shared library.  The
+default is qt-mt corresponding to libqt-mt.so which has
+multi-threading enabled which is required to use @em HippoDraw with
+Python.
+
+Normally, under the directory where %Qt has been installed, one finds
+%Qt's bin, include, and lib directories.  If this is not the case, then
+you need to use the remaining %Qt related options to set the
+appropriate paths.
+
+
+To use %Qt 4 use the corresponding @em --with-qt4 options. For example
+
+@verbatim
+./hippodraw/configure --with-qt4-dir=/usr/local/Trolltech/Qt-4.1.4
+@endverbatim
+
+If you are using %Qt 4 and you plan to use the ListTuple class in
+Python, and you have a multi-processor machine, then one should
+configure like this
+
+@verbatim
+./hippodraw/configure CPPFLAGS=-DHAVE_SMP --with-qt4-dir=/usr/local/Trolltech/Qt-4.1.2
+@endverbatim
+
+Failure to do so may lead to mysterious crashes due to thread conflicts.
+
+
+With this release, using Qt 4 has not been fully tested yet, but there
+are no known bugs that do not exist when built with Qt 3.
+
+@subsubsection install_help Installing built-in help
+
+@em --enable-help enables building @b HippoDraw with the built-in help
+It is enabled by default.  Building the
+help requires use of the
+<a href="http://www.stack.nl/~dimitri/doxygen/index.html">
+Doxygen </a>tool.  To disable building with the help,
+use @em --disable-help
+
+@subsubsection install_config_boost Boost path and library.
+
+@em --with-boost-version= sets the version or boost installation.
+Must be 1_32 or later. The default is 1_33_1
+
+@em --with-boost-root= sets the path to the root of the boost
+installation.   The default is @em /usr/local.   This option only
+works if under this directory there is a subdirectory
+ @em include/Boost-1_33_1/ subdirectory and a lib subdirectory.
+
+@em --with-boost-include= sets the path to directory that contains a
+subdirectory @em boost/ which contains the header files.  The default
+is @em /usr/local/include/boost-1_33_1/.
+
+@em --with-boost-lib= sets the path to the boost libraries.  The
+default is @em @em /usr/local/lib/.
+
+@em --with-boost-libname= sets the name of the Boost.Python library.
+The default, if not given, is @em boost_python-gcc-1_33_1.  A normal Boost
+install creates a dozen or so variations of each library.  Because the
+compiler name is part of the library you may need to use this option
+when not compiling with gcc.
+
+@subsubsection install_config_minuit Minuit path and library.
+
+   On 12 December 2005, the C++ version of Minuit made a transition
+from its initial interface to one compatible with ROOT coding
+standards.   Either one can be used by @b HippoDraw.   However, no
+further development or bug fixes will be done on the original, but
+your can still find its sources starting from here...
+
+http://seal.web.cern.ch/seal/snapshot/work-packages/mathlibs/minuit/index.html
+
+For this version the library name is liblcgMinuit.so and the last
+released version is 1.7.9.
+
+The latest version is called Minuit2 and is found here...
+
+http://seal.web.cern.ch/seal/MathLibs/Minuit2/html/index.html
+
+The library name is libMinuit2Base.so and has no external dependencies
+other than the C++ standard library.
+
+In addition, if you have ROOT installed, you may find libMinuit2.so
+as part of the installation.   This library contains libMinuit2Base
+plus some other ROOT specific classes thus has dependencies on other
+ROOT libraries.
+
+@b HippoDraw can be configured to work with the original interface,
+the Minuit2 interface as a standalone, or the Minuit2 interface
+installed as part of your ROOT installation.   
+
+This release was tested  Minuit-1.7.9 and Minuit2-5.12.  Versions earlier than
+Minuit-1.4.0 incompatible.
+
+In the following, one can use either @em --with-minuit-xxx or @em
+--with-minuit2-xxx.  The former use the version of C++ Minuit with the
+original API and the latter uses the new (ROOT compatbile) API of
+Minuit2.
+
+@em --with-minuit-include= sets the path to the Minuit header files.
+The default, if not given, is @em /usr/local/include/Minuit which is
+the default install of the Minuit package.  For Minuit2, the defaults
+are first @em /usr/local/include/Minuit2 then@em /usr/include/Minuit2.
+
+@em --with-minuit-lib= sets the path to the directory where the
+libMinuit.so shared library is installed.  The default, if not given,
+is @em /usr/local/lib which is the default install of the Minuit
+package.  For Minuit2, the defaults are first @em /usr/local/lib then
+@em /usr/lib.
+
+@em --with-minuit-libname= sets the name the Minuit shared library.
+The default is @em lcg_Minuit corresponding to the installed
+liblcg_Minuit.so file.  If the version of Minuit you have installed is
+1.5.1 or earlier, then this option should be used to set the library
+name to @em Minuit.
+
+If both versions of Minuit are found by default, then the Minuit2
+implementation will be used.   If neither version is found, and if ROOT
+installation is found, and if Minuit2 is found as part of it, then
+that version will be used.
+
+If Minuit is not found in the default locations, then @b HippoDraw
+will be built without Minuit support.
+
+@subsubsection install_config_cfitsio CFITSIO path and library.
+
+@em --with-cfitsio-include= sets the path to the CFITSIO header files.
+The default, if not given, is first @em /usr/local/include then
+@em /usr/include/cfitsio (as done with Fedora Core rpm).
+
+@em --with-cfitsio-lib= sets the path to the directory where the
+libcfitsio.so shared library is installed.  The default, if not given,
+is first @em /usr/local/lib then @em /usr/lib.
+
+CFITSIO might be installed as part of the FTOOLS package, in which
+case one should use its installation path.
+
+If CFITSIO is not found in the default location, or if the path of one
+of the above options is set to `no' or incorrect, then @b HippoDraw
+will be built without CFITSIO support.
+
+@sa @ref install_extern_cfitsio
+
+
+@subsection install_config_wcslib WCSLIB path and library
+
+@em --with-wcslib=include= sets the path to the WCSLIB include
+directory.   The default, if not given is @em
+/usr/local/include/wcslib.
+
+@em --with-wcslib-lib= sets the path to the directory that contains
+the @em libwcs.a   The default, if not given, is /usr/local/lib.
+
+
+@subsubsection install_config_root Build with ROOT support.
+
+@em --with-root-include= sets the path to the ROOT header files.  The
+default if not given,  is @em /usr/local/include/root. 
+
+@em --with-root-lib= sets the path to the ROOT library files.  The
+default if not given,  is @em /usr/local/lib/root. 
+
+If you want to build without ROOT support and ROOT is installed in the
+above default paths, then use @em --without-root-include or @em
+--without-root-lib.
+
+If ROOT is not found in its default location, or if the path is set to
+`no' or incorrect, then @b HippoDraw will be built without ROOT
+support.   
+
+@subsubsection install_config_numarray Build with numarray support.
+
+@note This release was tested with numarray-1.5.1 of numarray. Some
+versions after 1.3.3 namely, 1.4.x and 1.5.0, had a problem with at
+least one of the scripts in the examples directory.  Problems was
+fixed with version 1.5.1
+
+@em --enable-numarraybuild enables (the default) building @b HippoDraw
+with support of importing and exporting numerical arrays with numarray.  It is
+assumed the numarray Python module is installed in its default location
+e.g., @em /usr/local/lib/python2.4/site-packages.  @em configure looks
+for numarray and if not found looks for numeric.  If neither is found,
+support for Python numerical arrays is disabled.
+
+There is one warning coming from the build ...
+
+@verbatim
+g++ -DHAVE_CONFIG_H -I. -I../../hippodraw/numarray -I..
+-I../../hippodraw -I../../hippodraw/python 
+-I/usr/local/include/boost-1_33_1 -ftemplate-depth-60 
+-I/usr/local/include/python2.4 -g -O2 -Wall 
+-c ../../hippodraw/numarray/NumArrayTuple.cxx -MT 
+NumArrayTuple.lo -MD -MP -MF .deps/NumArrayTuple.TPlo  -fPIC -DPIC
+/usr/local/include/python2.4/numarray/libnumeric.h:47: warning: 
+'libnumeric_API' defined but not used
+@endverbatim
+
+which can be ignored.
+
+@subsubsection install_config_numaeric Build with Numeric support.
+
+@em --enable-numericbuild enables building @b HippoDraw with support
+of importing and exporting numerical arrays with Numeric.  It is assumed the
+Numeric Python module is installed in its default location e.g., @em
+/usr/local/lib/python2.4/site-packages.  If both numarray and Numeric
+packages are installed, you need to use this option to force support for
+Numeric, otherwise numarray will be used.  The above warning message
+from the compiler is also seen when using Numeric.
+
+@subsubsection install_config_numpy Build with NumPy support.
+
+@em --enable-numpybuild enables building @b HippoDraw with support
+of importing and exporting numerical arrays with NumPy.  It is assumed the
+NumPy Python module is installed in its default location e.g., @em
+/usr/local/lib/python2.4/site-packages.  If both numarray and NumPy
+packages are installed, you need to use this option to force support for
+NumPy otherwise numarray will be used.  The above warning message
+from the compiler is also seen when using Numeric.
+
+@subsubsection install_config_sip Build the SIP Python extension module.
+
+@em --enable-sipbuild enables building the SIP based Python extension
+module.  See the INSTALL file in the sip subdirectory for further
+details.
+
+
+@section install_config_fail If Configure Fails.
+
+The configure script can fail in a number of ways.  Most of the time
+the error message you get is pretty clear.  Here is a description of
+some common failures.
+
+@subsection install_config_python AM_PYTHON_PATH not found.
+
+You should only see this message if building from CVS checkout.
+If autogen fails because of missing `AM_PYTHON_PATH M4 macro, then
+automake 1.6 or later is not installed.  When you install a newer
+version of automake, it is a good idea to do autoconf and libtool as
+well as these tools seem to have dependencies on each other.
+
+
+@subsection install_config_file Files not found.
+
+The configure script will fail if it fails to find header files or
+library files in the paths you specified with a configure option, or
+the default locations.  Check that there isn't a typo in the options
+you gave.  If the required files are really missing then they might be
+located elsewhere in your file system.  If they are really missing,
+then you will need to install them.
+
+@subsection install_config_gcc C++ compiler doesn't work.
+
+If the configure script fails with the following error message
+
+@verbatim
+    checking whether the C++ compiler works... 
+    configure: error: cannot run C++ compiled programs.
+@endverbatim
+
+then configure is not finding the libstdc++.so version corresponding to
+the version of gcc it is using.  This can happen, for example, if gcc
+in @em /usr/local/bin is being used and your system doesn't use
+@em /usr/local/lib in its shared library paths.  The fix is to run configure like this ...
+
+@verbatim
+> ../hippodraw/configure LD_LIBRARY_PATH=/usr/local/lib
+@endverbatim
+or set your
+environment variable LD_LIBRARY_PATH accordingly.  So for example, if in your
+environment gcc is found in @em /usr/local/bin, then you need to set
+LD_LIBRARY_PATH to @em /usr/local/lib.   
+
+@subsection install_config_afs Build in AFS file system.
+
+   If your build directory is in an AFS file system, then you must add
+the following option to configure
+
+    --disable-libtool-lock
+
+Failure to do so will lead to the following error message to appear
+every two seconds
+
+@verbatim
+      Waiting for BinnerBase.o.lock to be removed
+@endverbatim
+
+With libtool locking disabled, one should not attempt to do parallel
+builds, @em i.e. using the `-j' option with the make command.
+
+
+@section install_make Building HippoDraw 
+
+  After configuring, building is just ...
+
+@verbatim
+> make
+@endverbatim
+
+If compiling on a multiple processor machine (or dual core one),
+one can use the do a parallel build with
+
+@verbatim
+> make -j2
+@endverbatim
+
+This will cut the time needed to build by almost a factor of two.
+
+   This command first compiles core library, than the %Qt specific parts
+and standalone executable, and finally the Python extension module.
+It will take about 6 minutes on 2 GhZ Pentium Mobile laptop.
+
+   During the build, you may see warnings like this ...
+@verbatim
+/usr/lib/qt-3.3/include/private/qucom_p.h:69: warning: \
+'struct QUBuffer' has virtual functions but non-virtual destructor
+/usr/lib/qt-3.3/include/private/qucom_p.h:77: warning: \
+'struct QUType' has virtual functions but non-virtual destructor
+@endverbatim
+
+when compiling some classes in the %Qt or ROOT libraries.
+These appear if compiling with gcc 4.0 or later and can be safely ignored.
+
+   To generate the documentation for the C++ library, requires
+installation of
+<a href="http://www.stack.nl/~dimitri/doxygen/index.html"> Doxygen</a>
+and
+<a href="http://www.research.att.com/sw/tools/graphviz">
+Graphviz</a>.  You can change the
+Doxygen configuration file, `doc/Doxyfile.in', so Graphviz is not
+needed, but you will lose ability to generate some graphs.
+
+   If these tools are installed type ...
+
+@verbatim
+> make docs
+@endverbatim
+
+to generated the HTML documentation in your build directory.  The main
+page will be @em doc/html/index.html.
+
+If you want to generated PDF documentation, type
+
+@verbatim
+>  make pdfdoc
+@endverbatim
+
+This takes much longer than just
+generating the HTML.  It leads to a 38MB PDF file which contains
+almost 5000 pages (5 boxes of paper if printed double sided).
+
+
+@section install_build_fail If the Build fails
+
+@subsection install_build_fail_linkerhippo With library not found
+
+If linking in the qt subdirectory fails with the message
+
+@verbatim
+/usr/bin/ld: cannot find -l-lqassistantclient
+collect2: ld returned 1 exit status
+make[4]: *** [libhippoqt.la] Error 1
+make[4]: Leaving directory `/build/HippoDraw-1.16.0/qt'
+@endverbatim
+
+then when running configure, you need to add
+
+@verbatim
+--with-Qt-lib=qt-mt
+@endverbatim
+
+For some reason, the autoconf macro for Qt, finds it sucessfully, yet
+doesn't set the QT_LIBS macro correctly in the make files.
+
+
+@subsection install_build_fail_linkerqt With undefined reference to Qt
+
+If the build of @b HippoDraw fails with a linker error like this...
+
+@verbatim
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QWaitCondition::~QWaitCondition [in-charge]()'
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QApplication::lock()'
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QWaitCondition::wakeAll()'
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QApplication::unlock(bool)'
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QWaitCondition::QWaitCondition[in-charge]()'
+../../qt/.libs/libhippoqt.so: undefined reference\
+to `QWaitCondition::wait(unsigned long)'
+@endverbatim
+
+Then it is most likely that the configure script found the
+non-threaded version of %Qt.  @b HippoDraw should be built with the thread
+version, so that it can be used with Python.  The %Qt library name that
+has threaded support is <em> libqt-mt.so</em>.
+
+@subsection install_build_fail_qt335 With header not found
+
+If the build fails because the file axiswidget.h is not found when
+building with %Qt 3.3.6, then you've hit a know bug in this release of
+Qt.  It is documented here...
+
+http://www.trolltech.com/developer/tasktracker.html?method=entry&id=85440
+
+The fix is to open the qtui/Inspector.ui file and remove the
+includehints XML node.
+
+@section install_install Installing.
+
+   Before attempting to install, make sure you have write privileges
+to the directories where @b HippoDraw will be installed.  Typically,
+this is @em /usr/local, so you may have to su to root before typing the
+install command.
+
+   To install @b HippoDraw just type ...
+
+@verbatim
+> su
+Password:
+# make install
+@endverbatim
+
+By default, installation is in @em /usr/local/bin.  @em
+usr/local/include/HippoDraw and @em usr/local/lib.  Also, the
+Python module will be installed in @em
+/usr/local/lib/python<n.m>/site-packages where `<n.m>' is the Python
+version (without any further. bug fix releases number). You can change
+the path to the install area with the @em --prefix= option to the @em
+configure command.
+
+To install the class library documentation, type
+@verbatim
+# make install-docs
+@endverbatim
+They are not installed by default.
+
+@section install_run Running HippoDraw
+
+If you installed @b HippoDraw in the default path, @em /usr/local,
+then to run it as a stand-a-lone application, just type @em hippodraw.
+To use it as a python extension module, just import @em hippo.  
+
+If you did not install @b HippoDraw in the default area, then you need
+to add the path to the @b HippoDraw executable to your PATH
+environment variable or type the full path to the executable.  To use
+@b HippoDraw as a Python extension module in this case, you need to
+add the path to the module to your PYTHONPATH environment variable.
+For example, if you installed @b HippoDraw in @em /usr/local/test,
+then csh users would do ...
+
+@verbatim
+> setenv PATH /usr/local/test/bin:$PATH
+> setenv PYTHONPATH /usr/local/test/lib/python2.4/site-packages:$PYTHONPATH
+@endverbatim
+
+
+@section install_external Hints on Installing External Packages.
+
+Most required or optional software packages used by @b HippoDraw
+install with the standard configure, make, make install dance.  They
+usually install binaries, header files, and libraries in @em
+/usr/local/bin, @em /usr/local/include, and @em /usr/local/lib
+respectively where the @b HippoDraw configure script will find them by
+default.  If you do not have write access to @em /usr/local and can
+not convince your system administrator to install them there for you,
+then you'll have to install them elsewhere.  I recommend that you when
+you configure these external packages, you type...
+
+@verbatim
+> configure --prefix=$HOME
+@endverbatim
+
+then they will be installed in your home directory under @em bin/, @em
+include/, and @em lib/.  This will it easier to install and use them
+and other packages that depend on them.  Just set your PATH environment
+variable in include $HOME/bin and your LD_LIBRARY_PATH
+(DYLD_LIBRARY_PATH on Mac OS X) to include $HOME/lib.
+
+Some external packages cause some trouble if you don't read the
+instructions carefully.  This sections give some tips that have been
+learn over time by the developers of @b HippoDraw.
+
+@subsection install_extern_qt Installing Trolltech's Qt
+
+   Installing Qt from source is straight forward as the standard <em>
+configure, make, make install </em> dance almost works.  Don't panic,
+two options in %Qt's configure step make it easy to build for use by
+@b HippoDraw.  Both are needed for %Qt 3.x and are the defaults for
+%Qt 4.x.
+
+The first option is to configure %Qt with multi-threading support.
+The configure option is @em -thread. This is needed in order to be
+able to run HippoDraw as a Python extension module.
+
+The second option is to set the run-time library path for the %Qt
+library.  This is needed so that you do not have to set the @em
+LD_LIBRARY_PATH environment variable when the @b HippoDraw's build
+invokes %Qt's @em uic and @em moc executables.  The %Qt configure
+option is @em -R. If you are using a compiler whose corresponding
+library is not in @em /usr/lib, then you should also add its path to
+the @em -R option.
+
+   Trolltech recommends unpacking the sources in @em /usr/local and
+doing a build in place.  If you do that, then all the example files
+will be built in your @em /usr/local which you may not want.  I do a
+build in a work area, and then an install to @em /usr/local. 
+
+  A recent build of %Qt 3 was done as follows:
+
+@verbatim
+> tar zxvf qt-x11-free-3.3.4.tar.gz
+> cd /home/pfkeb/qt-x11-free-3.3.4/
+> setenv QTDIR /home/pfkeb/qt-x11-free-3.3.4
+> setenv PATH $QTDIR/bin:$PATH
+> setenv MANPATH $QTDIR/doc/man
+> setenv LD_LIBRARY_PATH $QTDIR/lib:/usr/local/lib
+> ./configure -prefix /usr/local/qt-x11-free-3.3.4 
+  -R/usr/local/qt-x11-free-3.3.4/lib -R/usr/local/lib -thread -qt-gif
+> make
+> su
+Password:
+# make install
+@endverbatim
+
+  You must also build %Qt with the same compiler as
+you will use to build @b HippoDraw.
+
+Building with %Qt 4 is easier, just follow the instructions that come
+with the distribution.
+
+
+@subsection install_extern_boost Installing Boost
+
+   Boost uses @em bjam to do a build instead of make.  The @em bjam file can be
+obtained as pre-built executable by following the links on the Boost
+<a href="http://www.boost.org/more/getting_started.html#step2">
+Getting started</a>
+pages You only need one file which one
+can copy to @em /usr/local/bin or elsewhere in your PATH.
+
+   Boost versions 1_31_0 and later are easier to build than earliler
+versions by following the its web pages.  At least for version 1_33_1
+it is even easier than documented on their Web pages.  The following
+just works....
+
+@verbatim
+> configure
+> make
+> make install
+@endverbatim
+
+The above sequence of commands will build and install all the Boost
+librries.  You can save 200MB of disk space and considerable amount of
+time by building only the Boost.Python libraries.  This is done by
+adding <em> --with-libraries=python </em> to the confiugre command.
+
+Apparently, the configure script creates a Makefile as a wrapper to
+the @em bjam command.  So you still need the @em bjam executable, but
+don't need to know the @em bjam command syntax.
+
+If you are going to try to follow Boost's instructions for building,
+then its seems that setting the environment variable `PYTHON_VERSION'
+and `PYTHON_ROOT' is missing from these pages, but documented within
+the Boost.Python web pages, otherwise it builds as instructed.  This
+is true for both Windows and Unix like systems.  With Boost version
+1_31 there are warning messages about redefining _POSIX_C_SOURCE which
+apparently can be ignored.  These warning don't appear with version
+1_33 or later.
+
+The following was done for installing Boost with bjam directly
+
+@verbatim
+> tar zxvf boost_1_33_1.tar.gz
+> cd boost_1_33_1
+> su
+Password:
+# export PYTHON_VERSION=2.4
+# export PYTHON_ROOT=/usr/local
+# bjam "-sTOOLS=gcc" install
+@endverbatim
+
+For Mac OS X, see @ref install_extern_boost_mac.
+
+This puts dozens of shared and static library files in @em /usr/local/lib.
+One probably doesn't need them all.  If short on disk space, one might
+try the @em --without-@<library@> option to the bjam command.  Or one
+might use the `stage' option and only copy the header directory
+@em boost and the required library files to @em /usr/local manually.
+
+@subsection install_extern_boost_python_version Possible Unicode Problem
+
+If you get the following error after building @b HippoDraw ...
+
+@verbatim
+
+[pfkeb@localhost testsuite]$ python -i canvas.py
+Traceback (most recent call last):
+  File "canvas.py", line 13, in ?
+    from hippo import HDApp
+ImportError: /usr/local/lib/libboost_python-gcc-1_33.so.1.33.0:
+ undefined symbol: PyUnicodeUCS4_FromEncodedObject
+
+@endverbatim
+
+it is most likely caused by building Boost.Python with version of
+Python with UCS-4 mode and building Hippodraw with another version of
+Python without it.  handling.  For example, the Boost version that
+comes with Fedora Core 4 will have this problem if you install a new
+version of Python in /usr/local bin.
+
+The fix is to make sure you are using the same version of Python for
+building Boost.Python and HippoDraw.  My recommendation is to build
+and install Python in /usr/local.  You'll then get the @em pydoc and
+@em idle commands which are missing from the Red Hat distributions.
+Also, you may want to install external Python modules in @em
+/usr/local/lib/python2.4/site-packages that are not available as
+Fedora rpms.  Then you can rebuild Boost and go to a new version, say
+1_33 at the same time.
+
+@subsection install_extern_cfitsio CFITSIO installation
+
+@b HippoDraw has been tested with cfitsio 2.510 and 3.006. RPM files
+for version 3.006 have been available in Fedora Core @em extras since
+version 3 and perhaps other Linux distributions.
+
+As of cfitsio 2.510, its @em configure script does not behave like
+most configure scripts of other Open Source packages.  In particular,
+the defult prefix path is the directory in which the script is
+invoked.  If you want to install cfitsio in a public area like @em
+/usr/local, only the @em --prefix option works, but not the @em
+--includedir or @em --libdir.   
+
+Also, the cfitsio Makefile does not build shared library required by
+@b HippoDraw by default.  So the installation of cfitsio that will
+work well with @b HippoDraw would be...
+
+@verbatim
+> configure --prefix=/usr/local
+> make
+> make shared
+> make install
+@endverbatim
+
+An unfortunate side effect of building like this is that two .h files are
+copied to @em /usr/local/include whose names give no clue that they
+belong to the cfitsio package.  They are <em> drvrsmen.h</em> and <em>
+longnam.h</em> and for the former, even its contents give no clue that
+it belongs to the cfitsio package.
+
+@section install_problems Known Problems.
+
+Here are some know problems with certain versions of external software.
+
+@subsection install_qt_print Trouble printing
+
+Under Red Hat Enterprise Linux 3, %Qt version 3.3.4 as problems
+generating correct PostScript.  It can neither print the a printer nor
+create a valid PostScript file.  Version 3.3.3 can create valid
+PostScript files, but can't talk to the printer.  Version 3.3.2 and
+older do not have either problem.   
+
+@subsection install_python_warnings _POSIX_C_SOURCE warning
+
+When compiling @b HippoDraw or Boost.Python, you may see warnings that
+"_POSIX_C_SOURCE being redefined".  They can safely be ignored.   The
+warning do not occur with Boost version 1_33 or later.
+
+@subsection install_compile Internal compiler error with Boost.Python
+
+If you get the following error
+
+@verbatim
+/usr/include/boost/python/detail/def_helper.hpp:80:
+internal compiler error: 
+Segmentation fault
+@endverbatim
+
+then the following might help...
+
+@verbatim
+Modified "boost/python/detail/translate_exception.hpp"(line 40)
+From:        catch(exception_cref e)
+To:          catch(exception_cref& e)
+@endverbatim
+
+This problem was reported by Akito Kusaka.  He was using SuSE 9.1,
+boost.python 1.31.0 from RPM package, gcc 3.3.3 from RPM package.
+He found the fix in
+http://mail.python.org/pipermail/c++-sig/2004-June/007587.html
+
+
+@subsection install_prob_boost Boost.Python 1.30.x
+
+Gcc 3.3.x series with Boost.Python 1_30_x has a problem. The error is first
+seen in compiling python/QtCut.cxx with the following message.
+
+@verbatim
+/usr/include/boost/python/converter/as_to_python_function.hpp:28: sorry,
+unimplemented: `method_call_expr' not supported by dump_expr
+@endverbatim
+
+Suggested work around is found on Python C++-sig
+<a href="http://mail.python.org/pipermail/c++-sig/2003-May/003935.html">mailing
+list </a>.  It allows compilation and linking but two the the test
+scripts, datareps.py and cuts.py, both fail at runtime.
+
+@subsection install_prob_2head Two headed display systems.
+
+With the %Qt 3.1 installed on Red Hat Linux 9, 
+@b HippoDraw doesn't work on computers with multi-head displays.
+It works with %Qt 3.3.1 and perhaps earlier versions
+
+@subsection install_prob_seg_fault Segmentation fault on exit.
+
+With %Qt version  3.1.0, there is a segmentation fault when one exits
+the application run as a Python extension module.  This appears to be
+a bug in %Qt later version of %Qt do not have the problem.
+
+@subsection install_prob_int_error Internal QThread error on exit.
+
+With %Qt version 3.3.3 and later versions of %Qt 3, there is error message
+
+@verbatim
+>>> QThread: internal error: zero data for running thread.
+@endverbatim
+when one terminates the application.
+
+@subsection install_prob_boost_23 Boost 1.31.0 required for Python 2.3.
+
+Python 2.3 has some problems due change in C
+preprocessor macros (see
+http://mail.python.org/pipermail/c++-sig/2003-August/005046.html).
+Use Boost version 1_31.0 or later if you have Python 2.3 installed.
+With version 1.29.0, there are some warning message issued by gcc 3.x
+which can safely be ignored.  They do not appear with earlier versions
+of gcc or with Boost.python version 1.30.0 or later.
+
+@subsection install_prob_python Installing Python
+
+Building and installing Python
+is the standard dance...
+
+@verbatim
+> cd Python-2.4
+> ./configure
+> make
+> su
+Password:
+# make install
+@endverbatim
+
+When installing Python as root user with its @em make @em install it
+might fail with
+
+@verbatim
+
+/usr/bin/install -c -m 644 ./LICENSE /usr/local/lib/python2.3/LICENSE.txt
+PYTHONPATH=/usr/local/lib/python2.3   \
+        ./python -Wi -tt /usr/local/lib/python2.3/compileall.py \
+        -d /usr/local/lib/python2.3 -f \
+        -x 'badsyntax|site-packages' /usr/local/lib/python2.3
+./python: error while loading shared libraries: libstdc++.so.6:
+ cannot open shared object file: No such file or directory
+make: *** [libinstall] Error 127
+
+@endverbatim
+
+The problem can be caused by the compiler being installed in @em /usr/local
+and the root user not having @em /usr/local/lib in his @em LD_LIBRARY_PATH.
+Just do
+
+@verbatim
+
+export LD_LIBRARY_PATH=/usr/local/lib
+
+@endverbatim
+
+and try again.
+
+@subsection install_prob_pygcc Rebuilding Python
+
+If you built and installed Python, and then install a newer version of
+gcc with a newer version of libstdc++.so, then @b HippoDraw's Python
+extension module might fail.  This is because @b HippoDraw built with
+the new version of the compiler is linked to a library incompatible
+with the one Python was built with.  The solution to the problem is
+rebuild and install Python with the same compiler version used to built
+@b HippoDraw.
+
+@subsection installing_numarray Installing numarray
+
+The instructions for installing numarray on its Web site are not
+entirely correct.  The script <em> setupall.py </em> does not exist.
+As root user, use the <em> setup.py </em> script like this ...
+
+@verbatim
+> cd numarray-1.15.1
+> python setup.py install
+>
+@endverbatim
+
+
+@subsection installing_pyfits Installing PyFITS
+
+The instructions for installing PyFITS on its Web say just to download
+and copy the file <em> pyfits.py </em>.  However, if you do this as
+root user, it will not have the correct permissions for normal user.
+To fix this, as root user just type...
+
+@verbatim
+> cp pyfits /usr/local/lib/python2.4/site-packages/.
+> chmod 755 /usr/local/lib/python2.4/site-packages/pyfits.py
+>
+@endverbatim
+
+Change the above to your version of Python as appropriate.
+
+@subsection install_root_gcc ROOT crashes at startup.
+
+If @b HippoDraw was built with ROOT file support, and ROOT crashes at
+startup of a HippoDraw Python extension module, then the cause may be
+that ROOT's linkage to the C++ standard library is incompatible with
+@b HippoDraw's.  This has been observed, for example, if ROOT is built
+with gcc 3.2, and HippoDraw is built with gcc 3.4 or later.  The fix
+is to compile ROOT from source with later version of gcc.  ROOT
+doesn't appear to compile with gcc 4.0, but building ROOT from source
+with gcc 3.4 and HippoDraw with gcc 4.0 seems to work ok.
+
+@subsection install_selinux Error loading shared libraries
+
+If you get the following error message when trying to start the
+hippodraw applicaiton ...
+
+@verbatim
+error while loading shared libraries:
+/home/pfkeb/hippodraw-NATIVE/lib/.libs/libhippo.so.0:
+ cannot restore segment prot after reloc: Permission denied
+@endverbatim
+
+or the following message when importing the Python extension module 
+
+@verbatim
+importError: /home/pfkeb/hippodraw-NATIVE/lib/.libs/libhippo.so.0:
+cannot restore segment prot after reloc: Permission denied
+@endverbatim
+
+then you are problably running SELinux.  Newer Linux distributions
+have enabled new kernel security extensions from the SELinux project
+at the NSA. These extensions allow finer-grained control over system
+security. However, SELinux also changes some default system behaviors,
+such as shared library loading, that can be problematic to third party
+programs.
+
+To fix this problem you can change the default security context of
+HippoDraw with the command...
+
+@verbatim
+chcon -t texrel_shlib_t <path-to-hippodraw>/libhippo.so.0.0.o
+@endverbatim
+
+or putting SELinux in Permissive or Disabled mode.
+
+@subsection install_libstdc Error finding "libstdc++.la"
+
+If you get the error message building HippoDraw like this ...
+
+@verbatim
+grep: /usr/local/lib/libstdc++.la: No such file or directory
+/bin/sed: can't read /usr/local/lib/libstdc++.la:
+No such file or directory
+libtool: link: `/usr/local/lib/libstdc++.la' is not a valid libtool archive
+make[2]: *** [libhippo.la] Error 1
+make[2]: Leaving directory `/home/pfkeb/hippodraw-BUILD/lib'
+@endverbatim
+
+then the fault is not in HippoDraw but in one of the external
+libraries it is linking against.  This can happen when the external
+library uses libtool for building and was built with gcc in
+/usr/local.  If gcc in /usr/local gets removed, say because upgrading
+the OS brought a newer version, then the external library will need to
+be rebuilt.
+
+@section install_wcslib_error Building WCSlib on 64 bit machine
+
+Installing the optional @ref install_wcslib version 4.2 has the
+following compilation errors on 64 bit machines
+
+@verbatim
+gcc -DHAVE_CONFIG_H -g -O2 -c wcsulex.c
+In file included from lex.wcsulex.c:8848:
+/usr/include/unistd.h:441: error: conflicting types for 'read'
+lex.wcsulex.c:8523: error: previous implicit declaration of 'read' was here
+make[2]: *** [wcsulex.o] Error 1
+
+gcc -DHAVE_CONFIG_H -g -O2 -c wcsutrn.c
+In file included from lex.wcsutrn.c:5103:
+/usr/include/unistd.h:441: error: conflicting types for 'read'
+lex.wcsutrn.c:4793: error: previous implicit declaration of 'read' was here
+make[2]: *** [wcsutrn.o] Error 1
+make[2]: Target `lib' not remade because of errors.
+make[1]: *** [../C/libwcs-4.2.a] Error 2
+@endverbatim
+
+The problems appears to be that files <em> wcsulex.c</em> and
+<em>wcsutrn.c</em> were generated by a @em flex incompatible with the
+<em> unistd.h</em> file on a 64 bit machine.  The fix is to @em touch the files
+<em>wcsulex.l</em> and <em>wcsutrn.l</em> to change their file dates.
+Then when you issue @em make, the 64 bit flex will be used to reproduce
+these files and they can compile.
+
+Also there a lots of warning of the kind 
+
+@verbatim
+wcs.c:1306: warning: cast from pointer to integer of different size
+@endverbatim
+
+All are within a @em printf expressios.
+
+*/

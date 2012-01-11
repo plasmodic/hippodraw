@@ -1,0 +1,65 @@
+""" -*- mode:python -*-
+
+Try all the colors
+
+author Paul Kunz
+
+"""
+
+#$Id: colors.py.in,v 1.2 2005/06/30 19:43:54 pfkeb Exp $
+
+from setPath import *
+
+import hippoplotter as plot
+import numarray as num
+
+
+x = num.arange(10)
+y = num.ones(10)
+
+disp1 = plot.scatter(x, y, pointRep='Line', color='red' )
+disp1.setRange('x', 2, 8)
+disp1.setRange ( 'y', 0, 15 )
+plot.canvas.selectDisplay ( disp1 )
+
+dr = disp1.getDataRep ()
+print dr.colorNames ()
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='green' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='blue' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='yellow' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='orange' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='cyan' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='magenta' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='black' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='darkgray' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='lightgray' )
+
+y = y + 1
+plot.scatter ( x, y, pointRep='Line', oplot=1, color='white' )
+
+y = y + 1
+
+try :
+    plot.scatter ( x, y, pointRep='Line', oplot=1, color='foo' )
+except RuntimeError, what :
+    print what
+    print "so used black instead"
+

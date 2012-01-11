@@ -1,0 +1,48 @@
+/** @class std::fstream
+    @brief The C++ standard library @em fstream class
+*/
+
+/** @class std::ifstream
+    @brief The C++ standard library @em ifstream class
+
+    The C++ standard library class for reading a file.
+*/
+
+/** @class std::istream_iterator
+    @brief A C++ standard library class.
+
+    An input iterator for a input stream.
+*/
+
+
+/** @class std::list
+    @brief The C++ standard library @em list class.
+*/
+
+/** @class std::map
+    @brief The C++ standard library @em map class.
+*/
+
+/** @class std::ofstream
+    @brief The C++ standard library @em ofstream class.
+
+    The C++ standard library class for writing to a file.
+
+*/
+
+
+/** @class std::pair
+    @brief The C++ standard library @em pair class.
+*/
+
+/** @class std::string
+    @brief The C++ standard library @em string class.
+*/  
+
+/** @class std::vector
+
+    The C++ standard library @em vector class.
+
+*/
+
+

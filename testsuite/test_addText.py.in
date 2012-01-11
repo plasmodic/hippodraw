@@ -1,0 +1,42 @@
+# -*- mode: python -*-
+
+from setPath import *
+
+import numarray, hippoplotter as plot
+
+x = 10.**(numarray.arange(10)/9.*3. - 1.)
+y = x*x
+
+disp = plot.scatter(x, y, "x", "y", pointRep="Line", xlog=1, ylog=1)
+plot.canvas.selectDisplay ( disp )
+plot.canvas.addTextAt ( disp, "y = x^2", 0.666667, 0.666667 )
+#plot.canvas.addTextAt ( disp, "y = x^2", 0.7, 1.-0.55 )
+
+#
+# Need to ensure the proper display is selected in order to add a
+# datarep using hippoplotter.scatter(). 
+#
+plot.canvas.selectDisplay( disp )
+disp2 = plot.scatter(x, y*x, "x", "y*x", pointRep = "Line", oplot=1)
+
+#
+# color me red
+#
+reps = disp.getDataReps()
+reps[1].setColor("red")
+
+hist = plot.histogram ( x, 'x' )
+plot.canvas.selectDisplay ( hist )
+
+# adding text should yo on disp, not hist
+#plot.canvas.addTextAt ( disp, "y = x^3", 0.4, 1.-0.6 )
+plot.canvas.addTextAt ( disp, "y = x^3", 0.333333, 0.333333 )
+
+#
+# Try to set the label to red
+#
+textDisp = plot.canvas.getDisplay()
+textrep = textDisp.getDataRep()
+textrep.setColor("red")
+
+print textrep.name()

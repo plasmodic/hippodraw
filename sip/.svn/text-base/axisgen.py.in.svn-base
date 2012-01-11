@@ -1,0 +1,183 @@
+""" -*- mode: python -*-
+
+Script to test running HippoDraw with PyQt
+
+$Id: axisgen.py.in,v 1.1 2005/03/01 20:52:25 pfkeb Exp $
+
+author: Paul_Kunz@slac.stanford.edu
+
+"""
+
+import sys
+from qt import *
+from qtcanvas import *
+from random import gauss, random
+
+app = QApplication ( sys.argv )
+
+import sihippo
+print "HippoDraw version " + sihippo.__version__
+
+from sihippo import *
+
+ntc = NTupleController.instance()
+print "Test catching a thrown exception..."
+try :
+    nt = ntc.createNTuple ( '@top_srcdir@/examples/badfilename' )
+except DataSourceException, detail :
+    print detail.what()
+
+nt_file = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+print "Test getting ntuple name..."
+print nt_file.getName()
+
+nt = ntc.createNTuple(2)
+nt.setTitle ( "Sample data" )
+labels = [ 'X', 'Y' ]
+nt.setLabels ( labels )
+
+wc = WindowController.instance()
+wc.quitOnLastWindowClose ( True )
+wc.createInspector ()
+window = CanvasWindow()
+window.show()
+
+from time import sleep
+
+mean = 1.0
+sigma = 0.5
+npts = 1000
+
+for i in range ( npts ) :
+    nt.addRow ( [ gauss ( mean, sigma ), random () ] )
+
+display_controller = DisplayController.instance()
+bindings = [ 'X' ]
+display = display_controller.createDisplay ( 'Histogram', nt, bindings )
+
+## Get CanvasWindow from WindowController, like application will do.
+canvas = wc.currentCanvas()
+canvas.addDisplay ( display )
+
+print "Number of entrie = ", display.getNumOfEntries ()
+
+vec = nt.getColumn ( 'X' )
+print vec[0:10]
+
+# ntc.writeNTupleToFile ( nt, 'test.ntuple' )
+
+from sihippo import Observer
+
+class AxisGen ( Observer ) :
+    def setPlotter ( self, plotter ) :
+        self.plotter = plotter
+        
+    def update ( self, obs ) :
+        low = self.plotter.getLowRangeOnX ( )
+        high = self.plotter.getHighRangeOnX ()
+        step = (high -low ) / 3
+        values = [low]
+        label = "%1.1e" % ( low, )
+        labels = [str(low)]
+        for i in range ( 3 ) :
+            low += step
+            values.append ( low )
+            label = "%1.2e" % (low, )
+            labels.append ( label )
+        self.plotter.setAutoTicksOnX ( False )
+        self.plotter.setTicksOnX ( values, labels )
+
+gen = AxisGen ( display )
+gen.setPlotter ( display )
+
+display.addObserver ( gen )
+
+# Now add unction and fit it.
+## fc = FunctionController.instance()
+## func = fc.addFunction ( display, 'Gaussian' )
+
+## print "Parameter names"
+## parm_names = func.parmNames()
+## print parm_names
+
+## print "Values before fitting"
+## parms = func.getParameters()
+## print parms
+
+## print "Fixed parameters are"
+## fixed = func.fixedFlags ()
+## print fixed
+
+## fixed[1] = 1
+## func.setFixedFlags ( fixed )
+
+## fc.saveParameters ( display )
+## ok = fc.fitFunction ( display )
+## print "Did fit converge = ", ok
+
+## print "Values after fitting"
+## parms =fc.parameters ( display )
+## print parms
+
+## print "Errors on parameters"
+## try :
+##     errors = fc.getErrors ( display )
+## except RuntimeError, detail :
+##     print detail
+
+## print errors
+
+## chi = fc.getChiSquared ( display )
+## df  = fc.getDegreesOfFreedom ( display )
+## print "Chi-Squared per d.f. = ", chi/df
+
+## fixed = [ 0, 0 ]
+## func.setFixedFlags ( fixed )
+## fc.restoreParameters ( display )
+## fc.fitFunction ( display )
+
+## print "Values after fitting with all parameters free"
+## parms = func.getParameters()
+## print parms
+
+## print "Errors after fitting"
+## errors = fc.principleErrors ( display )
+## print errors
+
+## chi = fc.getChiSquared ( display )
+## df  = fc.getDegreesOfFreedom ( display )
+## print "Chi-Squared per d.f. = ", chi/df
+
+## print "Average X = ", display_controller.getAverage ( display, 'x' )
+## print "RMS on X = ", display_controller.getRMS ( display, 'x' )
+## print "Number of entries = ", display_controller.getNumberOfEntries ( display )
+
+## cc = CutController.instance()
+## cut = cc.addCut ( display, 'Y' )
+## cut.setCutRange ( 0., 0.5 )
+## print "Function is higher than histogram because of cut"
+
+## canvas.saveAsImage ( display, 'image.JPG' )
+
+## display.setBinWidth ( 'x', 0.1 )
+
+## linerep = display_controller.addLineRep ( display, 'y', 400 )
+## linerep.setRepColor ( Color.orange )
+
+# canvas.addDisplay ( cut )
+
+## view = canvas.getViewFor ( display )
+## view.setSize ( 600, 600 )
+
+## trepfact = TextRepFactory.instance()
+## repnames = trepfact.names()
+## print repnames
+
+## canvas.addFuncDisplay ( display, 'Function Parameters' )
+## canvas.addTextDisplay ( display, "Text From Box", "Sample text" )
+
+## window.saveAs ( 'test.xml' )
+## window.savePlotAsImage ( display, 'test.bmp' )
+## window.showMinimized()
+
+app.exec_loop()

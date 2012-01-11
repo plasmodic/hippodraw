@@ -1,0 +1,162 @@
+#!/usr/bin/env python -*- mode: python -*-
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python/.libs')
+sys.path.reverse()
+
+def myPrompt(prompt = None):
+    if (prompt):
+        sys.stderr.write(prompt)
+    else:
+        sys.stderr.write("Hit return to continue: ")
+    x = sys.stdin.readline()
+
+def clearDisplays(canvas):
+    displays = canvas.getDisplays()
+    for display in displays:
+        canvas.removeDisplay(display)
+
+#########################
+# Code from displays.py #
+#########################
+from load_hippo import app, canvas
+from hippo import NTupleController
+
+ntc = NTupleController.instance()
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost', ) )
+canvas.addDisplay( hist )
+
+profile = Display ( "Profile", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( profile )
+
+color = Display ( "Color Plot", nt1, ('Age', 'Cost' ))
+color.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( color )
+
+contour = Display ( "Contour Plot", nt1, ('Age', 'Cost' ))
+contour.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( contour )
+##color.setLog ( 'x', 1 )
+
+profile2D = Display ( "Profile 2D", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profile2D )
+
+profileC = Display ( "Profile Contour", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profileC )
+
+scatter = Display ( "Scatter Plot", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( scatter )
+
+nt2 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.data' )
+
+strip = Display ( "Strip Chart", nt2, ('Energy', 'Sigma' ))
+canvas.addDisplay ( strip )
+
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+y = Display ( "Y Plot", nt2, ('Energy', ) )
+canvas.addDisplay ( y )
+
+xyz = Display ( "XYZ Plot", nt1, ('Age', 'Service', 'Cost' ))
+canvas.addDisplay ( xyz )
+
+## Changes the range.
+hist.setRange ( 'x', 0.0, 30000 )
+
+###########################
+# End of displays.py code #
+###########################
+
+myPrompt("Run cuts.py: ")
+clearDisplays(canvas)
+
+#####################
+# Code from cuts.py #
+#####################
+
+canvas = app.canvas()
+
+hist = Display ("Histogram", nt1, ('Cost', ) )
+canvas.addDisplay( hist )
+
+# Test adding a cut and setting its range
+from hippo import Cut
+agecut = Cut ( nt1, ( 'Age', ) )
+canvas.addDisplay ( agecut )
+agecut.addTarget ( hist )
+agecut.setCutRange ( 40., 100., 'x' )
+agecut.setLog ( 'y', 1 ) # used to be a bug
+
+# test recursive adding of cuts
+service = Cut ( nt1, ('Service',) )
+canvas.addDisplay ( service )
+service.addTarget ( agecut )
+service.setCutRange ( 12., 40., 'x' )
+
+############################
+# End of code from cuts.py #
+############################
+
+myPrompt("Run function_ntuple.py: ")
+
+clearDisplays(canvas)
+
+################################
+# Code from function_ntuple.py #
+################################
+
+hist = Display ( "Histogram", nt1, ("Cost", ) )
+canvas.addDisplay( hist )
+datarep1 = hist.getDataRep()
+
+from hippo import Function
+
+gauss = Function ( "Gaussian", datarep1 )
+# hist.addDataRep ( gauss )
+gauss.addTo ( hist )
+
+print "Before fitting"
+parmnames = gauss.parmNames ( )
+print parmnames
+
+parms = gauss.parameters ( )
+print parms
+
+# Now do the fitting.
+gauss.fit ( )
+
+print "After fitting"
+parms = gauss.parameters ( )
+print parms
+
+gauss1 = Function ( "Gaussian", datarep1 )
+gauss1.addTo ( hist )
+
+# Do another fit, should fit to linear sum
+gauss1.fit ()
+
+result = hist.createNTuple ()
+ntc.registerNTuple ( result )
+
+coords = result.getColumn ( 'Cost' )
+values = result.getColumn ( 'Density' )
+res = []
+for i in range ( result.rows ) :
+    x = coords[i]
+    diff = values[i] - gauss1.valueAt ( x )
+    res.append ( diff )
+
+result.addColumn ( 'residuals', res )
+resplot=Display ( "XY Plot", result, ( 'Cost', 'residuals', 'nil', 'Error' ) )
+canvas.addDisplay ( resplot )
+
+#######################################
+# End of code from function_ntuple.py #
+#######################################

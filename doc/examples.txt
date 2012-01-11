@@ -1,0 +1,585 @@
+/** @page examples_page Examples of HippoDraw use with Python
+
+Using @b HippoDraw as a Python extension module allows one to write
+Python scripts to do repetitive tasks.  
+
+Examples scripts are in the @em examples subdirectory of the @b
+HippoDraw installation.  To get an overview of what the examples do,
+try running the script that runs each of the examples like the
+following.
+
+@verbatim
+> cd /usr/local/share/HippoDraw/examples
+> python -i run_examples.py
+Hit return to run named script
+Run static_vs_dynamic:
+@endverbatim
+
+An empty canvas window and the Inspector will be created.   Recall
+your shell window and hit return to run each example in turn.
+
+See the @ref python_interact to see how to get started and getting help.
+
+
+The next section lists some typical tasks one might want to do from
+Python.  For each task, an example is listed to illustrate how it is
+done.
+
+
+@section examples_index Index to the examples
+
+The following is a list of task one might want to do with a Python
+script and a link to which of the examples that follow illustrate that
+task.
+
+NTuple creation by reading ASCII file:
+@li @ref examples_function
+
+NTuple creation by reading ROOT file:
+@li @ref examples_root_file
+@li @ref examples_root_array
+
+NTuple creation by reading FITS file:
+@li @ref examples_fits_file
+@li @ref examples_cuts
+@li @ref examples_cut_array
+
+Finding NTuple names from a file:
+@li @ref examples_fits_file
+@li @ref examples_root_file
+@li @ref examples_root_array
+
+Finding NTuple column labels:
+@li @ref examples_root_file
+@li @ref examples_fits_file
+
+Adding rows to an NTuple: 
+@li @ref examples_static
+@li @ref examples_root_file
+
+NTuple creation from Python lists: 
+@li @ref examples_simple
+@li @ref examples_function
+
+Create and use DataArray:
+@li @ref examples_appending
+@li @ref examples_fits_file
+@li @ref examples_fitting
+@li @ref examples_static
+@li @ref examples_root_file
+@li @ref examples_root_array
+@li @ref examples_cut_array
+
+Adding columns to DataArray:
+@li @ref examples_appending
+@li @ref examples_fits_file
+@li @ref examples_static
+@li @ref examples_root_file
+@li @ref examples_root_array
+
+Adding an array column to DataArray:
+@li @ref examples_appending
+@li @ref examples_fits_file
+
+Registering NTuple with the Inspector: 
+@li @ref examples_static
+
+Registering DataArray with Inspector: 
+@li @ref examples_fitting
+@li @ref examples_static
+
+Adding cuts to dynamic histogram:
+@li @ref examples_cuts
+@li @ref examples_cut_array
+
+
+Dynamic histogram: 
+@li @ref examples_static
+@li @ref examples_fits_file
+@li @ref examples_root_file
+@li @ref examples_root_array
+
+Static histogram: 
+@li @ref examples_static
+
+Retrieving bin contents from a histogram: 
+@li @ref examples_function
+@li @ref examples_static.
+
+Taking difference between two histograms and plotting it:
+@li  @ref examples_static.
+
+Setting title of plot: 
+@li @ref examples_simple
+@li @ref examples_static
+
+Setting bin width: 
+@li @ref examples_static
+@li @ref examples_log
+
+Setting plot range:
+@li @ref examples_static
+@li @ref examples_root_file
+
+Setting log scales:
+@li @ref examples_log 
+@li @ref examples_fits_file
+@li @ref examples_root_file
+@li @ref examples_root_array
+
+Changing the line style:
+@li  @ref examples_overlay
+
+Changing color:
+@li  @ref examples_overlay
+
+Changing point type:
+@li @ref examples_overlay
+
+Change the plot matrix:
+@li  @ref examples_displays
+
+Overlaying plots:
+@li @ref examples_overlay
+
+Fitting functions:
+@li @ref examples_function
+@li @ref examples_log
+@li @ref examples_fitting
+@li @ref examples_root_file
+
+Retrieving fitted function parameters:
+@li @ref examples_function
+@li @ref examples_fitting
+@li @ref examples_root_file
+
+Fitting with direct manipulation of the minimizers:
+@li  @ref examples_fitting.
+
+Writing custom functions in Python:
+@li  @ref examples_fitting
+@li  @ref examples_fitting2
+
+Retrieving statistical data:
+@li @ref examples_static
+
+Adding statistical data to plot:
+@li @ref examples_static
+@li @ref examples_function 
+
+Doing vector algebra with numarray:
+@li @ref examples_appending
+@li @ref examples_static
+@li @ref examples_root_file
+@li @ref examples_root_array
+@li @ref examples_cut_array
+
+Using numarray functions and expressions
+@li @ref examples_appending
+@li @ref examples_root_array
+
+
+Using hippo module without graphics.
+@li @ref examples_fitting2
+
+Doing a FFT
+@li @ref examples_fft
+
+
+@section examples_examples The examples
+
+
+@subsection examples_static Using dynamic and static histograms
+
+This example shows the comparison between static and dynamic
+histograms.   A static histogram is one with which the range and bin
+width is fixed at time of creation, and is filled by calling the
+histogram object with the values to be histogrammed.   A dynamic
+histogram is one which is bound to a NTuple.   When displayed, it sets
+its range to make all the entries visible and has about 50 bins.   One
+can change the attributes, such a bin width, at any time since the
+dynamic histogram gets its data from the NTuple.
+
+The Python code is shown below.
+
+@verbinclude examples/static_vs_dynamic.py
+
+The script first creates static histograms, sets their attributes, and
+adds it to the canvas.  It then creates an empty NTuple, sets its
+title, and labels for the columns.  Since there is only one string in the tuple of labels, the ntuple will have only one column.  The dynamic
+histogram is then created, bound to the ntuple, and adding to the
+canvas.   
+
+The script generates some data.  In the for loop, it fills one static
+histogram with all the generated data and the other one with only the
+first 1000 "events". It also adds a rows to the ntuple.  Both
+histograms are initially empty and you can watch them grow when you
+run the script.
+
+When the data generation is done, some statistical quantities are
+retrieved from the static histogram and printed.  One can now use the
+@ref inspector_root to change the attributes of the histograms.  With
+the dynamic histogram one can change the size of the bins, but not
+with the static one.   They are then added to overlay the plot.
+
+Finally the we take the difference between the high and low statistics
+histograms. This is done by creating a DataArray which wraps an NTuple
+containing the contents of the bins.  DataArray objects a column of
+data as a numarray using syntax of a Python dictionary.  Numarray
+objects overload the arithmetic operators, so we can take the difference
+with vector algebra.  Adding the created column to the small
+DataArray also has the syntax of adding an entry to a Python
+dictionary.   An XY plot is then created using DataArray.
+
+
+@subsection examples_log Logarithmic axes
+
+This script creates a dynamic histogram with logarithmic axes scales.
+The Python source code is shown below.
+
+@verbinclude examples/loglog.py
+
+After creating of the histogram, the display is set to be a log-log
+plot.  When the X axis is set to log scale, the width of the bins are
+logarithmically increasing in size.  They only appear uniform in width
+on the screen.  The function used is a power law, which appears as
+straight line on this log-log plot.
+
+@subsection examples_cuts Applying cuts
+
+This section shows how to apply cuts to a plot.  One can think in
+terms of creating a cut then applying it to one or more displays, or
+of having one or more cuts and applying it to a display.  An example
+of the former is shown below.
+
+@verbinclude examples/cut_multi_displays.py
+
+
+Applying multiple cuts to a display is shown in the example below
+
+@verbinclude examples/cuts_one_display.py
+
+@subsection examples_cut_array Creating a cut from Boolean numarray
+
+Numarray allows one to create array of Boolean values just by writing
+a logical expression.  An example is the following
+
+@verbatim
+zenith = events['zenith_angle']
+z_array = zenith > 80.
+@endverbatim
+
+In the above, the numarray is created from the DataArray with label
+"zenith_angle".  The second expression creates a numarray containing
+@c true and @c false values.  One can use this Boolean array to create
+a cut.  Thus one can have aribitrary complex cuts by combining Boolean
+expressions.  An example of doing two cuts explicitly and with numarry
+is shown below.
+
+@verbinclude examples/cuts_complex.py
+
+
+
+@subsection examples_overlay Overlaying plots and changing style
+
+The example overlays data representations and changing the style of
+the drawing.  The Python code is shown below.
+
+@verbinclude examples/datareps.py
+
+With @b HippoDraw one can overlay data representations of different
+kinds.  One can even overlay two histograms with different bin widths
+as is shown in this example.  One can also change the line style or
+symbol type as well as the color.  How to do these is easily seen in
+the Python code.
+
+
+@subsection examples_function Using functions and fitting
+
+This example fits a histogram to a sum of two Gaussian.  The Python
+code is shown below.
+
+@verbinclude examples/function_ntuple.py
+
+After creating an NTuple from a ASCII file, a histogram is placed on
+the canvas. Then the data representation of it is retrieved, a
+function created and added to the representation.  Next the function
+parameter names are retrieved along with the initial parameter values
+and printed.  The parameter values are printed again after fitting.  A
+second Gaussian function is added and the sum of the two is used for a
+fit.   Then the chi-squared per degree of freedom is add to the plot.
+
+The last part of the example illustrates retrieving information from
+the histogram.  One asks the histogram to make an NTuple
+representation of itself.  The NTuple is registered with the
+NTupleController so it will be visible from the Inspector. .  One can
+thus access the histogram information by column.  In the example, the
+residuals are calculated.  The list of residuals are then added to the
+NTuple created by the histogram.  Since this NTuple is of the same
+type as used to hold the initial data set, we can use it to make an XY
+plot as is shown in the example.
+
+Everything done in this script could have been done with @ref
+inspector_root.  This includes creating of the residuals display as
+there is a button on the @ref inspector_functions to do this.   
+
+@subsection examples_simple A simple XY Plot
+
+This example creates an XY Plot.  The Python code is shown below.
+
+@verbinclude examples/simple_xyplot.py
+
+After creating three Python lists of the data, one creates the
+display.  The first argument to @em Display is the type of plot.  The
+types available can be seen in the @em Data tabbed panel of the
+inspector.  The second argument is a list of the data lists.  This
+will have the effect of creating a NTuple and it will be visible from
+the Inspector.  The third argument is also a Python list and it serves
+two purposes. It gives labels for the NTuple columns and it sets the
+binding options for the XY plot.  The 3rd binding option is the X
+error, which is optional, so we use the "`nil'" string to indicate
+that binding is not to be used.
+
+@subsection examples_displays All kinds of plots
+
+This example creates one instance of each kind of display available to
+the Inspector.  The Python source code is shown below.
+
+@verbinclude examples/displays.py
+
+The beginning of the script sets the form factor of how the plots will
+be displayed, name 3 across and 4 down.  This was done so they would
+all fit on one page. Nothing else is new compared to the previous
+examples.
+
+@subsection examples_root_file Using data from a ROOT file
+
+This example shows how to use data from a ROOT file.  Quite
+frequently, a ROOT file is simply a table made up of a TTree
+consisting of a number of TBranch objects (the columns of the table)
+of the same length.  If the columns contain simple scalar data types,
+then this sort of ROOT file can be read by @b HippoDraw.  The Python
+script is shown below followed by a description of what is being done.
+
+@verbinclude examples/merit.py
+
+One uses the single instance of the RootController object to read the
+file.  First one gets the names of the top level TTree which @b
+HippoDraw interprets as NTuple names.  
+
+In the next step, one could have created an NTuple with the method @em
+createNTuple and the same arguments.  It would be implemented by the
+RootNTuple class.  This class only reads the data into memory as it is
+needed, so it is quite efficient even for files that have a large
+number of columns.  
+
+Instead of a NTuple, one creates a DataArray.  It contains a NTuple
+and behaves like one for most purposes but gives us additional
+flexibility as will be seen near the end of the example.
+
+The next few lines shows how to get the number of rows and columns as
+well as the labels for the columns.  The script then creates a
+histogram and adds it to the canvas.  Since the distribution falls off
+rather quickly, the Y axis is set to a log scale.
+
+The script then applies a cut and adds the display of the cut variable
+to the canvas.  The cut distribution also falls rather quickly to its
+Y axis is also put on a log scale.
+
+The next step gets a handle on the data representation, <em>i.e.</em>
+the actual histogram, in order to fit a function to it.  Not satisfied
+with the fit, a second function is applied.  Note that when two
+functions are applied, a fit is done to the linear sum of the
+functions.
+
+The last part of the script shows the power of using a DataArray.  In
+one line the script adds two columns together, row by row, and adds
+the result to the DataArray.  Let's take it step by step to understand
+it.  The expression
+
+@verbatim
+ntuple [ 'TkrEnergy' ]
+@endverbatim
+
+shows that the DataArray behaves like a Python dictionary in that we
+can access a column by a key.  The key is the label of the column.  It
+returns a numarray.   The expression
+
+@verbatim
+ntuple [ 'TkrEnergy' ] + ntuple [ 'CalEnergySum' ]
+@endverbatim
+
+thus accesses two columns and adds them together because the numarray
+class overload the operator + to create a new numarray whose values are
+the sum of the others, element by element.
+
+Finally, a column is added with the expression
+
+@verbatim
+ntuple [ label ] =
+@endverbatim
+
+where again the DataArray behaves like a Python dictionary.  The right
+hand side of the assignment must be a numarray, which it is in this
+case.  The column is not added to the ROOT file, it is only logically
+added in memory.
+
+Treating columns of the data source as vectors and doing vector
+algebra on them can be considerably faster than writing @em for loops.
+The code is much easier to write and understand as well.
+
+@subsection examples_root_array Doing analysis with numarray and ROOT file
+
+The examples shows some aspects of doing an analysis with numarray and
+numarray functions and expressions.   The benefits of using numarrays
+are two fold.   First, the elimination of explictit @em for-loops make
+the code easier to read.   Second, factors of 20-30 speed up of the
+analysis have been seen because more of it is the compiled Python
+extension module instead of in the Python intepreter.
+
+The example code is shown below.   The explanation of the code is in
+the comments.
+
+@verbinclude examples/svac_array.py
+
+
+
+@subsection examples_fits_file Reading and writing FITS files
+
+This example shows how to use data from a FITS file and writing a data
+to a FITS file.   An explanation of the code below follows.
+
+The instance of the FitsController is used to read the FITS file.
+FITS files can contain multiple images and tables.  You can use the
+FitsController to find the names of the Header/Data Units (HDU) as
+shown.  The first HDU is always an image, so the tabular data is
+probably the second HDU.  The FitsController creates DataArray object
+(see @ref ntuple_dataarray)
+from given the filename and the name of the HDU.   The DataArray holds
+a FitsNTuple object that knows how to read columns from a ASCII or
+binary table.
+
+The FitsController and FitsNTuple classes are written in C++ and use
+the standard CFITSIO package for reading the FITS file.
+
+@verbinclude examples/fitsWriting.py
+
+The first part of the script shows how to get information about the
+file and its tables.   it than creates a two dimensional histogram and
+adds it to the canvas.  Next a column is added to the DataArray which
+is the log10 of the column containing `energy' and a plot of it is
+added to the canvas, with the Y axis on a log scale.   For comparison,
+another plot of energy is added to the canvas with both the X and Y
+axes on a log scale.   For histograms, this also sets the bin widths
+to a logrithmically increasing size.   Thus, these last two plots
+should look the same.
+
+The script next creates a cut on time and sets it to an arbitrary
+range.   The cut itself is placed on the canvas.    The cut is then
+applied to all three plots.
+
+Next, a simple vector is added as a column. using numarray. It is
+added to DataArray in the same manner as any other array.
+
+The script then writes the DataArray, including the added columns,
+to the FITS file @em sim2.fits.  This has the same effect as <b>
+Export text ntuple </b> menu item of the CanvasWindow.   Although this
+DataArray contains a FitsNTuple, and type of @ref ntuple_root  could have
+been used.
+
+The script then creates another FITS file from the DataArray, but only
+with the rows that pass the cut and the selected columns.   This has
+the same effect as the <b> Create NTuple...</b> menu item of the
+CanvasWindow.  
+
+The last part of the script reads the newly created FITS file and
+checks if it contains what is expected.
+
+@subsection examples_appending Appending one data source to another.
+
+This example shows how to append one data source to another.   Of
+course the two data sources should have the same number of columns.
+In this example, DataArray objects are used, but the one could use any
+of the DataSource derived classes.   One can even append from a
+DataSource of a different type.
+
+The example is shown below.   It also illustrates use of numarray to
+do vector arithmatic.
+
+@verbinclude examples/append_ntuple.py
+
+If you are new to Python and/or numarray, this line in the example you
+may find confusing
+
+@verbatim
+da1 [ 'data' ] = numarray.array ( range ( 10 ) )
+@endverbatim
+
+What is happening here is that the @em range function returns a Python
+@em list object.   It is then used to construct a numarray object.
+The resulting numarray is added to the data array as a new column with
+the label @em data.
+
+
+@subsection examples_fitting Fitting to functions written in Python
+
+This example shows how to write a function in Python the one can use
+with the built-in fitting packages.  The function is written in
+Python, yet it is derived from a class written in C++.
+
+This example also illustrates how to directly manipulate the fitting
+process, using various components.  In future releases, some of these
+components could also be written in Python.
+
+Finally, this example uses a DataArray to
+hold the data set.
+
+@verbinclude examples/fitting.py
+
+@subsection examples_fitting2 Fitting to 2D functions written in Python
+
+This example shows how to write a 2D function in Python the one can
+use with the built-in fitting packages.  It is similar to @ref
+examples_fitting.  This examples also shows using the hippo module
+without using the graphics.
+
+This example also illustrates how to directly manipulate the fitting
+process, using features, some of which are only available with the
+Minuit fitter.
+
+@verbinclude examples/fitting2.py
+
+@subsection examples_fft Doing a Fast Fourier Transform
+
+This example shows how to do a Fast Fourier Transform and plot the results.
+
+The Python code is shown below.
+
+@verbinclude examples/fft.py
+
+The first part generates white noise time series in atribitary units.
+We create a NumArrayTuple to holds the data as a one column
+DataSource.  This type of %DataSource holds a reference to the data
+instead of making a copy of it.
+
+Then the <em> hippofft.simpleLightCur </em> function is calledwith the
+data source and the label of the (only) column.  The last srgument is
+optionsal and is the number of bins to be used to generate the light
+curve.  The default is 1024. The function returns two objects.  The
+first is the histogram of the data.  It can be added to the canvas as
+shown.  The second is the contents of the bins appropriately
+normalized.
+
+The power spectrum is then calculated given the bins, the range of the
+data, and the units of time in seconds.  The function returns a
+DataArray containing an NTuple object with two columns.  The first
+column is the frequency and the second is the power.  One can create a
+XY plot of the spectrum as shown.
+
+To check that hte transform is correct, the script creates a histogram
+of the power and plots it on a log scale.  It then fits it to an
+exponential.  The resulting fit should havethe scale factor around
+2.0.
+
+
+*/

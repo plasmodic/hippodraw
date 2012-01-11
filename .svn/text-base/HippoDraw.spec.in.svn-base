@@ -1,0 +1,259 @@
+Name:    @PACKAGE@
+Version: @VERSION@
+Release: 1%{?dist}
+Summary: Interactive and Python scriptable data analysis application
+
+%{!?python_sitelib: %define python_sitelib %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(0)")}
+%{!?python_sitearch: %define python_sitearch %(%{__python} -c "from distutils.sysconfig import get_python_lib; print get_python_lib(1)")}
+
+Group: Applications/Engineering
+License: GPL
+URL: http://www.slac.stanford.edu/grp/ek/hippodraw/
+Source0: ftp://ftp.slac.stanford.edu/users/pfkeb/hippodraw/%{name}-%{version}.tar.gz
+BuildRoot: %{_tmppath}/%{name}-%{version}-%{release}-root-%(%{__id_u} -n)
+
+
+BuildRequires: cfitsio-devel qt-devel desktop-file-utils doxygen graphviz
+# in FC7 need graphiz that can generate .gof files
+%if 0%{?fedora} >= 7
+BuildRequires:graphviz-gd python-numarray
+%endif
+BuildRequires: tetex-latex tetex-dvips netpbm-progs ghostscript
+Requires:  tetex-latex tetex-dvips netpbm-progs ghostscript
+
+%description
+HippoDraw is a highly interactive data analysis
+environment that can be used as a stand-a-lone application or as a
+Python extension module.
+
+%package python
+Summary: %{name} Python module
+Group: Development/Languages
+BuildRequires: boost-devel python-devel python-numarray
+Requires: %{name} = %{version}-%{release}
+Requires: python-numarray
+
+
+%description  python
+Provides Python module to use %{name} from Python scripts.
+
+%package devel
+Summary:  Library and header files for %{name} library
+Group: Development/Libraries
+Requires: %{name} = %{version}-%{release}
+Requires: qt-devel boost-devel cfitsio-devel python-numarray
+
+%description devel
+The %{name}-devel package contains libraries and header files for
+building applications use %{name}.
+
+%package devel-docs
+Summary: Class library documentation
+Group: Documentation
+Requires: %{name}-devel = %{version}-%{release}
+
+%description devel-docs
+This package contains the html documentation files for the %{name}
+class library.  User documentation is part of the main package.
+
+%prep
+%setup -q
+
+%build
+# Exclude or avoid packages that might be installed in /usr/local
+# Exclude wcslib that might be installed from rpm which is older version.
+%{configure} --without-wcslib-lib --without-minuit2-lib --without-root-lib\
+    --disable-rpath --with-boost-root=%{_prefix} --with-wcslib-include=no
+make %{?_smp_mflags}
+make docs
+
+
+%install
+rm -rf $RPM_BUILD_ROOT
+make install DESTDIR=$RPM_BUILD_ROOT INSTALL="install -p"
+make install DESTDIR=$RPM_BUILD_ROOT install-docs INSTALL="install -p"
+
+find $RPM_BUILD_ROOT -name '*.la' -exec rm -f {} ';'
+desktop-file-install --vendor fedora \
+      --dir $RPM_BUILD_ROOT%{_datadir}/applications \
+      qt/app/HippoDraw.desktop
+
+%clean
+rm -rf $RPM_BUILD_ROOT
+
+%post 
+
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+%postun 
+
+/sbin/ldconfig
+touch --no-create %{_datadir}/icons/hicolor || :
+%{_bindir}/gtk-update-icon-cache --quiet %{_datadir}/icons/hicolor || :
+
+
+%files
+%defattr(-,root,root,-)
+
+%{_bindir}/hippodraw
+%{_libdir}/*.so.*
+%dir %{_datadir}/%{name}
+%{_datadir}/%{name}/hippoApp.png
+%dir %{_datadir}/doc/%{name}-%{version}
+%{_datadir}/doc/%{name}-%{version}/LICENSE
+%{_datadir}/doc/%{name}-%{version}/DISCLAIMER.rtf
+%dir %{_datadir}/doc/%{name}-%{version}/html
+%{_datadir}/doc/%{name}-%{version}/html/*.html
+%{_datadir}/doc/%{name}-%{version}/html/*.png
+%{_datadir}/doc/%{name}-%{version}/html/*.css
+%{_datadir}/doc/%{name}-%{version}/html/*.gif
+%{_datadir}/doc/%{name}-%{version}/html/hippodraw.adp
+%{_datadir}/applications/fedora-%{name}.desktop
+%{_datadir}/icons/hicolor/48x48/apps/hippoApp.png
+
+%files devel
+%defattr(-,root,root,-)
+%{_includedir}/%{name}
+%ghost %{_includedir}/%{name}/numarray/num_util.h
+%{_libdir}/*.so
+
+%files devel-docs
+%defattr(-,root,root,-)
+%{_datadir}/doc/%{name}-%{version}/html/lib
+
+%files python
+%defattr(-,root,root,-)
+%dir %{python_sitearch}/%{name}
+%dir %{python_sitelib}/%{name}
+%{python_sitearch}/hippo.pth
+%{python_sitelib}/hippo.pth
+%{python_sitearch}/%{name}/hippomodule.*
+%{python_sitelib}/%{name}/*.py
+%{python_sitelib}/%{name}/*.pyc
+%{python_sitelib}/%{name}/*.pyo
+%{_datadir}/%{name}/examples
+
+%changelog
+* Wed Jul 25 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.21.1-1
+- fixed python_sitearch and python_sitelib
+
+* Wed Jul 25 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.21-1
+- Added require for devel-docs sub package
+
+* Wed Jul 18 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.20.9-1
+- remove some files from install
+- remove dependency on cfitsio, it is automaticly generated
+- fixed defattr
+
+* Mon Jul 16 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.20.8-1
+- Fixed desktop file
+
+* Thu Jun 28 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.20.7-2
+- Update to 1.20.7
+
+* Sun Apr 22 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.19.9-2
+- lower case filename for the app icon
+
+* Mon Mar 26 2007 Paul F. Kunz <paul_kunz@slac.stanford.edu> - 1.19.8-1
+- Update to 1.19.8 and fix install of config.h
+
+* Mon Mar 12 2007 Paul F. Kunz <paul_kunz@lac.stanford.edu> - 1.19.6-2
+- Added requirements of boost-devel and cfitsio-devel to -devel package
+
+
+* Sun Mar 11 2007 Paul F. Kunz <Paul_Kunz@slac.stanford.edu> - 1.19.6-1
+- Added make docs to build step
+- Fix placement of Requires
+- add requirement of qt-devel to -devel package
+
+* Sat Mar 10 2007 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.19.5-1
+- bump version number of sources
+- put disclaimer and license in versioned directory
+
+* Fri Mar  9 2007 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.19.4-1
+- libaxiswidget.so was removed from sources
+- Move rename doc package to devel-docs
+- Documentation moved to directory with version in name
+
+* Thu Mar  8 2007 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.19.4-1
+- desktop file was fixed in sources
+- Added build requirement on graphviz
+- use install -p on install
+- doc package depends on devel to be installed
+- Change sitelib to sitearch for Python install
+
+* Mon Mar  5 2007 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.19.2-1
+- add requirement of latex and accessories for use of it
+
+* Fri Mar  2 2007 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.19.2-1
+- remove setting of QTDIR
+- Use suggested python_sitelib macro
+- update icon cache after install and uninstall
+- do not use the -p option in post and postun
+
+* Thu Mar  1 2007 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.19.2-1
+- avoid boost in /usr/local if there
+
+* Sun Oct 22 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.9-1
+- Update version
+- fix install step
+
+* Wed Oct 11 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.8-5
+- Take ownership of doc directory
+
+* Tue Oct 10 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.8-4
+- Need to own certain directories
+
+* Mon Oct 9 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.8-3
+
+- Rebuild with modified upstream sources which removed explicit
+  linking against X libs
+
+- Rebuild with modified upstream source with fix for boost_python
+  library
+
+* Mon Oct  9 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.8-2
+- Fix incorrect macro in -doc description
+
+* Sat Oct  7 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.8-1
+- Update source version
+- Get QTDIR from pkg-config
+- remove redundant BuildRequires
+- Do not have to expliectly set --prefix
+
+* Wed Oct  4 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.6-3
+- use configure macro
+- Use RPM_BUILD_ROOT consistently
+
+* Mon Oct  2 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.6-2
+- removed tab use spaces
+- Added documentation to -python subpackage
+- Add doc file to -devel subpackage
+
+* Sun Sep 24 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.5-1
+- Move documentation to standard place
+
+* Fri Sep 22 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.5-1
+- Added desktop file
+- Update to 1.18.5
+
+* Mon Sep 18 2006 Paul F. Kunz <pfkeb@dhcp-237-226.slac.stanford.edu> - 1.18.4-1
+- Get rid of wcslib which has no rpm
+
+* Mon Sep 18 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.4-1
+- Sort documentation in appropriate packages
+
+* Sun Sep 17 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.4-1
+- added devel package
+- made Python package
+
+* Sat Sep 16 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.18.4-1
+- Fixed to install in /usr/
+- Make conform to recommended standard
+
+
+* Sun Jul  2 2006 Paul F. Kunz <pfkeb@kunz-pbdsl3.stanford.edu> - 1.17.6-1
+- Add requirement of Minuit2
+- Added requirement on cfitsio
+

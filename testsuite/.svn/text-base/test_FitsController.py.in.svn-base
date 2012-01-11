@@ -1,0 +1,97 @@
+""" -*- mode:python -*-
+
+Test of FitsController and FitsNTuple classes
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import FitsController, Display
+fc = FitsController.instance()
+
+print "Try to open file that doesn't exist"
+filename = "Bad_filename"
+try :
+    fc.getNTupleNames ( filename )
+except RuntimeError, detail :
+    print detail
+
+filename = "@top_srcdir@/examples/SimEvents.fits"
+print "Opening file ", filename
+ntuple_names = fc.getNTupleNames ( filename  )
+print "In this file, HDU names are ", ntuple_names
+
+name = ntuple_names[1] # pass the empty image
+
+ntuple = fc.createNTuple ( filename, name )
+from hippo import NTupleController
+dsc = NTupleController.instance()
+
+print "Number of columns = ", ntuple.columns
+print "Column labels are ..."
+print ntuple.getLabels()
+
+print "Number of rows = ", ntuple.rows
+
+plot = Display ( "Color Plot", ntuple, ('GLON', 'GLAT', 'nil', 'nil' ) )
+canvas.addDisplay ( plot )
+
+print "Try getting column with invalid label..."
+
+try :
+    event_ids = ntuple.getColumn ( 'foo' )
+except RuntimeError, detail :
+    print detail
+
+energy = ntuple.getColumn ( 'energy' )
+
+print energy [ : 10 ]
+
+print "Try to access bad column ..."
+try :
+    events = ntuple.getColumn ( 500 )
+except RuntimeError, detail :
+    print detail
+
+
+#
+# Test using DataArray
+#
+darray = fc.createDataArray ( filename, name )
+darray.setName ( 'array version' )
+
+#
+# Fetch a column and print its class and data
+#
+obs_flux = darray['energy']
+print ""
+print obs_flux.__class__
+
+#
+# replace a column that hasn't been cached yet
+#
+darray [ 0 ] = obs_flux
+         
+print "Contents of a column ..."
+print obs_flux [ : 10 ]
+
+#
+# Calc Log(energy)
+#
+
+import numarray
+darray[ 'LogE' ] = numarray.log ( darray [ 'energy' ] )
+
+eplot = Display ( "Histogram", darray, ( 'energy', ) )
+eplot.setLog ( 'x', True )
+eplot.setLog ( 'y', True )
+canvas.addDisplay ( eplot )
+
+lplot = Display ( 'Histogram', darray, ( 'LogE', ) )
+lplot.setLog ( 'y', True )
+canvas.addDisplay ( lplot )

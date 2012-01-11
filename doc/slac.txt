@@ -1,0 +1,81 @@
+/** @page slac_root Using HippoDraw on SLAC Linux Systems
+
+@b HippoDraw is installed at SLAC for use by Red Hat Enterprise Linux
+3 and 4 machines including AMD 64 bit machines.  This includes both
+SLAC Computing Services (SCCS) public machines (noric) and most
+desktop machines maintained by SCCS.
+
+If you have a SLAC UNIX account, you can log into a public machine as
+shown below.
+
+@verbatim
+libra3> ssh noric
+RHEL WS 3 (Taroon Update 6)   2.4.21-40.ELsmp (2x1793MHz AMD Opteron)
+=========================================================================
+By using this system you expressly consent to the terms and conditions in
+http://www.slac.stanford.edu/comp/policy/use.html
+=========================================================================
+noric07> 
+@endverbatim
+
+@section slac_standalone Using HippoDraw as a stand a lone application.
+
+HippoDraw can be used as stand a lone application, It has been
+installed in various locations by various groups.  The most recent
+version can be started as show below.
+
+@verbatim
+noric13> /afs/slac/g/ki/bin/hippodraw
+@endverbatim
+
+Note that no environment shell variables need to be set.  If you use
+@b HippoDraw often, you may want to add the path @em
+/afs/slac/g/ki/bin in your PATH environment variable.  But be aware of
+(or benefit from), that fact that this directory contains newer
+versions of frequently used programs then typically found in the SCCS
+maintained @em /usr/local.
+
+See @ref starting_root for help in learning to use @b
+HippoDraw as a stand-a-lone application.
+
+
+@section slac_python Using HippoDraw as a Python extension module.
+
+the @b HippoDraw Python extension module has been installed in <em>
+/afs/slac/g/ki/lib/python2.4/site-packages</em>.
+This version also
+contains the optional support for FITS, ROOT files as well as
+numarray, Minuit, and WCSlib support.
+
+To start a session with @b HippoDraw, first
+start the Python interactive shell as shown below.
+
+@verbatim
+noric07> /afs/slac/g/ki/bin/python
+Python 2.4.3 (#3, Jan 13 2006, 14:07:52)
+[GCC 3.2.3 20030502 (Red Hat Linux 3.2.3-52)] on linux2
+Type "help", "copyright", "credits" or "license" for more information.
+>>>
+@endverbatim
+
+Or, if this @em bin directory is in your @em PATH, then just type @em python.
+
+Next, import @b HippoDraw into the Python session as show below
+
+@verbatim
+>>> import hippo
+>>>
+@endverbatim
+
+The last step is to create the @b HippoDraw application as show below
+
+@verbatim
+>>> app = hippo.HDApp()
+>>>
+@endverbatim
+
+You'll more likely be putting these commands in a file and have Python
+interpret them at startup.  See @ref examples_page
+for more information.
+
+*/

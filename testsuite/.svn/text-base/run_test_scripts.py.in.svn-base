@@ -1,0 +1,106 @@
+#!/usr/bin/env python
+"""
+Run the testsuite scripts as an ad hoc set of unit tests.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#$Id: run_test_scripts.py.in,v 1.33 2007/05/04 21:16:28 pfkeb Exp $
+
+import copy
+import setPath
+import hippoplotter as plot
+
+prompt = 1
+first = 'ConstantModelFit'
+
+scripts = {}
+scripts['ConstantModelFit'] = 1
+scripts['SciPy_demo'] = 0         # duplicates others
+scripts['accesstuple'] = 1
+scripts['auto_xytuple'] = 1
+scripts['autoscale'] = 1
+scripts['autotuple'] = 0 # does something strange, needs debugging
+scripts['axisBug'] = 1
+scripts['baddata1'] = 1
+scripts['bugs'] = 1
+scripts["canvas_crash"] = 0 # causes script to crash
+scripts['cern_pi_1'] = 1
+scripts['cern_pi_4'] = 1          # minuit may not be available
+scripts['chi2Dists'] = 1
+scripts['chi2bug'] = 1
+scripts['circbuff'] = 0           # takes too long to run
+scripts['column'] = 1
+scripts['createNTuple'] = 1
+scripts['cuts'] = 1
+scripts['data_array'] = 1
+scripts['datareps'] = 1
+scripts['displays'] = 1
+scripts['documents'] = 0          # missing data
+scripts['earth'] = 1
+scripts['egret'] = 1
+scripts['egret_old'] = 1
+scripts['empty'] = 1
+scripts['errorContours'] = 1
+scripts['errorContours_2'] = 1
+scripts['extreme'] = 1
+scripts['fitBug'] = 1
+scripts['fitExample'] = 0           # takes too long to run
+scripts['fitTestData'] = 1
+scripts['fitting2'] = 0             # causes async reply
+scripts['fluxes'] = 1
+scripts['function'] = 1
+scripts['function2d'] =  0          # hangs often
+scripts['function_ntuple'] = 1
+scripts['function_py'] = 1
+scripts['hammer'] = 1
+scripts['hist_ntuple'] = 1
+scripts['histexceptions'] = 1
+scripts['histogram'] = 1
+scripts['hsimple'] = 0              # already imported in bugs.py
+scripts['hsimple_array'] = 1
+scripts['integers'] = 1
+scripts['lambert'] = 1
+scripts['log'] = 1
+scripts['logerror'] = 1
+scripts['m51'] = 1
+scripts['manipulateDisplays'] = 1
+scripts['minuitfit'] = 0            # not working correctly
+scripts['ntuple'] = 1
+scripts['odd'] = 1
+scripts['overplot'] = 1
+scripts['pl_exp_test'] = 0          # already imported in manipulate displays
+scripts['plotboundary'] = 1
+scripts['poorFit'] = 1              # Minuit may not be available
+scripts['ranges'] = 1
+scripts['rebin'] = 0                # written as main
+scripts['regressionFit'] = 1
+scripts['runninghist'] = 1
+scripts['scatter_func'] = 0 # tempoarily removed as it crashes the remainder
+scripts['scatter_hist'] = 1
+scripts['test_FitsImage'] = 1
+scripts['test_addText'] = 1
+scripts['test_DataArray'] = 1
+scripts['test_getNTuple'] = 1
+scripts['test_getNTuple2'] = 1
+scripts['test_numarray'] = 1
+scripts['useBinner'] = 1
+scripts['weighted2_pl'] = 1
+scripts['weighted_pl'] = 1
+
+print "Hit return to run named script."
+print ("One must monitor the displayed plots carefully to ensure " +
+       "that the scripts behave correctly.")
+
+names = copy.deepcopy(scripts.keys())
+names.sort()
+indx = names.index(first)
+for name in names[indx:]:
+    if scripts[name]:
+        if prompt:
+            plot.prompt("Run %s: " % name)
+            plot.clear()
+        else:
+            print "Running " + name + "..."
+        command = 'import ' + name
+        exec(command)
+

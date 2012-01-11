@@ -1,0 +1,116 @@
+""" -*- mode: python -*-
+
+Script to test running HippoDraw with PyQt
+
+$Id: static.py.in,v 1.2 2005/03/24 21:45:02 pfkeb Exp $
+
+author: Paul_Kunz@slac.stanford.edu
+
+"""
+
+import sys
+from qt import *
+from qtcanvas import *
+from random import gauss, random
+
+app = QApplication ( sys.argv )
+
+import sihippo
+print "HippoDraw version " + sihippo.__version__
+
+from sihippo import *
+
+wc = WindowController.instance()
+wc.quitOnLastWindowClose ( True )
+wc.createInspector ()
+window = CanvasWindow()
+window.show()
+
+from time import sleep
+
+mean = 1.0
+sigma = 0.5
+npts = 1000
+
+## for i in range ( npts ) :
+##     nt.addRow ( [ gauss ( mean, sigma ), random () ] )
+
+display_controller = DisplayController.instance()
+
+sthist = display_controller.createDisplay ( 'Static Histogram' )
+sthist.setTitle ( "Gaussian Distribution (static hist)" )
+sthist.setRange ( 'x', -1., 3 ) # x axis, low and high
+sthist.setBinWidth ( 'x', 0.1 ) # x axis, bin width
+
+## Get CanvasWindow from WindowController, like application will do.
+canvas = wc.currentCanvas()
+canvas.addDisplay ( sthist )
+
+for i in range ( npts ) :
+    sthist.addValues ( [ gauss ( mean, sigma ), ] )
+
+
+print "Number of entrie = ", sthist.getNumOfEntries ()
+
+
+# Now add unction and fit it.
+fc = FunctionController.instance()
+func = fc.addFunction ( sthist, 'Gaussian' )
+
+print "Parameter names"
+parm_names = func.parmNames()
+print parm_names
+
+print "Values before fitting"
+parms = func.getParameters()
+print parms
+
+print "Fixed parameters are"
+fixed = func.fixedFlags ()
+print fixed
+
+fixed[1] = 1
+func.setFixedFlags ( fixed )
+
+fc.saveParameters ( sthist )
+ok = fc.fitFunction ( sthist )
+print "Did fit converge = ", ok
+
+print "Values after fitting"
+parms =fc.parameters ( sthist )
+print parms
+
+print "Errors on parameters"
+try :
+    errors = fc.getErrors ( sthist )
+except RuntimeError, detail :
+    print detail
+
+print errors
+
+chi = fc.getChiSquared ( sthist )
+df  = fc.getDegreesOfFreedom ( sthist )
+print "Chi-Squared per d.f. = ", chi/df
+
+fixed = [ 0, 0 ]
+func.setFixedFlags ( fixed )
+fc.restoreParameters ( sthist )
+fc.fitFunction ( sthist )
+
+print "Values after fitting with all parameters free"
+parms = func.getParameters()
+print parms
+
+print "Errors after fitting"
+errors = fc.principleErrors ( sthist )
+print errors
+
+chi = fc.getChiSquared ( sthist )
+df  = fc.getDegreesOfFreedom ( sthist )
+print "Chi-Squared per d.f. = ", chi/df
+
+print "Average X = ", display_controller.getAverage ( sthist, 'x' )
+print "RMS on X = ", display_controller.getRMS ( sthist, 'x' )
+print "Number of entries = ", display_controller.getNumberOfEntries ( sthist )
+
+app.exec_loop()

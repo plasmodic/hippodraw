@@ -1,0 +1,365 @@
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/79127/tools/hippodraw/trunk/qt
+END
+DrawBorder.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/DrawBorder.h
+END
+QtGroupView.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/60891/tools/hippodraw/trunk/qt/QtGroupView.h
+END
+QtViewWidget.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/61158/tools/hippodraw/trunk/qt/QtViewWidget.cxx
+END
+SaveAsImageEvent.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/SaveAsImageEvent.cxx
+END
+FigureEditor.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60910/tools/hippodraw/trunk/qt/FigureEditor.cxx
+END
+PlotTableEvent.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/PlotTableEvent.cxx
+END
+QtFileDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60892/tools/hippodraw/trunk/qt/QtFileDialog.h
+END
+ListDialog.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60738/tools/hippodraw/trunk/qt/ListDialog.cxx
+END
+Inspector.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qt/Inspector.h
+END
+CreateNTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60893/tools/hippodraw/trunk/qt/CreateNTuple.cxx
+END
+PlotterEvent.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/PlotterEvent.cxx
+END
+CanvasSettings.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qt/CanvasSettings.cxx
+END
+AxisWidget.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qt/AxisWidget.h
+END
+PickTable.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/60780/tools/hippodraw/trunk/qt/PickTable.cxx
+END
+QtFont.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/QtFont.h
+END
+util.h
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/60699/tools/hippodraw/trunk/qt/util.h
+END
+FileOpenEvent.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/FileOpenEvent.cxx
+END
+CanvasWindow.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60893/tools/hippodraw/trunk/qt/CanvasWindow.cxx
+END
+CanvasView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/61655/tools/hippodraw/trunk/qt/CanvasView.cxx
+END
+QtViewFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/QtViewFactory.cxx
+END
+CanvasViewProxy.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/60777/tools/hippodraw/trunk/qt/CanvasViewProxy.cxx
+END
+QtViewWidget.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/61158/tools/hippodraw/trunk/qt/QtViewWidget.h
+END
+WindowController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/73145/tools/hippodraw/trunk/qt/WindowController.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/61158/tools/hippodraw/trunk/qt/CMakeLists.txt
+END
+SaveAsImageEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/SaveAsImageEvent.h
+END
+FigureEditor.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60845/tools/hippodraw/trunk/qt/FigureEditor.h
+END
+PlotTableEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/PlotTableEvent.h
+END
+QtView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/61655/tools/hippodraw/trunk/qt/QtView.cxx
+END
+ListDialog.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/60738/tools/hippodraw/trunk/qt/ListDialog.h
+END
+CreateNTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60892/tools/hippodraw/trunk/qt/CreateNTuple.h
+END
+PlotterEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/PlotterEvent.h
+END
+CanvasSettings.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qt/CanvasSettings.h
+END
+PickTable.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qt/PickTable.h
+END
+HdThread.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/HdThread.cxx
+END
+CanvasSelectionEvent.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/CanvasSelectionEvent.cxx
+END
+QtApp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/61150/tools/hippodraw/trunk/qt/QtApp.cxx
+END
+QtViewImp.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/61155/tools/hippodraw/trunk/qt/QtViewImp.cxx
+END
+PlotTable.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/60780/tools/hippodraw/trunk/qt/PlotTable.cxx
+END
+AxisWidgetPlugin.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qt/AxisWidgetPlugin.cxx
+END
+FileOpenEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/FileOpenEvent.h
+END
+CanvasWindow.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60891/tools/hippodraw/trunk/qt/CanvasWindow.h
+END
+DrawBorder.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/DrawBorder.cxx
+END
+CanvasView.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/60891/tools/hippodraw/trunk/qt/CanvasView.h
+END
+QtGroupView.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/60891/tools/hippodraw/trunk/qt/QtGroupView.cxx
+END
+QtViewFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/QtViewFactory.h
+END
+CanvasViewProxy.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/60777/tools/hippodraw/trunk/qt/CanvasViewProxy.h
+END
+WindowController.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/57484/tools/hippodraw/trunk/qt/WindowController.h
+END
+libqthippo.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/libqthippo.h
+END
+QtFileDialog.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/60893/tools/hippodraw/trunk/qt/QtFileDialog.cxx
+END
+QtView.h
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/60773/tools/hippodraw/trunk/qt/QtView.h
+END
+Inspector.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/61234/tools/hippodraw/trunk/qt/Inspector.cxx
+END
+HdThread.h
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/HdThread.h
+END
+AxisWidget.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/60778/tools/hippodraw/trunk/qt/AxisWidget.cxx
+END
+CanvasSelectionEvent.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/60770/tools/hippodraw/trunk/qt/CanvasSelectionEvent.h
+END
+QtApp.h
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/60892/tools/hippodraw/trunk/qt/QtApp.h
+END
+QtViewImp.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/60891/tools/hippodraw/trunk/qt/QtViewImp.h
+END
+PlotTable.h
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/60771/tools/hippodraw/trunk/qt/PlotTable.h
+END
+QtFont.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/60780/tools/hippodraw/trunk/qt/QtFont.cxx
+END
+AxisWidgetPlugin.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/qt/AxisWidgetPlugin.h
+END
+util.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/60699/tools/hippodraw/trunk/qt/util.cxx
+END

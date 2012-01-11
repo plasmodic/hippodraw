@@ -1,0 +1,56 @@
+""" -*- mode: python -*-
+
+This script demonstrates creating running sum histogram using Python
+to do the work.
+
+Copyright (C) 2004   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: runninghist.py.in,v 1.2 2004/03/27 23:56:40 pfkeb Exp $
+
+"""
+from random import gauss
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+
+ntc = NTupleController.instance()
+
+nt1 = ntc.createNTuple ( )
+nt1.setTitle ( "Gaussian distribution" )
+label = ['X']
+nt1.setLabels ( label )
+
+mean = 1.0
+sigma = 0.5
+npts = 1000
+for i in range ( npts ) :
+    nt1.addRow ( [ gauss ( mean, sigma )] )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, label )
+canvas.addDisplay( hist )
+
+nt2 = hist.createNTuple ()
+ntc.registerNTuple ( nt2 )
+
+## Calculate running sum
+density = nt2.getColumn ( 'Density' )
+width = nt2.getColumn ( 'Width' )
+sum = 0
+sums = []
+
+for i in range ( nt2.rows ) :
+    sum += density[i] * width[i]
+    sums.append ( sum )
+    
+nt2.addColumn ( 'Sum', sums )
+
+
+hist2 = Display ( "XY Plot", nt2, ('X', 'Sum', 'nil', 'nil') )
+canvas.addDisplay( hist2 )
+

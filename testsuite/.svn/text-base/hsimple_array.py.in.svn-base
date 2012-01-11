@@ -1,0 +1,38 @@
+""" -*- mode: python -*-
+A HippoDraw-based version of the hsimple.py histogramming example
+from the PyRoot project.   Including using DataArray
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+#$Id: hsimple_array.py.in,v 1.3 2006/10/03 18:07:42 pfkeb Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('../../hippodraw/python')
+sys.path.append('..//python')
+sys.path.reverse()
+
+from setPath import *
+import hippoplotter as plot
+from random import gauss, uniform
+
+#
+# Create new NTuple with columns (x, y, x^2 + y^2, uniform deviate, index)
+#
+nt = plot.newDataArray( ([], [], [], [], []), ("x", "y", "z", "unif", "i") )
+
+hist = plot.Histogram( nt, "x" )
+xyhist = plot.XYHist( nt, "x", "y" )
+profile = plot.Profile( nt, "x", "z" )
+
+mean = 0.
+sigma = 1.
+npts = 25000
+
+for i in range(npts):
+    x, y = gauss(mean, sigma), gauss(mean, sigma)
+    z = x*x + y*y
+    nt.addRow( (x, y, z, uniform(0,1), i) )
+

@@ -1,0 +1,47 @@
+""" -*- mode:python -*-
+
+Test of RootNTuple class with array column.
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import RootController, Display
+rc = RootController.instance()
+
+filename = "/nfs/farm/g/glast/u33/InstrumentAnalysis/MC/EngineeringModel-v6r070329p28/Surface_muons/surface_muons_4M_svac.root"
+
+print "Opening file ", filename
+ntuple_names = rc.getNTupleNames ( filename  )
+print "In this file, tree names are ", ntuple_names
+
+name = ntuple_names[0]
+
+
+ntuple = rc.createNTuple ( filename, name )
+print "Number of columns = ", ntuple.columns
+
+print "Number of rows = ", ntuple.rows
+labels = ntuple.getLabels ()
+print "Column labels are ..."
+print labels
+
+print "Look at shape"
+print ntuple.rowDataDimSize( 'TkrDepositEne' )
+
+hist = Display ( "Histogram", ntuple, ('TkrDepositEne[0][0][0]', ) )
+canvas.addDisplay ( hist )
+hist.setLog ( 'y', True )
+
+indices = [0, 0, 0]
+
+hist2 = Display ( "Histogram", ntuple, ( 'TkrDepositEne', ), [ indices, ] )
+canvas.addDisplay ( hist2 )
+hist2.setLog ( 'y', True )
+
+print "Demonstrated two ways to access arrays in a branch"

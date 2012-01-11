@@ -1,0 +1,277 @@
+/**
+
+@page datareps_root plot types
+
+A data representation or plot type is really a way of representing
+data as a graphical image.
+
+The available types are
+
+@li @ref datareps_dyhistogram
+@li @ref datareps_st1dhistogram
+@li @ref datareps_colorplot
+@li @ref datareps_st2dhistogram
+@li @ref datareps_profilehist
+@li @ref datareps_profile2d
+@li @ref datareps_scatterplot
+@li @ref datareps_stripchart
+@li @ref datareps_yplot
+@li @ref datareps_xyzplot
+@li @ref datareps_zplot
+@li @ref datareps_variable_mesh
+
+
+There are various ways of doing so.
+None of them show the data to its full precision, for that, the user
+would have to look at the raw numbers.  However, there are many ways to
+represent the data as a image that are meaningful and useful to the
+user.  What is called a <em>data representation</em> in @b HippoDraw is a
+combination of two aspects of representing data; a projection and a
+point representation.
+
+By @em projection, we mean the reading or gathering of the data set
+and creating a set of points to be plotted.  Each point is called 
+a projected value.  This could be as simple as mapping pairs of
+columns in a @ref ntuple_root to X-Y pairs to be plotted.  A more
+complex projection is gathering all the data, histogramming it and
+forming X-Y pairs to be plotted from the resultant histogram.
+
+Given a set of points to be plotted, there might be a number of
+representations of a point.  For example, for a two dimension
+histogram projection, each entry of the histogram could be represented
+by a colored box.  The color would represent the value of that entry.
+Alternatively, the 2D histogram could be represented as a set of
+contour lines, each line being a value.  See the examples in the @ref
+datareps_colorplot section below.  Via the @ref inspector_root the
+point representation can be changed.
+
+The point representations are just one client of the NTuple of
+projected values.  Another is used for fitting functions to the data.
+Also, one can access the %NTuple from @ref pythonoverview_root.
+
+
+This release of @b HippoDraw supports most compatible combinations of
+projections and point representations.  Future releases will attempt
+to support all compatible combinations.  The following data
+representations are supported as part of the core library in this
+release.
+
+@section datareps_dyhistogram Dynamic histogram
+
+A DyHistogram gathers one column of data from a @ref ntuple_root and histograms
+it. An example of the default histogram is shown below.  
+
+@image html dyhistogram.png Defailt histogram representation
+@image latex dyhistogram.eps Default hstogram representation
+
+Alternate representations are with filled columns and with points as
+shown below.
+
+@image html filledHist.png Histogram with filled columns
+@image latex filledHist.eps Histogram with filled columns
+
+@image html pointHist.png Histogram with point symbols
+@image latex pointHist.eps Histogram with point symbols
+
+
+Optionally a second column of data from the %NTuple can be used as a
+weight factor for each value accumulated.
+
+The histogram is dynamic in the sense that the parameters of the
+histogram such as bin width can be changed and the data representation
+can be recalculated.  Also if the %NTuple changes, the display will be
+automatically update.
+
+With the Inspector, one creates a %DyHistogram with plot type @em Histogram.
+
+@section datareps_st1dhistogram Static Histogram
+
+A St1DHistogram gathers data by a user calling its St1DHistogram::addValues
+member function for each data point.  The histogram is created without
+saving the input data, thus it is static.  The range and bin width can
+not be changed once the histogram is filled without reseting the
+histogram.  The displays looks identical to a @ref
+datareps_dyhistogram.  An optional weight factor is also supported.
+
+One can not create a St1DHistogram with the inspector.  From Python
+or C++, one is created by giving the plot type as <em>Static
+Histogram</em>.
+
+
+@section datareps_colorplot Color Plot and Contour Plot
+
+The ColorPlot and the ContourPlot use the same projection, that of a
+two dimensional histogram.  Thus, they gather data from two columns of
+data from an %NTuple.  They differ in how contents of the bins is
+represented.  The ColorPlot uses colored boxes as shown below
+
+@image html colorplot.png 2D Histogram as colored boxes
+@image latex colorplot.eps 2D Histogram as colored boxes
+
+Optionally, a third column of data from a %NTuple can be used as a
+weight factor for each value accumulated into the histogram.
+
+The ContourPlot represents the contents of the bins by calculating
+contour lines at different levels.  Each level represents the
+interpolated value of the histogram density.  The number of contour
+lines can be varied from 2 to 100.  An example with only 6 levels is
+shown below.
+
+@image html contourplot.png 2D Histogram with 6 contour lines
+@image latex contourplot.eps 2D Histogram with 6 contour lines
+
+An example with 100 levels is shown below.
+
+@image html contourplot2.png 2D Histogram with 100 contour lines
+@image latex contourplot2.eps 2D Histogram with 100 contour lines
+
+Both the ColorPlot and the ContourPlot are dynamic in the sense that
+their range and bin width can be changed and the displays are
+automatically recalculated.  For the ContourPlot, the number of contour
+lines can be also changed dynamically.
+
+@section datareps_st2dhistogram Static 2D Histogram
+
+A St2DHistogram gathers data by the user calling its
+St2DHistogram::addValues member function for each set of data values.
+The histogram is created without saving the input values, thus it is
+static. The ranges and bin widths can not be changed once the
+histogram is filled, without reseting the histogram.  The display
+looks identical to a ColorPlot.  It can also be converted to a
+ContourPlot.
+
+One can not create a St2DHistogram with the Inspector.   From Python or C++ code, one is created by giving the plot type as @em <em> Static 2D Histogram </em>.
+
+@section datareps_profilehist Profile histogram
+
+A ProfileHist takes two columns of data from a %NTuple.  The first
+column is sliced into bins and displayed along the X axis.  The second
+column is averaged and displayed along the Y axis.  An example is
+shown below.
+
+@image html profilehist.png Profile histogram
+@image latex profilehist.eps Profile histogram
+
+What appears to be error bars is the RMS of the distribution.  In a
+future releaes, there will be another data representation showing the
+error on the mean, rather than the RMS.
+
+@section datareps_profile2d Profile histogram in two dimensions
+
+A Profile2D and ProfileContour both use the same projection.  They
+gather data from three columns of data from a %NTuple.  The first two
+columns are sliced and displayed along the X and Y axis.  The third
+column is averaged. They differ in how they represent the average.
+The Profile2D represents the average as colored boxes, as show below.
+
+@image html profile2d.png 2D Profile histogram as colored boxes
+@image latex profile2d.eps 2D Profile histogram as colored boxes
+
+The ProfileContour represents the average as contour lines as shown below.
+
+@image html profile2dcontour.png 2D Profile histogram as contour levels
+@image latex profile2dcontour.eps 2D Profile histogram as contour levels
+
+
+@section datareps_scatterplot X-Y Plot and Scatter plot
+
+The XYPlot and ScatterPlot are quite similar.  Both gather data from
+two columns which are used to form an x-y pair.  The ScatterPlot is
+intended to be used when there is a large amount of data.  Each x-y
+pair is represented as a small dot.  An example is shown below.
+
+@image html scatterplot.png Scatter plot
+@image latex scatterplot.eps Scatter plot
+
+Each x-y pair is plotted at its true position.  In this example plot,
+the X coordinate has integral values and one can see the vertical
+bands as a result.
+
+The XYPlot is intended to be use when there is relatively little data,
+Each x-y pair is represented as a large symbol, which is a filled
+rectangle by default. Optionally, a third or fourth column of data
+can be gathered from the %NTuple.  The third column could be use to
+display an error on the X coordinate, while the fourth column for the
+error on the Y coordinate.` An example with Y error only is shown below.
+
+@image html xyplot.png X-Y Plot
+@image latex xyplot.eps X-Y Plot
+
+
+@section datareps_stripchart Strip Chart plot
+
+A StripChart takes two columns of data from a %NTuple.  The are taken
+as an X Y pair and displayed as a set of connected lines.  The strip
+chart assumes the data along the X axis is ordered, but the lowest X
+value need not be the first row.  For example, if the lowest X value
+is i-th row, then the strip chart starts plotting from the i-th row to
+the last row, then continues with the first row up and including the
+i-1 th row.   An example is shown below.
+
+@image html stripchart.png Strip chart
+@image latex stripchart.eps Strip chart
+
+@section datareps_yplot Y plot
+
+A YPlot takes one column of data from a %NTuple.  For each row, a X Y
+pair is form by taking the row number as the X value and the column
+data as the Y value.  An example is shown below.
+
+@image html yplot.png Y plot
+@image latex yplot.eps Y plot
+
+@section datareps_xyzplot XYZ plot
+
+A XYZPlot takes three columns of data from a %NTuple.  For each row,
+the first two columns are taken as a XY pair.  The third column is
+displayed in color.   An example is shown below.
+
+@image html xyzplot.png XYZ plot
+@image latex xyzplot.eps XYZ plot
+
+
+
+@section datareps_zplot Image
+
+An Image takes one column of data from a %NTuple and treats it as a
+matrix of values.  XY pairs are created once the shape of the matrix,
+@em i.e., the number of columns and rows, A square matrix is assumed
+by default.  One can optionally change the origin and the step size in
+either the X or Y axis. The matrix value is plotted as colored box.
+This class is intended to plot image files, such as those stored in
+<a href="http://heasarc.gsfc.nasa.gov/docs/heasarc/fits.html">FITS</a> files.
+The example shown below is the result of running the @em
+m51.py script in the @em testsuite directory.
+
+@image html zplot.png The Whirlpool Galaxy displayed as an Image.
+@image latex zplot.eps The Whirlpool Galaxy displayed as an Image.
+
+The Image can also be displayed using a contour point representation.
+The same image displayed as contour is shown below.
+
+@image html zplot_contour.png The Whirlpool Galaxy display in contour.
+@image latex zplot_contour.eps The Whirlpool Galaxy display in contour.
+
+@section datareps_variable_mesh Variable Mesh
+
+A Variable mesh takes 5 columns from the DataSource plots the data as
+colored boxes.  Two colums are the X and Y positions of the center of
+the box, while two others are the half-width and half height of the
+boxes.  The fifth column is the Z value.  An example is shown below.
+
+@image html varmesh.png Variable Mesh plot.
+
+There is no requirement that the coordinates be on any regular grid.
+If data cells are overlapping, then the last ones in the DataSource
+are drawn last.  For this reason, only the Color Box point
+representation can be used.
+
+
+@section datareps_todo Future extensions
+
+It is possible to add other kinds of data representations by combining
+elements from the various class hierarchies in the core library.  Each
+of the class hierarchies can be extended as well in to support new
+data representations.
+
+*/

@@ -1,0 +1,27 @@
+"""
+This script causes the gui to lock up.
+"""
+
+#$Header: /afs/slac/g/ek/reason_cvs/hippodraw/testsuite/gui_lockup.py.in,v 1.2 2005/08/13 23:18:34 jchiang Exp $
+import setPath
+import hippoplotter as plot
+import numarray as num
+
+from FunctionBaseDecorator import FunctionBaseDecorator
+
+@FunctionBaseDecorator
+def linear(x, a=1, b=0):
+    return a*x + b
+
+linear.register()
+
+x = num.arange(10)
+
+display = plot.scatter(x, 3*x)
+
+display.addFunction(linear)
+
+plot.prompt()
+
+plot.slopes()
+

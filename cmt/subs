@@ -1,0 +1,4 @@
+#!/bin/sh -f
+#
+sed -e "s|../../hippodraw/examples/||g" $1 > tmp;mv tmp $1
+#

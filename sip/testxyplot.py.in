@@ -1,0 +1,54 @@
+""" -*- mode: python -*-
+
+Script to test running HippoDraw view vidget with PyQt
+
+$Id: testxyplot.py.in,v 1.6 2004/11/25 20:59:52 pfkeb Exp $
+
+author: Paul_Kunz@slac.stanford.edu
+
+"""
+
+import sys
+from qt import *
+app = QApplication ( sys.argv )
+
+from sihippo import *
+
+nt = NTuple ( [ 'Energy', 'Sigma', 'binsize', 'error' ] )
+nt.setTitle ( 'Make II Z0 scan' )
+
+nt.addRow ( [ 90.74,  29.0,   0.26,  5.9  ] )
+nt.addRow ( [ 91.06,  30.0,   0.23,  3.15 ] )
+nt.addRow ( [ 91.43,  28.4,   0.26,  3.0  ] )
+nt.addRow ( [ 91.50,  28.8,   0.29,  5.8  ] )
+nt.addRow ( [ 92.16,  21.95,  0.22,  7.9  ] )
+nt.addRow ( [ 92.22,  22.9,   0.25,  3.1  ] )
+nt.addRow ( [ 92.96,  13.5,   0.21,  4.6  ] )
+nt.addRow ( [ 89.24,   4.5,   0.28,  3.5  ] )
+nt.addRow ( [ 89.98,  10.8,   0.27,  4.6  ] )
+nt.addRow ( [ 90.35,  24.2,   0.26,  3.6  ] )
+
+dc = DisplayController.instance();
+
+try :
+    p = dc.createDisplay ( "XY Plot" )
+except DataRepException, detail:
+    print detail
+
+binding = ['Energy', 'Sigma', 'nil', 'error']
+plotter=dc.createDisplay ( "XY Plot", nt, binding )
+
+view = QtViewWidget()
+view.setPlotter ( plotter )
+
+view.resize ( 400, 400 )
+app.setMainWidget ( view )
+view.show()
+
+index = dc.activeDataRepIndex ( plotter )
+datarep = plotter.getDataRep ( index )
+
+datarep.setRepStyle ( 4 )
+datarep.setRepSize ( 10. )
+
+app.exec_loop()

@@ -1,0 +1,38 @@
+/** @page download_root Downloading
+
+@section download_windows Windows binaries
+
+The pre-built binary distribution for @b HippoDraw is at
+ftp://ftp.slac.stanford.edu/users/pfkeb/hippodraw .
+Included are the .dll libraries for external packages Python,
+Boost.python, cfitsio, ROOT, WCSlib and Minuit. 
+
+@note Starting with the 1.20.6 release,@b HippoDraw binary
+ distribution includes libraries for Python 2.5 release; earlier
+ versions used Python 2.4.
+
+See @ref install_windows for installation notes for Windows.
+
+
+@section download_mac Mac OS X binaries
+
+One can find pre-built installer file at
+<a href="http://www.versiontracker.com/dyn/moreinfo/macosx/23299">
+VersionTracker</a>,
+<a href="http://www.apple.com/downloads/macosx/math_science/hippodraw.html">
+the Apple download site </a>, or
+<a href="http://macupdate.com/info.php/id/15134">MacUpdate</a>.
+These download sites are not maintained by the
+HippoDraw developers, but they seem to stay up to date.
+Download links to external packages are available at these sites.
+
+One can also download the source and build @b HippoDraw for native or
+X windows. See @ref install_macosx for build and installation notes.
+
+@section download_source Downloading source
+
+The source code distribution is at
+ftp://ftp.slac.stanford.edu/users/pfkeb/hippodraw .
+See @ref install_unix page for build and installation notes.
+
+*/

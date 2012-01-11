@@ -1,0 +1,76 @@
+""" Demonstrates adding two functions to DataRep without using linear sum
+
+ $Id: function2i.py.in,v 1.1 2005/10/11 19:06:02 pfkeb Exp $
+"""
+
+from setPath import *
+import hippoplotter as plot, random, numarray, math
+
+#
+# Create a new NTuple with one column to hold the data.
+#
+nt = plot.newNTuple( ([], ), ("x", ) )
+
+nsamp = 500
+#
+# Sample a Gaussian function.
+#
+params = ("Mean", "Sigma")
+mean = 15.
+sigma = 0.3
+
+for i in range(nsamp):
+    x = random.gauss(mean, sigma)
+    nt.addRow( (x, ) )
+
+mean = 5.
+for i in range(nsamp):
+    x = random.gauss(mean, sigma)
+    nt.addRow( (x, ) )
+
+xmin = 1.          # Bounds for the power-law distribution
+xmax = 100.
+gamma = 2.1        # The power-law index
+
+xpmax = math.pow(xmax, 1.-gamma)
+xpmin = math.pow(xmin, 1.-gamma)
+
+for i in range ( nsamp ):
+    x = random.uniform ( 0, 1 )
+    y = math.pow( x * ( xpmax - xpmin) + xpmin, 1. / (1.-gamma ) )
+    nt.addRow ( (y, ) )
+    
+disp = plot.Histogram( nt, "x", )
+disp.setBinWidth("x", 2./40.)
+disp.setLog ( 'x', True )
+disp.setLog ( 'y', True )
+
+histNt = disp.createNTuple()
+labels = histNt.getLabels()
+
+x = histNt.getColumn(labels[0])
+y = histNt.getColumn(labels[1])
+yerr = histNt.getColumn(labels[3])
+
+#
+# Fit these data.
+#
+def fitData( display, funcName, smean, ssigma ):
+    func = plot.hippo.Function( funcName, display.getDataRep() )
+    func.addTo(display)
+    paramDict = {}
+    errorDict = {}
+    names = func.parmNames()
+    params = list (func.parameters())
+    params[1] = smean
+    params[2] = ssigma
+    func.setParameters ( params )
+    func.fit()
+    errors = func.principleErrors()
+    for name, param, error in zip(names, params, errors):
+        paramDict[name] = param
+        errorDict[name] = error
+    return (paramDict, errorDict, func)
+
+(fitParams, fitErrors, func) = fitData(disp, 'Gaussian', 15, 0.3 )
+fitData ( disp, 'Gaussian', 5, 0.3 )

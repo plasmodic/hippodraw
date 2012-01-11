@@ -1,0 +1,50 @@
+""" -*- mode:python -*-
+
+Draw from the unit interval, histogram and fit with a Constant function.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: hist_comp.py.in,v 1.1 2007/05/07 17:25:14 hurui Exp $
+#
+## import sys
+## sys.path.reverse()
+## sys.path.append('../../hippodraw/python')
+## sys.path.append('..//python')
+## sys.path.reverse()
+import setPath
+
+import random
+import hippoplotter as plot
+
+nt = plot.newNTuple( ([],[]), ("x","y") )
+#nt = plot.newNTuple( ([],), ("x",) )
+#nt1 = plot.newNTuple( ([],), ("y",) )
+
+npts = 10
+for i in range(npts):
+    x = random.uniform(0, 1)
+    y = random.uniform(0, 1)
+    nt.addRow((x,y))
+ #   nt1.addRow((y,))
+
+hist = plot.Histogram(nt, "x")
+hist.setRange ( 'x', 0., 1. )
+hist.setBinWidth ( 'x', 0.05 )
+
+
+#hist1 = plot.Histogram(nt1, "y")
+#hist1.setRange ( 'y', 0., 1./2.5 )
+#hist1.setBinWidth ( 'y', 0.05 )
+
+#hist1.addTo(hist)
+
+histRep = hist.getDataRep()
+
+#constant = plot.hippo.Function( "Constant", histRep)
+#constant.addTo(hist)
+#constant.fit()
+
+print "Fitting a Constant function returns ", constant.parameters()[0]
+print "Which is Entries / bin divided by the bin width, i.e. density"
+

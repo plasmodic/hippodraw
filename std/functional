@@ -1,0 +1,51 @@
+/* -*- mode:c++ -*- */
+
+/** @file functional Functional component of C++ standard library.
+
+List of functions used by @b HippoDraw from the
+functional component of the C++ standard library.
+
+@note This list may be incomplete.
+
+*/
+
+namespace std {
+
+
+  /** @brief The C++ standard library @em bind2nd function.
+
+  This function is used to bind @a x as a second argument to a @a
+  function call.
+  */
+  template < typename  Operation, typename Type >
+    binder2nd < Operation > 
+    bind2nd ( const Operatin & function, const Type & x );
+
+  /** @brief The C++ standard library @em mem_fun class.
+
+     Returns the result of calling member @a function of class @a Type.
+  */
+  template < typename Result, typename Type >
+    mem_fun_t < Result, Type > 
+    mem_fun ( Result Type::*function () );
+
+  /** A C++ standard library class.
+  The C++ standard library functor class to do greater than comparisons.
+  */
+  template < typename Type >
+  struct greater {};
+
+  /** A C++ standard library class.
+  The C++ standard library functor class to do less than comparisons.
+  */
+  template < typename Type >
+  struct less {};
+
+  /** A C++ standard library class.
+  The C++ standard library functor class to do not equal comparisons.
+  */
+  template < typename Type >
+  struct not_equal_to {};
+
+};
+

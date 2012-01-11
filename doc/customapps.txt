@@ -1,0 +1,314 @@
+/**
+@page customapps_root Building custom applications
+
+The @b HippoDraw C++ library can be used for creating custom applications
+with either C++ or Python.  In both cases the
+<a href="http://www.trolltech.com/products/qt/index.html">Qt</a>
+library, version 3.1 or
+later, is needed.  For building with Python,
+<a href="http://www.riverbankcomputing.co.uk/pyqt/index.php">PyQt</a>
+is needed as well.  Versions 3.5 and 3.6 of PyQt have been used in the
+past.  This release was tested with version 3.14.1.
+
+   For both C++ and Python, one can build a custom application using
+the CanvasWindow and Inspector, or displaying a data representation
+with the @b HippoDraw widget, QtViewWidget or both in the same
+application.  Displaying the %Inspector is
+optional in both cases.
+
+@ref customapps_cplusplus and @ref python_appli give some examples of
+usage.
+
+   If your custom application uses Doxygen for its documentation, you
+can use
+<a href="http://www.slac.stanford.edu/grp/ek/hippodraw/hippodraw.tag">
+the hippodraw tag file </a> and an entry in your Doxygen configuration
+file such as
+
+@verbatim
+TAGFILES = hippodraw.tag=http://www.slac.stanford.edu/grp/ek/hippodraw/
+@endverbatim
+
+to link your documentation to @b HippoDraw's
+
+See the @ref customapps_examples page.
+
+*/
+
+/**
+@page customapps_examples Examples of custom applications with HippoDraw
+
+This page contains examples of using the HippoDraw class library in
+other applications.
+
+@section customapps_opensci Open Scientist
+
+The <a href="http://www.lal.in2p3.fr/OpenScientist">Open Scientist</a>
+application combines 3D high energy physics event display with OpenGL
+and @b HippoDraw.   A screen dump is shown below.
+
+@image html onX.jpg Open Scientist application
+@image latex onX.eps "Open Scientist application" width=\textwidth
+
+It is shown running on Mac OS X.  The application is written in C++ by
+<barrand@lal.in2p3.fr>.
+
+@section customapps_iguana Iguana
+
+Iguana is a plotting and single event display package for the CMS LHC
+experiment at CERN.   Below shows a HippoDraw QtViewWidget alongside
+other widgets
+
+@image html iguana.jpg Iguana with HippoDraw
+@image latex iguana.eps "Iguana with HippoDraw" width=\textwidth
+
+More detaits can be found in a
+<a href="http://agenda.cern.ch/askArchive.php?base=agenda&categ=a052452&id=a052452s1t6/transparencies">
+presentation</a> of the project made by the author, Giulio Eulisse
+<giulio.eulisse@cern.ch> to the collaboration in April 2005.
+
+
+*/
+
+
+/**
+@page customapps_cplusplus Building custom applications with C++
+
+One can build custom applications with @b HippoDraw's C++ class library
+along with Qt.  
+
+
+@section customapps_canvas Custom application with canvas
+
+To build an application with the CanvasWindow and
+Inspector, it can be as simple as the one shown below...
+
+@code
+
+#include "QtApp.h"
+
+int main ( int argc, char** argv)
+{
+  QtApp app ( argc, argv );
+  app.setFirstWindow();
+  
+  return app.exec();
+}
+
+@endcode
+
+Your custom code, say to generate the @ref ntuple_root data should be inserted
+before the call to @c app.exec() as that function starts the Qt event
+loop and doesn't return until the application is terminated.
+
+If you already have a Qt application, then you can add the @b @b
+HippoDraw %CanvasWindow and @b %Inspector to your application by adding
+code to your main with something like the implementation of
+QtApp::setFirstWindow does.  The result might look like this ...
+
+@code
+
+#include "qt/CanvasWindow.h"
+#include "qapplication.h"
+
+
+int main ( int argc, char** argv)
+{
+  MyApp app ( argc, argv );
+  
+  CanvasWindow * window = new CanvasWindow ();
+  window->show();
+
+  return app.exec();
+}
+
+@endcode
+
+One doesn't need to create the CanvasWindow before starting the Qt
+event loop. It can be created at any time.
+
+
+
+@section customapps_widget Custom application with widget in window
+
+This section describes how to put a @b HippoDraw plot in a single window.
+
+First the %QApplication object is created and the NTupleController is used
+to create an NTuple by reading a file as shown here.
+
+@code
+
+int main ( int argc, char **argv )
+{
+    QApplication app ( argc, argv );
+
+    const string filename ( "../../../hippodraw/examples/aptuple.tnt" );
+    NTupleController * nt_controller = NTupleController::instance ();
+    NTuple * nt 
+      = nt_controller->createNTuple ( filename  );
+
+@endcode
+
+In a custom application, you will probably have other ways of creating
+the %NTuple.  If you want the %NTuple visible to the %Inspector, then
+you must register it with the %NTupleController like this ...
+
+@code
+
+    NTuple * nt = // create your NTuple somehow 
+    NTupleController * nt_controller = NTupleController::instance ();
+
+    nt_controller->registerNTuple ( nt );
+
+@endcode
+
+   Next a display is created bound to the %NTuple and one of its columns.
+
+@code
+
+    const string histo ( "Histogram" );
+    vector < string > bindings;
+    bindings.push_back ( "Cost" );
+
+    DisplayController * dc_controller = DisplayController::instance ();
+    PlotterBase * plotter 
+      = dc_controller->createDisplay ( histo, *nt, bindings );
+
+@endcode
+
+Note that DisplayController creates the appropriate class derived from
+PlotterBase for the kind of display you requested.
+
+Plotter objects are used both for canvas items and widgets.  In this
+case, a QtViewWidget is created and the plotter is attached to it.
+
+@code
+
+    QtViewWidget * view = new QtViewWidget ( );
+    view->setPlotter ( plotter );
+
+@endcode
+
+Finally, the view it set into the Qt main window, resized, captioned,
+and the event loop started.
+
+@code
+
+    view->resize ( 200, 200 );
+    app.setMainWidget( view );
+    view->setCaption ( "Qt HippoDraw - View widget" );
+    view->show();
+
+    int result = a.exec();
+
+@endcode
+
+Note that the above code used methods that %QtViewWidget inherits from
+Qt's QWidget class.
+
+Don't forget to clean up when you are done.
+
+@code
+
+    delete view;
+    delete nt;
+
+    return result;
+}
+
+
+@endcode
+
+The resulting application window looks like this ...
+
+@image html widget_window.png QtViewWidget set as application's main window.
+@image latex widget_window.eps QtViewWidget set as application's main window.
+
+The complete code is shown below ...
+
+@includelineno qt/examples/testwidget.cc
+
+
+
+@section customapps_window Custom application with custom widget in Qt Designer
+
+One can use @b HippoDraw's QtViewWidget as a custom widget within Qt
+Designer.  When doing so, your main program may look like this
+
+@code
+
+#include <qapplication.h>
+#include "QtViewWidgetWindow.h"
+
+int main( int argc, char ** argv )
+{
+    QApplication app ( argc, argv );
+    QtViewWidgetWindow w;
+    w.show();
+    app.connect( &a, SIGNAL( lastWindowClosed() ), &a, SLOT( quit() ) );
+
+    return app.exec();
+}
+
+@endcode
+
+In this example, the class QtViewWidgetWindow was built with Qt
+Designer.  It was created by asking for a new main window.
+QtViewWidget was inserted in Qt Designer as a custom widget.  The
+results look like this ...
+
+@image html custom_widget_designer.png QtViewWidget as custom widget
+@image latex custom_widget_designer.eps QtViewWidget as custom widget
+
+In this example, the fileOpen() slot as implemented like the
+implementation in the @ref customapps_canvas example.  But in
+addition, the implementation creates an Inspector and signals it to
+update itself with the created plotter.  The code look like this ...
+
+@code
+
+  m_inspector = new Inspector ();
+  m_inspector->show();
+  QCustomEvent * event = new QCustomEvent ( QEvent::User, plotter );
+  QApplication::postEvent ( m_inspector, event );
+
+@endcode
+
+One might have expected a direct call to Inspector::update following
+the Observer pattern instead of this implementation.  However, it was
+found that under the Windows operating system, such a direct call
+caused problems with the OS's threading model.  So the QCustomEvent is
+used to avoid the problem.
+
+   Some part of the application may cause a change to the plotter.
+When that happens, one needs to update the %Inspector.  Following the
+%Observer pattern, when something in the plotter changes, it sends an
+update message to its observer which is the %QtViewWidget.  It in
+turn, needs to send a message to its parent which is the
+%QtViewWidgetWindow object.  It uses a QCustomEvent to do this, so the
+implementation of the %QtViewWidgetWindow must implement it something
+like this ...
+
+@code
+
+void QtViewWidgetWindow::customEvent ( QCustomEvent * event )
+{
+  void * data = event->data();
+  QCustomEvent * e = new QCustomEvent ( QEvent::User, data );
+
+  QApplication::postEvent ( m_inspector, e );
+}
+
+@endcode
+
+After opening the file, the window looks like this ...
+
+@image html custom_window.png QtViewWidgetWindow after opening file
+@image latex custom_window.eps QtViewWidgetWindow after opening file
+
+The complete source code is show below ...
+
+@includelineno qt/examples/QtViewWidgetWindow.ui.h
+
+*/
+

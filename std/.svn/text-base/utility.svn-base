@@ -1,0 +1,22 @@
+/* -*- mode:c++ -*- */
+
+/** @file utility  Utility component of C++ standard library.
+
+List of functions used by @b HippoDraw from the
+utility component of the C++ standard library.
+
+@note This list may be incomplete.
+*/
+
+namespace std {
+
+/** @brief A C++ standard library function
+
+    A convenience function for creating a pair from two objects.
+*/
+inline
+template < class T1, class T2 >
+  pair < T1, T2 >
+  make_pair ( T1 x, T2 y );
+
+};

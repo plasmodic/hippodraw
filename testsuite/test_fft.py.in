@@ -1,0 +1,40 @@
+""" -*- mode:python -*-
+
+Demo of reading ROOT file with function, cuts, and calculation
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+
+import setPath
+from load_hippo import  app, canvas
+import hippo, hippofft
+
+canvas.setPlotMatrix ( 1, 3 )
+
+rc = hippo.RootController.instance()
+
+filename = "svacTuple-v3r1p24_135004072_svac_svac.root"
+ntuple_names = rc.getNTupleNames ( filename  )
+ntuple = rc.createDataArray ( filename, ntuple_names[0] )
+
+lightcurve, bintimes = hippofft.simpleLightCurve ( ntuple, 'EvtTicks' )
+canvas.addDisplay ( lightcurve )
+
+range = lightcurve.getRange ( 'x' )
+onetick = 1. / 20.0e6
+
+spectrum = hippofft.powerSpectrum ( bintimes, range, onetick )
+
+labels = spectrum.getLabels()
+xyplot = hippo.Display ( 'XY Plot', spectrum, labels )
+canvas.addDisplay ( xyplot )
+
+hist = hippo.Display ( 'Histogram', spectrum, (labels[1], ) )
+hist.setLog ( 'y', True )
+canvas.addDisplay ( hist )
+
+datarep = hist.getDataRep()
+exp = hippo.Function ( 'Exponential', datarep )
+exp.addTo ( hist )
+

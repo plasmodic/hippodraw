@@ -1,0 +1,66 @@
+""" -*- mode:python -*-
+
+Test of NumArrayTuple class
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+from hippo import NTuple
+
+from random import gauss
+mean = 1.0
+sigma = 0.5
+
+npts = 1000
+xarr = []
+for i in range(npts):
+    xarr.append ( gauss( mean,sigma ) )
+
+from hippo import ListTuple
+
+na = ListTuple (  )
+label = 'gauss'
+na.addColumn ( label, xarr )
+
+na.setTitle ( "Histogram from Python list" )
+
+ntc.registerNTuple ( na )
+
+## Change the name after registering it to test ntc's observer impl.
+na.setName ( "NumArrayTable" )
+
+from hippo import Display
+
+hist = Display ( 'Histogram', na, (label, ))
+canvas.addDisplay( hist )
+
+nb = ListTuple ()
+nb.setTitle ("Test of mixed data types")
+
+points = [ 0, 1, 1.5, 2 ]
+nb.addColumn ( "good", points )
+yplot = Display( 'Y Plot', nb, ('good',) )
+canvas.addDisplay ( yplot )
+
+try :
+    bad = [ 0, 1, 1.5, '2' ]
+    nb.addColumn ( 'bad', bad )
+except RuntimeError, detail:
+    print detail
+
+## for i in range (11) :
+##     sleep ( 1. )
+##     xarr += 0.5
+##     na.notifyObservers()
+
+
+

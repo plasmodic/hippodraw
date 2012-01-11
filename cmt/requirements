@@ -1,0 +1,326 @@
+package hippodraw
+version v1r1136p0
+
+build_strategy no_prototypes
+include_path none
+
+branches binners transforms reps projectors pattern functions datareps plotters displays
+
+include_dirs $(HIPPODRAWROOT) $(HIPPODRAWROOT)/cmt $(HIPPODRAWROOT)/cmt/msdevstudio
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+# The "Interfaces" packages can be found at :
+#    http://www.lal.in2p3.fr/OpenScientist
+
+use Platform v1r* Interfaces
+
+use thread v1r* Interfaces  -no_auto_imports
+
+#macro hippodraw_use_Minuit "Minuit v1r140p*" WIN32 ""
+#use $(hippodraw_use_Minuit)
+#macro hippodraw_minuit_sources "../minimizers/MinuitMigrad.cxx" WIN32 ""
+
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+#use ROOT v1r* Interfaces -no_auto_imports
+#macro HIPPODRAW_HAVE_ROOT "-DHAVE_ROOT"
+#macro HIPPODRAW_ROOT_linkopts "${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${ROOT_Tree_linkopts} ${ROOT_Matrix_linkopts} "
+## Python, boost, ROOT because of HAVE_ROOT !
+#macro HIPPODRAW_ROOT_use_linkopts "${hipporoot_linkopts} ${Python_linkopts} ${boost_linkopts} ${ROOT_Core_linkopts} ${ROOT_Cint_linkopts} ${ROOT_Tree_linkopts} ${ROOT_Matrix_linkopts}"
+##Darwin : if ROOT around :
+#set DYLD_BIND_AT_LAUNCH "" Darwin "1" 
+#macro hippodrawlinkopts "" Darwin "-u _G__cpp_setup_initializerG__Tree"
+
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+
+library hippocore \
+  ../binners/*.cxx \
+  ../transforms/*.cxx \
+  ../reps/*.cxx \
+  ../projectors/*.cxx \
+  ../pattern/*.cxx \
+  ../functions/*.cxx \
+  ../datareps/*.cxx \
+  ../datasrcs/*.cxx \
+  ../plotters/*.cxx \
+  ../displays/*.cxx \
+  ../controllers/*.cxx \
+  ../axes/*.cxx \
+  ../graphics/*.cxx \
+  ../xml/*.cxx \
+  $(hippodraw_minuit_sources) \
+  ../minimizers/BFGSFitter.cxx \
+  ../minimizers/Fitter.cxx \
+  ../minimizers/FitterFactory.cxx \
+  ../minimizers/LMFitter.cxx \
+  ../minimizers/NTupleChiSqFCN.cxx \
+  ../minimizers/NTupleFCN.cxx \
+  ../minimizers/NTupleLikeliHoodFCN.cxx \
+  ../minimizers/NTuplePearsonFCN.cxx \
+  ../minimizers/NumLinAlg.cxx \
+  ../minimizers/StatedFCN.cxx
+macro hippocore_cppflags "-DHAVE_CONFIG_H" WIN32 "/DMDL_HIPPOPLOT_EXPORTS"
+macro hippocore_shlibflags "${Minuit_linkopts}" WIN32 ""
+macro hippocore_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhippocore" WIN32  "$(HIPPODRAWROOT)\$(Platform_bin)\hippocore.lib"
+
+application testBins1D ../testsuite/testBins1D.cxx use_linkopts='"$(hippocore_linkopts) ${Minuit_linkopts}"'
+#application testBins2D ../testsuite/testBins2D.cxx
+#application testProjValueUtils ../testsuite/testProjValueUtils.cxx    
+#application testHiNTuple ../testsuite/testHiNTuple.cxx  
+#application testXAxisModelLinear ../testsuite/testXAxisModelLinear.cxx                             
+#application testBins1DLog ../testsuite/testBins1DLog.cxx  
+#application testhdrawer ../testsuite/testhdrawer.cxx
+
+#//////////////////////////////////////////////////
+#/// ROOT /////////////////////////////////////////
+#//////////////////////////////////////////////////
+
+#library hipporoot -group=ROOT -import=ROOT -import=$(Qt_import) -import=boost -import=Python ../root/*.cxx
+#macro hipporoot_cppflags "-DHAVE_CONFIG_H -DHAVE_TTF"
+
+#macro hipporoot_shlibflags "${Python_linkopts} ${boost_linkopts} ${Qt_linkopts} ${thread_linkopts} ${HIPPODRAW_ROOT_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"
+#macro hipporoot_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhipporoot" WIN32 "$(HIPPODRAWROOT)\$(Platform_bin)\hipporoot.lib"
+
+#//////////////////////////////////////////////////
+#/// Qt ///////////////////////////////////////////
+#//////////////////////////////////////////////////
+
+use Qt4 v1r* Interfaces -no_auto_imports
+
+document uic uic_CanvasSettingsBase -group=Qt VERS=3 FROM=../qtui/CanvasSettingsBase.ui TO_INC=../qt/CanvasSettingsBase.h TO_CPP=../qt/CanvasSettingsBase.cxx
+macro moc_CanvasSettingsBase_dependencies "uic_CanvasSettingsBase"
+document moc moc_CanvasSettingsBase -group=Qt FROM=../qt/CanvasSettingsBase.h TO=../qt/moc_CanvasSettingsBase.cpp
+
+document uic uic_CanvasWindowBase -group=Qt VERS=3 FROM=../qtui/CanvasWindowBase.ui TO_INC=../qt/CanvasWindowBase.h TO_CPP=../qt/CanvasWindowBase.cxx
+macro moc_CanvasWindowBase_dependencies "uic_CanvasWindowBase"
+document moc moc_CanvasWindowBase -group=Qt FROM=../qt/CanvasWindowBase.h TO=../qt/moc_CanvasWindowBase.cpp
+
+document uic uic_InspectorBase -group=Qt VERS=3 FROM=../qtui/InspectorBase.ui TO_INC=../qt/InspectorBase.h TO_CPP=../qt/InspectorBase.cxx
+macro moc_InspectorBase_dependencies "uic_InspectorBase"
+document moc moc_InspectorBase -group=Qt FROM=../qt/InspectorBase.h TO=../qt/moc_InspectorBase.cpp
+
+document uic uic_PlotTableBase -group=Qt VERS=3 FROM=../qtui/PlotTableBase.ui TO_INC=../qt/PlotTableBase.h TO_CPP=../qt/PlotTableBase.cxx
+macro moc_PlotTableBase_dependencies "uic_PlotTableBase"
+document moc moc_PlotTableBase -group=Qt FROM=../qt/PlotTableBase.h TO=../qt/moc_PlotTableBase.cpp
+
+document uic uic_PickTableBase -group=Qt VERS=3 FROM=../qtui/PickTableBase.ui TO_INC=../qt/PickTableBase.h TO_CPP=../qt/PickTableBase.cxx
+macro moc_PickTableBase_dependencies "uic_PickTableBase"
+document moc moc_PickTableBase -group=Qt FROM=../qt/PickTableBase.h TO=../qt/moc_PickTableBase.cpp
+
+document uic uic_ListDialogBase -group=Qt VERS=3 FROM=../qtui/ListDialogBase.ui TO_INC=../qt/ListDialogBase.h TO_CPP=../qt/ListDialogBase.cxx
+macro moc_ListDialogBase_dependencies "uic_ListDialogBase"
+document moc moc_ListDialogBase -group=Qt FROM=../qt/ListDialogBase.h TO=../qt/moc_ListDialogBase.cpp
+
+document uic uic_CreateNTupleBase -group=Qt VERS=3 FROM=../qtui/CreateNTupleBase.ui TO_INC=../qt/CreateNTupleBase.h TO_CPP=../qt/CreateNTupleBase.cxx
+macro moc_CreateNTupleBase_dependencies "uic_CreateNTupleBase"
+document moc moc_CreateNTupleBase -group=Qt FROM=../qt/CreateNTupleBase.h TO=../qt/moc_CreateNTupleBase.cpp
+
+document moc moc_AxisWidget -group=Qt FROM=../qt/AxisWidget.h TO=../qt/moc_AxisWidget.cpp
+
+macro hippoqt_dependencies "moc_CanvasWindowBase moc_InspectorBase moc_AxisWidget moc_PickTableBase moc_PlotTableBase"
+
+#FIXME : have correct -DQTDIR="" -DDOCS="".
+
+#ROOT : -import=boost because of HAVE_ROOT !
+library hippoqt -group=Qt -import=$(Qt_import) ../qt/*.cxx ../qt/*.cpp ../qtxml/*.cxx ../$(Platform_bin)/moc/*.cxx
+macro hippoqt_cppflags '-DHAVE_CONFIG_H -DQT_THREAD_SUPPORT ${HIPPODRAW_HAVE_ROOT}  -DQT_COMPAT -DQT3_SUPPORT -DQTDIR="" -DDOCS=""'
+macro hippoqt_shlibflags "${HIPPODRAW_ROOT_use_linkopts} ${Qt_linkopts} ${thread_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"
+macro hippoqt_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhippoqt" WIN32 "$(HIPPODRAWROOT)\$(Platform_bin)\hippoqt.lib"
+
+application hippodraw -group=Qt -import=$(Qt_import) ../qt/app/main.cxx use_linkopts='"${hippoqt_linkopts} ${HIPPODRAW_ROOT_use_linkopts} ${Qt_linkopts} ${thread_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"
+
+macro_remove constituents "hippodraw_app" Darwin ""
+document darwin_app hippodraw_app -group=Qt FROM=hippodraw TO=hippodraw
+
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+#//////////////////////////////////////////////////
+use OpenGL v2r* Interfaces -no_auto_imports
+
+macro hippodraw_use_freetype "freetype v1r* Interfaces -no_auto_imports" WIN32 "freetype v1r* -no_auto_imports" Darwin "freetype v1r* -no_auto_imports"
+
+use $(hippodraw_use_freetype)
+
+library hippogl -group=OpenGL -import=OpenGL -import=freetype ../OpenGL/TextTTF.cxx ../OpenGL/OpenGLView.cxx
+macro hippogl_cppflags "-DHAVE_CONFIG_H -DHAVE_TTF"
+macro hippogl_shlibflags "${hippocore_linkopts} ${Minuit_linkopts} ${OpenGL_linkopts} ${X11_linkopts} ${freetype_linkopts}"
+macro hippogl_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhippogl" WIN32 "$(HIPPODRAWROOT)\$(Platform_bin)\hippogl.lib"
+
+use GLX v2r* Interfaces -no_auto_imports
+
+macro_remove OpenGL_constituents "" WIN32 "hippoglx"
+
+library hippoglx -group=GLX -import=GLX -import=X11 -import=OpenGL -import=freetype ../OpenGL/OpenGLApp.cxx ../OpenGL/OpenGLWindow.cxx
+macro hippoglx_cppflags "-DHAVE_CONFIG_H -DHAVE_TTF"
+macro hippoglx_shlibflags "${hippogl_linkopts} ${GLX_linkopts} ${X11_linkopts} ${OpenGL_linkopts} ${freetype_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"
+macro hippoglx_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhippoglx"
+
+macro_remove OpenGL_constituents "" WIN32 "hippoTestOpenGL"
+
+application hippoTestOpenGL -group=GLX -import=GLX -import=OpenGL ../OpenGL/tests/hippoTestOpenGL.cxx use_linkopts='"${hippoglx_linkopts} ${GLX_linkopts} ${X11_linkopts} ${hippogl_linkopts} ${OpenGL_linkopts} ${freetype_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"'
+
+#//////////////////////////////////////////////////
+#/// Python ///////////////////////////////////////
+#//////////////////////////////////////////////////
+
+use boost v1r* Interfaces  -no_auto_imports
+use Python v3r* Interfaces  -no_auto_imports
+
+library hippopy -group=Python -import=$(Qt_import) -import=boost -import=Python -s=../python \
+ ListTuple.cxx \
+ HdThread.cxx \
+ QtCut.cxx \
+ QtDisplay.cxx \
+ PyApp.cxx \
+ PyCanvas.cxx \
+ PyFunctionRep.cxx \
+ PyDataRep.cxx \
+ ObserverWrap.cxx \
+ exportToPython.cxx \
+ export_ListTuple.cxx \
+ export_DataSource.cxx \
+ export_CanvasWindow.cxx \
+ export_CircularBuffer.cxx \
+ export_NTuple.cxx \
+ export_NTupleController.cxx \
+ export_PointRepFactory.cxx \
+ export_RepBase.cxx \
+ export_Fitter.cxx \
+ export_FCNBase.cxx \
+ export_NTupleFCN.cxx \
+ export_StatedFCN.cxx \
+ export_FitterFactory.cxx
+macro hippopy_cppflags "-DHAVE_CONFIG_H -DQT_THREAD_SUPPORT -DQT_COMPAT -DQT3_SUPPORT ${HIPPODRAW_HAVE_ROOT} -I../qt"
+macro hippopy_shlibflags "${hippoqt_linkopts} ${Qt_linkopts} ${boost_linkopts} ${Python_linkopts} ${thread_linkopts} ${hippocore_linkopts} ${Minuit_linkopts}"
+macro hippopy_linkopts "-L${HIPPODRAWROOT}/$(Platform_bin) -lhippopy" WIN32 "$(HIPPODRAWROOT)\$(Platform_bin)\hippopy.lib"
+
+document python_library hippo_module -group=Python LIB_NAME=hippopy PYTHON_NAME=hippo
+
+pattern py_in \
+  document config_in <script>_py_in -group=Python FROM=../testsuite/<script>.py.in TO=../testsuite/<script>.py top_srcdir=${HIPPODRAWROOT} PACKAGE=${package} VERSION=${HIPPODRAWVERSION}
+
+apply_pattern py_in script=ConstantModelFit
+apply_pattern py_in script=SciPy_demo
+apply_pattern py_in script=accesstuple
+apply_pattern py_in script=autoscale
+apply_pattern py_in script=bugs
+apply_pattern py_in script=canvas
+apply_pattern py_in script=cern_pi_1
+apply_pattern py_in script=cern_pi_4
+apply_pattern py_in script=chi2Dists
+apply_pattern py_in script=chi2bug
+apply_pattern py_in script=circbuff
+apply_pattern py_in script=column
+apply_pattern py_in script=cuts
+apply_pattern py_in script=datareps
+apply_pattern py_in script=displays
+apply_pattern py_in script=documents
+apply_pattern py_in script=earth
+apply_pattern py_in script=egret
+apply_pattern py_in script=egret_old
+apply_pattern py_in script=empty
+apply_pattern py_in script=errorContours
+apply_pattern py_in script=errorContours_2
+apply_pattern py_in script=extreme
+apply_pattern py_in script=fitBug
+apply_pattern py_in script=fitExample
+apply_pattern py_in script=fitTestData
+apply_pattern py_in script=function
+apply_pattern py_in script=function_ntuple
+apply_pattern py_in script=hammer
+apply_pattern py_in script=hist_ntuple
+apply_pattern py_in script=histexceptions
+apply_pattern py_in script=histogram
+apply_pattern py_in script=hsimple
+apply_pattern py_in script=lambert
+apply_pattern py_in script=load_hippo
+apply_pattern py_in script=log
+apply_pattern py_in script=logerror
+apply_pattern py_in script=m51
+apply_pattern py_in script=manipulateDisplays
+apply_pattern py_in script=minuitfit
+apply_pattern py_in script=ntuple
+apply_pattern py_in script=odd
+apply_pattern py_in script=overplot
+apply_pattern py_in script=pl_exp_test
+apply_pattern py_in script=poorFit
+apply_pattern py_in script=ranges
+apply_pattern py_in script=rebin
+apply_pattern py_in script=regressionFit
+apply_pattern py_in script=rootpdr
+apply_pattern py_in script=run_test_scripts
+apply_pattern py_in script=runninghist
+apply_pattern py_in script=setPath
+apply_pattern py_in script=test_FitsImage
+apply_pattern py_in script=test_NTuple
+apply_pattern py_in script=test_addText
+apply_pattern py_in script=test_getNTuple
+apply_pattern py_in script=test_numarray
+apply_pattern py_in script=useBinner
+apply_pattern py_in script=weighted_pl
+apply_pattern py_in script=zplot_pixel_offset
+
+# Run time :
+path_remove PYTHONPATH "/hippodraw/" WIN32 "\hippodraw\"
+path_append PYTHONPATH "${HIPPODRAWROOT}/$(Platform_bin)" WIN32 "${HIPPODRAWROOT}\$(Platform_bin)"
+path_append PYTHONPATH "${HIPPODRAWROOT}/python" WIN32 "${HIPPODRAWROOT}\python"
+#//////////////////////////////////////////////////
+#/// Doxygen //////////////////////////////////////
+#//////////////////////////////////////////////////
+
+document config_in Doxyfile_in -group=doc FROM=../doc/Doxyfile.in TO=../doc/Doxyfile top_srcdir=${HIPPODRAWROOT} PACKAGE=${package} VERSION=${HIPPODRAWVERSION}
+document config_in footer_html_in -group=doc FROM=../doc/footer.html.in TO=../doc/footer.html top_srcdir=${HIPPODRAWROOT} PACKAGE=${package} VERSION=${HIPPODRAWVERSION}
+document doxygen hippo_doxygen -group=doc FROM=../doc TO=../doc
+
+#//////////////////////////////////////////////////
+#/// compile, link flags //////////////////////////
+#//////////////////////////////////////////////////
+# Should be after all the "use".
+
+private
+apply_pattern cppflags_rm_pedantic
+
+# /GX is using exceptions (then if using STL).
+# /GR to enable RTTI and dynamic cast.
+macro_append cppflags "" WIN32 " /GX /GR" 
+
+# DEBUG :
+#macro_append cflags  " -g" WIN32 " /ZI /Od"
+#macro_append cppflags  " -g" WIN32 " /ZI /Od"
+#macro_append cpplinkflags  " -g" WIN32 " /DEBUG /VERBOSE:LIB"
+
+# OPTIMIZE :
+macro_append cflags  " -O" WIN32 " /O2"
+macro_append cppflags  " -O" WIN32 " /O2"
+macro_append cpplinkflags  " -O" WIN32 ""
+
+# -pedantic induces pb in Factory.h template.
+#macro_remove cppflags "" \
+#      Linux "-pipe -ansi -pedantic -W -Wall -Wwrite-strings -Wpointer-arith -Wnested-externs -Woverloaded-virtual -Wbad-function-cast -fnonnull-objects "
+#macro_append cppflags "" \
+#      Linux "-g -pipe -ansi -W -Wall -Wwrite-strings -Wpointer-arith -Wnested-externs -Woverloaded-virtual -Wbad-function-cast -fnonnull-objects "
+
+public
+
+#//////////////////////////////////////////////////
+#/// Run time /////////////////////////////////////
+#//////////////////////////////////////////////////
+
+path_remove PYTHONPATH "/hippodraw/" WIN32 "\hippodraw\"
+path_append PYTHONPATH "${HIPPODRAWROOT}/$(Platform_bin)" WIN32 "${HIPPODRAWROOT}\$(Platform_bin)"
+path_append PYTHONPATH "${HIPPODRAWROOT}/examples" WIN32 "${HIPPODRAWROOT}\examples"
+
+path_remove LD_LIBRARY_PATH "/hippodraw/" WIN32 ""
+path_append LD_LIBRARY_PATH "${HIPPODRAWROOT}/$(Platform_bin)" WIN32 ""
+
+path_remove DYLD_LIBRARY_PATH "" Darwin "/hippodraw/"
+path_append DYLD_LIBRARY_PATH "" Darwin "${HIPPODRAWROOT}/$(Platform_bin)"
+
+path_remove PATH "" WIN32 "\hippodraw\"
+path_append PATH "" WIN32 "${HIPPODRAWROOT}\$(Platform_bin)"
+
+
+

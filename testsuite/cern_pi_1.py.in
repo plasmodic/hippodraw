@@ -1,0 +1,56 @@
+"""-*- mode: python -*-
+
+Demonstraton following example of CERN LCG PI example 1
+
+  @author Paul F. Kunz <Paul_Kunz@slacs.stanford.edu>
+
+"""
+#
+# $Id: cern_pi_1.py.in,v 1.6 2005/07/05 00:17:04 pfkeb Exp $
+#
+
+from setPath import *
+
+import random
+from time import sleep
+
+import hippoplotter as plot
+
+from hippo import NTuple
+ntuple = NTuple ( )
+ntuple.setLabels ( ('X value', ) )
+plot.registerNTuple ( ntuple )
+
+sthist = plot.StaticHist( title="Example static histogram",
+                          xlabel = "X value", xrange = (0, 50),
+                          xBinWidth = 2 )
+
+dyhist = plot.Histogram ( ntuple, "X value",
+                          title="Example dynamic histogram" )
+
+shoot = random.uniform
+
+for i in range(10000):
+    x = -10 + 70 * shoot ( 0, 1)
+    sthist.addValues ( (x, ) )
+    ntuple.addRow ( (x, ) )
+
+sleep ( 0.1 )
+datarep = sthist.getDataRep()
+print "Mean = %f" % datarep.getMean ( 'x' )
+print "RMS  = %f" % datarep.getRMS ( 'x' )
+
+nt = sthist.createNTuple()
+labels = nt.getLabels()
+
+print labels[0] + "     entries       density"
+for i in range ( nt.rows ) :
+    row = nt.getRow ( i )
+    print "%f    %f    %f" % ( row[0], row[1] * row[2], row[1])
+
+print ""
+print "Demonstrates static cand dynamic histograms."
+print "Distribution should be flat"
+print "Any peaking at the ends of the static histogram means"
+print "underflow and/or overflow is not being handled correctly."
+

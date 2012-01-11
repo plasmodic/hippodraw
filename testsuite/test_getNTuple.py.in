@@ -1,0 +1,38 @@
+## -*- mode:python -*-
+
+from setPath import *
+import numarray
+import hippoplotter as plot
+
+npts = 100
+phi = numarray.arange(npts)/(npts-1.)*2.*numarray.pi;
+x = numarray.cos(phi)
+y = numarray.sin(phi)
+
+nt = plot.newNTuple( (phi, x, y), ("phi", "x", "y") )
+
+disp = plot.Scatter( nt, "x", "y" )
+
+rep = disp.getDataRep()
+
+cut = plot.hippo.Cut( nt, ("phi",) )
+cut.setCutRange( 0, numarray.pi/2, 'x' )
+rep.applyCut(cut)
+
+nt1 = disp.createNTuple()
+print nt1.getLabels(), nt1.columns, nt1.rows
+
+newRep1 = plot.hippo.DataRep( "Scatter Plot", nt1, ("x", "y") )
+disp.addDataRep( newRep1 )
+newRep1.setColor( "green" )
+
+nt2 = rep.getNTupleWithCuts()
+
+print nt2.getLabels(), nt2.columns, nt2.rows
+
+newRep2 = plot.hippo.DataRep( "Scatter Plot", nt2, ("x", "y") )
+
+disp.addDataRep( newRep2 )
+newRep2.setPointRep(plot.prf.create("Line"))
+
+newRep2.setColor( "red" )

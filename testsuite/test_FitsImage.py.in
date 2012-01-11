@@ -1,0 +1,52 @@
+""" -*- mode: python -*-
+
+   Displaying M51 and the EGRET All Sky survey
+
+   author: James Chiang <jchiang@slac.stanford.edu>
+   author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+   
+"""
+#
+# $Id: test_FitsImage.py.in,v 1.10 2004/03/31 18:20:14 pfkeb Exp $
+#
+from setPath import *
+
+import hippoplotter as plot
+
+print "This takes some time ..."
+print "A total of four plots should come..."
+
+FitsImage = plot.FitsImage
+
+#
+# Read in a simple square FITS image, with minimal primary header
+# information.  Plot using the bare hippoplot.Image(NTuple) interface.
+#
+file0 = "@top_srcdir@/examples/m51.fits"
+m51 = FitsImage(file0)
+plot.Image(m51.nt)
+
+#
+# Use the hippoplot.fitsImage(FitsImage) method so that header keyword
+# info gets used.
+#
+# This first example lacks most of the keywords and so uses the
+# defaults supplied by the fitsImage method.
+#
+plot.fitsImage(m51)
+
+#
+# These examples take full advantage of the keyword info in the FITS
+# primary header.
+#
+file1 = "@top_srcdir@/examples/EGRET_AllSky.fits"
+egret = FitsImage(file1)
+plot.fitsImage(egret, zlog=1, aspect=2)
+
+file2 = "@top_srcdir@/examples/EGRET_AllSky_car.fits"
+egretCar = FitsImage(file2)
+plot.fitsImage(egretCar, zlog=1, aspect=2, transform="HammerAito")
+
+print "In the next to last plot, the X and Y averages come out to- 0.25"
+print "instead of the expected 0.0.   We believe this a problem in the"
+print "data set that was used and not in HippoDraw"

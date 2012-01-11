@@ -1,0 +1,55 @@
+""" -*- mode: python -*-
+
+This script tests the creation NTuple from binning projectors.
+
+Copyright (C) 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: column.py.in,v 1.3 2004/07/07 21:48:47 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+def printContents ( nt ) :
+    # show number of rows
+    r = nt.rows
+    print "Number of rows = ", r
+
+    columns = nt.columns
+    for i in range ( columns ) :
+        print "column ", i, " is ", nt.getLabel ( i )
+
+    # print the data
+    for i in range ( r ) :
+        print i, nt.getRow ( i )
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist )
+hist.setRange ( 'x', 0., 20000. )
+hist.setBinWidth ( 'x', 400. )
+hist.setLog ( 'y', 1 )
+nt2 = hist.createNTuple ()
+
+ntc.registerNTuple ( nt2 )
+
+printContents ( nt2 )
+
+hist2 = Display ("XY Plot", nt2, ('Cost', 'Density', 'nil', 'nil' ) )
+canvas.addDisplay( hist2 )
+hist2.setLog ( 'y', 1 )
+
+from hippo import PointRepFactory
+prf = PointRepFactory.instance()
+rep = prf.create ( 'Column' )
+hist2.setPointRep ( rep )
+

@@ -1,0 +1,34 @@
+""" -*- mode:python -*-
+
+Test of RootNTuple
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+
+import hippo
+
+from load_hippo import app, canvas
+
+from hippo import RootController, Display, Cut
+rc = RootController.instance()
+
+filename = "/nfs/farm/g/glast/u33/InstrumentAnalysis/MC/EngineeringModel-v6r070329p28/Surface_muons/surface_muons_4M_merit.root"
+ntuple_names = rc.getNTupleNames ( filename  )
+
+ntuple = rc.createNTuple ( filename, 'MeritTuple' )
+
+hist = Display ( "Histogram", ntuple, ('Tkr1X0', ) )
+canvas.addDisplay ( hist )
+
+tower_cut = Cut ( ntuple, ('GltTower', ) )
+canvas.addDisplay ( tower_cut )
+tower_cut.addTarget ( hist )
+tower_cut.setCutRange ( 3.5, 4.5, 'x' )
+
+length_cut = Cut ( ntuple, ( 'TkrTrackLength', ) )
+canvas.addDisplay ( length_cut )
+length_cut.addTarget ( hist )
+length_cut.setCutRange ( 200., 600., 'x' )
+

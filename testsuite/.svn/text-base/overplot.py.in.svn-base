@@ -1,0 +1,53 @@
+""" -*- mode: python -*-
+Exercise the pointRep control for multiple data reps using the Boost
+interface directly.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#
+# $Id: overplot.py.in,v 1.7 2005/06/27 22:52:31 pfkeb Exp $
+#
+from setPath import *
+
+import math
+
+npts = 100
+phi = map(lambda x:x/float(npts-1)*math.pi*2., range(npts))
+x = map(lambda phi:math.cos(phi), phi)
+y = map(lambda phi:math.sin(phi), phi)
+
+from load_hippo import hippo, app, canvas
+
+nt = hippo.NTuple()
+nt.addColumn( "phi", phi )
+nt.addColumn( "x", x )
+nt.addColumn( "y", y )
+
+ntc = hippo.NTupleController.instance()
+ntc.registerNTuple( nt )
+
+scatter = hippo.Display( "Scatter Plot", nt, ("phi", "x" ) )
+canvas.addDisplay( scatter )
+
+print "Names of data reps available ..."
+print hippo.DataRep.names ()
+
+newRep = hippo.DataRep( "Scatter Plot", nt, ("phi", "y") )
+prf = hippo.PointRepFactory.instance()
+newRep.setPointRep( prf.create("Line") )
+
+scatter.addDataRep( newRep )
+
+##
+## The equivalent commands using hippoplotter and numarray.
+##
+#import hippoplotter, numarray
+#
+#npts = 100
+#phi = numarray.arange(npts)/float(npts-1)*numarray.pi*2.
+#
+#nt = hippoplotter.newNTuple( (phi, numarray.cos(phi), numarray.sin(phi)),
+#                             ("phi", "x", "y") )
+#hippoplotter.Scatter( nt, "phi", "x" )
+#hippoplotter.Scatter( nt, "phi", "y", oplot=1, pointRep="Line" )
+                     

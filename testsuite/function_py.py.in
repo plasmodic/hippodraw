@@ -1,0 +1,89 @@
+""" -*- mode:python -*-
+
+Demonstrates implementing a function in Python derived from the C++
+abstract base class. 
+
+@author Paul F. Kunz <paul_kunz@slac.stanford.edu>
+
+"""
+#
+#$Id: function_py.py.in,v 1.1 2005/08/03 18:10:42 pfkeb Exp $
+#
+
+import setPath
+from load_hippo import app, canvas
+import hippo
+
+import random, numarray
+
+slope = 2.
+intercept = 1.
+sigma = 2.
+
+from hippo import FunctionBase
+
+#
+# Define a class in Python that is derived from C++ base class
+#
+class Linear ( FunctionBase ) :
+    def __init__ ( self ) :
+        FunctionBase.__init__( self )
+        self.initialize ()
+
+    def dimensions ( self ) :
+        return 1
+    
+    def initialize ( self ) :
+        self.setName ( 'linear' )
+        self.setParmNames ( [ 'Intercept', 'Slope' ] )
+        self.setParameters ( [ intercept, slope ] )
+    
+    def valueAt ( self, x ) :
+        parms = self.getParameters ()
+        
+        return x * parms[1] + parms[0]
+
+    def derivByParm ( self, i, x ) :
+        if i == 0 :
+            return 1.0
+        if i == 1 :
+            return x
+
+gauss = random.gauss
+
+# Generate some data using numarray
+npts = 20
+x = numarray.arange(npts)
+y = numarray.array( [gauss(slope*xx + intercept, sigma) for xx in x] )
+xerr = numarray.ones ( npts )
+yerr = sigma*numarray.ones(npts)
+
+# Create a DataArray and register it so that the Inspector can display it.
+# The DataArray is will wrap a DataSource of type NTuple.
+
+from hippo import DataArray
+da = DataArray ( 'NTuple' ) # use NTuple to store data
+da.register ( 'randomized line' ) # name the data source
+
+# Fill the contents by adding named columns in the order expected by
+# the fitter (more later)
+
+da['x'] =  x
+da['y'] =  y
+da['xerr'] = xerr
+da['yerr'] = yerr
+
+# Create an XY plot, ignoring xerr, and add it to the canvas.
+from hippo import Display
+disp = Display ('XY Plot', da, ('x', 'y', 'nil', 'yerr' ) )
+canvas.addDisplay ( disp )
+
+f = Linear ()
+
+# Add the function to the factory so it can be used from the GUI
+# One might just do this instead of using the minimizers directly
+from hippo import FunctionFactory
+ff = FunctionFactory.instance()
+ff.add ( f )
+
+print "Now try cloning this function from C++ by adding it with the GUI"

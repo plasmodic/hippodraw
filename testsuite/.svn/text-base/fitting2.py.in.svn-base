@@ -1,0 +1,118 @@
+""" -*- mode:python -*-
+
+"""
+#
+#$Id: fitting2.py.in,v 1.13 2005/07/24 22:39:34 pfkeb Exp $
+#
+
+from setPath import *
+import random, numarray
+import hippo
+
+
+from hippo import FunctionBase
+## from math import exp
+
+class Planar ( FunctionBase ) :
+    def __init__ ( self, other = None ) :
+        FunctionBase.__init__( self )
+        self.initialize ()
+
+    def initialize ( self ) :
+        self.setName ( 'Planar' )
+        self.setParmNames ( [ 'Interscept', 'SlopeX', 'SlopeY' ] )
+        self.setParameters ( [ 0., 1., 1. ] )
+
+    def dimensions ( self ) :
+        return 2
+    
+    def valueAt ( self, x, y ) :
+        parms = self.getParameters ()
+        return parms[0] + parms[1] * x + parms[2] * y
+
+slope = 2.
+intercept = 1.
+mean = 10.
+sigma = 4.
+
+gauss = random.gauss
+
+def plane ( x, y ) :
+    return x + y
+
+npts = 20
+x = numarray.arange(npts*npts)
+y = numarray.arange(npts*npts)
+z = numarray.arange(npts*npts)
+zerr = numarray.arange(npts*npts)
+k = 0
+
+for i in range(npts) :
+    for j in range(npts) :
+        x[k] = xx = i
+        y[k] = yy = j
+        z[k] = plane ( xx, yy ) + gauss ( 0., 2. )
+        zerr[k] = sigma
+        k += 1
+        
+## nt = plot.newNTuple( (x, y, z, zerr), ('x', 'y', 'z', 'zerr' ) )
+nt = hippo.NTuple () # empty ntuple
+nt.addColumn ( 'x', x ) # add column
+nt.addColumn ( 'y', y ) 
+nt.addColumn ( 'z', z )
+nt.addColumn ( 'zerr', zerr )
+
+f = Planar ()
+print f.name()
+print f.parmNames()
+
+from hippo import FitterFactory
+factory = FitterFactory.instance()
+fitters = factory.names()
+print fitters
+
+lmfitter = factory.create ( fitters[0] )
+print lmfitter.name()
+
+fcn = lmfitter.getFCN ()
+try :
+    fcn.setFunction ( f )
+except RuntimeError, detail:
+    print detail
+
+migrad = factory.create ( fitters[1] )
+print migrad.name()
+
+fcn = migrad.getFCN ()
+
+fcn.setFunction ( f )
+fcn.setDataSource ( nt, 2, [ 0, 1, 2, -1, -1, 3 ] )
+fcn.setUseErrors ( True )
+
+migrad.minimize()
+
+chisq = fcn.objectiveValue ()
+print "ChiSq =", chisq
+
+fcn.setUseErrors ( False )
+chisq = fcn.objectiveValue ()
+print "ChiSq =", chisq
+
+print f.getParameters()
+
+#
+# All of the above done without the HippoDraw application
+# now display the results
+#
+import hippo
+app = hippo.HDApp()
+canvas = app.canvas ()
+
+disp = hippo.Display ( "XYZ Plot", nt, ( 'x', 'y', 'z' ) )
+canvas.addDisplay ( disp )
+
+factory.setDefault ( fitters[1] )
+ff = Planar()
+disp.addFunction( ff )
+
+

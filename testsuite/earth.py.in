@@ -1,0 +1,54 @@
+""" -*- mode: python -*-
+
+   Displaying the EGRET All Sky survey
+
+   author: kaustuv <kaustuv@stanford.edu>
+   
+   
+"""
+
+import math, copy
+import pyfits, numarray
+import setPath
+from load_hippo import hippo, app, canvas
+
+print "This will take a while ..."
+
+earth = pyfits.open('@top_srcdir@/examples/earth.fits')
+
+prihdr = earth[0].header
+nx = prihdr['naxis1']
+ny = prihdr['naxis2']
+
+# Create empty ntuple
+from hippo import NTuple
+nt = NTuple( )
+
+# Register ntuple to make visible to application
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+planet = []
+latcol = []
+loncol = []
+
+for i in range(0, nx ) :
+    lat = -180 + i * 360 / ( nx - 1 )
+    for j in range(0, ny ) :
+        lon = -90 + j * 180 / ( ny - 1 )
+        latcol.append ( lat )
+        loncol.append ( lon )
+        planet.append ( earth[0].data[j][i] )
+    
+nt.addColumn ( "Lon", loncol )
+nt.addColumn ( "Lat", latcol )
+nt.addColumn ( "Planet", planet )
+nt.setTitle ( "Hammer-Aito Transform" )
+
+d3 = hippo.Display ( "XYZ Plot", nt, ('Lat', 'Lon', 'Planet' ))
+d3.setLog ( 'z', 1 )
+d3.setAspectRatio ( 2.0 )
+
+canvas.addDisplay ( d3 )
+d3.setTransform ( 'HammerAito' )

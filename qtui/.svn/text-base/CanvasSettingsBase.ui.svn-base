@@ -1,0 +1,322 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CanvasSettingsBase</class>
+ <widget class="QDialog" name="CanvasSettingsBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>326</width>
+    <height>404</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Canvas settings</string>
+  </property>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0" colspan="4">
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QGroupBox" name="orientationGroupBox">
+       <property name="title">
+        <string>&amp;Orientation</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout">
+        <item>
+         <widget class="QRadioButton" name="portraitRadioButton">
+          <property name="text">
+           <string>&amp;Portrait</string>
+          </property>
+          <property name="checked">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="landscapeRadioButton">
+          <property name="text">
+           <string>&amp;Landscape</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="plotMatrixGroupBox">
+       <property name="title">
+        <string>&amp;Plot Matrix</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_2">
+        <item>
+         <widget class="QLabel" name="textLabel1">
+          <property name="text">
+           <string>&amp;Horizontal:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
+          <property name="buddy">
+           <cstring>m_h_spin</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="m_h_spin">
+          <property name="toolTip">
+           <string>Sets the number of new plots hortizontally</string>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::PlusMinus</enum>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>2</number>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <spacer name="horizontalSpacer">
+          <property name="orientation">
+           <enum>Qt::Horizontal</enum>
+          </property>
+          <property name="sizeHint" stdset="0">
+           <size>
+            <width>47</width>
+            <height>20</height>
+           </size>
+          </property>
+         </spacer>
+        </item>
+        <item>
+         <widget class="QLabel" name="textLabel2">
+          <property name="text">
+           <string>V&amp;ertical:</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+          </property>
+          <property name="wordWrap">
+           <bool>false</bool>
+          </property>
+          <property name="buddy">
+           <cstring>m_v_spin</cstring>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QSpinBox" name="m_v_spin">
+          <property name="toolTip">
+           <string>Sets number of new plots vertically</string>
+          </property>
+          <property name="buttonSymbols">
+           <enum>QAbstractSpinBox::PlusMinus</enum>
+          </property>
+          <property name="minimum">
+           <number>1</number>
+          </property>
+          <property name="value">
+           <number>3</number>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="addedPlotsGroupBox">
+       <property name="title">
+        <string>&amp;Added Plots</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout">
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3">
+          <item>
+           <widget class="QRadioButton" name="m_add_selected">
+            <property name="toolTip">
+             <string>Added plots will become selected</string>
+            </property>
+            <property name="text">
+             <string>&amp;Selected</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QRadioButton" name="radioButton7">
+            <property name="toolTip">
+             <string>Added plots will not become selected</string>
+            </property>
+            <property name="text">
+             <string>&amp;Not selected</string>
+            </property>
+            <property name="checked">
+             <bool>true</bool>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <widget class="QCheckBox" name="ignore_margin">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="toolTip">
+           <string>When checked, printer margin is ignored when adding displays.</string>
+          </property>
+          <property name="text">
+           <string>Ignore printer margin</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="printerMarginGroupBox">
+       <property name="title">
+        <string>Printer &amp;Margin</string>
+       </property>
+       <layout class="QHBoxLayout" name="horizontalLayout_4">
+        <item>
+         <widget class="QRadioButton" name="m_visibleMarginRadioButton">
+          <property name="toolTip">
+           <string>Printer margins visible on canvas</string>
+          </property>
+          <property name="text">
+           <string>&amp;Visible</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QRadioButton" name="m_invisibleMarginRadioButton">
+          <property name="toolTip">
+           <string>Printer margins not visible on canvas</string>
+          </property>
+          <property name="text">
+           <string>&amp;Invisible</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item row="1" column="0">
+    <widget class="QPushButton" name="m_save_retile">
+     <property name="text">
+      <string>&amp;Save &amp;&amp; Retile</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="1">
+    <spacer name="horizontalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>49</width>
+       <height>20</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item row="1" column="2">
+    <widget class="QPushButton" name="retile">
+     <property name="toolTip">
+      <string>Retiles the canvas without changing the setting.</string>
+     </property>
+     <property name="text">
+      <string>&amp;Retile</string>
+     </property>
+    </widget>
+   </item>
+   <item row="1" column="3">
+    <widget class="QPushButton" name="m_cancel">
+     <property name="text">
+      <string>&amp;Cancel</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <pixmapfunction></pixmapfunction>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>m_cancel</sender>
+   <signal>clicked()</signal>
+   <receiver>CanvasSettingsBase</receiver>
+   <slot>cancel()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>248</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_save_retile</sender>
+   <signal>clicked()</signal>
+   <receiver>CanvasSettingsBase</receiver>
+   <slot>saveRetile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>14</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>retile</sender>
+   <signal>clicked()</signal>
+   <receiver>CanvasSettingsBase</receiver>
+   <slot>retile_clicked()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>178</x>
+     <y>375</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>portraitRadioButton</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CanvasSettingsBase</receiver>
+   <slot>portraitRadioButton_toggled(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>55</x>
+     <y>56</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>323</x>
+     <y>32</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>portraitRadioButton_toggled(bool)</slot>
+ </slots>
+</ui>

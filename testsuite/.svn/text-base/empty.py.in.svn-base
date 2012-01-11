@@ -1,0 +1,81 @@
+""" -*- python -*-
+
+This script tests the creation of each type of Display with empty ntuple
+
+Copyright (C) 2003   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: empty.py.in,v 1.14 2004/01/31 05:00:59 jchiang Exp $
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+from hippo import NTuple
+
+labels = [ "Category", "Division", "Flag", "Age", "Service", "Children",
+           "Grade",  "Step", "Nation", "HrPerWeek", "Cost" ]
+nt1 = NTuple ( labels )
+
+# Register the ntuple so make visible to application
+from hippo import NTupleController
+ntc = NTupleController.instance ()
+ntc.registerNTuple ( nt1 )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist )
+
+color = Display ( "Color Plot", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( color )
+
+contour = Display ( "Contour Plot", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( contour )
+
+color.setLog ( 'x', 1 )
+
+profile2D = Display ( "Profile 2D", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profile2D )
+
+profile = Display ( "Profile", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( profile )
+
+scatter = Display ( "Scatter Plot", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( scatter )
+
+labels2 = [ "Energy", "Sigma", "binsize", "error" ]
+nt2 = NTuple ( labels2 )
+ntc.registerNTuple ( nt2 )
+
+strip = Display ( "Strip Chart", nt2, ('Energy', 'Sigma' ))
+canvas.addDisplay ( strip )
+
+## Temparily removed so that Qt version does't crash
+# The test catching exception of Display is not available.
+## try:
+##     error = Display ( "Error", nt2, 'foo' )
+##     canvas.addDisplay ( error )
+## except TypeError:
+##     print "The above error message was a test of catching the exception"
+
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+y = Display ( "Y Plot", nt2, ('Energy',) )
+canvas.addDisplay ( y )
+
+xyz = Display ( "XYZ Plot", nt1, ('Age', 'Service', 'Cost' ))
+canvas.addDisplay ( xyz )
+
+# Changes the range.
+hist.setRange ( 'x', 0.0, 30000 )
+
+prof2d = Display ( "Profile 2D", nt1, ("Age", "Cost", "Service" ))
+canvas.addDisplay ( prof2d )
+prof2d.setRange ( 'x', 0, 70 )
+prof2d.setRange ( 'y', 0, 50 )
+prof2d.setBinWidth ( 'x', 1 )
+prof2d.setBinWidth ( 'y', 1 )

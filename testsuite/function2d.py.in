@@ -1,0 +1,55 @@
+#!/usr/bin/env python -*- mode: python -*-
+
+from setPath import *
+
+import hippo
+import hippoplotter as plot
+
+from math import exp, sqrt, pi
+from random import gauss, random
+
+nt = plot.newNTuple( ([], []), ("x", "y" ) )
+
+hist = plot.XYHist(nt, "x", "y" )
+
+mean = 1.
+sigma = 0.5
+npts = 10000
+for i in range(npts):
+    nt.addRow( (gauss(mean, sigma), gauss (mean, sigma ) ) )
+
+from hippo import FunctionBase
+
+class Gauss2D ( FunctionBase ) :
+    def __init__ ( self ) :
+        FunctionBase.__init__ ( self )
+        self.initialize ()
+
+    def initialize ( self ) :
+        self.setName ( 'Gauss2D' )
+        self.setParmNames ( [ 'Norm', 'mean1', 'sigma1', 'mean2', 'sigma2' ] )
+        self.setParameters ( [ 5000., 1., 0.5, 1., 0.5 ] )
+
+    def dimensions ( self ) :
+        return 2
+
+    def valueAt ( self, x, y ) :
+        n, m1, s1, m2, s2 = self.getParameters ()
+        xg = exp ( - ( ( x-m1 )/s1 )**2/2.)
+        yg = exp ( - ( ( y-m2 )/s2 )**2/2.)
+        return ( n * xg * yg ) / (2.*pi*s1*s2)
+
+f = Gauss2D ()
+ff = hippo.FunctionFactory.instance()
+ff.add ( f )
+
+factory = hippo.FitterFactory.instance()
+fitters = factory.names ()
+factory.setDefault ( fitters[1] ) # minuit
+migrad = factory.create 
+
+datarep = hist.getDataRep()
+gauss2 = hippo.Function ( 'Gauss2D', datarep )
+gauss2.addTo ( hist )
+print "added function"
+gauss2.fit ()

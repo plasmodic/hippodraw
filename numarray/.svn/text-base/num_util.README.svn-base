@@ -1,0 +1,65 @@
+Preface -- num_util is a set of utility functions 
+we use to connect Numeric Python with C++/Fortran.
+It uses the boost::python::numeric::array type
+definded in boost/python/numeric.hpp, but for legacy
+reasons employs the Numeric C Api instead of the
+Python function calls of numeric.hpp.  This version
+of num_util (CVS tag release1) was adapted by
+Charles Leung from earlier versions written by
+Rhys Goldstein, Chris Seymour and Phil Austin.
+Questions/comments/bugs  to Phil Austin
+(http://www.eos.ubc.ca/personal/paustin).
+
+
+
+num_util (Numerical Utility Interface) Module
+---------------------------------------------
+
+
+Compile
+-------
+
+For a test/demonstration of num_util.h build the extension
+num_test_ext and run num_py_test.py, using either the Makefile and the
+Jamfile. We have tested only on Mandrake Linux v8.2, with gcc-3.2,
+boost-1.30.0, and Python-2.2.2 libraries.
+
+* Makefile *
+To compile using make, make sure that the first three 
+environmental variables are set correctly before building:
+ +-------------+----------------------------------------------+
+ | Variable    | Description				      |
+ +-------------+----------------------------------------------+
+ | PYTHON_DIR  | The directory where Python is installed      |
+ | BOOST_DIR   | The root directory of the Boost library tree |
+ | GCC_DIR     | Directory where gcc is installed             |
+ +-------------+----------------------------------------------+
+
+After they are set, simply compile and build the shared-object file by typing 
+'make' at the prompt.
+
+* Boost.Build(bjam) *
+To compile using bjam, user will have to check-out the pythonlibs package 
+inside the Boost tree, specifically in the directory $(BOOST_ROOT)/libs/python.
+User will not have to setup specific paths when building num_util with bjam. 
+Building with bjam outside of the Boost tree will not be available until 
+Boost.Build v2 is released.
+
+To build with bjam after the HDF_DIR environment variable is set, execute 
+'bjam' at the command prompt.
+
+
+Demonstrations / Tests
+----------------------
+- An automated test driver using Python doctest, "num_py_test.py"
+
+Usage
+-----
+- This module is generally included as a utility when implementing extension
+  modules that involves Python numeric array. This interface includes 
+  overloaded numeric array constructor methods along with other useful 
+  functions when operating on Python arrays in C/C++. For a 
+  doxygen-generated list of functions see doc/index.html
+  
+
+

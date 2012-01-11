@@ -1,0 +1,155 @@
+K 25
+svn:wc:ra_dav:version-url
+V 52
+/svn/!svn/ver/48411/tools/hippodraw/trunk/minimizers
+END
+MinuitMigrad.h
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/MinuitMigrad.h
+END
+Fitter.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47803/tools/hippodraw/trunk/minimizers/Fitter.h
+END
+NTupleFCN.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleFCN.h
+END
+BFGSFitter.h
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/BFGSFitter.h
+END
+FitterFactory.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/FitterFactory.cxx
+END
+NTupleChiSqFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleChiSqFCN.cxx
+END
+LMFitter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/LMFitter.cxx
+END
+FCNBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/FCNBase.h
+END
+NTuplePearsonFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTuplePearsonFCN.cxx
+END
+NumLinAlg.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47803/tools/hippodraw/trunk/minimizers/NumLinAlg.cxx
+END
+NTupleLikeliHoodFCN.h
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleLikeliHoodFCN.h
+END
+MinuitMigrad.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/MinuitMigrad.cxx
+END
+Fitter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/Fitter.cxx
+END
+NTupleFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleFCN.cxx
+END
+BFGSFitter.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/BFGSFitter.cxx
+END
+StatedFCN.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/StatedFCN.h
+END
+NTupleLikeliHoodFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleLikeliHoodFCN.cxx
+END
+minimizers.dir
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/minimizers.dir
+END
+FitterFactory.h
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/FitterFactory.h
+END
+NTupleChiSqFCN.h
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTupleChiSqFCN.h
+END
+LMFitter.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/LMFitter.h
+END
+NTuplePearsonFCN.h
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NTuplePearsonFCN.h
+END
+NumLinAlg.h
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/NumLinAlg.h
+END
+StatedFCN.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/minimizers/StatedFCN.cxx
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/48411/tools/hippodraw/trunk/minimizers/CMakeLists.txt
+END

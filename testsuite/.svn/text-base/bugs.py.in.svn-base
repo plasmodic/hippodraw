@@ -1,0 +1,82 @@
+#!/usr/bin/env python -*- mode: python -*-
+
+from setPath import *
+
+import hippoplotter as plot
+
+from random import gauss, random
+
+nt = plot.newNTuple( ([], []), ("x", "y" ) )
+
+hist = plot.Histogram(nt, "x")
+
+mean = 1.
+sigma = 0.5
+npts = 1000
+for i in range(npts):
+    nt.addRow( (gauss(mean, sigma), random()) )
+
+from numarray import sqrt, pi, exp
+
+gaussFunc = lambda x: npts/sqrt(2.*pi)/sigma*exp(-((x-mean)/sigma)**2/2.)
+
+import numarray
+
+x = mean - 3*sigma + numarray.arange(100)/99.*6.*sigma
+y = gaussFunc(x)
+
+#
+# Points with y > 5 do not get displayed properly.
+#
+plot.prompt("Adding a datarep. Points with y > 5 are not displayed properly: ")
+plot.canvas.selectDisplay(hist)
+plot.scatter(x, y, oplot=1, color="green")
+
+#
+# Resetting the X-axis range causes the binsize to be set to 1.
+# It would be better if it kept the old binsize.
+#
+plot.prompt("Resetting the X-axis range causes the binsize to be set to 1: ")
+hist.setRange("x", 0, 2)
+
+#
+# No error bars on the profile plot.  This error is intermittent.
+#
+plot.prompt("No error bars for points with 1 entry on profile plot: ")
+profile = plot.Profile(nt, "x", "y")
+
+#
+# Adding a data rep causes a resizing error for the display. Probably
+# best not to do any resizing at all when adding a datarep.
+#
+plot.prompt("Adding a datarep causes a resizing error: ")
+xx = numarray.arange(10)/9.*3 - 1.
+yy = numarray.ones(10)*0.5
+
+nt2 = plot.newNTuple( (xx, yy), ("xx", "yy") )
+
+hlineRep = plot.hippo.DataRep( "Scatter Plot", nt2, ("xx", "yy") )
+profile.addDataRep(hlineRep)
+
+from hsimple import *
+
+rep = xyhist.getDataRep ()
+from hippo import ColorValue
+print "Try adding color to plot that can't accept it."
+try :
+    rep.set ( ColorValue.red )
+except RuntimeError, detail :
+    print detail
+
+
+print "Adding a datarep to a Color Plot causes the y-axis scaling to change."
+print "Prior to adding the datarep, getRange('y') reports (%f, %f)" % xyhist.getRange("y")
+plot.prompt("<return>: ")
+
+newRep = plot.hippo.DataRep("Scatter Plot", nt, ("x", "y"))
+xyhist.addDataRep(newRep)
+
+print "The previous operation should have overlaid a scatter plot on the "
+print "Color Plot.  Here is the data that should have been added."
+plot.prompt("<return>: ")
+plot.Scatter(nt, "x", "y")

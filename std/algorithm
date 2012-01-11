@@ -1,0 +1,192 @@
+/* -*- mode:c++ -*- */
+
+/** @file algorithm List of functions used by @b HippoDraw from the
+    algorithm component of the C++ standard library.
+
+    @note This list maybe incomplete.
+*/
+
+/** The C++ standard library namespace.  
+
+    This a list of classes and functions used by @b HippoDraw from the
+    C++ standard library.
+
+    @note This list may be incomplete.
+ */
+namespace std {
+
+  /** @brief A C++ standard library function.
+
+  Copies the sequence into @a result.
+  */
+  template < typename InputIterator, typename OutputIterator>
+  OutputIterator
+  copy ( InputIterator first,
+	 InputIterator last,
+	 OuputIterator result );
+
+
+  /** @brief A C++ standard library function.
+
+      Counts the number of copies of @a value are in the sequence.
+  */
+  template < typename InputIterator, typename Type >
+  iterator_traits < InputIterator >::difference_type
+  count ( InputIterator first,
+	  InputIterator last,
+	  const Type & value );
+
+  
+/** @brief A C++ standard library function.
+
+    Fills the range with copies of @a value.
+*/
+template < typename ForwardIterator, typename Type >
+void
+fill ( ForwardIterator first, ForwardIterator last,
+       const Type & value );
+
+/** @brief A C++ standard library function.
+
+    Returns an iterator to the first occurence of the @a value in the
+    sequence.
+*/
+inline
+template < typename InputIterator, typename Type >
+InputIterator
+find ( InputIterator first, InputIterator last, const Type & value );
+
+/** @brief A C++ standard library function.
+
+    Returns an iterator to the first occurence in the sequence for
+    which the @a predicate is @c true.
+*/
+inline
+template < typename InputIterator, typename Predicate >
+InputIterator
+find_if ( InputIterator first,
+	  InputIterator last,
+	  Predicate predicate );
+
+
+/** @brief A C++ standard library function.
+
+    Applies the @a function to every element of the sequence.
+*/
+  template < typename InputIterator, typename Function >
+  Function
+  for_each ( InputIterator first,
+	     InputIterator last,
+	     Function function );
+
+
+/** @brief A C++ standard library function.
+
+    Finds the first position in which @a value can be inserted without
+    changing the ordering.
+*/
+  template < typename ForwardIterator, typename Type >
+  ForwardIterator
+  lower_bound ( ForwardIterator first,
+		ForwardIterator last,
+		const Type & value );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the larger of the two values.
+  */
+  inline
+  template < typename Type >
+  const Type &
+  max ( const Type & a, const Type & b );
+
+  /** @brief A C++ standard library function.
+
+  Returns iterator to maximum element in the range.
+  */
+  template < typename ForwardIterator >
+  ForwardIterator
+  max_element ( ForwardIterator first, ForwardIterator last );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the smaller of the two values.
+  */
+  inline
+  template < typename Type >
+  const Type &
+  min ( const Type & a, const Type & b );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns iterator to minimum element in the range.
+  */
+  template < typename ForwardIterator >
+  ForwardIterator
+  min_element ( ForwardIterator first, ForwardIterator last );
+
+
+
+  /** @brief A C++ standard library function.  
+
+  Removes elements with @a value from the sequence and put them at the
+  end of the sequence.  Returns an iterator to the end of the
+  resulting sequence, i.e. pointing the first occurance of @a value.
+  */
+  template < typename ForwardIterator, typename Type >
+  ForwardIterator
+  remove ( ForwardIterator first,
+	   ForwardIterator last,
+	   const Type & value );
+
+  /** @brief A C++ standard library function.  
+
+  Replace each value in a sequence for which a @a predicate returns
+  @c true with another @a value.
+  */    
+  template < typename ForwardIterator, typename Pedicate, typename Type>
+  void
+  replace_if ( ForwardIterator first,
+	       ForwardIterator last,
+	       Predicate predicate,
+	       const Type & value );
+
+
+  /** @brief A C++ standard library function.
+
+  Sort the elements of the sequence using a predicate for comparison.
+  */
+  template < typename RandomAccessIterator, typename Compare >
+  void
+  sort ( RandomAccessIterator first,
+	 RandomAccessIterator last,
+	 Compare compare );
+
+
+  /** @brief A C++ standard library function.
+
+  Swaps two values.
+  */
+  inline
+  template < typename Type >
+  void
+  swap ( Type & a, Type & b );
+
+
+  /** @brief A C++ standard library function.  
+
+  Finds the last position in which val could be inserted without
+  changing the ordering.
+  */
+  template < typename ForwardIterator, typename Type >
+  ForwardIterator
+  upper_bound ( ForwardIterator first, 
+		ForwardIterator last, 
+		const Type & value );
+
+
+};
+

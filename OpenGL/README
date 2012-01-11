@@ -1,0 +1,42 @@
+
+  This a first draft of an OpenGL driver for hippodraw.
+
+  One idea would be to handle the graphic with OpenGL
+ and deleguate the handling of the OpenGL connection 
+ to windowing system to various GUI toolkit or "high level"
+ graphic system, like OpenInventor.
+
+  An interesting job, would be to open some OpenGL 
+ widget with Qt and have the OpenGL driver draw in it.
+ This would open hippodraw to the world of 3D graphic
+ without breaking the today choice of Qt to handle the GUI...
+
+  Another thread of idea would be to have an Inventor 
+ SoNode wrapping of the OpenGL hippodraw driver 
+ to be able to have hippodraw working within an OpenInventor 
+ context. This is a way I want to prospect at LAL...
+
+  The OpenGLView is pure OpenGL. OpenGLApp and OpenGLWindow
+ does the connection to X11. Today there is no code to connect
+ to non-X11 OpenGL (mainly pure Windows and pure Apple 
+ windoing system).
+
+  Today the related library and code can be reconstructed
+ with CMT only.
+
+  Guy Barrand
+
+  Notes :
+  -----
+ - The TextTTF.cxx file should be compiled with the HAVE_TTF
+   cpp macro in order to use the TTF fonts. On UNIXes the freetype
+   library must be installed (it should come with any good Linux 
+   installation).
+ - a times.ttf default file is provided.
+ 
+  Todo :
+  ----
+ - Have OpenGLApp, OpenGLWindow versions for pure Windows 
+   and Apple windowing system.
+ - be able to build libhippogl, libhippoglx libraries and 
+   hippoTestOpenGL program with the configure system.

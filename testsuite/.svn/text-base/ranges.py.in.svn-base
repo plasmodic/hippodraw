@@ -1,0 +1,82 @@
+""" -*- python -*-
+
+   A test of the axis ticks labeling algorithm.
+
+"""
+# 
+# * Copyright (C) 2002  The Board of Trustees of  
+# * The Leland Stanford Junior University.  All Rights Reserved.
+#
+# $Id: ranges.py.in,v 1.9 2004/12/02 18:06:20 pfkeb Exp $
+#
+# Author: Paul_Kunz@slac.stanford.edu
+#
+
+
+import setPath
+
+# Gets the HippoDraw application.
+from load_hippo import app, canvas
+from hippo import *
+
+# This ntuple will be built column-wise
+nt = NTuple()
+nt.setTitle( 'Axis tick test' )
+
+listm3 = range ( 40 )
+listm2 = range ( 40 )
+listm1 = range ( 40 )
+list0 = range ( 40 )
+list1 = range ( 40 )
+list10 = range ( 40 )
+list100 = range ( 40 )
+list1000 = range ( 40 )
+list5 = range ( 40 )
+list6 = range ( 40 )
+
+for i in range ( 40 ) :
+    listm3[i] = listm3[i] / 10000.
+    listm2[i] = listm2[i] / 1000.
+    listm1[i] = listm1[i] / 100.
+    list0[i] = list0[i] / 10.
+    list10[i] = list100[i] * 10.
+    list100[i] = list100[i] * 100.
+    list1000[i] = list1000[i] * 1000.
+    list5[i] = list5[i] * 10000.
+    list6[i] = list6[i] * 100000.
+
+nt.addColumn ( 'mThree', listm3 )
+nt.addColumn ( 'mTwo', listm2 )
+nt.addColumn ( 'mOne', listm1 )
+nt.addColumn ( 'Zero', list0 )
+nt.addColumn ( 'One', list1 )
+nt.addColumn ( 'Two', list10 )
+nt.addColumn ( 'Three', list100 )
+nt.addColumn ( 'Four', list1000 )
+nt.addColumn ( 'Five', list5 )
+nt.addColumn ( 'Six', list6 )
+
+
+disp0 = Display ( 'XY Plot', nt, ('mThree', 'mTwo' ))
+disp1 = Display ( 'XY Plot', nt, ('mOne', 'Zero' ))
+disp2 = Display ( 'XY Plot', nt, ('One', 'Two' ))
+disp3 = Display ( 'XY Plot', nt, ('Three', 'Four') )
+disp4 = Display ( 'XY Plot', nt, ('Five', 'Six' ))
+
+xyz = Display ( 'XYZ Plot', nt, ('Zero', 'One', 'mThree' ))
+
+p2d = Display ( "Profile 2D", nt, ('Zero', 'One', 'One' ))
+
+canvas.addDisplay ( disp0 )
+canvas.addDisplay ( disp1 )
+canvas.addDisplay ( disp2 )
+canvas.addDisplay ( disp3 )
+canvas.addDisplay ( disp4 )
+
+canvas.addDisplay ( xyz )
+canvas.addDisplay ( p2d )
+
+# Register the ntuple so it is visible to the application
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )

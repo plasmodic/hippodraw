@@ -1,0 +1,30 @@
+""" -*- mode: python -*-
+
+This script tests the creation and modification of Histogram along
+with some test of exception handling.
+
+Copyright (C) 2001, 2003, 2004   The Board of Trustees of The Leland
+Stanford Junior University.  All Rights Reserved.
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: histogram.py.in,v 1.26 2006/02/15 19:29:56 pfkeb Exp $
+
+"""
+import setPath
+from hippo import HDApp
+app = HDApp.instance()
+canvas = app.canvas()
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost',) )
+canvas.addDisplay( hist )
+hist.setAspectRatio ( 1.5 )
+
+hist.setRange ( 'x', 0., 30000. )

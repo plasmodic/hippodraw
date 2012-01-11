@@ -1,0 +1,11 @@
+/** @dir OpenGL
+
+This directory contains source and header files of classes used for a
+test implemenation of @b HippoDraw using OpenGL.
+
+@note Compiling these classes is optional
+
+@note These classes are maintained by Guy Barrand <barrand@lal.in2p3.fr>
+
+*/
+

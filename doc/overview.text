@@ -1,0 +1,253 @@
+/*! @mainpage HippoDraw Library Overview
+
+
+The design of this tool kit is an attempt to decompose into
+abstractions the process of displaying data in various ways on the
+screen or printer.  Thus, there are a number of class hierarchies
+with each hierarchy representing an aspect of the decomposition.
+
+
+The base classes are partially pure abstract in that they contain pure
+virtual member functions.  However, they also contain some concrete
+implementation when it is deemed appropriate.  That is where the
+majority of all derived classes will want to share a common
+implementation.
+
+
+This overview of the library will present the overview each class
+hierarchy along with an overview of the object data structure.  It is
+easier to understand the purpose of each class hierarchy in context of
+the object data structure. 
+
+The class hierarchies are
+
+@ref overview_view
+
+@ref overview_plotter
+
+@ref overview_transform
+
+@ref overview_datarep
+
+@ref overview_projector
+
+@ref overview_projectedvalue
+
+@ref overview_pointrep
+
+@ref overview_binner
+
+@ref overview_binneraxis
+
+@ref overview_function
+
+@section overview_view View
+
+A view object is responsible for all drawing to a display device.
+Typically, a display device is a computer's display screen or a file
+sent to a printer.  The base class for the view hierarchy is mostly
+abstract.  All drawing is done by the interface defined by this
+class. A derived class provides a concrete implementation and probably
+relies on a particular graphics toolkit.  An example is QtView which
+uses the 
+<a href="http://www.trolltech.com/products/qt/index.html" >
+Qt </a>
+class library.
+
+A view is an Observer of a PlotterBase object, the base class of @ref
+overview_plotter hierarchy.  When it receives the Observer::update message, it
+initiates drawing by calling back the PlotterBase object with a
+pointer to itself.
+
+The base class for view is ViewBase.  See the documentation for
+ViewBase for more details.
+
+@section overview_plotter Plotter
+
+A plotter is the manager of all drawing and controller of the axis
+scales.  It delegates the actual drawing to members of other
+hierarchies.  The axis are drawn by a derived class of AxisRepBase.
+The drawing of the data representation is done by a @ref
+overview_datarep. More than one data representation can be drawn in
+the same plot.
+
+The axis scales are maintained by derived class of AxisModelBase.  A
+plotter also owns a @ref overview_transform which may transform the
+data values from one coordinate system to another.  For example, if
+the Y axis is on a logarithmic scale, it is a @ref overview_transform
+object that does the transformation.
+
+A plotter is an Observer of its @ref overview_datarep objects and an
+Observable.
+
+The base class for plotters is PlotterBase.  See the documentation for
+PlotterBase for more details.
+
+
+@section overview_transform Transform
+
+Before drawing  a view, a @ref overview_pointrep object uses a transform
+object to transform from one coordinate to a another coordinate.
+A frequently used example of this feature is for Y axis to be on a
+logarithm scale rather than a linear scale.
+
+A transform is usually based on two coordinates, X and Y and the
+BinaryTransform class represents this abstraction.  However,
+frequently the transform on the X and Y axis are independent of each
+other. The XYTransform class implements this kind of binary transform.
+It uses two objects that do the transform on each axis.  These objects
+instances of classes derived from UnaryTransform.
+
+Transforms in which the coordinates on the X and Y axis are not
+independent are also possible.  For example, the HammerAito transform implements a form of binary transform that
+uses latitude and longitude coordinates create
+<a href="http://www.hypermaths.org/quadibloc/maps/meq0801.htm">
+Hammer-Aitoff projection</a>.
+
+The base class for transforms is TransformBase.  However, it is not
+used directly since the minimum transform requires two coordinates.
+See the documentation for TransformBase for more details.
+
+
+@section overview_datarep Data Representation
+
+A data representation is responsible for both transforming the raw
+data to values projected on the display device and managing their
+drawing.  The simplest of data representations is the ScatterPlot.
+It takes a pair of raw data values, creates a @ref
+overview_projectedvalue by taking one as an X coordinate and the other
+as Y coordinate. A more complex one is a DyHistogram which takes a
+single set of raw data, histograms them, and creates a set @ref
+overview_projectedvalue objects based on the histogram contents. A
+plot using a DyHistogram data representation is shown below.
+
+@image html dyhistogram.png "DyHistogram data representation"
+@image latex dyhistogram.eps "DyHistogram data representation"
+
+A data representation delegates the task of dealing with the raw data
+to a @ref overview_projector.  It also delegates its task of draw the
+@ref overview_projectedvalue object to a @ref overview_pointrep.
+
+The base class for data representation classes is DataRep.  Most of
+the functionality of the data representation is implemented in this
+base class.  Derived classes have constructor to instantiates a @ref
+overview_projector and @ref overview_projectedvalue appropriate for
+their representation.
+
+A data representation is an Observer of its @ref overview_projector
+and is an Observable.
+
+See the documentation for DataRep for more details.
+
+
+
+@section  overview_projector  Projector
+
+Projectors are responsible for dealing with the raw data and providing
+a set of @ref overview_projectedvalue objects.  For example, the
+DyHist1DProjector reads a set of raw data, creates a histogram, and
+uses its bin contents to create the set of @ref
+overview_projectedvalue objects.
+
+Some projectors delegate part of their tasks to other objects.  For
+example, a BinningProjector uses a @ref overview_binner.  The
+projector provides the binner with the set of values then asks it to
+create the projected value objects.
+
+Projectors provide access to the @ref overview_projectedvalue objects
+rows in a NTuple object.  Multiple clients access this %NTuple object.
+For example, the @ref overview_pointrep objects use it for drawing.
+The objective function of the fitter access the same %NTuple object.
+When @b HippoDraw is used as a Python extension module, the %NTuple
+objects is available to it as well.
+
+Some projectors are Observer objects and all are Observable.  For
+example, the NTupleProjector is an observer of an NTuple object.  When
+it receives the Observer::update message, it marks itself as needing
+to re-create the projected values and sends an update message to its
+observers.
+
+The base class for projector is ProjectorBase.  @sa ProjectorBase
+documentation for more details.
+
+
+@section overview_projectedvalue Projected Value
+
+A projected value represents a coordinate and a value with an optional
+error on the value.  For projected values created by the mechanism of
+binning, such as for a histogram, the projected value will also
+contain the bin width.
+
+A projected value is represented as a tuple and implemented as a C++
+standard library @c vector<double>.  The indexes into this vector is
+managed by a enumeration within a namespace.  For 2D values,
+hippodraw::DataPoint2DTuple is used while for 3D values,
+hippodraw::DataPoint3DTuple is used.   The reason for using this
+technique is to avoid creation of a new classes, which for technical
+reasons would have a virtual base class, whose sole purpose would be
+to convey the tuple data to the clients.   
+
+@section overview_pointrep Point representation
+
+Given a projected value, there may be a number of ways to represent it
+graphically.  This is what is called a point representation in this
+tool kit.  An example is a symbol such as a square or circle
+representing a coordinate position in X and Y as shown below.
+
+@image html symbolpointrepsolidsquare.png
+@image latex symbolpointrepsolidsquare.eps
+
+
+The base class for point representation is RepBase.  See the
+documentation for RepBase for more details.  
+
+
+@section overview_binner Binner
+
+Binners are responsible for taking a value consisting of one or more
+raw data points and accumulating them in some fashion into bins.
+Binners are used by a member of the BinningProjector class hierarchy.
+An example of a simple binner is the Bins1DHist binner which takes a
+single data point and accumulates a histogram.   
+
+Binners do the accumulation into bins, but not the calculation of which
+bin needs to be accumulated.  It delegates that task to a member of
+the @ref overview_binneraxis class hierarchy.   
+
+The base class for Binners is the BinsBase class.  See the
+documentation for BinsBase for more details.  
+
+
+@section overview_binneraxis Binner Axis
+
+Binner Axis classes are responsible tor taking a raw data point of one or
+more values and calculating the indexes of the bin to be accumulated.
+The simplest is the BinnerAxisLinear which assumes bins for equal width
+with a certain range.  A more complex one is BinnerAxisLog, which
+calculates bin edges that are logarithmically increasing in size.  These
+are the only two implemented at the moment, but others could follow.
+
+The implemented classes take a single @c double as a coordinate, but
+this could be generalized in the future.  If one wants two doubles,
+and the two coordinates are independent, then two of these classes
+could be used, as is the case with classes derived from Bins2DBase.  A
+coordinate representing a time or date might be considered for future
+implementation, but will certainly requires changes to other class
+hierarchies as well.
+
+The base class for binner axis is BinnerAxis.  See the
+documentation for BinnerAxis for more details.
+
+
+
+@section overview_function Function
+
+The function classes serves two purposes.  One is to display a function
+as an overlaid on a DataRep.  The second is to interact with a fitting
+program to determine the value of the function's parameters that give
+the best fit.
+
+The base class for functions is FunctionBase.  See the documentation
+for FunctionBase for more details.
+
+*/

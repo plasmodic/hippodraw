@@ -1,0 +1,263 @@
+K 25
+svn:wc:ra_dav:version-url
+V 48
+/svn/!svn/ver/49160/tools/hippodraw/trunk/wcslib
+END
+wcsutil.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsutil.h
+END
+wcs.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcs.h
+END
+wcsfix.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsfix.c
+END
+wcsulex.l
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsulex.l
+END
+wcspih.l
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcspih.l
+END
+wcsfix.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsfix.h
+END
+fitshdr.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/fitshdr.h
+END
+wcsmath.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsmath.h
+END
+fitshdr.l
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/fitshdr.l
+END
+wcsunits.c
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsunits.c
+END
+wcstrig.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcstrig.c
+END
+getwcstab.c
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/getwcstab.c
+END
+wcsunits.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsunits.h
+END
+spc.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/spc.c
+END
+CHANGES
+K 25
+svn:wc:ra_dav:version-url
+V 56
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/CHANGES
+END
+wcstrig.h
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcstrig.h
+END
+getwcstab.h
+K 25
+svn:wc:ra_dav:version-url
+V 60
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/getwcstab.h
+END
+wcshdr.c
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcshdr.c
+END
+sph.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/sph.c
+END
+spc.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/spc.h
+END
+prj.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/prj.c
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/49160/tools/hippodraw/trunk/wcslib/CMakeLists.txt
+END
+sph.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/sph.h
+END
+wcshdr.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcshdr.h
+END
+prj.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/prj.h
+END
+wcsbth.l
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsbth.l
+END
+cel.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/cel.c
+END
+tab.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/tab.c
+END
+cel.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/cel.h
+END
+spx.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/spx.c
+END
+tab.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/tab.h
+END
+README
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/README
+END
+wcsutrn.l
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsutrn.l
+END
+spx.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/spx.h
+END
+log.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/log.c
+END
+lin.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/lin.c
+END
+COPYING.LESSER
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/COPYING.LESSER
+END
+log.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/log.h
+END
+lin.h
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/lin.h
+END
+wcslib.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcslib.h
+END
+wcsutil.c
+K 25
+svn:wc:ra_dav:version-url
+V 58
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsutil.c
+END
+wcsconfig.h.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcsconfig.h.in
+END
+wcs.c
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/49159/tools/hippodraw/trunk/wcslib/wcs.c
+END

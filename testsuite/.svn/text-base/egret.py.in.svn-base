@@ -1,0 +1,23 @@
+""" -*- mode: python -*-
+
+   Displaying the EGRET All Sky survey
+
+   author: James Chiang <jchiang@slac.stanford.edu>
+   
+"""
+#
+# $Id: egret.py.in,v 1.11 2003/09/29 18:12:50 jchiang Exp $
+#
+
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from setPath import *
+
+import hippoplotter as plot
+
+file = "@top_srcdir@/examples/EGRET_AllSky.fits"
+plot.fitsImage(file, zlog=1, aspect=2)

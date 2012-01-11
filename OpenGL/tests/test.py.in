@@ -1,0 +1,21 @@
+""" -*- mode:python -*-
+
+Script to run an OpenGL program after setting TTFPATH environment variable.
+
+author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+
+from os import *
+import string
+
+## This script is pretty primative at the moment, but one can extend it.
+
+## home = environ[ 'HOME' ] # assume hippodraw check out in home
+
+## fontpath = string.join ( [home, '/hippodraw/OpenGL/fonts'], '' )
+fontpath = "@top_srcdir@/OpenGL/fonts"
+putenv ( 'TTFPATH', fontpath )
+
+system ( 'hippodraw' )
+

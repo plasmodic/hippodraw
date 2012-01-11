@@ -1,0 +1,69 @@
+""" -*- mode:python -*-
+
+Demonstrates creation and display of data in Python lists
+
+@author Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+#
+# $Id: autotuple.py.in,v 1.6 2004/05/08 18:26:49 pfkeb Exp $
+#
+import sys
+sys.path.reverse()
+sys.path.append('@top_srcdir@/python')
+sys.path.append('@top_builddir@/python')
+sys.path.reverse()
+
+from hippo import HDApp
+
+app = HDApp()
+canvas = app.canvas()
+
+import random
+gauss = random.gauss
+x = []
+npts = 10000
+for i in range(npts):
+    x.append ( gauss ( 45, 10 ) )
+
+from hippo import Display
+
+data = (x, )
+labels = ( 'x', )
+
+## Do this first, it once exposed a bug
+print "Try create type of display that doesn't extist"
+try :
+    bad = Display ( "H i s t o g r a m", data, labels )
+except RuntimeError, detail :
+    print detail
+
+hist = Display ( "Histogram", data, labels )
+canvas.addDisplay ( hist )
+
+from time import sleep
+
+print "Will now modify Python list every half second and update the display"
+for i in range ( 10 ) :
+    sleep ( 0.5 )
+    for j in range ( npts ) :
+        x.append ( gauss ( 45, 10 ) )
+    hist.update()
+  
+
+print "Try create type of display that doesn't extist"
+try :
+    bad = Display ( "H i s t o g r a m", data, labels )
+except RuntimeError, detail :
+    print detail
+
+print "Try to bind to column that doesn't exist in given histcolumns"
+try :
+    bad = Display ( "Histogram", data, ('x', 'w') )
+except RuntimeError, detail :
+    print detail
+
+print "\nTested creating ntuple whose columns are references to "
+print "Python list objects and throwing exceptions if there were errors"
+
+

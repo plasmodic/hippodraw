@@ -1,0 +1,69 @@
+""" -*- mode:python -*-
+
+Test of handling images
+
+Author: Tony Willis
+National Research Council   Tony.Willis@nrc-cnrc.gc.ca
+Box 248                     (250)493-2277
+Penticton, BC  V2A 6J9      fax: 493-7767
+Government of Canada        Gouvernement du Canada
+
+"""
+from sihippo import *
+from qt import *
+from random import randint
+from math import sin
+import numarray
+import sys
+
+app = QApplication ( sys.argv )
+wc = WindowController.instance()
+wc.createInspector ()
+wc.quitOnLastWindowClose ( True )
+canvas = CanvasWindow()
+canvas.show()
+ntScan = NTupleController.instance()
+dc = DisplayController.instance()
+# test image stuff
+image = []
+nx = 200
+ny = 100
+#nx = 30
+#ny = 30
+for i in range(0, nx ) :
+    for j in range(0, ny ) :
+        image.append(i * j)
+
+# it would be nice to be able to do ... :
+# nt = NumArrayTuple()
+# ntScan.registerNTuple (nt)
+
+nt = ntScan.createNTuple()
+
+nt.setTitle ( 'Demo Image' )
+label = 'Intensity'
+nt.addColumn (label,image)
+plot = dc.createDisplay ('Z Plot', nt, [label,])
+
+plot.setNumberOfBins ( 'x', nx )
+plot.setNumberOfBins ( 'y', ny )
+
+x_step = 5
+y_step = 3
+plot.setBinWidth ( 'x', x_step )
+plot.setBinWidth ( 'y', y_step )
+plot.setRange ( 'x', 0, nx * x_step)
+plot.setRange ( 'y', 0, ny * y_step)
+
+plot.setOffset ( 'x', 10 )
+plot.setOffset ( 'y', 20 )
+
+# call to setLog gives 'attribute error'
+# But I'm not sure that this function does anything useful for the
+# display
+#plot.setLog ( 'x', 1 )
+
+plot.setAspectRatio ( 2.0 )
+canvas.addPlotDisplay(plot, 0)
+
+app.exec_loop()

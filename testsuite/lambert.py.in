@@ -1,0 +1,52 @@
+""" -*- python -*-
+This script tests the Lambert transfrom
+
+Copyright (C) 2001, 2003 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+"""
+import setPath
+from load_hippo import app, canvas
+
+# Create empty ntuple
+from hippo import NTuple
+nt = NTuple( )
+
+# Register ntuple to make visible to application
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+latcol = []
+loncol = []
+valcol = []
+
+lon = -180.0
+while lon <= 180.0:
+    lat = -90.0
+    while lat <= 90.0:
+        latcol.append ( lat )
+        loncol.append ( lon )
+        valcol.append (  90 - abs ( lat ) )
+        lat = lat + 10.
+    lon = lon + 10.
+    
+nt.addColumn ( "Lon", loncol )
+nt.addColumn ( "Lat", latcol )
+nt.addColumn ( 'value', valcol )
+nt.setTitle ( "Lambert Transform" )
+
+from hippo import Display
+
+d1 = Display ("Scatter Plot", nt, ('Lon', 'Lat' ))
+canvas.addDisplay( d1 )
+
+d2 = Display ("Scatter Plot", nt, ('Lon', 'Lat' ))
+d2.setTransform ( 'Lambert' )
+canvas.addDisplay( d2 )
+
+d3 = Display ( "XYZ Plot", nt, ('Lon', 'Lat', 'value' ))
+d3.setTransform ( 'Lambert' )
+canvas.addDisplay ( d3 )

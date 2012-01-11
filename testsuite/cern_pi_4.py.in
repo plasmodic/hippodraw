@@ -1,0 +1,73 @@
+"""-*- mode: python -*-
+
+Demonstraton following example of CERN LCG PI example 4
+
+  @author Paul F. Kunz <Paul_Kunz@slacs.stanford.edu>
+
+"""
+#
+# $Id: cern_pi_4.py.in,v 1.7 2004/04/27 19:25:14 pfkeb Exp $
+#
+
+import random
+from time import sleep
+
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import Display
+from hippo import NTuple
+from hippo import NTupleController
+from hippo import Function
+
+ntuple = NTuple ( )
+ntuple.setLabels ( ('X value', ) )
+
+NTupleController.instance().registerNTuple ( ntuple )
+
+sthist = Display ( "Static Histogram" )
+sthist.setTitle ( "Gaussian Distribution" )
+sthist.setRange ( 'x', 0, 100)
+sthist.setBinWidth ( 'x', 1. )
+canvas.addDisplay ( sthist )
+
+dyhist = Display ( "Histogram", ntuple, ('X value',  ) )
+canvas.addDisplay ( dyhist )
+
+mean = 45
+sigma = 10
+
+gauss = random.gauss
+
+for i in range(10000):
+    x = gauss( mean, sigma )
+    sthist.addValues ( (x, ) )
+    ntuple.addRow ( (x, ) )
+
+sleep ( 0.1 )
+datarep = sthist.getDataRep()
+print "Histogram :"
+print "  Title : " + sthist.getTitle()
+print "  Entries : %i" % sthist.numberOfEntries()
+print "  Mean = %f" % datarep.getMean ( 'x' )
+print "  Rms  = %f" % datarep.getRMS ( 'x' )
+
+gaussFun = Function ( "Gaussian", datarep )
+gaussFun.addTo( sthist )
+try:
+    gaussFun.setFitter ( 'ChiSq: Minuit(Migrad)' )
+    gaussFun.fit()
+except RuntimeError:
+    print "Minuit is not available"
+
+chi = gaussFun.chiSquared()
+df  = gaussFun.degreesOfFreedom()
+
+print "Fit result : chi2 / ndf : %f / %f" % ( chi,df )
+names = gaussFun.parmNames()
+params = gaussFun.parameters()
+errors = gaussFun.principleErrors()
+
+for name, parm, error in zip ( names, params, errors ) :
+    print name + " = %f +/- %f" % ( parm, error )
+

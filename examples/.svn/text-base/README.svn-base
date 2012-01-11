@@ -1,0 +1,64 @@
+   This directory, `examples', contains example files and scripts.  A
+short description of each is given here.
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: README,v 1.11 2004/07/07 21:48:46 pfkeb Exp $
+
+aptuple.tnt
+--------------
+
+   This is an ASCII text file containing data from CERN's personal
+database dating from the early '80s.  It was used for examples in the
+tutorial for the PAW program that was written at CERN.  Particle
+physicists call this a `n-tuple' file, although an n-tuple is really
+one row of the file.   One can read this file with the `Import
+TextTuple' menu item.
+
+   The format of the file is as follows...
+
+- The first line is taken as a title.
+
+- The next line has tab delimited labels for the columns. This also
+  determines the number of columns.
+
+- All the remaining lines are taken as white space delimited data,
+  taken row by row.
+
+I'm told that spreadsheet programs, such as Excel, can save data
+tables in this format.   This has not been tested.
+
+
+output.txt
+---------
+   Another example text file.
+
+userAlg.root
+------------
+   An example ROOT file.   Can be read with the RootPython package.
+
+   
+Z0Strip.data
+-------
+   This ASCII text file contains data from the Mark II detector run at
+the SLAC Linear Collider (SLC).  It is a measurement of the mass of
+the Z0 particle.  Its format is the same as above.  It has been sort
+by energy to illustrate the Strip Chart display.
+
+
+hippodemo.py
+------------
+   This Python program illustrates how to use HippoDraw from a JPython
+session.  It reads the `aptuple.hiptxt' file and creates the columns
+of data.  The result is the same as using the `Import TextTuple' menu
+item. 
+
+For more examples of Python scripts, see the `testsuite' directory.
+
+
+init.py.in
+----------
+
+   A simple script to open an NTuple file.  In the install directory,
+the `.in' suffix is removed.
+

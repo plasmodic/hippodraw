@@ -1,0 +1,65 @@
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/48411/tools/hippodraw/trunk/fits
+END
+FitsController.h
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsController.h
+END
+FitsFileBase.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsFileBase.cxx
+END
+fits.dir
+K 25
+svn:wc:ra_dav:version-url
+V 55
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/fits.dir
+END
+FitsNTuple.h
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsNTuple.h
+END
+FitsFile.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 59
+/svn/!svn/ver/47803/tools/hippodraw/trunk/fits/FitsFile.cxx
+END
+FitsFileBase.h
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsFileBase.h
+END
+FitsController.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsController.cxx
+END
+FitsFile.h
+K 25
+svn:wc:ra_dav:version-url
+V 57
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsFile.h
+END
+CMakeLists.txt
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/48411/tools/hippodraw/trunk/fits/CMakeLists.txt
+END
+FitsNTuple.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/fits/FitsNTuple.cxx
+END

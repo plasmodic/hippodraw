@@ -1,0 +1,178 @@
+# -*- mode:python -*-
+# Form implementation generated from reading ui file 'test2.ui'
+#
+# Created: Fri Jan 24 14:16:14 2003
+#      by: The PyQt User Interface Compiler (pyuic)
+#
+
+
+import sys
+from qt import *
+from sihippo import *
+import threading
+from random import shuffle
+from time import sleep
+from math import sin
+
+image0_data = [
+"48 48 11 1",
+"# c #000000",
+"a c #000010",
+"c c #001000",
+". c #100000",
+"b c #505050",
+"i c #e0e0e0",
+"f c #e0f0f0",
+"h c #f00000",
+"e c #f0e0f0",
+"g c #f0f0e0",
+"d c #f0f0f0",
+".###.###.###.###.###.###.###.###.###.###.###.###",
+"###ab##a###a###a###bb####b##b###bb#b###a###a###a",
+"##b##b###############b#b#b##b#b####bb###########",
+"##c###c###c###c###########c##bc###c###c###c###c#",
+".###.###.###.###.###.###.###.###.###.###.###.###",
+"##bb###########################################a",
+"#b#####dddd#dddddddddddddddd#ddddddddddddddddd##",
+"###b###ddddddddddddddddddddddddddddddddddddddd##",
+".###.##ddddddddddddddddddddddddddddddddddddddd##",
+"###a###dddddddddd##ddddddddddddddddddddddddddd#a",
+"#######dddddddddd##dddddddddddedddedddeddddddd##",
+"##c####dddddddddd##dddddddddddddfdddfddddddddd##",
+".###b##dddddddddd##ddddgdddgdddgdddgdddgdddgdd##",
+"#b#####dddddddddd##ddddddddddddddddddddddddddd#a",
+"#######dddddddddd##dddedddedddedddedddedddeddd##",
+"##c####dddddddddd##dddddfdddfdddfdddfdddfddddd##",
+".###.####dddddddd##ddddgdddgdddgdddgdddgdddg####",
+"###a###dddddddddd##ddddddddddddddddddddddddddd#a",
+"#######dddddddddd##dddedddedddedddedddedddeddd##",
+"##c####ddddddddd###dddddfdddfdddfdddfdddfddddd##",
+".##b###ddddddddd#h#ddddgdddgdddgdddgdddgdddgdd##",
+"####b##ddddddddd#h#ddddddddddddddddddddddddddd#a",
+"#######ddddddddd#h#dddedddedddedddedddedddeddd##",
+"##c####ddddddddd#h#dddddfdddfdddfdddfdddfddddd##",
+".###.##ddddddddd#h#ddddgdddgdddgdddgdddgdddgdd##",
+"###a###ddddddddd#h#ddddddddddddddddddddddddddd#a",
+"#######ddddddddd#h#dddedddedddedddedddedddeddd##",
+"##c####dddddddd##h#dddddfdddfdddfdddfdddfddddd##",
+".b#b###dddddddd#hh##dddgdddgdddgdddgdddgdddgdd##",
+"###a#####dddddd#hhh#dddddddddddddddddddddddddd#a",
+"#######dddddddd#hhh#idedddedddedddedddeddded####",
+"##c####dddddddd#hhh#ddddfdddfdddfdddfdddfddddd##",
+".###.##dddddddd#hhh#dddgdddgdddgdddgdddgdddgdd##",
+"###a###dddddddd#hhh#dddddddddddddddddddddddddd#a",
+"#######dddddddd#hhh#ddedddedddedddedddedddeddd##",
+"#b#####dddddddd#hhh##dddfdddfdddfdddfdddfddddd##",
+".###.##dddddddd#hhhh#ddddddddddddddddddddddddd##",
+"###a###ddddddd##hhhh#dddddd#dddddddddddddddddd#a",
+"#######ddddddd#hhhhh##ddddd#dddddddddddddd#ddd##",
+"##c####dddddd##hhhhhh##dddd##dddd#ddddd##d#ddd##",
+".###.##dddd###hhhhhhh##d##d#h##dd##dd#d##d#d#d##",
+"###a###dd####hhhhhhhhh##hh#h#h###hh####h#h###d#a",
+"#b######################################h#######",
+"##c##b####c###b###c###b#b#c###c###c####b#b####c#",
+".##b#b######.###.###.#######.#######.#######.###",
+"#######a###a###a###a###a###a###a###a###a###a###a",
+"################################################",
+"##c###c###c###c###c###c###c###c###c###c###c###c#"
+]
+
+class Form2(QWidget):
+    def __init__(self,parent = None,name = None,fl = 0):
+        QWidget.__init__(self,parent,name,fl)
+
+        image0 = QPixmap(image0_data)
+
+        if not name:
+            self.setName("Form2")
+
+        self.nt = None
+        self.nt2 = None
+        self.plot2 = None
+
+        threadReadEnv = threading.Thread(None, self.readEnvValues, 'ReadEnv', ())
+        threadReadEnv.start()
+
+        Form2Layout = QGridLayout(self,1,1,11,6,"Form2Layout")
+
+        self.frame11 = QFrame(self,"frame11")
+        self.frame11.setFrameShape(QFrame.StyledPanel)
+        self.frame11.setFrameShadow(QFrame.Raised)
+        frame11Layout = QGridLayout(self.frame11,1,1,11,6,"frame11Layout")
+
+
+        Form2Layout.addWidget(self.frame11,0,0)
+
+        self.languageChange()
+
+        self.resize(QSize(645,629).expandedTo(self.minimumSizeHint()))
+
+        self.tViewWidget3 = QtViewWidget(self.frame11,"tViewWidget3", Qt.WStaticContents | Qt.WRepaintNoErase)
+        self.tViewWidget3.setDoubleBuffering(1)
+
+        frame11Layout.addWidget(self.tViewWidget3,0,0)
+        ntc = NTupleController.instance()
+        self.nt = ntc.createNTuple()
+        labels = ['test1','test2']
+        self.nt.setLabels(labels)
+        self.nt.setTitle('Test Plot 1')
+        dc = DisplayController.instance()
+        plot = dc.createDisplay('Static Histogram' )
+        plot.setTitle ( 'Static histogram' )
+        plot.setLabel ( 'x', 'sin(x)' )
+        plot.setRange ( 'x', -1., 1. )
+        plot.setBinWidth ( 'x', 0.04 )
+        for i in range ( 1000 ) :
+            x = float ( i ) / 10.
+            y = sin ( x )
+            plot.addValues ( [y,] )
+        self.tViewWidget3.setPlotter (plot)
+        self.data_list = range(200,300)
+
+        self.tViewWidget4 = QtViewWidget(self.frame11,"tViewWidget4", Qt.WStaticContents | Qt.WRepaintNoErase)
+        self.tViewWidget4.setDoubleBuffering(1)
+        self.nt2 = ntc.createNTuple()
+        labels = ['test3','test4']
+        self.nt2.setLabels(labels)
+        self.nt2.setTitle('Test Plot 2')
+        dc = DisplayController.instance()
+        self.plot2 = dc.createDisplay('Strip Chart', self.nt2, labels)
+        self.tViewWidget4.setPlotter (self.plot2)
+        self.data_list2 = range(400,500)
+        self.ins = Inspector()
+	self.tViewWidget4.setInspector ( self.ins )
+        self.ins.show()
+        evt = PlotterEvent ( self.plot2 )
+        QApplication.postEvent(self.ins, evt)
+
+        frame11Layout.addWidget(self.tViewWidget4,1,0)
+
+        #threadReadEnv.start()
+
+    def languageChange(self):
+        self.setCaption(self.tr("Form2"))
+
+
+    def readEnvValues(self):
+      time_list = range(100)
+      while(1):
+        #~ if self.nt is not None:
+          #~ shuffle(self.data_list)
+          #~ self.nt.replaceColumn(1, self.data_list)
+          #~ self.nt.replaceColumn(0, time_list)
+          #~ self.tViewWidget3.update()
+        if self.nt2 is not None:
+          shuffle(self.data_list2)
+          self.nt2.replaceColumn(1, self.data_list2)
+          self.nt2.replaceColumn(0, time_list)
+          #self.tViewWidget4.update()
+        sleep(.1)
+
+
+if __name__ == "__main__":
+    a = QApplication(sys.argv)
+    QObject.connect(a,SIGNAL("lastWindowClosed()"),a,SLOT("quit()"))
+    w = Form2()
+    a.setMainWidget(w)
+    w.show()
+    a.exec_loop()

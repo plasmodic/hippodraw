@@ -1,0 +1,39 @@
+#!/usr/bin/env python
+"""
+Run the testsuite scripts as an ad hoc set of unit tests.
+
+@author J. Chiang <jchiang@slac.stanford.edu>
+"""
+#$Id: run_root_scripts.py.in,v 1.1 2004/10/08 16:21:35 pfkeb Exp $
+
+import copy
+import setPath
+import hippoplotter as plot
+
+prompt = 1
+first = 'glast_twotower'
+
+scripts = {}
+scripts['glast_twotower'] = 1
+scripts['svac'] = 1
+scripts['test_root'] = 1
+scripts['test_root_array'] = 1
+scripts['towercut'] = 1
+scripts['two_roots'] = 1
+
+print "Hit return to run named script"
+
+names = copy.deepcopy(scripts.keys())
+names.sort()
+indx = names.index(first)
+for name in names[indx:]:
+    if scripts[name]:
+        if prompt:
+            plot.prompt("Run %s: " % name)
+            plot.clear()
+        else:
+            print "Running " + name + "..."
+        command = 'import ' + name
+        exec(command)
+
+print "All done. None of the scripts failed"

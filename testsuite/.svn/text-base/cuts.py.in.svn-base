@@ -1,0 +1,60 @@
+""" -*- mode: python -*-
+
+This script tests the creation an application of cuts
+
+Copyright (C) 2002 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: cuts.py.in,v 1.23 2007/06/26 17:54:18 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+
+from hippo import NTupleController
+ntc = NTupleController.instance ()
+
+# Create NTuple via its controller so Inspector can see it.
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost', ) )
+canvas.addDisplay( hist )
+hist2 = Display ("Histogram", nt1, ('Category', ) )
+canvas.addDisplay( hist2 )
+
+# Test adding a cut and setting its range
+from hippo import Cut
+agecut = Cut ( nt1, ('Age', ) )
+canvas.addDisplay ( agecut ) 
+agecut.addTargets ( ( hist, hist2 ) )
+agecut.setCutRange ( 40., 100., 'x' )
+agecut.setLog ( 'y', 1 ) # used to be a bug
+
+# test recursive adding of cuts
+service = Cut ( nt1, ('Service', ) )
+canvas.addDisplay ( service )
+service.addTarget ( agecut )
+service.setCutRange ( 12., 40., 'x')
+
+try:
+    print "Try invalid axis"
+    service.setCutRange ( 0, 1, 'y' )
+except RuntimeError, detail:
+    print detail
+
+
+# Adding a two dimensional cut.
+service_age = Cut ( nt1, ('Service', 'Age', ) )
+canvas.addDisplay ( service_age )
+service_age.addTarget ( service )
+service_age.setCutRange ( 12., 40., 'x')
+service_age.setCutRange ( 40., 100., 'y' )
+
+# trying the constructor short cut
+
+category = Cut ( nt1, ( 'Category', ), hist, 175., 275. )
+canvas.addDisplay ( category )

@@ -1,0 +1,1429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CanvasWindowBase</class>
+ <widget class="QMainWindow" name="CanvasWindowBase">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>600</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="widget"/>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_File">
+    <property name="title">
+     <string>&amp;File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="action_Open"/>
+    <addaction name="action_Browse"/>
+    <addaction name="action_Save"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="actionSave_All"/>
+    <addaction name="actionSave_All_As"/>
+    <addaction name="actionClose"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave_selected_as_image"/>
+    <addaction name="separator"/>
+    <addaction name="actionCreate_Ntuple"/>
+    <addaction name="actionExport_data_source"/>
+    <addaction name="separator"/>
+    <addaction name="action_Print"/>
+    <addaction name="actionPrinter_Settings"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="action_Exit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>&amp;Edit</string>
+    </property>
+    <addaction name="actionCu_t"/>
+    <addaction name="actionC_opy"/>
+    <addaction name="action_Paste"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete"/>
+    <addaction name="separator"/>
+    <addaction name="actionSelect_All"/>
+    <addaction name="separator"/>
+    <addaction name="actionRetile"/>
+    <addaction name="actionRetile_Page"/>
+    <addaction name="actionUndo"/>
+    <addaction name="separator"/>
+    <addaction name="actionClear_All"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <addaction name="actionAdd_page"/>
+    <addaction name="separator"/>
+    <addaction name="actionLock"/>
+    <addaction name="actionUnlock"/>
+    <addaction name="actionZoom_in"/>
+    <addaction name="actionZoom_out"/>
+    <addaction name="actionZoom_reset"/>
+    <addaction name="separator"/>
+    <addaction name="actionShow_inspector"/>
+    <addaction name="actionShow_pick_table"/>
+    <addaction name="actionShow_plot_table"/>
+    <addaction name="separator"/>
+    <addaction name="actionRange_zoom"/>
+    <addaction name="actionPrevious_range"/>
+    <addaction name="actionNext_range"/>
+    <addaction name="separator"/>
+    <addaction name="actionDrag_to_set_cut"/>
+    <addaction name="actionClick_to_set_cut"/>
+    <addaction name="actionDrag_cut_positions"/>
+    <addaction name="actionPick_points"/>
+    <addaction name="separator"/>
+    <addaction name="actionGroup_views"/>
+    <addaction name="actionUngroup_views"/>
+   </widget>
+   <widget class="QMenu" name="menuSettings">
+    <property name="title">
+     <string>Settings</string>
+    </property>
+    <addaction name="actionCanvas"/>
+    <addaction name="actionPrinter_Settings"/>
+    <addaction name="actionFonts"/>
+   </widget>
+   <widget class="QMenu" name="menu_Help">
+    <property name="title">
+     <string>&amp;Help</string>
+    </property>
+    <addaction name="actionHelp"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout_HippoDraw"/>
+    <addaction name="actionAbout_Qt"/>
+   </widget>
+   <addaction name="menu_File"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuSettings"/>
+   <addaction name="menu_Help"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="fileToolBar">
+   <property name="windowTitle">
+    <string>File Commands</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="action_Open"/>
+   <addaction name="action_Save"/>
+   <addaction name="action_Print"/>
+  </widget>
+  <widget class="QToolBar" name="editToolBar">
+   <property name="windowTitle">
+    <string>Copy/Paste Commands</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionCu_t"/>
+   <addaction name="actionC_opy"/>
+   <addaction name="action_Paste"/>
+  </widget>
+  <widget class="QToolBar" name="viewToolBar">
+   <property name="windowTitle">
+    <string>Page Commands</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionRange_zoom"/>
+   <addaction name="actionPrevious_range"/>
+   <addaction name="actionNext_range"/>
+  </widget>
+  <widget class="QToolBar" name="cutToolBar">
+   <property name="windowTitle">
+    <string>Cut Modes</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionDrag_to_set_cut"/>
+   <addaction name="actionClick_to_set_cut"/>
+   <addaction name="actionDrag_cut_positions"/>
+   <addaction name="actionPick_points"/>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/new.png</normaloff>:/CanvasWindowBase/images/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="action_Open">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/open-file.png</normaloff>:/CanvasWindowBase/images/open-file.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Open ...</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="action_Browse">
+   <property name="text">
+    <string>&amp;Browse ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Browse a document file.</string>
+   </property>
+   <property name="whatsThis">
+    <string>Browse a document file without opening it.</string>
+   </property>
+  </action>
+  <action name="action_Save">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/save.png</normaloff>:/CanvasWindowBase/images/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="text">
+    <string>Save &amp;As ...</string>
+   </property>
+  </action>
+  <action name="actionSave_All">
+   <property name="text">
+    <string>Save All</string>
+   </property>
+   <property name="toolTip">
+    <string>Save canvas and all ntuples</string>
+   </property>
+  </action>
+  <action name="actionSave_All_As">
+   <property name="text">
+    <string>Save All As ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Save document and ntuples to file</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>&amp;Close</string>
+   </property>
+  </action>
+  <action name="actionSave_selected_as_image">
+   <property name="text">
+    <string>Save selected as image ...</string>
+   </property>
+  </action>
+  <action name="actionCreate_Ntuple">
+   <property name="text">
+    <string>Create NTuple ...</string>
+   </property>
+   <property name="toolTip">
+    <string>Create NTuple from current datasource</string>
+   </property>
+   <property name="whatsThis">
+    <string>Export the selected data source to text or FITS file.</string>
+   </property>
+  </action>
+  <action name="actionExport_data_source">
+   <property name="text">
+    <string>Export data source</string>
+   </property>
+   <property name="toolTip">
+    <string>Export data source to file</string>
+   </property>
+  </action>
+  <action name="action_Print">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/print.png</normaloff>:/CanvasWindowBase/images/print.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Print</string>
+   </property>
+   <property name="toolTip">
+    <string>Print document</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionPrinter_Settings">
+   <property name="text">
+    <string>Printer Settings</string>
+   </property>
+   <property name="toolTip">
+    <string>Set printer preferences</string>
+   </property>
+  </action>
+  <action name="action_Exit">
+   <property name="text">
+    <string>&amp;Exit</string>
+   </property>
+  </action>
+  <action name="actionCu_t">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/cut.png</normaloff>:/CanvasWindowBase/images/cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cu&amp;t</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionC_opy">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/copy.png</normaloff>:/CanvasWindowBase/images/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>C&amp;opy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="action_Paste">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/paste.png</normaloff>:/CanvasWindowBase/images/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>&amp;Paste</string>
+   </property>
+   <property name="whatsThis">
+    <string/>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="toolTip">
+    <string>Remove from canvas</string>
+   </property>
+   <property name="whatsThis">
+    <string>Remove selected items from canvas without pasting to pasteboard.</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionSelect_All">
+   <property name="text">
+    <string>Select &amp;All</string>
+   </property>
+   <property name="toolTip">
+    <string>Select all canvas items</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
+  </action>
+  <action name="actionRetile">
+   <property name="text">
+    <string>Retile</string>
+   </property>
+   <property name="toolTip">
+    <string>Retile all items on canvas</string>
+   </property>
+  </action>
+  <action name="actionRetile_Page">
+   <property name="text">
+    <string>Retile Page</string>
+   </property>
+   <property name="toolTip">
+    <string>Retiles the current page</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="toolTip">
+    <string>Restores item to state when selected</string>
+   </property>
+  </action>
+  <action name="actionClear_All">
+   <property name="text">
+    <string>Clear All</string>
+   </property>
+   <property name="toolTip">
+    <string>Clear all canvas items</string>
+   </property>
+  </action>
+  <action name="actionAdd_page">
+   <property name="text">
+    <string>Add page</string>
+   </property>
+   <property name="toolTip">
+    <string>Adds a page to the document.</string>
+   </property>
+  </action>
+  <action name="actionLock">
+   <property name="text">
+    <string>Lock</string>
+   </property>
+   <property name="toolTip">
+    <string>Locks the position and size of selected item.</string>
+   </property>
+  </action>
+  <action name="actionUnlock">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Unlock</string>
+   </property>
+   <property name="toolTip">
+    <string>Unlocks the position and size of the selected item</string>
+   </property>
+  </action>
+  <action name="actionZoom_in">
+   <property name="text">
+    <string>Zoom in</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl++</string>
+   </property>
+  </action>
+  <action name="actionZoom_out">
+   <property name="text">
+    <string>Zoom out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionZoom_reset">
+   <property name="text">
+    <string>Zoom reset</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="actionShow_inspector">
+   <property name="text">
+    <string>Show inspector</string>
+   </property>
+  </action>
+  <action name="actionShow_pick_table">
+   <property name="text">
+    <string>Show pick table</string>
+   </property>
+   <property name="toolTip">
+    <string>Show a list of selected points.</string>
+   </property>
+  </action>
+  <action name="actionShow_plot_table">
+   <property name="text">
+    <string>Show plot table</string>
+   </property>
+   <property name="toolTip">
+    <string>Show a table of plots on current canvas</string>
+   </property>
+  </action>
+  <action name="actionRange_zoom">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/zoom.png</normaloff>:/CanvasWindowBase/images/zoom.png</iconset>
+   </property>
+   <property name="text">
+    <string>Range zoom</string>
+   </property>
+   <property name="toolTip">
+    <string>Toggles range zoom mode</string>
+   </property>
+  </action>
+  <action name="actionPrevious_range">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/previous.png</normaloff>:/CanvasWindowBase/images/previous.png</iconset>
+   </property>
+   <property name="text">
+    <string>Previous range</string>
+   </property>
+   <property name="toolTip">
+    <string>Sets range to previoius saved one</string>
+   </property>
+  </action>
+  <action name="actionNext_range">
+   <property name="icon">
+    <iconset resource="CanvasWindowBase.qrc">
+     <normaloff>:/CanvasWindowBase/images/next.png</normaloff>:/CanvasWindowBase/images/next.png</iconset>
+   </property>
+   <property name="text">
+    <string>Next range</string>
+   </property>
+   <property name="toolTip">
+    <string>Sets range to next saved one</string>
+   </property>
+  </action>
+  <action name="actionGroup_views">
+   <property name="text">
+    <string>Group views</string>
+   </property>
+  </action>
+  <action name="actionUngroup_views">
+   <property name="text">
+    <string>Ungroup views</string>
+   </property>
+  </action>
+  <action name="actionCanvas">
+   <property name="text">
+    <string>Canvas ...</string>
+   </property>
+  </action>
+  <action name="actionFonts">
+   <property name="text">
+    <string>Fonts ..</string>
+   </property>
+  </action>
+  <action name="actionDefault_toolbar">
+   <property name="text">
+    <string>Default toolbar</string>
+   </property>
+  </action>
+  <action name="actionHelp">
+   <property name="text">
+    <string>Help</string>
+   </property>
+  </action>
+  <action name="actionAbout_HippoDraw">
+   <property name="text">
+    <string>About HippoDraw</string>
+   </property>
+  </action>
+  <action name="actionAbout_Qt">
+   <property name="text">
+    <string>About Qt</string>
+   </property>
+  </action>
+  <action name="actionDefault_Toolbar">
+   <property name="text">
+    <string>Default Toolbar</string>
+   </property>
+  </action>
+  <actiongroup name="m_set_fitter">
+   <property name="exclusive">
+    <bool>true</bool>
+   </property>
+   <property name="name" stdset="0">
+    <cstring>m_set_fitter</cstring>
+   </property>
+  </actiongroup>
+  <actiongroup name="cutActionGroup">
+   <action name="actionDrag_to_set_cut">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="checked">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="CanvasWindowBase.qrc">
+      <normaloff>:/CanvasWindowBase/images/drag-cut-edge.png</normaloff>:/CanvasWindowBase/images/drag-cut-edge.png</iconset>
+    </property>
+    <property name="text">
+     <string>Drag to set cut</string>
+    </property>
+    <property name="toolTip">
+     <string>Drag to set cut edge</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+1</string>
+    </property>
+   </action>
+   <action name="actionClick_to_set_cut">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="CanvasWindowBase.qrc">
+      <normaloff>:/CanvasWindowBase/images/click-cut-edge.png</normaloff>:/CanvasWindowBase/images/click-cut-edge.png</iconset>
+    </property>
+    <property name="text">
+     <string>Click to set cut</string>
+    </property>
+    <property name="toolTip">
+     <string>Click to set cut edge</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+2</string>
+    </property>
+   </action>
+   <action name="actionDrag_cut_positions">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="CanvasWindowBase.qrc">
+      <normaloff>:/CanvasWindowBase/images/drag-cut-position.png</normaloff>:/CanvasWindowBase/images/drag-cut-position.png</iconset>
+    </property>
+    <property name="text">
+     <string>Drag cut position</string>
+    </property>
+    <property name="toolTip">
+     <string>Drag to set cut position</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+3</string>
+    </property>
+   </action>
+   <action name="actionPick_points">
+    <property name="checkable">
+     <bool>true</bool>
+    </property>
+    <property name="icon">
+     <iconset resource="CanvasWindowBase.qrc">
+      <normaloff>:/CanvasWindowBase/images/pick-points.png</normaloff>:/CanvasWindowBase/images/pick-points.png</iconset>
+    </property>
+    <property name="text">
+     <string>Pick points</string>
+    </property>
+    <property name="shortcut">
+     <string>Ctrl+4</string>
+    </property>
+   </action>
+   <property name="name" stdset="0">
+    <cstring>cutActionGroup</cstring>
+   </property>
+  </actiongroup>
+  <actiongroup name="m_recent_files">
+   <property name="name" stdset="0">
+    <cstring>m_recent_files</cstring>
+   </property>
+  </actiongroup>
+ </widget>
+ <includes>
+  <include location="local">qt/libqthippo.h</include>
+ </includes>
+ <resources>
+  <include location="CanvasWindowBase.qrc"/>
+  <include location="HippoIcons.qrc"/>
+ </resources>
+ <connections>
+  <connection>
+   <sender>actionNew</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileNew()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionGroup_views</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>groupView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClose</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>close()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCu_t</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editCut()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionC_opy</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editCopy()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Paste</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editPaste()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionExport_data_source</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileExportTextTuple()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Print</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>filePrint()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Exit</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileExit()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Save</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileSave()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionLock</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewLock()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUnlock</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewUnlock()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_As</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileSaveAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_selected_as_image</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileSaveSelectedImages()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_HippoDraw</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>helpAbout()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_in</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewZoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_out</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewZoomIn()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAdd_page</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewAddPage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSelect_All</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editSelectAll()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRetile</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editReTile()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionSave_All_As</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileSaveAllAs()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShow_plot_table</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewShowPlotTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShow_pick_table</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewShowPickTable()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrinter_Settings</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>settingPrinter()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCanvas</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>settingCanvas()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionZoom_reset</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewZoomReset()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionFonts</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>settingFonts()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRetile_Page</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editReTilePage()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionDelete</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editDelete()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionShow_inspector</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>viewShowInspector()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionAbout_Qt</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>aboutQt()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionRange_zoom</sender>
+   <signal>toggled(bool)</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>setZoomMode(bool)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionPrevious_range</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>previousView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionNext_range</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>nextView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_set_fitter</sender>
+   <signal>selected(QAction*)</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>setFitter(QAction*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionHelp</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>helpHelp()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionCreate_Ntuple</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileCreateNTuple()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Open</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileOpen()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>action_Browse</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>fileBrowse()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionClear_All</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editClear()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUndo</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>editUndo()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>actionUngroup_views</sender>
+   <signal>triggered()</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>ungroupView()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>399</x>
+     <y>299</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>cutActionGroup</sender>
+   <signal>selected(QAction*)</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>setCutMode(QAction*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>m_recent_files</sender>
+   <signal>selected(QAction*)</signal>
+   <receiver>CanvasWindowBase</receiver>
+   <slot>openRecentFile(QAction*)</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>-1</x>
+     <y>-1</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>20</x>
+     <y>20</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+ <slots>
+  <slot>groupView()</slot>
+  <slot>fileSaveAll()</slot>
+  <slot>editCut()</slot>
+  <slot>editCopy()</slot>
+  <slot>editPaste()</slot>
+  <slot>fileExportTextTuple()</slot>
+  <slot>fileNew()</slot>
+  <slot>filePrint()</slot>
+  <slot>fileExit()</slot>
+  <slot>fileSave()</slot>
+  <slot>viewLock()</slot>
+  <slot>viewUnlock()</slot>
+  <slot>fileSaveAs()</slot>
+  <slot>fileSaveSelectedImages()</slot>
+  <slot>helpAbout()</slot>
+  <slot>viewZoomIn()</slot>
+  <slot>viewZoomOut()</slot>
+  <slot>viewAddPage()</slot>
+  <slot>editSelectAll()</slot>
+  <slot>editReTile()</slot>
+  <slot>fileSaveAllAs()</slot>
+  <slot>viewShowPlotTable()</slot>
+  <slot>viewShowPickTable()</slot>
+  <slot>settingPrinter()</slot>
+  <slot>settingCanvas()</slot>
+  <slot>viewZoomReset()</slot>
+  <slot>settingFonts()</slot>
+  <slot>editReTilePage()</slot>
+  <slot>editDelete()</slot>
+  <slot>viewShowInspector()</slot>
+  <slot>aboutQt()</slot>
+  <slot>setZoomMode(bool)</slot>
+  <slot>previousView()</slot>
+  <slot>nextView()</slot>
+  <slot>setFitter(QAction*)</slot>
+  <slot>helpHelp()</slot>
+  <slot>fileCreateNTuple()</slot>
+  <slot>fileOpen()</slot>
+  <slot>fileBrowse()</slot>
+  <slot>editClear()</slot>
+  <slot>editUndo()</slot>
+  <slot>ungroupView()</slot>
+  <slot>setCutMode(QAction*)</slot>
+  <slot>openRecentFile(QAction*)</slot>
+ </slots>
+</ui>

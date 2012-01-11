@@ -1,0 +1,10 @@
+# This file should be sourced to set the path to shared libraries on
+# platforms that do not have runtime paths.  The Mac OS X is such a
+# platform If you forget to source it, you'll get the installed
+# version of these libraries instead of the ones built here.
+
+#Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+DYLD_LIBRARY_PATH=@abs_top_builddir@/lib/.libs:@abs_top_builddir@/qt/.libs
+export DYLD_LIBRARY_PATH
+

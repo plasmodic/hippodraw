@@ -1,0 +1,33 @@
+""" -*- mode:python -*-
+
+Demonstrates a former bug in plotting error bars on log scale.  Note
+that the lower end of the error bar is 0.0, which can not be plotted
+but should not cause a problem.  The Y axis tick labels should also
+switch to exponent notation.
+
+author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+from hippo import *
+
+nt = NTuple ( 4 )
+nt.setLabels ( ['x', 'y', 'width', 'error'] )
+
+nt.addRow ( [ 1., 0.001, 1., 0.001 ] )
+
+h = Display ( "XY Plot", nt, ('x', 'y', 'nil', 'error' ) )
+canvas.addDisplay ( h )
+
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+h.setLog ( 'y', 1 )
+
+print "Lower value of error bar at 0.0 does not cause problem"
+
+print "when Y axis is log scale.  Also, the tick labels on in"
+print "exponential notation."
+print ""

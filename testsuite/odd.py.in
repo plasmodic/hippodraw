@@ -1,0 +1,38 @@
+""" -*- python -*-
+
+This script demonstrates an odd bug that was once there.
+
+Copyright (C) 2003 The Board of Trustees of 
+The Leland Stanford Junior University.  All Rights Reserved.  
+
+Author: Paul_Kunz@slac.stanford.edu
+
+$Id: odd.py.in,v 1.5 2004/01/31 05:00:59 jchiang Exp $
+
+"""
+import setPath
+
+from load_hippo import app, canvas
+from hippo import *
+from math import sqrt
+
+# Open an ntuple file
+nt = NTuple ( 1 )
+
+# Register the ntuple so it is visible to the applicaton
+from hippo import NTupleController
+ntc = NTupleController.instance()
+ntc.registerNTuple ( nt )
+
+nt.setLabels ( [ 'x' ] )
+
+# Create XY plot and add to canvas
+hist = Display ( "Histogram", nt, ('x',) )
+canvas.addDisplay ( hist )
+
+for i in range ( 1000 ) :
+    nt.addRow ( [ 50.] )
+    nt.addRow ( [ 100.] )
+    nt.addRow ( [ 300.] )
+    nt.addRow ( [ 600.] )
+

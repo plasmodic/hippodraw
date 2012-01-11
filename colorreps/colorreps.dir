@@ -1,0 +1,8 @@
+/** @dir reps
+
+This directory contains source and header files of classes tranforming binary covalue to color reprsentation.
+
+@sa @ref overview_pointrep
+
+*/
+

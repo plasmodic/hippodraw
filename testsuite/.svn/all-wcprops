@@ -1,0 +1,755 @@
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/47803/tools/hippodraw/trunk/testsuite
+END
+circbuff.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/circbuff.py.in
+END
+plot_function.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/plot_function.py.in
+END
+regressionFit.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/regressionFit.py.in
+END
+fittingLimits.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fittingLimits.py.in
+END
+fitting2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fitting2.py.in
+END
+errorContours.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/errorContours.py.in
+END
+Makefile.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/Makefile.in
+END
+displays.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/displays.py.in
+END
+function_rep.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function_rep.py.in
+END
+SciPy_demo.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/SciPy_demo.py.in
+END
+logerror.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/logerror.py.in
+END
+hsimple.py
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47803/tools/hippodraw/trunk/testsuite/hsimple.py
+END
+svac.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/svac.py.in
+END
+histogram.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/histogram.py.in
+END
+test_numarray.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_numarray.py.in
+END
+fitExample.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fitExample.py.in
+END
+cern_pi_1.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/cern_pi_1.py.in
+END
+plot_circle.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/plot_circle.py.in
+END
+eps_exp_bug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/eps_exp_bug.py.in
+END
+gui_lockup.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/gui_lockup.py.in
+END
+documents.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/documents.py.in
+END
+hsimple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hsimple.py.in
+END
+baddata2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/baddata2.py.in
+END
+auto_xytuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/auto_xytuple.py.in
+END
+odd.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/odd.py.in
+END
+ntuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/ntuple.py.in
+END
+cutId.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/cutId.py.in
+END
+minuitfit.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/minuitfit.py.in
+END
+setPath.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/setPath.py.in
+END
+hammer.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hammer.py.in
+END
+canvas.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/canvas.py.in
+END
+set_hippo.sh.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/set_hippo.sh.in
+END
+test_ConstantModelFit.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 79
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_ConstantModelFit.py.in
+END
+ConstantModelFit.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/ConstantModelFit.py.in
+END
+testXAxisModelLinear.cxx
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/testXAxisModelLinear.cxx
+END
+autotuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/autotuple.py.in
+END
+chi2bug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/chi2bug.py.in
+END
+egret_numarray.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/egret_numarray.py.in
+END
+test_listtuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_listtuple.py.in
+END
+function.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function.py.in
+END
+batchmode.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/batchmode.py.in
+END
+observer.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/observer.py.in
+END
+weighted_pl.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/weighted_pl.py.in
+END
+chi2Dists.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/chi2Dists.py.in
+END
+column.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/column.py.in
+END
+empty.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/empty.py.in
+END
+Output.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/Output.py.in
+END
+bugs.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/bugs.py.in
+END
+normalize.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/normalize.py.in
+END
+logAxisBug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/logAxisBug.py.in
+END
+large_range.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/large_range.py.in
+END
+test_FitsImage.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_FitsImage.py.in
+END
+extreme.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/extreme.py.in
+END
+overplot.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/overplot.py.in
+END
+weighted2_pl.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/weighted2_pl.py.in
+END
+cuts.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 62
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/cuts.py.in
+END
+run_root_scripts.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/run_root_scripts.py.in
+END
+ranges.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/ranges.py.in
+END
+function2i.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function2i.py.in
+END
+plotboundary.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/plotboundary.py.in
+END
+poorFit.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/poorFit.py.in
+END
+glast_twotower.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/glast_twotower.py.in
+END
+contour_over.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/contour_over.py.in
+END
+hist_comp.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hist_comp.py.in
+END
+pl_exp_test.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/pl_exp_test.py.in
+END
+useBinner.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/useBinner.py.in
+END
+canvas_crash.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/canvas_crash.py.in
+END
+createNTuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/createNTuple.py.in
+END
+scatter_hist.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/scatter_hist.py.in
+END
+test_addText.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_addText.py.in
+END
+hist_ntuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hist_ntuple.py.in
+END
+hsimple_array.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 71
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hsimple_array.py.in
+END
+baddata1.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/baddata1.py.in
+END
+colors.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/colors.py.in
+END
+static_hists.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/static_hists.py.in
+END
+test_numeric.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_numeric.py.in
+END
+cern_pi_4.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/cern_pi_4.py.in
+END
+m51.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/m51.py.in
+END
+statichists.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/statichists.py.in
+END
+earth.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/earth.py.in
+END
+hist_bug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/hist_bug.py.in
+END
+README.in
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/README.in
+END
+test_getNTuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_getNTuple.py.in
+END
+.gdbinit.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/.gdbinit.in
+END
+test_DataArray.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_DataArray.py.in
+END
+runninghist.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/runninghist.py.in
+END
+test_FitsController.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 77
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_FitsController.py.in
+END
+histexceptions.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/histexceptions.py.in
+END
+towercut.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/towercut.py.in
+END
+load_hippo.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/load_hippo.py.in
+END
+test_FitsWrite.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_FitsWrite.py.in
+END
+test_autoscale.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_autoscale.py.in
+END
+fitBug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fitBug.py.in
+END
+scatter_func.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 70
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/scatter_func.py.in
+END
+test_addAbsText.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_addAbsText.py.in
+END
+lambert.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/lambert.py.in
+END
+test_getNTuple2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_getNTuple2.py.in
+END
+function_py.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function_py.py.in
+END
+rebin.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/rebin.py.in
+END
+two_roots.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/two_roots.py.in
+END
+axisBug.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/axisBug.py.in
+END
+function_empty.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 72
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function_empty.py.in
+END
+datareps.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/datareps.py.in
+END
+egret_old.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/egret_old.py.in
+END
+fluxes.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 64
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fluxes.py.in
+END
+egret.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/egret.py.in
+END
+errorContours_2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/errorContours_2.py.in
+END
+data_array.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/data_array.py.in
+END
+manipulateDisplays.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/manipulateDisplays.py.in
+END
+run_test_scripts.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 74
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/run_test_scripts.py.in
+END
+function2d.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 68
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function2d.py.in
+END
+accesstuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/accesstuple.py.in
+END
+function_ntuple.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/function_ntuple.py.in
+END
+fitTestData.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/fitTestData.py.in
+END
+Makefile.am
+K 25
+svn:wc:ra_dav:version-url
+V 63
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/Makefile.am
+END
+width_before_range.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/width_before_range.py.in
+END
+test_fft.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_fft.py.in
+END
+cuts_export.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 69
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/cuts_export.py.in
+END
+zplot_pixel_offset.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 76
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/zplot_pixel_offset.py.in
+END
+autoscale.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/autoscale.py.in
+END
+integers.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 66
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/integers.py.in
+END
+test_root_array.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 73
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_root_array.py.in
+END
+log.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 61
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/log.py.in
+END
+Output2.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 65
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/Output2.py.in
+END
+test_root.py.in
+K 25
+svn:wc:ra_dav:version-url
+V 67
+/svn/!svn/ver/47802/tools/hippodraw/trunk/testsuite/test_root.py.in
+END

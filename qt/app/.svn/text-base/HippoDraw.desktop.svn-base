@@ -1,0 +1,10 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=HippoDraw
+GenericName=Interactive data analysis
+Comment=Analyize data in ASCII and FITS tables
+Exec=hippodraw
+Icon=hippoApp.png
+Terminal=false
+Type=Application
+Categories=Science;Graphics;

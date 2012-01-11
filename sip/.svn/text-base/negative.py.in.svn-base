@@ -1,0 +1,32 @@
+from sihippo import *
+from random import random
+from qt import *
+import sys
+from time import sleep
+
+app = QApplication(sys.argv)
+
+label1 = ['x','y']
+ntc = NTupleController.instance()
+ntall = ntc.createNTuple(1)
+ntall.setTitle('Hit Multiplicity All Layers')
+ntall.setLabels(label1)
+ntall.reserve ( 512 )
+wc = WindowController.instance()
+canvas = CanvasWindow()
+canvas = wc.currentCanvas()
+dc = DisplayController.instance()
+hist = dc.createDisplay ('Strip Chart', ntall, label1 )
+canvas.addDisplay(hist)
+ntall.setIntervalCount ( 1 )
+canvas.setIntervalEnabled ( 1 )
+
+canvas.show()
+for i in range(100):
+  x = int(random()*-10)
+  y = int(random()*-20)
+  ntall.addRow([x,y])
+  app.processEvents()
+  sleep(.5)
+
+app.exec_loop()

@@ -1,0 +1,65 @@
+""" -*- python -*-
+This script tests the creation of most types of Displays.
+
+Copyright (C) 2001, 2003, 2006   The Board of Trustees of The Leland Stanford
+Junior University.  All Rights Reserved.
+
+Author: Paul F. Kunz <Paul_Kunz@slac.stanford.edu>
+
+$Id: displays.py.in,v 1.46 2006/09/15 17:12:11 pfkeb Exp $
+
+"""
+import setPath
+from load_hippo import hippo, app, canvas
+from hippo import NTupleController
+
+ntc = NTupleController.instance()
+nt1 = ntc.createNTuple ( '@top_srcdir@/examples/aptuple.tnt' )
+
+from hippo import Display
+
+hist = Display ("Histogram", nt1, ('Cost', ) )
+canvas.addDisplay( hist )
+
+profile = Display ( "Profile", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( profile )
+
+color = Display ( "Color Plot", nt1, ('Age', 'Cost' ))
+color.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( color )
+
+contour = Display ( "Contour Plot", nt1, ('Age', 'Cost' ))
+contour.setBinWidth ( 'x', 1.0 )
+canvas.addDisplay ( contour )
+##color.setLog ( 'x', 1 )
+
+profile2D = Display ( "Profile 2D", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profile2D )
+
+profileC = Display ( "Profile Contour", nt1, ('Age', 'Cost', 'Service' ))
+canvas.addDisplay ( profileC )
+
+scatter = Display ( "Scatter Plot", nt1, ('Age', 'Cost' ))
+canvas.addDisplay ( scatter )
+
+nt2 = ntc.createNTuple ( '@top_srcdir@/examples/Z0Strip.data' )
+
+strip = Display ( "Strip Chart", nt2, ('Energy', 'Sigma' ))
+canvas.addDisplay ( strip )
+
+xy = Display ( "XY Plot", nt2, ('Energy', 'Sigma', 'nil', 'error' ))
+canvas.addDisplay ( xy )
+
+y = Display ( "Y Plot", nt2, ('Energy', ) )
+canvas.addDisplay ( y )
+
+xyz = Display ( "XYZ Plot", nt1, ('Age', 'Service', 'Cost' ))
+canvas.addDisplay ( xyz )
+
+vm = Display ( "Variable Mesh", nt2,
+               ( 'Energy', 'Sigma', 'Sigma', 'binsize', 'error' ) )
+canvas.addDisplay ( vm )
+
+
+## Changes the range.
+hist.setRange ( 'x', 0.0, 30000 )

@@ -1,0 +1,132 @@
+/* -*- mode:c++ -*- */
+
+/** @file cmath List of functions used by @b HippoDraw from the
+    cmath component of the C++ standard library.
+
+    Since the Doxygen tag file supplied with the GCC compiler does not
+    contain documentation for functions defined in cmath, They are
+    supplied here. The functions must not be specified in namespace
+    std, otherwise Doxygen did document them.
+
+    @note This list maybe incomplete.
+*/
+
+namespace std {
+
+  /** @brief A C++ standard library function.
+
+  Returns the absolute value of the argument.
+  */
+  double abs ( double );
+
+  /** @brief A C++ standard library function.
+
+  Returns the absolute value of the argument.
+  */
+  float abs ( float );
+
+  /** @brief A C++ standard library function.
+
+  Returns the cosine of @a x, where @a x is given in radians.
+  */
+  double cos ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the cosine of @a x, where @a x is given in radians.
+  */
+  float cos ( float x );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the value of @c e ( the base of natural logrithms) raised to
+  the power of @a x.
+  */
+  double exp ( double x );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the value of @c e ( the base of natural logrithms) raised to
+  the power of @a x.
+  */
+  float exp ( float x );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the natural logarithm of @a x
+  */
+  double log ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the natural logarithm of @a x
+  */
+  float log ( float x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the base-10 logarithm of @a x
+  */
+  double log10 ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the base-10 logarithm of @a x
+  */
+  float log10 ( float x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the value of @a x raised to the power of @a y.
+  */
+  double pow ( double x, double y );
+
+  /** @brief A C++ standard library function.
+
+  Returns the value of @a x raised to the power of @a y.
+  */
+  float pow ( float x, float y );
+
+  /** @brief A C++ standard library function.
+
+  Returns the sine of @a x, where @a x is given in radians.
+  */
+  double sin ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the sine of @a x, where @a x is given in radians.
+  */
+  float sin ( float x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the hyperbolic sine of @a x.
+  */
+  double sinh ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the hyperbolic sine of @a x, where @a x.
+  */
+  float sinh ( float x );
+
+
+  /** @brief A C++ standard library function.
+
+  Returns the the non-negative square root of @a x. It fails and sets
+  errno to EDOM, if @a x is negative.
+  */
+  double sqrt ( double x );
+
+  /** @brief A C++ standard library function.
+
+  Returns the the non-negative square root of @a x. It fails and sets
+  errno to EDOM, if @a x is negative.
+  */
+  float sqrt ( float x );
+
+};
