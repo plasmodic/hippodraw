@@ -6,7 +6,7 @@ Copyright (C) 2001-2006   The Board of Trustees of The Leland
 Stanford Junior University.  All Rights Reserved.
 
 $Id: QtView.cxx,v 1.175 2007/03/05 22:49:48 xiefang Exp $
- 
+
 */
 
 // inconsistent dll linkage
@@ -50,7 +50,7 @@ QtView::QtView ( PlotterBase * plotter )
 {
   assert ( plotter != 0 );
   m_plotter -> addObserver ( this );
-  setFlags ( QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable ); 
+  setFlags ( QGraphicsItem::ItemIsMovable | QGraphicsItem::ItemIsSelectable );
 }
 
 QtView::
@@ -69,7 +69,7 @@ drawWithPixmap ( QPainter & painter )
   const Rect rect = getDrawRect ();
   double width = rect.getWidth ();
   double height = rect.getHeight ();
-  
+
   if ( m_filled == false ) {
     QPainter offscrPainter;
     ensureOffScrSize(width, height);
@@ -112,7 +112,7 @@ void QtView::paint ( QPainter *painter, const QStyleOptionGraphicsItem *option,
   QPaintDevice * dev = painter->device ();
   QPaintEngine * pe = dev -> paintEngine ();
   QPaintEngine::Type type = pe-> type ();
-  if ( m_plotter -> wantsPixmap () && type != QPaintEngine::PostScript ) { 
+  if ( m_plotter -> wantsPixmap () && type != QPaintEngine::PostScript ) {
     drawWithPixmap ( *painter );
   } else {
     m_painter = painter;
@@ -158,7 +158,7 @@ void QtView::updateDrawRect ()
   double aspect = getAspectRatio();
   Rect drawrect = getDrawRect();
   if ( aspect > 0 ) {
-    setDrawRect ( drawrect.getX(), drawrect.getY(), 
+    setDrawRect ( drawrect.getX(), drawrect.getY(),
 		  drawrect.getHeight()*aspect, drawrect.getHeight() );
   } else {
     setDrawRect ( drawrect );
@@ -300,7 +300,7 @@ ensureOffScrSize ( int osw, int osh )
   if ( osw > m_pixmap.width() || osh > m_pixmap.height() )
 	m_pixmap = QPixmap(std::max(osw,m_pixmap.width()),
 		      std::max(osh,m_pixmap.height()));
-  else if ( m_pixmap.width() == 0 || m_pixmap.height() == 0 ) 
+  else if ( m_pixmap.width() == 0 || m_pixmap.height() == 0 )
 	m_pixmap = QPixmap(std::max( m_pixmap.width(), 1),
 		       std::max( m_pixmap.height(), 1 ) );
 }
@@ -336,7 +336,7 @@ mousePressEvent ( QGraphicsSceneMouseEvent * e )
 
   // Everything past here modifies the plot
 
-  if (e->button() == Qt::RightButton && 
+  if (e->button() == Qt::RightButton &&
      (dynamic_cast<Cut1DPlotter *>(m_plotter) != NULL ||
       dynamic_cast<Cut2DPlotter *>(m_plotter) != NULL)) {
 	updateCuts(e);
@@ -461,7 +461,7 @@ QtView::updateCuts(QGraphicsSceneMouseEvent *e)
 	vector < double > picked;
 	double pickedx, pickedy;
 
-	if (m_plotter == NULL) 
+	if (m_plotter == NULL)
 		return;
 
 	fillPickedPoint ( e->pos().x(), e->pos().y(), picked );
@@ -470,21 +470,21 @@ QtView::updateCuts(QGraphicsSceneMouseEvent *e)
 	pickedy = (fabs(picked[0] - 1.) < 0.5) ? picked[3] : picked[2];
 
 	if (dynamic_cast<Cut1DPlotter *>(m_plotter) != NULL) {
-		Cut1DPlotter *cut = dynamic_cast<Cut1DPlotter *>(m_plotter);	
+		Cut1DPlotter *cut = dynamic_cast<Cut1DPlotter *>(m_plotter);
 
 		double cut_low = cut->getCutRange().low();
 		double cut_high = cut->getCutRange().high();
 		double plotter_low = cut->getRange( Axes::X, true ).low();
 		double plotter_high = cut->getRange( Axes::X, true ).high();
 
-		Range currentRange = Range::Range(cut_low, cut_high);
+		Range currentRange = Range(cut_low, cut_high);
 
 		// Limit to visible area
 		if ( cut_low < plotter_low )
-			currentRange = Range::Range(plotter_low, cut_high);
+			currentRange = Range(plotter_low, cut_high);
 		if ( cut_high > plotter_high )
-			currentRange = Range::Range(cut_low, plotter_high);
-		   
+			currentRange = Range(cut_low, plotter_high);
+
 		// Figure out which side was selected and adjust cut
 		if (pickedx < (currentRange.high() + currentRange.low())/2.)
 			currentRange.setLow(pickedx);
@@ -495,9 +495,9 @@ QtView::updateCuts(QGraphicsSceneMouseEvent *e)
 	}
 
 	if (dynamic_cast<Cut2DPlotter *>(m_plotter) != NULL) {
-		Cut2DPlotter *cut = dynamic_cast<Cut2DPlotter *>(m_plotter);	
+		Cut2DPlotter *cut = dynamic_cast<Cut2DPlotter *>(m_plotter);
 		Location edge;
-		
+
 		Range xrange, yrange;
 		Range xcutrange, ycutrange;
 
